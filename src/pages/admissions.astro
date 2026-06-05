@@ -1,97 +1,199 @@
 ---
+// ADMISSIONS — reference archetype A (Landing/overview template), re-skinned for the Qi-House.
+// Section order replicated from analysis/teardown.md §4.A:
+//   1. header band (display heading + section title + single primary CTA)
+//   2. two-column value-prop (copy + external pull-quote/review)
+//   3. process module — numbered 5-step accordion WITH a nested sub-accordion (reference branches the
+//      "apply" step by year-group; we branch by practice track, placeholdered until the client confirms)
+//   4. staff/people card grid (image + name + title)
+//   5. "learn more" hub of linked image cards (6-up) routing to deeper pages
+//   + closing CTA (reference closes Admissions with an APPLY/ENQUIRE CTA)
+// Chrome matches the proven About page: <Base home> (navy header + reveal-on-scroll white header) and a
+// SectionSubnav local nav directly beneath it. Adapt-don't-pad + no fabrication (lessons.md §5/§6).
 import Base from '../layouts/Base.astro';
-import PageHeader from '../components/PageHeader.astro';
+import SectionSubnav from '../components/SectionSubnav.astro';
+import GoldArrowLink from '../components/GoldArrowLink.astro';
+import PhotoNavCard from '../components/PhotoNavCard.astro';
 import Cta from '../components/Cta.astro';
 
-const steps = [
-  ['01', 'Inquire', 'Begin a conversation. Tell us about the student and what you are looking for in an education.'],
-  ['02', 'Visit / Observe a Class', 'Come to the Qi-House. Observe the environment, the teaching, and the culture of participation firsthand.'],
-  ['03', 'Apply', 'Submit the application materials. [COPY: list required materials — confirm with academy; do not invent fees.]'],
-  ['04', 'Conversation & Assessment', 'A developmental conversation and assessment to understand fit, readiness, and the right starting point.'],
-  ['05', 'Decision', 'A shared decision about beginning. Enrollment is considered, not transactional.'],
+// Local section nav — maps the reference's Admissions dropdown to the Qi-House's real, on-page anchors.
+// Honest mapping (reskin-map §3.1): keep only items that resolve; Scholarships routes to a hub card rather
+// than a fabricated standalone program.
+const subnav: [string, string][] = [
+  ['Begin Your Inquiry', '/admissions'],
+  ['The Process', '/admissions#process'],
+  ["Who You'll Meet", '/admissions#people'],
+  ['Visit / Observe a Class', '/admissions#visit'],
 ];
 
-const hub = [
-  ['Scholarships', '/admissions#scholarships'],
-  ['Summer Academy', '/community/summer-academy'],
-  ['Events & Gatherings', '/community/events'],
-  ['Meet the Founder', '/about/founder'],
-  ['The Qi-House Ethos', '/about/ethos'],
-  ['Community Impact', '/community/impact'],
+// 5-step inquiry journey (reskin-map §3.1, exact). Step 03 carries a NESTED sub-accordion to replicate the
+// reference's branch-by-cohort behaviour; branch labels/materials are intent-annotated placeholders — never
+// invent required documents or a registration fee.
+const steps: {
+  num: string;
+  title: string;
+  body: string;
+  branches?: { label: string; body: string }[];
+}[] = [
+  {
+    num: '01',
+    title: 'Inquire',
+    body:
+      'Begin a conversation. Tell us about the student and what you are seeking from a practice that treats martial arts as the medium for an education in conscious participation.',
+  },
+  {
+    num: '02',
+    title: 'Visit / Observe a Class',
+    body:
+      'Come to the Qi-House. Observe the environment, the teaching, and the culture of participation firsthand before any decision is made.',
+  },
+  {
+    num: '03',
+    title: 'Apply',
+    body:
+      'Submit the application materials. The path differs by where a student is beginning — select the track that fits.',
+    branches: [
+      {
+        label: '[CONFIRM — entry track A, e.g. New to the practice]',
+        body:
+          '[COPY: 1–2 sentences on what this track involves + materials required. Confirm with the academy; do not invent forms or fees.]',
+      },
+      {
+        label: '[CONFIRM — entry track B, e.g. Transferring / experienced]',
+        body:
+          '[COPY: 1–2 sentences on prior-experience review + materials required. Confirm with the academy; do not invent forms or fees.]',
+      },
+    ],
+  },
+  {
+    num: '04',
+    title: 'Conversation & Assessment',
+    body:
+      'A developmental conversation and assessment to understand fit, readiness, and the right starting point — not a test to pass, but a way to begin well.',
+  },
+  {
+    num: '05',
+    title: 'Decision',
+    body:
+      'A shared decision about beginning. Enrollment is considered and mutual, not transactional.',
+  },
+];
+
+// Closing "learn more" hub — image cards routing to deeper pages (reference: 6-up linked-card grid).
+const hub: [string, string, string][] = [
+  ['Scholarships', '/admissions/scholarships', '[IMAGE — access / support, dignified not pitying · 4:3 · 960×720px · CONFIRM program exists]'],
+  ['Summer Academy', '/community/summer-academy', '[IMAGE — intensive seasonal practice, outdoors/candid · 4:3 · 960×720px]'],
+  ['Events & Gatherings', '/community/events', '[IMAGE — community gathering / demonstration · 4:3 · 960×720px]'],
+  ['Meet the Founder', '/about/founder', '[IMAGE — founder portrait / archival origins · 4:3 · 960×720px]'],
+  ['The Qi-House Ethos', '/about/ethos', '[IMAGE — ethos / philosophy motif, calm + considered · 4:3 · 960×720px]'],
+  ['Community Impact', '/community/impact', '[IMAGE — service / contribution beyond the studio · 4:3 · 960×720px]'],
 ];
 ---
-<Base title="Admissions · Begin Your Inquiry — The Qi-House">
-  <PageHeader
-    eyebrow="Admissions"
-    title="Begin Your Inquiry"
-    subtitle="Admission to the Qi-House begins with a conversation, not a checkout."
-  />
+<Base home title="Admissions · Begin Your Inquiry — The Qi-House" description="Admission to the Qi-House begins with a conversation, not a checkout.">
+  <SectionSubnav items={subnav} active="/admissions" label="Admissions section" />
 
-  <!-- Value prop + pull quote -->
   <section class="bg-stone">
-    <div class="container-content py-section-sm lg:py-section grid lg:grid-cols-2 gap-12 items-center">
-      <div class="reveal">
-        <p class="eyebrow mb-4">An Invitation</p>
-        <h2 class="text-3xl mb-5">A deliberate beginning.</h2>
-        <p class="text-slate/90">We look for families who value development over decoration — students ready to learn to perceive more clearly, choose more deliberately, and contribute more responsibly.</p>
+    <div class="container-content py-section-sm lg:py-section">
+      <!-- 1. Header band: eyebrow + display heading + subtitle + single primary CTA -->
+      <div class="text-center max-w-3xl mx-auto reveal">
+        <p class="eyebrow mb-4">Admissions</p>
+        <h1 class="text-4xl lg:text-5xl text-navy mb-5">Begin Your Inquiry</h1>
+        <p class="text-slate/90 text-lg mb-9">Admission to the Qi-House begins with a conversation, not a checkout.</p>
+        <a href="#process" class="btn-accent">See How It Works</a>
       </div>
-      <blockquote class="reveal border-l-2 border-gold pl-6 font-display text-2xl text-navy italic">
-        [PULL-QUOTE: a thoughtful endorsement — parent, educator, or community figure. Never fabricated.]
-      </blockquote>
+
+      <!-- 2. Two-column value-prop: copy (left) + external pull-quote/review (right) -->
+      <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center mt-20 lg:mt-28">
+        <div class="reveal">
+          <p class="font-accent uppercase tracking-[0.14em] text-base lg:text-lg text-navy/85 mb-6 flex flex-wrap items-center gap-x-2.5 gap-y-1">
+            <span class="bg-red text-stone px-2 py-0.5">A Deliberate</span> Beginning
+          </p>
+          <p class="text-slate/90 leading-relaxed mb-8">
+            We look for families and students who value development over decoration — those ready to learn
+            to perceive more clearly, choose more deliberately, and contribute more responsibly. The medium
+            is martial arts; the work is conscious participation.
+          </p>
+          <GoldArrowLink href="/about/ethos" text="What We Look For" />
+        </div>
+        <blockquote class="reveal border-l-2 border-gold pl-6 lg:pl-8">
+          <p class="font-display text-2xl lg:text-3xl text-navy italic leading-snug mb-4">
+            [PULL-QUOTE — a real endorsement from a parent, educator, or community figure. 1–2 sentences. Never fabricated.]
+          </p>
+          <cite class="eyebrow not-italic !text-slate-400">[Attribution — name · relationship to the academy · CONFIRM]</cite>
+        </blockquote>
+      </div>
     </div>
   </section>
 
-  <!-- Process accordion -->
-  <section id="visit" class="bg-stone-200">
+  <!-- 3. Process module: numbered 5-step accordion (step 03 carries a nested sub-accordion) -->
+  <section id="process" class="bg-stone-200 scroll-mt-24">
     <div class="container-content py-section-sm lg:py-section">
       <div class="text-center max-w-2xl mx-auto mb-12 reveal">
         <p class="eyebrow mb-4">Step by Step</p>
         <h2 class="text-3xl lg:text-4xl">The Admissions Process</h2>
       </div>
       <div class="max-w-3xl mx-auto space-y-3">
-        {steps.map(([num, title, body], i) => (
+        {steps.map((step, i) => (
           <details class="reveal group bg-white border border-navy/10 rounded-sm" open={i === 0}>
             <summary class="flex items-center gap-5 p-6 cursor-pointer list-none">
-              <span class="font-display text-3xl text-gold w-12 shrink-0">{num}</span>
-              <span class="font-display text-xl text-navy flex-1">{title}</span>
+              <span class="font-display text-3xl text-gold w-12 shrink-0">{step.num}</span>
+              <span class="font-display text-xl text-navy flex-1">{step.title}</span>
               <span class="text-navy/40 group-open:rotate-45 transition-transform text-2xl" aria-hidden="true">+</span>
             </summary>
-            <div class="px-6 pb-6 pl-[4.25rem] text-slate/90">{body}</div>
+            <div class="px-6 pb-6 pl-[4.25rem] text-slate/90">
+              <p class={step.branches ? 'mb-4' : ''}>{step.body}</p>
+              {step.branches && (
+                <div class="space-y-2 border-l border-navy/10 pl-4">
+                  {step.branches.map((b) => (
+                    <details class="group/sub bg-stone border border-navy/10 rounded-sm">
+                      <summary class="flex items-center justify-between gap-3 px-4 py-3 cursor-pointer list-none">
+                        <span class="font-accent text-sm font-medium text-navy">{b.label}</span>
+                        <span class="text-navy/40 group-open/sub:rotate-45 transition-transform text-xl" aria-hidden="true">+</span>
+                      </summary>
+                      <div class="px-4 pb-4 text-sm text-slate/90">{b.body}</div>
+                    </details>
+                  ))}
+                </div>
+              )}
+            </div>
           </details>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- People grid -->
-  <section class="bg-stone">
+  <!-- 4. People grid: who you'll meet (admissions / instructors) -->
+  <section id="people" class="bg-stone scroll-mt-24">
     <div class="container-content py-section-sm lg:py-section">
       <p class="eyebrow mb-8 text-center reveal">Who You'll Meet</p>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {Array.from({ length: 4 }).map((_, i) => (
           <div class="reveal text-center">
-            <div class="ph aspect-square mb-3">[PORTRAIT {i + 1}: instructor / admissions — real, candid]</div>
-            <div class="font-display text-lg text-navy">[Name]</div>
-            <div class="eyebrow !text-slate-400">[Role]</div>
+            <div class="ph aspect-square mb-3 !text-[10px]">[PORTRAIT {i + 1} — 800×800px (1:1) · admissions lead / instructor, candid not posed]</div>
+            <div class="font-display text-lg text-navy">[Name — confirm]</div>
+            <div class="eyebrow !text-slate-400">[Role — confirm]</div>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Learn-more hub -->
+  <!-- 5. "Learn more" hub: image cards routing to deeper pages -->
   <section class="bg-stone-200">
     <div class="container-content py-section-sm lg:py-section">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {hub.map(([label, href]) => (
-          <a href={href} class="reveal flex items-center justify-between bg-white border border-navy/10 rounded-sm p-6 hover:border-gold transition-colors">
-            <span class="font-display text-lg text-navy">{label}</span>
-            <span class="text-red font-accent text-xs uppercase tracking-eyebrow">Learn More</span>
-          </a>
+      <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+        <p class="eyebrow mb-4">Explore Further</p>
+        <h2 class="text-3xl lg:text-4xl">Before You Begin</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3">
+        {hub.map(([label, href, alt]) => (
+          <div class="reveal"><PhotoNavCard label={label} href={href} alt={alt} /></div>
         ))}
       </div>
     </div>
   </section>
 
-  <Cta />
+  <!-- Closing CTA (Begin Your Inquiry + Schedule a Visit). #visit anchors the "Visit / Observe" subnav item. -->
+  <div id="visit" class="scroll-mt-24"></div>
+  <Cta title="Begin your inquiry." text="Tell us about the student. We will take it from there — at the pace a real decision deserves." />
 </Base>
