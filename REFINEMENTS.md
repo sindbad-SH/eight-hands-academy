@@ -189,3 +189,37 @@ For live dev (HMR), run `npm run dev` from the real folder + view via Chrome ins
   other is absent. **Removing a correct replication is as much a fidelity failure as missing one.** Order of
   operations is absolute: replicate EVERY source element first (verify presence/absence by census, not
   memory); only the client's *explicit* prompt may then add or remove sections.
+
+## Build R&D — v6 (Admissions page: live audit caught a wrong component TYPE + missing sections) — `[general]`
+
+The Admissions page was first built from the teardown DOC alone (no live audit, effort dropped to medium).
+The Chrome-vs-live audit then caught a pile of misses — proof the audit gate must run per-page regardless of
+effort (now enforced in the engine). Findings, all fixed + re-verified live:
+
+- `[general]` **A "process/steps" module is often TABS, not an accordion — verify the component TYPE live;
+  the teardown's word for it can be wrong.** The teardown said "numbered 5-step accordion with nested 2–3
+  deep sub-accordions." The LIVE source (`fsPanelGroup fsTabs`) is a horizontal TABS component: a numbered
+  tab strip (active tab underlined red) with ONE panel visible at a time, each panel a two-column **image-left
+  + (subhead + copy + outlined CTA) right**. Tell tabs from accordion by measuring panel visibility: if only
+  one panel has `display:block`+size and the rest are `display:none` (swapped on click) → TABS; if multiple
+  can be open and they STACK vertically → accordion. I had built a stacked accordion AND invented nested
+  sub-accordions that don't exist. Built a reusable `ProcessTabs.astro`; deleted the invented nesting.
+- `[general]` **Section eyebrows are the red-pill HighlightEyebrow motif — don't fall back to plain gold
+  `.eyebrow` text.** Every section label on the reference admissions page ("WELCOME TO THE MOUNTAIN", "STEP
+  BY STEP", "HERE TO HELP", "THE AIGLON STORY", "PLANNING YOUR VISIT", "VISITING AIGLON") is a solid RED pill
+  with white uppercase text. I'd used the plain gold `.eyebrow` class. Use `<HighlightEyebrow mark="…" />`
+  (whole label boxed) for section eyebrows on interior pages too, not just the homepage.
+- `[general]` **Value-prop layout = IMAGE-left + copy-right; the external review is its OWN separate band.**
+  I merged them into one row (copy + side pull-quote). Live: block 2 is image-left + (highlight heading +
+  multi-paragraph copy + inline text link); block 3 is a SEPARATE centered band — red ❝ over a hairline rule,
+  serif-italic quote, bold source + small-caps attribution, "READ THE FULL REVIEW →" link. Two blocks, not one.
+- `[general]` **People/staff grid = PORTRAIT photos (3:4), name (link) + role LEFT-aligned, with a heading +
+  intro paragraph above.** I'd used square photos, centered text, and no intro. Match the source's portrait
+  aspect + left alignment + linked names.
+- `[general]` **Photo-button hub titles can be CENTERED (even scrim), not bottom-left.** The reference
+  admissions hub centers each card title over an even navy scrim; the About hub used bottom-left. Same
+  component, different option — added a `center` prop to `PhotoNavCard` rather than assuming one treatment.
+- `[general]` **Census the WHOLE page — interior landing pages carry more than archetype A lists.** The build
+  was missing three whole source blocks: a **full-width video embed**, a **"Planning Your Visit" two-NAVY-card
+  module** (Campus Map + Virtual Tour: white title + inner image + white outlined button), and a **"Visiting"
+  address card** (travel note + address). Walk every `.fsElement` top-level block in order and account for each.

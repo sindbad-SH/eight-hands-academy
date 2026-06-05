@@ -1,0 +1,84 @@
+---
+// ProcessTabs — the reference's "Admissions Process" module (analysis/teardown.md §4.A; verified by live
+// audit 2026-06-05). Component TYPE is TABS, not an accordion: a numbered tab strip (active tab underlined
+// red) above a single visible panel; each panel is two-column — IMAGE left + (subhead + copy + outlined CTA)
+// right — and clicking a tab swaps which panel shows. (An earlier build wrongly used a stacked accordion with
+// invented nested sub-accordions; the live source shows one panel visible at a time = tabs. Reusable for the
+// Learning page's tabbed modules.)
+import HighlightEyebrow from './HighlightEyebrow.astro';
+
+interface Step {
+  tab: string;       // numbered tab label, e.g. "1 - INQUIRE"
+  subhead: string;   // panel heading, e.g. "MAKE AN ENQUIRY"
+  body: string;      // panel copy (intent-annotated where placeholdered)
+  ctaText?: string;
+  ctaHref?: string;
+  img: string;       // dimensioned, intent-annotated image placeholder
+}
+interface Props {
+  eyebrow: string;
+  heading: string;
+  steps: Step[];
+}
+const { eyebrow, heading, steps } = Astro.props;
+---
+<div class="process-tabs">
+  <div class="text-center max-w-2xl mx-auto mb-10 reveal">
+    <div class="flex justify-center mb-4"><HighlightEyebrow mark={eyebrow} /></div>
+    <h2 class="text-3xl lg:text-4xl">{heading}</h2>
+  </div>
+
+  <!-- Tab strip: horizontal, scrollable on narrow screens; active tab underlined red -->
+  <div class="reveal border-b border-navy/10 mb-10 overflow-x-auto">
+    <div class="flex justify-start lg:justify-center gap-7 lg:gap-9 min-w-max px-1">
+      {steps.map((s, i) => (
+        <button
+          type="button"
+          class:list={[
+            'pt-tab font-accent text-sm font-medium uppercase tracking-wide whitespace-nowrap pb-3 -mb-px border-b-2 transition-colors',
+            i === 0 ? 'text-navy border-red' : 'text-slate/70 border-transparent hover:text-navy',
+          ]}
+          data-i={i}
+          aria-selected={i === 0 ? 'true' : 'false'}
+          role="tab"
+        >{s.tab}</button>
+      ))}
+    </div>
+  </div>
+
+  <!-- Panels: image LEFT + (subhead + copy + CTA) RIGHT; one visible at a time -->
+  <div class="max-w-5xl mx-auto">
+    {steps.map((s, i) => (
+      <div class="pt-panel grid lg:grid-cols-2 gap-10 lg:gap-14 items-center" data-i={i} style={i === 0 ? '' : 'display:none'}>
+        <div class="ph aspect-[4/3] !text-[10px]">{s.img}</div>
+        <div>
+          <h3 class="font-accent uppercase tracking-[0.12em] text-navy text-lg mb-4">{s.subhead}</h3>
+          <p class="text-slate/90 leading-relaxed mb-7">{s.body}</p>
+          {s.ctaText && (
+            <a href={s.ctaHref} class="btn-ghost w-full sm:w-auto">{s.ctaText}</a>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.process-tabs').forEach((root) => {
+    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('.pt-tab'));
+    const panels = Array.from(root.querySelectorAll<HTMLElement>('.pt-panel'));
+    // Toggle REAL classes (lessons §7: Tailwind data-[on] arbitrary variants don't reliably paint).
+    const ON = ['text-navy', 'border-red'];
+    const OFF = ['text-slate/70', 'border-transparent'];
+    const show = (n: number) => {
+      tabs.forEach((t, i) => {
+        const on = i === n;
+        t.classList.remove(...(on ? OFF : ON));
+        t.classList.add(...(on ? ON : OFF));
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      panels.forEach((p, i) => { p.style.display = i === n ? '' : 'none'; });
+    };
+    tabs.forEach((t, i) => t.addEventListener('click', () => show(i)));
+  });
+</script>
