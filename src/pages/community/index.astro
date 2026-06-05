@@ -1,32 +1,104 @@
 ---
+// COMMUNITY — reskin of the reference Community page, structure VERIFIED by live Chrome audit of
+// aiglon.ch/community (2026-06-05). Reference shape: LEFT-aligned H1, an intro with a LAYERED photo pair +
+// ▶ pill (left) + highlight heading + copy + ClaimRotator (right), then a centered-title photo hub of
+// community facets, no closing CTA. Re-skinned for the Qi-House; hub routes to our real community sub-pages.
 import Base from '../../layouts/Base.astro';
-import PageHeader from '../../components/PageHeader.astro';
-import Cta from '../../components/Cta.astro';
+import SectionSubnav from '../../components/SectionSubnav.astro';
+import GoldArrowLink from '../../components/GoldArrowLink.astro';
+import ParallaxPhoto from '../../components/ParallaxPhoto.astro';
+import ClaimRotator from '../../components/ClaimRotator.astro';
+import PhotoNavCard from '../../components/PhotoNavCard.astro';
 
-const pages = [
-  ['Summer Academy', '/community/summer-academy', 'An educational experience — not a camp.'],
-  ['Instructor Development', '/community/instructor-development', 'From participant to mentor to steward.'],
-  ['Alumni', '/community/alumni', 'Those who carry the practice into the world.'],
-  ['Community Impact', '/community/impact', 'How the academy serves beyond its walls.'],
-  ['Events & Gatherings', '/community/events', 'The life of the Qi-House, in public.'],
+const subnav: [string, string][] = [
+  ['Participation in Practice', '/community'],
+  ['Summer Academy', '/community/summer-academy'],
+  ['Instructor Development', '/community/instructor-development'],
+  ['Alumni', '/community/alumni'],
+  ['Community Impact', '/community/impact'],
+  ['Events & Gatherings', '/community/events'],
+];
+
+const claims: [string, string][] = [
+  ['Not Just for Students', 'Families, alumni, and instructors form a community of practice that extends well beyond the floor.'],
+  ['Participation Is the Method', 'Belonging is earned the way skill is — by showing up and contributing.'],
+  ['A Living Lineage', 'Each cohort carries the practice forward and hands it on to the next.'],
+  ['Service Beyond the Studio', 'The practice is meant to be useful to the wider community, not only to the practitioner.'],
+];
+
+const hub: [string, string, string][] = [
+  ['Summer Academy', '/community/summer-academy', '[IMAGE — intensive seasonal practice, outdoors/candid · 4:3 · 760×570px]'],
+  ['Instructor Development', '/community/instructor-development', '[IMAGE — senior student teaching / leading a group · 4:3 · 760×570px]'],
+  ['Alumni', '/community/alumni', '[IMAGE — former students returned, across generations · 4:3 · 760×570px]'],
+  ['Community Impact', '/community/impact', '[IMAGE — service / contribution beyond the studio · 4:3 · 760×570px]'],
+  ['Events & Gatherings', '/community/events', '[IMAGE — a community gathering / demonstration · 4:3 · 760×570px]'],
+  ['Get Involved', '/admissions#visit', '[IMAGE — a newcomer welcomed onto the floor · 4:3 · 760×570px]'],
 ];
 ---
-<Base title="Community — The Qi-House">
-  <PageHeader
-    eyebrow="Community"
-    title="Participation in Practice"
-    subtitle="The individual develops through participation. The community develops through contribution."
-  />
+<Base home title="Community — The Qi-House" description="The individual develops through participation; the community develops through contribution.">
+  <SectionSubnav items={subnav} active="/community" label="Community section" />
+
   <section class="bg-stone">
-    <div class="container-content py-section-sm lg:py-section grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {pages.map(([label, href, blurb]) => (
-        <a href={href} class="reveal bg-white border border-navy/10 rounded-sm p-7 hover:border-gold transition-colors block">
-          <h3 class="text-2xl mb-2">{label}</h3>
-          <p class="text-sm text-slate/90 mb-4">{blurb}</p>
-          <span class="text-red font-accent text-xs uppercase tracking-eyebrow">Learn More</span>
-        </a>
-      ))}
+    <div class="container-content py-section-sm lg:py-section">
+      <h1 class="text-4xl lg:text-5xl text-navy mb-12 lg:mb-16">Community</h1>
+
+      <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
+        <div class="reveal">
+          <div class="relative min-h-[420px] lg:min-h-[540px]">
+            <ParallaxPhoto
+              alt="[IMAGE — a family / member welcomed into the community (primary) · PORTRAIT 4:5 · 1000×1250px]"
+              frameClass="aspect-[4/5] w-[78%]"
+              parallax={-104}
+              innerClass="!text-xs"
+            />
+            <ParallaxPhoto
+              alt="[IMAGE — a public gathering / event (secondary) · LANDSCAPE 4:3 · 900×675px]"
+              frameClass="absolute -bottom-6 right-0 lg:-right-10 w-[58%] aspect-[4/3] z-20 ring-[10px] ring-stone"
+              parallax={-100}
+              innerClass="!p-3 !text-[10px]"
+            />
+          </div>
+          <div class="flex justify-start mt-8">
+            <button class="group inline-flex items-center gap-3 rounded-full border border-navy/20 bg-white/50 hover:bg-white pl-1.5 pr-5 py-1.5 transition-colors" aria-label="Play: A Living Practice">
+              <span class="w-9 h-9 rounded-full bg-red flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110">
+                <svg width="10" height="12" viewBox="0 0 10 12" class="text-stone ml-0.5" fill="currentColor"><polygon points="0,0 10,6 0,12" /></svg>
+              </span>
+              <span class="font-accent text-sm tracking-wide text-navy">A Living Practice</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <p class="font-accent uppercase tracking-[0.14em] text-xl lg:text-2xl text-navy mb-7 inline-flex flex-wrap items-center gap-x-2.5 gap-y-1">
+            <span class="bg-red text-stone px-2 py-0.5">Belonging</span><span>Through Participation</span>
+          </p>
+          <p class="text-slate/90 leading-relaxed mb-5">
+            A community like this doesn't simply happen. It is built from a culture of attention and seized
+            opportunity — the relationships between instructors and students, and students kept at the centre
+            of things.
+          </p>
+          <p class="text-slate/90 leading-relaxed mb-8">
+            From everyday practice to gatherings, alumni who carry the work into the world, and service beyond
+            the studio — community and consistent effort are what make the Qi-House what it is.
+          </p>
+          <GoldArrowLink href="/community/impact" text="How We Serve" class="mb-10" />
+          <ClaimRotator items={claims} dark={false} label="What the community is built on" />
+        </div>
+      </div>
     </div>
   </section>
-  <Cta />
+
+  <!-- Photo hub: community facets (centered titles) → real sub-pages -->
+  <section class="bg-stone-200">
+    <div class="container-content py-section-sm lg:py-section">
+      <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+        <h2 class="text-3xl lg:text-4xl">Ways to Take Part</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3">
+        {hub.map(([label, href, alt]) => (
+          <div class="reveal"><PhotoNavCard label={label} href={href} alt={alt} center /></div>
+        ))}
+      </div>
+    </div>
+  </section>
 </Base>
