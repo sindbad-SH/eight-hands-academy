@@ -1,33 +1,112 @@
 ---
+// DAILY LIFE — reskin of the reference "Student Life" page, structure VERIFIED by live Chrome audit of
+// aiglon.ch/student-life (2026-06-05). Reference shape: LEFT-aligned H1 (no eyebrow), one image-left +
+// highlight-heading + copy + ClaimRotator intro, then a centered-title photo hub of sub-topics, no closing
+// CTA. Adaptation: the reference routes "Reflection / Wellbeing" to separate pages via the hub; we HAVE real
+// content for those, so they're kept as inline anchored bands (so the nav anchors resolve) AND surfaced in
+// the hub. The Twelve Houses are REFERENCED, never explained (directive) — a hub card links out.
 import Base from '../layouts/Base.astro';
-import PageHeader from '../components/PageHeader.astro';
-import Cta from '../components/Cta.astro';
+import SectionSubnav from '../components/SectionSubnav.astro';
+import GoldArrowLink from '../components/GoldArrowLink.astro';
+import ClaimRotator from '../components/ClaimRotator.astro';
+import PhotoNavCard from '../components/PhotoNavCard.astro';
 
-const blocks = [
-  ['environment', 'The Qi-House Environment', 'The space itself is part of the education — arranged for presence, order, and the deliberate practice of awareness.', false],
-  ['reflection', 'Reflection & Presence', 'Stillness is trained alongside movement. Reflection is not an interlude; it is the practice of containing awareness.', true],
-  ['wellbeing', 'Wellbeing & Safety', 'Development requires safety. The academy holds clear standards for the physical and psychological wellbeing of every student.', false],
+const subnav: [string, string][] = [
+  ['The Qi-House Environment', '/daily-life'],
+  ['Reflection & Presence', '/daily-life#reflection'],
+  ['Wellbeing & Safety', '/daily-life#wellbeing'],
+  ['The Twelve Houses', '/the-twelve-houses'],
+];
+
+const claims: [string, string][] = [
+  ['An Environment for Presence', 'The space itself is arranged for order, attention, and the deliberate practice of awareness.'],
+  ['Stillness Trained with Movement', 'Reflection is not an interlude between training — it is part of the training.'],
+  ['Safety as a Precondition', 'Development requires safety; the academy holds clear standards for physical and psychological wellbeing.'],
+  ['Twelve Houses', 'Domains of participation that frame how the practice is lived — referenced, not ranked.'],
+];
+
+const hub: [string, string, string][] = [
+  ['The Twelve Houses', '/the-twelve-houses', '[IMAGE — an evocative, non-literal motif for the Houses · 4:3 · 760×570px]'],
+  ['Reflection & Presence', '/daily-life#reflection', '[IMAGE — a still, reflective moment before/after practice · 4:3 · 760×570px]'],
+  ['Wellbeing & Safety', '/daily-life#wellbeing', '[IMAGE — attentive instruction, care on the floor · 4:3 · 760×570px]'],
+  ['The Practice Environment', '/daily-life#environment', '[IMAGE — the training space, ordered and calm · 4:3 · 760×570px]'],
+  ['Stillness & Meditation', '/daily-life#reflection', '[IMAGE — seated stillness / breath work · 4:3 · 760×570px]'],
+  ['A Day at the Qi-House', '/admissions#visit', '[IMAGE — the rhythm of a training day, candid · 4:3 · 760×570px]'],
 ];
 ---
-<Base title="Daily Life — The Qi-House">
-  <PageHeader
-    eyebrow="Daily Life"
-    title="An environment designed for development."
-    subtitle="What a day at the Qi-House is arranged to do."
-  />
+<Base home title="Daily Life — The Qi-House" description="An environment designed for presence, order, and the practice of awareness.">
+  <SectionSubnav items={subnav} active="/daily-life" label="Daily Life section" />
 
-  {blocks.map(([id, title, body, flip], i) => (
-    <section id={id} class={(i % 2 === 0 ? 'bg-stone' : 'bg-stone-200') + ' scroll-mt-28'}>
-      <div class="container-content py-section-sm lg:py-section grid lg:grid-cols-2 gap-12 items-center">
-        <div class:list={['reveal', flip && 'lg:order-2']}>
-          <p class="eyebrow mb-4">{title}</p>
-          <h2 class="text-3xl mb-5">{title}</h2>
-          <p class="text-slate/90">{body}</p>
+  <!-- Left-aligned page title (reference: Student Life), then intro block -->
+  <section id="environment" class="bg-stone scroll-mt-24">
+    <div class="container-content py-section-sm lg:py-section">
+      <h1 class="text-4xl lg:text-5xl text-navy mb-12 lg:mb-16">Daily Life</h1>
+
+      <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
+        <div class="ph aspect-[4/3] reveal !text-[10px]">[IMAGE — students/practitioners at ease in the Qi-House environment · 4:3 · 1040×780px · candid, warm]</div>
+        <div class="reveal">
+          <p class="font-accent uppercase tracking-[0.14em] text-xl lg:text-2xl text-navy mb-7 inline-flex flex-wrap items-center gap-x-2.5 gap-y-1">
+            <span>A Place for</span><span class="bg-red text-stone px-2 py-0.5">Presence</span>
+          </p>
+          <p class="text-slate/90 leading-relaxed mb-5">
+            The environment itself is part of the education. The Qi-House is arranged for order, attention, and
+            the deliberate practice of awareness — the dynamics of how the community trains together matter as
+            much as any single technique.
+          </p>
+          <p class="text-slate/90 leading-relaxed mb-8">
+            Daily life is the practice made ordinary: arriving, preparing, training, reflecting, and carrying
+            what is learned back out into the world. Each student is meant to make a kind of home here.
+          </p>
+          <GoldArrowLink href="/the-twelve-houses" text="The Twelve Houses" class="mb-10" />
+          <ClaimRotator items={claims} dark={false} label="What daily life is arranged to do" />
         </div>
-        <div class:list={['ph reveal aspect-[4/3]', flip && 'lg:order-1']}>[IMAGE: {title} — calm, candid, reflective]</div>
       </div>
-    </section>
-  ))}
+    </div>
+  </section>
 
-  <Cta />
+  <!-- Reflection & Presence (anchored sub-topic; copy-left / image-right) -->
+  <section id="reflection" class="bg-stone-200 scroll-mt-24">
+    <div class="container-content py-section-sm lg:py-section grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div class="reveal">
+        <p class="eyebrow mb-4">Reflection &amp; Presence</p>
+        <h2 class="text-3xl mb-5">Stillness is trained alongside movement.</h2>
+        <p class="text-slate/90 leading-relaxed">
+          Reflection is not an interlude; it is the practice of containing awareness. Time for stillness,
+          breath, and review is built into the rhythm of training — the place where movement becomes
+          understanding.
+        </p>
+      </div>
+      <div class="ph reveal aspect-[4/3] lg:order-2">[IMAGE — a quiet, reflective moment, candid · 4:3 · 960×720px]</div>
+    </div>
+  </section>
+
+  <!-- Wellbeing & Safety (anchored sub-topic; image-left / copy-right) -->
+  <section id="wellbeing" class="bg-stone scroll-mt-24">
+    <div class="container-content py-section-sm lg:py-section grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div class="ph reveal aspect-[4/3]">[IMAGE — attentive instruction / care on the training floor · 4:3 · 960×720px]</div>
+      <div class="reveal">
+        <p class="eyebrow mb-4">Wellbeing &amp; Safety</p>
+        <h2 class="text-3xl mb-5">Development requires safety.</h2>
+        <p class="text-slate/90 leading-relaxed">
+          The academy holds clear standards for the physical and psychological wellbeing of every student.
+          Challenge is real, but it is held within care — the conditions that let a person take a risk worth
+          taking.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo hub: facets of daily life (centered titles), incl. The Twelve Houses (referenced, not explained) -->
+  <section class="bg-stone-200">
+    <div class="container-content py-section-sm lg:py-section">
+      <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+        <h2 class="text-3xl lg:text-4xl">Life at the Qi-House</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3">
+        {hub.map(([label, href, alt]) => (
+          <div class="reveal"><PhotoNavCard label={label} href={href} alt={alt} center /></div>
+        ))}
+      </div>
+    </div>
+  </section>
 </Base>
