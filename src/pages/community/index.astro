@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Cta from '../../components/Cta.astro';
+
+const pages = [
+  ['Summer Academy', '/community/summer-academy', 'An educational experience — not a camp.'],
+  ['Instructor Development', '/community/instructor-development', 'From participant to mentor to steward.'],
+  ['Alumni', '/community/alumni', 'Those who carry the practice into the world.'],
+  ['Community Impact', '/community/impact', 'How the academy serves beyond its walls.'],
+  ['Events & Gatherings', '/community/events', 'The life of the Qi-House, in public.'],
+];
+---
+<Base title="Community — The Qi-House">
+  <PageHeader
+    eyebrow="Community"
+    title="Participation in Practice"
+    subtitle="The individual develops through participation. The community develops through contribution."
+  />
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {pages.map(([label, href, blurb]) => (
+        <a href={href} class="reveal bg-white border border-navy/10 rounded-sm p-7 hover:border-gold transition-colors block">
+          <h3 class="text-2xl mb-2">{label}</h3>
+          <p class="text-sm text-slate/90 mb-4">{blurb}</p>
+          <span class="text-red font-accent text-xs uppercase tracking-eyebrow">Learn More</span>
+        </a>
+      ))}
+    </div>
+  </section>
+  <Cta />
+</Base>

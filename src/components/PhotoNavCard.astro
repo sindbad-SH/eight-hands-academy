@@ -1,0 +1,20 @@
+---
+// Photo-button nav card — a full-bleed image with a dark legibility scrim and an uppercase title overlaid
+// bottom-left; the whole card links to a sub-page. Mirrors the reference's About "hub" grid (image cards to
+// Director's Welcome / Ethos / Founder &c.). Hover: image scales up inside the clipped frame + scrim deepens.
+interface Props {
+  label: string;
+  href: string;
+  alt: string; // dimensioned, intent-annotated placeholder
+}
+const { label, href, alt } = Astro.props;
+---
+<a href={href} class="group relative block aspect-[4/3] overflow-hidden bg-navy">
+  <div class="ph absolute inset-0 !rounded-none !border-0 !text-[10px] transition-transform duration-500 ease-out group-hover:scale-105">
+    {alt}
+  </div>
+  <div class="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/25 to-transparent transition-opacity duration-300 group-hover:from-navy/90"></div>
+  <h3 class="absolute left-5 right-4 bottom-4 m-0 text-stone font-accent text-lg lg:text-xl font-semibold uppercase tracking-[0.06em] leading-tight">
+    {label}
+  </h3>
+</a>

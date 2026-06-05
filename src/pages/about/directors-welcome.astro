@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Cta from '../../components/Cta.astro';
+---
+<Base title="Director's Welcome — The Qi-House">
+  <PageHeader eyebrow="About" title="Director's Welcome" />
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section grid lg:grid-cols-[1fr_1.6fr] gap-12 items-start">
+      <div class="ph aspect-[3/4] reveal">[PORTRAIT: director — warm, composed]</div>
+      <div class="reveal space-y-5 text-lg text-slate/90">
+        <p class="font-display text-2xl text-navy italic">Welcome to the Qi-House.</p>
+        <p>[COPY: 3–4 paragraphs in the director's voice — what the academy is for, the culture of
+          participation, and the invitation to families who value development. Educational, warm, humble.]</p>
+        <p>[COPY: close on the central message — a martial arts education in self-governance.]</p>
+        <div class="border-t border-navy/10 pt-5">
+          <p class="font-display text-xl text-navy italic">[Director Name]</p>
+          <p class="eyebrow !text-slate-400 mt-1">Director · The Qi-House</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>

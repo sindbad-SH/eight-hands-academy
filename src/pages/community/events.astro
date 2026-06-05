@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Cta from '../../components/Cta.astro';
+
+const filters = ['All', 'Community News', 'Events', 'Leadership', 'Service'];
+---
+<Base title="Events & Gatherings — The Qi-House">
+  <PageHeader eyebrow="Community" title="Events & Gatherings" subtitle="The life of the Qi-House, in public." />
+
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section">
+      <!-- Filters -->
+      <div class="flex flex-wrap gap-2 mb-10 reveal">
+        {filters.map((f, i) => (
+          <button class="font-accent text-sm px-4 py-2 rounded-[3px] border border-navy/20 text-navy hover:bg-navy hover:text-stone transition-colors" data-active={i === 0 ? 'true' : 'false'}>{f}</button>
+        ))}
+      </div>
+
+      <!-- Featured -->
+      <article class="reveal grid lg:grid-cols-2 gap-8 items-center mb-14 bg-white border border-navy/10 rounded-sm overflow-hidden">
+        <div class="ph aspect-[4/3] !border-0 !rounded-none">[IMAGE: featured event — community gathering, candid]</div>
+        <div class="p-8">
+          <div class="eyebrow !text-slate-400 mb-3">[Category] · [Date]</div>
+          <h2 class="text-2xl lg:text-3xl mb-4">[FEATURED EVENT: title — workshop, leadership day, or community gathering]</h2>
+          <p class="text-slate/90 mb-6">[COPY: 2–3 sentences, lead with service and participation.]</p>
+          <a href="#" class="text-red font-accent text-xs uppercase tracking-eyebrow">Read More</a>
+        </div>
+      </article>
+
+      <!-- List -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <article class="reveal bg-white border border-navy/10 rounded-sm overflow-hidden">
+            <div class="ph aspect-[16/9] !border-0 !rounded-none">[IMAGE: event {i + 1}]</div>
+            <div class="p-6">
+              <div class="eyebrow !text-slate-400 mb-2">[Category] · [Date]</div>
+              <h3 class="font-display text-lg text-navy">[EVENT {i + 1}: title]</h3>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="text-center mt-12 reveal">
+        <button class="btn-ghost">Load More</button>
+      </div>
+    </div>
+  </section>
+
+  <Cta title="Join the community." text="Observe a class, attend a gathering, or begin your inquiry." />
+</Base>

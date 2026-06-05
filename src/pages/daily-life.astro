@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Cta from '../components/Cta.astro';
+
+const blocks = [
+  ['environment', 'The Qi-House Environment', 'The space itself is part of the education — arranged for presence, order, and the deliberate practice of awareness.', false],
+  ['reflection', 'Reflection & Presence', 'Stillness is trained alongside movement. Reflection is not an interlude; it is the practice of containing awareness.', true],
+  ['wellbeing', 'Wellbeing & Safety', 'Development requires safety. The academy holds clear standards for the physical and psychological wellbeing of every student.', false],
+];
+---
+<Base title="Daily Life — The Qi-House">
+  <PageHeader
+    eyebrow="Daily Life"
+    title="An environment designed for development."
+    subtitle="What a day at the Qi-House is arranged to do."
+  />
+
+  {blocks.map(([id, title, body, flip], i) => (
+    <section id={id} class={(i % 2 === 0 ? 'bg-stone' : 'bg-stone-200') + ' scroll-mt-28'}>
+      <div class="container-content py-section-sm lg:py-section grid lg:grid-cols-2 gap-12 items-center">
+        <div class:list={['reveal', flip && 'lg:order-2']}>
+          <p class="eyebrow mb-4">{title}</p>
+          <h2 class="text-3xl mb-5">{title}</h2>
+          <p class="text-slate/90">{body}</p>
+        </div>
+        <div class:list={['ph reveal aspect-[4/3]', flip && 'lg:order-1']}>[IMAGE: {title} — calm, candid, reflective]</div>
+      </div>
+    </section>
+  ))}
+
+  <Cta />
+</Base>

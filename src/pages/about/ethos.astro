@@ -1,0 +1,35 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Cta from '../../components/Cta.astro';
+---
+<Base title="The Qi-House Ethos">
+  <PageHeader
+    eyebrow="About"
+    title="The Qi-House Ethos"
+    subtitle="Life is the practice of maintaining the power of choice."
+  />
+
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section max-w-3xl space-y-12">
+      <div class="reveal">
+        <p class="eyebrow mb-4">The Foundational Axiom</p>
+        <p class="text-xl text-slate/90">
+          No institution can govern choice. It can only influence it. The purpose of education is to
+          strengthen an individual's ability to exercise choice responsibly.
+        </p>
+      </div>
+      <div class="reveal border-l-2 border-gold pl-6">
+        <p class="font-display text-2xl text-navy italic mb-3">The objective is not mastery of isolated techniques. The objective is mastery of participation.</p>
+        <p class="text-slate/90">The novice sees pieces. The advanced student sees relationships. The master sees systems.</p>
+      </div>
+      <div class="reveal">
+        <p class="eyebrow mb-4">What This Means in Practice</p>
+        <p class="text-slate/90">[COPY: how the ethos shows up day to day — perceiving clearly, choosing
+          deliberately, acting effectively, contributing responsibly. 2–3 paragraphs.]</p>
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

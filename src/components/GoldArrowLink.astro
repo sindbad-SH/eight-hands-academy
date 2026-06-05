@@ -1,0 +1,20 @@
+---
+// PART: "Gold Arrow Link" (teardown-motion.md §6) — "LEARN MORE →" gold caps with an arrow that
+// nudges right on hover.
+interface Props {
+  href?: string;
+  text?: string;
+  class?: string;
+}
+const { href = '#', text = 'Learn More', class: cls = '' } = Astro.props;
+---
+<a
+  href={href}
+  class:list={['group inline-flex items-center gap-3 font-accent text-xs uppercase tracking-[0.18em] font-semibold text-gold-600 hover:text-gold transition-colors', cls]}
+>
+  {text}
+  <svg width="22" height="10" viewBox="0 0 22 10" fill="none" stroke="currentColor" stroke-width="1.5" class="transition-transform duration-200 group-hover:translate-x-1">
+    <line x1="0" y1="5" x2="20" y2="5" />
+    <polyline points="15,1 20,5 15,9" />
+  </svg>
+</a>

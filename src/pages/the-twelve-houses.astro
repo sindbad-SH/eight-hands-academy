@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Cta from '../components/Cta.astro';
+---
+<Base title="The Twelve Houses — The Qi-House">
+  <PageHeader
+    eyebrow="The Twelve Houses"
+    title="Domains of participation."
+    subtitle="The Houses are lenses. They are domains. They are not destinations."
+  />
+
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section">
+      <div class="max-w-3xl mx-auto text-center mb-14 reveal">
+        <p class="text-lg text-slate/90">
+          The Twelve Houses are not stages, ranks, levels, or identities. Every individual contains the
+          capacity for each. Development is the growing freedom to access, balance, and apply each House
+          appropriately — according to circumstance.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        {Array.from({ length: 12 }).map((_, i) => (
+          <div class="reveal border border-navy/10 bg-white rounded-sm p-6 hover:border-gold transition-colors">
+            <div class="eyebrow !text-slate-400 mb-2">House {String(i + 1).padStart(2, '0')}</div>
+            <div class="font-display text-2xl text-navy mb-3">[House Name]</div>
+            <p class="ph !p-3 !text-xs">[HOUSE {i + 1}: evocative one-line — creates curiosity, does not explain]</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-center text-slate/80 italic font-display text-xl mt-14 reveal">
+        Mastery is demonstrated through appropriate adaptation — while maintaining orientation, presence,
+        awareness, and responsibility.
+      </p>
+    </div>
+  </section>
+
+  <Cta title="See the Houses in practice." text="The Houses are best understood through participation. Begin with a visit." />
+</Base>

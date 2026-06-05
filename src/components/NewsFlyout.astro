@@ -1,0 +1,60 @@
+---
+// PART: "Off-Canvas Flyout Tab" (teardown-motion.md §3) — fixed right-edge "News & Events" tab; opens a
+// full-height panel sliding in from the right + dim overlay. Esc / overlay / × closes.
+const items = Array.from({ length: 4 }, (_, i) => i);
+---
+<button
+  id="newsTab"
+  class="fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-red text-stone font-accent text-[11px] uppercase tracking-[0.22em] py-5 px-2.5 shadow-lg hover:bg-red/90 transition-colors [writing-mode:vertical-rl] rotate-180"
+  aria-label="Open News & Events"
+  aria-expanded="false"
+>
+  News &amp; Events
+</button>
+
+<div id="newsOverlay" class="fixed inset-0 z-40 bg-navy/60 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+<aside
+  id="newsPanel"
+  class="fixed top-0 right-0 z-50 h-full w-full sm:w-[420px] bg-stone shadow-2xl translate-x-full transition-transform duration-300 ease-out overflow-y-auto"
+  aria-hidden="true"
+>
+  <div class="p-8">
+    <div class="flex items-center justify-between mb-8">
+      <p class="font-accent uppercase tracking-[0.18em] text-sm font-semibold text-navy">News &amp; Events</p>
+      <button id="newsClose" class="text-navy text-3xl leading-none hover:text-red" aria-label="Close">&times;</button>
+    </div>
+    <ul class="space-y-6">
+      {items.map((i) => (
+        <li class="border-b border-navy/10 pb-6">
+          <div class="font-accent uppercase tracking-[0.18em] text-[10px] text-slate-400 mb-1">[Category] · [Date]</div>
+          <a href="/community/events" class="font-display text-lg text-navy hover:text-red transition-colors">[NEWS / EVENT {i + 1} — title]</a>
+        </li>
+      ))}
+    </ul>
+    <a href="/community/events" class="btn-ghost mt-8 w-full">View All</a>
+  </div>
+</aside>
+
+<script>
+  const tab = document.getElementById('newsTab');
+  const panel = document.getElementById('newsPanel');
+  const overlay = document.getElementById('newsOverlay');
+  const close = document.getElementById('newsClose');
+  const open = () => {
+    panel?.classList.remove('translate-x-full');
+    overlay?.classList.remove('opacity-0', 'pointer-events-none');
+    tab?.setAttribute('aria-expanded', 'true');
+    panel?.setAttribute('aria-hidden', 'false');
+  };
+  const shut = () => {
+    panel?.classList.add('translate-x-full');
+    overlay?.classList.add('opacity-0', 'pointer-events-none');
+    tab?.setAttribute('aria-expanded', 'false');
+    panel?.setAttribute('aria-hidden', 'true');
+  };
+  tab?.addEventListener('click', open);
+  close?.addEventListener('click', shut);
+  overlay?.addEventListener('click', shut);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') shut(); });
+</script>

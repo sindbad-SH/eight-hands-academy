@@ -1,0 +1,33 @@
+---
+// Shared carousel BEHAVIOR (the source uses slick for its claim/testimonial/news carousels). Snap-scroll
+// track + prev/next arrows. Slides are slotted; each slide sets its own width + `snap-start shrink-0`.
+// Arrow color inherits `currentColor` — set text color on the parent.
+interface Props {
+  class?: string;
+  label?: string;
+}
+const { class: cls = '', label = 'carousel' } = Astro.props;
+---
+<div class:list={['relative', cls]} data-carousel aria-roledescription="carousel" aria-label={label}>
+  <div class="carousel-track flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2 px-1 -mx-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    <slot />
+  </div>
+  <div class="flex gap-2 mt-6">
+    <button class="carousel-prev w-11 h-11 border border-current/30 flex items-center justify-center hover:bg-current/10 transition-colors" aria-label="Previous">
+      <svg width="9" height="16" viewBox="0 0 9 16" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="8,1 1,8 8,15" /></svg>
+    </button>
+    <button class="carousel-next w-11 h-11 border border-current/30 flex items-center justify-center hover:bg-current/10 transition-colors" aria-label="Next">
+      <svg width="9" height="16" viewBox="0 0 9 16" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="1,1 8,8 1,15" /></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('[data-carousel]').forEach((c) => {
+    const track = c.querySelector('.carousel-track') as HTMLElement | null;
+    if (!track) return;
+    const amt = () => Math.min(track.clientWidth * 0.85, 700);
+    c.querySelector('.carousel-prev')?.addEventListener('click', () => track.scrollBy({ left: -amt(), behavior: 'smooth' }));
+    c.querySelector('.carousel-next')?.addEventListener('click', () => track.scrollBy({ left: amt(), behavior: 'smooth' }));
+  });
+</script>

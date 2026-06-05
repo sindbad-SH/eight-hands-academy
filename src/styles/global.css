@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-navy: #0B2341;
+    --color-gold: #C9A44C;
+    --color-red: #8C1D18;
+    --color-stone: #F8F6F2;
+    --color-slate: #4B5563;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-stone text-slate font-body antialiased;
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-navy;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+}
+
+@layer components {
+  /* Institutional section-label / eyebrow — mirrors reference's uppercase +letterspacing h2 treatment */
+  .eyebrow {
+    @apply font-accent uppercase tracking-eyebrow text-gold-600 text-xs font-semibold;
+  }
+
+  .container-content {
+    @apply mx-auto max-w-content px-6 lg:px-10;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center font-accent text-sm font-medium tracking-wide
+           rounded-[3px] px-6 py-3 transition-colors duration-200;
+  }
+  .btn-primary {
+    @apply btn bg-navy text-stone hover:bg-navy-700;
+  }
+  .btn-accent {
+    @apply btn bg-red text-stone hover:opacity-90;
+  }
+  .btn-ghost {
+    @apply btn border border-navy/30 text-navy hover:bg-navy hover:text-stone;
+  }
+
+  /* Placeholder slot — visually marks an intent-annotated asset/copy brief in dev */
+  .ph {
+    @apply border border-dashed border-gold/60 bg-gold/5 text-slate-400 text-sm italic
+           flex items-center justify-center text-center p-6 rounded-sm;
+  }
+  /* On navy sections the slate placeholder text is near-illegible — use a stone-based token there. */
+  [class*='bg-navy'] .ph {
+    @apply text-stone/55 border-gold/45;
+  }
+
+  /* Scroll-reveal — IntersectionObserver toggles .is-visible; CSS does the fade/rise.
+     Decoupled from GSAP ScrollTrigger (which handles the pin + parallax) so it can't freeze. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Reduced-motion: reveals visible without JS (CSS-first fallback, matches CohortConstellation). */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

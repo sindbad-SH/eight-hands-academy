@@ -1,0 +1,60 @@
+// Shared primary navigation — single source of truth for both the sticky white header
+// (Header.astro) and the navy home header (HomeHeader.astro).
+export const nav = [
+  {
+    label: 'About',
+    href: '/about',
+    children: [
+      ["Director's Welcome", '/about/directors-welcome'],
+      ['The Qi-House Ethos', '/about/ethos'],
+      ['Founder & History', '/about/founder'],
+      ['Governance', '/about/governance'],
+      ['Leadership', '/about/leadership'],
+      ['Stewardship & Legacy', '/about/stewardship'],
+    ] as [string, string][],
+  },
+  {
+    label: 'Admissions',
+    href: '/admissions',
+    children: [
+      ['Begin Your Inquiry', '/admissions'],
+      ['Visit / Observe a Class', '/admissions#visit'],
+      ['Scholarships', '/admissions#scholarships'],
+    ] as [string, string][],
+  },
+  {
+    label: 'Learning',
+    href: '/learning',
+    children: [
+      ['Learning at the Qi-House', '/learning'],
+      ['Wonder', '/learning#wonder'],
+      ['Discovery', '/learning#discovery'],
+      ['Exploration', '/learning#exploration'],
+      ['Integration', '/learning#integration'],
+      ['Private Instruction — The Core', '/learning#private'],
+      ['Group Training — The Application', '/learning#group'],
+    ] as [string, string][],
+  },
+  {
+    label: 'Daily Life',
+    href: '/daily-life',
+    children: [
+      ['The Qi-House Environment', '/daily-life'],
+      ['Reflection & Presence', '/daily-life#reflection'],
+      ['Wellbeing & Safety', '/daily-life#wellbeing'],
+      ['The Twelve Houses', '/the-twelve-houses'],
+    ] as [string, string][],
+  },
+  {
+    label: 'Community',
+    href: '/community',
+    children: [
+      ['Participation in Practice', '/community'],
+      ['Summer Academy', '/community/summer-academy'],
+      ['Instructor Development', '/community/instructor-development'],
+      ['Alumni', '/community/alumni'],
+      ['Community Impact', '/community/impact'],
+      ['Events & Gatherings', '/community/events'],
+    ] as [string, string][],
+  },
+];

@@ -1,0 +1,13 @@
+---
+// PART: "Spiral-Circles Motif" (teardown-motion.md §5) — gold interlocking-rings graphic laid over
+// photo edges as connective tissue. (Re-drawn for Qi-House; reference uses three spiraled circles.)
+interface Props {
+  class?: string;
+}
+const { class: cls = '' } = Astro.props;
+---
+<svg viewBox="0 0 120 120" fill="none" class:list={['text-gold', cls]} aria-hidden="true">
+  <circle cx="44" cy="42" r="30" stroke="currentColor" stroke-width="2" />
+  <circle cx="72" cy="58" r="22" stroke="currentColor" stroke-width="2" />
+  <circle cx="56" cy="82" r="14" stroke="currentColor" stroke-width="2" />
+</svg>

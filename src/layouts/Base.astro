@@ -1,0 +1,122 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import HomeHeader from '../components/HomeHeader.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  home?: boolean;
+}
+const {
+  title = '8 Hands Martial Arts Academy · The Qi-House',
+  description = 'A Martial Arts Education in Self-Governance.',
+  home = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    {home && <HomeHeader />}
+    <Header reveal={home} />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Reveals via IntersectionObserver + CSS (independent of ScrollTrigger → never freezes).
+      const reveals = document.querySelectorAll<HTMLElement>('.reveal');
+      if (reduce) {
+        reveals.forEach((el) => el.classList.add('is-visible'));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add('is-visible');
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -8% 0px' }
+        );
+        reveals.forEach((el) => io.observe(el));
+
+        // Photo parallax — MANUAL rAF/scroll driver (NOT ScrollTrigger). The StatMap PIN inserts
+        // ~1700px of pin-spacing that repeatedly skewed ScrollTrigger's start/end math for every
+        // trigger below it, freezing the parallax at its rest value even after refresh(). A manual
+        // driver reads each element's LIVE layout position every frame, so it's immune to that.
+        //
+        // It translates the WHOLE element (translate3d) so the visible photo box moves relative to
+        // its neighbours — the reference behaviour (the photo's top edge rises past the heading as you
+        // scroll down). offsetTop chain = transform-independent layout position, so applying the
+        // transform never feeds back into the measurement. NEGATIVE data-parallax = drifts up on
+        // scroll-down; magnitude = px travelled from rest toward each extreme (total ≈ 2×).
+        const pItems = [...document.querySelectorAll<HTMLElement>('[data-parallax]')].map((el) => ({
+          el,
+          d: parseFloat(el.dataset.parallax || '0'),
+        }));
+        const docTop = (el: HTMLElement) => {
+          let t = 0;
+          let n: HTMLElement | null = el;
+          while (n) {
+            t += n.offsetTop;
+            n = n.offsetParent as HTMLElement | null;
+          }
+          return t;
+        };
+        const updateParallax = () => {
+          const vh = window.innerHeight;
+          const sy = window.scrollY;
+          for (const it of pItems) {
+            const h = it.el.offsetHeight;
+            const center = docTop(it.el) + h / 2 - sy; // viewport-relative element center
+            // Denominator uses h/4 (not h/2) so TALL elements aren't over-damped — the big primary photo
+            // would otherwise barely move. p clamps to ±1 slightly before the element fully exits, so most
+            // of the travel happens while it's on screen (more visible).
+            let p = (center - vh / 2) / (vh / 2 + h / 4); // +1 entering (low) → 0 centred → -1 exiting (high)
+            p = Math.max(-1, Math.min(1, p));
+            it.el.style.transform = `translate3d(0, ${(-p * it.d).toFixed(1)}px, 0)`;
+          }
+        };
+        // Update DIRECTLY on the scroll event (scroll is already coalesced to ~frame rate). No rAF gate:
+        // transforms don't dirty layout, so the per-element offsetTop reads don't thrash, and this stays
+        // responsive during fast scroll instead of dropping behind a throttled rAF queue.
+        window.addEventListener('scroll', updateParallax, { passive: true });
+        window.addEventListener('resize', updateParallax);
+        window.addEventListener('load', updateParallax);
+        if ((document as any).fonts?.ready) (document as any).fonts.ready.then(updateParallax);
+        updateParallax();
+
+        // StatMap pin still uses ScrollTrigger; refresh after layout/fonts settle.
+        const refresh = () => ScrollTrigger.refresh();
+        window.addEventListener('load', refresh);
+        if ((document as any).fonts?.ready) (document as any).fonts.ready.then(refresh);
+        setTimeout(refresh, 700);
+      }
+    </script>
+  </body>
+</html>

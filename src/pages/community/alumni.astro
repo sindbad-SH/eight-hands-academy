@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Cta from '../../components/Cta.astro';
+---
+<Base title="Alumni — The Qi-House">
+  <PageHeader
+    eyebrow="Community"
+    title="Alumni"
+    subtitle="Those who carry the practice of self-governance into the world."
+  />
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section">
+      <div class="grid md:grid-cols-3 gap-6">
+        {Array.from({ length: 3 }).map((_, i) => (
+          <figure class="reveal bg-white border border-navy/10 rounded-sm overflow-hidden">
+            <div class="ph aspect-[4/3] !border-0 !rounded-none">[PORTRAIT {i + 1}: alum — real, candid]</div>
+            <figcaption class="p-6">
+              <blockquote class="text-slate/90 italic">[ALUMNI STORY {i + 1}: growth-arc, in their words — never fabricated]</blockquote>
+              <p class="eyebrow !text-slate-400 mt-4">[Name · Year / Path]</p>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>

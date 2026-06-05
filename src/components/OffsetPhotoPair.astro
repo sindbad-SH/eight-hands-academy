@@ -1,0 +1,56 @@
+---
+// PART: "Offset Photo Pair" (teardown-motion.md §4) — large primary photo + a smaller secondary photo
+// overlapping its bottom-left corner (on top, with a ring "gap"), set asymmetrically against a text
+// column. Replaces uniform 2-col image/text blocks. Optional spiral motif. Scroll-reveals.
+import HighlightEyebrow from './HighlightEyebrow.astro';
+import GoldArrowLink from './GoldArrowLink.astro';
+import SpiralMotif from './SpiralMotif.astro';
+import ParallaxPhoto from './ParallaxPhoto.astro';
+
+interface Props {
+  eyebrowPre?: string;
+  eyebrowMark: string;
+  title: string;
+  body: string;
+  ctaHref?: string;
+  ctaText?: string;
+  primaryAlt: string;
+  secondaryAlt: string;
+  reverse?: boolean; // text on left, photos on right
+  dark?: boolean; // navy section
+  motif?: boolean;
+}
+const {
+  eyebrowPre = '', eyebrowMark, title, body,
+  ctaHref = '#', ctaText = 'Learn More',
+  primaryAlt, secondaryAlt, reverse = false, dark = false, motif = false,
+} = Astro.props;
+const sectionBg = dark ? 'bg-navy text-stone' : 'bg-stone';
+const ring = dark ? 'ring-navy' : 'ring-stone';
+const eyebrowColor = dark ? 'text-stone/70' : 'text-navy/75';
+const bodyColor = dark ? 'text-stone/80' : 'text-slate/90';
+---
+<section class:list={[sectionBg]}>
+  <div class="container-content py-section-sm lg:py-section grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+    <!-- Photo cluster — clip-and-drift parallax (inner layer drifts inside the frame on scroll;
+         secondary drifts ~2× the primary, mirroring the reference's panel-img mechanic). -->
+    <div class:list={['relative reveal pb-8 pl-6 lg:pl-10', reverse ? 'lg:order-2' : '']}>
+      <ParallaxPhoto alt={primaryAlt} frameClass="aspect-[4/5]" parallax={-50} innerClass="!text-xs" />
+      <ParallaxPhoto
+        alt={secondaryAlt}
+        frameClass={`absolute bottom-0 left-0 w-1/2 aspect-[4/3] z-20 ring-[10px] ${ring}`}
+        parallax={-92}
+        innerClass="!p-3 !text-[10px]"
+      />
+      {motif && <SpiralMotif class="absolute -top-7 -right-5 w-20 h-20 z-20" />}
+    </div>
+
+    <!-- Text -->
+    <div class:list={['reveal', reverse ? 'lg:order-1' : '']}>
+      <HighlightEyebrow pre={eyebrowPre} mark={eyebrowMark} class={`mb-5 ${eyebrowColor}`} />
+      <h2 class:list={['text-3xl lg:text-4xl mb-6', dark ? 'text-stone' : '']}>{title}</h2>
+      <p class:list={[bodyColor, 'mb-8 leading-relaxed']}>{body}</p>
+      <GoldArrowLink href={ctaHref} text={ctaText} />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Cta from '../../components/Cta.astro';
+
+const foundations = [
+  '10 Kanji', '10 Japanese Numbers', '10 Foundational Stances', '10 Strikes', '10 Kicks',
+  '10 Ground Defenses', 'Two Foundational Mindsets', 'Selected Twelve House Concepts',
+  'Weapon Specialization', 'Personal Scroll Creation',
+];
+---
+<Base title="Summer Academy of Self-Governance — The Qi-House">
+  <PageHeader
+    eyebrow="Community"
+    title="The Qi-House Summer Academy"
+    subtitle="Not a summer camp. An educational experience."
+  />
+
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section max-w-3xl space-y-5 reveal">
+      <p class="text-lg text-slate/90">
+        The Summer Academy of Self-Governance focuses on leadership, awareness, responsibility, language,
+        culture, movement, and stewardship. The focus is educational transformation rather than recreation.
+      </p>
+      <p class="text-slate/90 font-display text-xl text-navy italic">Enrollment is intentionally limited.</p>
+    </div>
+  </section>
+
+  <section class="bg-stone-200">
+    <div class="container-content py-section-sm lg:py-section">
+      <p class="eyebrow mb-8 text-center reveal">The Ten Foundations</p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 max-w-4xl mx-auto">
+        {foundations.map((f, i) => (
+          <div class="reveal bg-white border border-navy/10 rounded-sm p-5 text-center">
+            <div class="font-display text-2xl text-gold mb-1">{String(i + 1).padStart(2, '0')}</div>
+            <div class="text-sm font-accent text-navy">{f}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Cta title="Inquire about the Summer Academy." text="Places are limited and admission is considered. Begin your inquiry." />
+</Base>

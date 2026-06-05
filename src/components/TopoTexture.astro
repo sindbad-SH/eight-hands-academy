@@ -1,0 +1,30 @@
+---
+// Subtle topographic-contour texture (approximation of the reference's navy "map" motif).
+// currentColor + low opacity; sits behind navy header/hero content. pointer-events-none.
+// NOTE: the reference uses a bespoke topo map asset — this is a tasteful stand-in. A real brand
+// texture (e.g. a Qi-House motif) can replace the <pattern> paths later.
+interface Props {
+  id?: string;
+  class?: string;
+}
+const { id = 'topo', class: cls = 'text-stone/[0.06]' } = Astro.props;
+---
+<svg
+  class:list={['pointer-events-none absolute inset-0 h-full w-full', cls]}
+  aria-hidden="true"
+  preserveAspectRatio="xMidYMid slice"
+>
+  <defs>
+    <pattern id={id} width="340" height="240" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="currentColor" stroke-width="1">
+        <path d="M-20,38 C70,8 130,72 210,50 C270,33 320,70 380,52" />
+        <path d="M-20,86 C50,66 140,118 220,92 C280,74 330,108 380,96" />
+        <path d="M-20,134 C80,116 120,168 210,148 C272,134 322,164 380,148" />
+        <path d="M-20,184 C60,168 150,206 230,186 C290,172 330,200 380,188" />
+        <path d="M40,20 C90,60 80,140 130,190" />
+        <path d="M250,12 C300,70 270,150 320,210" />
+      </g>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill={`url(#${id})`} />
+</svg>

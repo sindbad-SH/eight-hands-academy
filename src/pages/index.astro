@@ -1,0 +1,343 @@
+---
+import Base from '../layouts/Base.astro';
+import PeelHero from '../components/home/PeelHero.astro';
+import StatMap from '../components/StatMap.astro';
+import NewsFlyout from '../components/NewsFlyout.astro';
+import HighlightEyebrow from '../components/HighlightEyebrow.astro';
+import GoldArrowLink from '../components/GoldArrowLink.astro';
+import CohortConstellation from '../components/CohortConstellation.astro';
+import TopoTexture from '../components/TopoTexture.astro';
+import SpiralMotif from '../components/SpiralMotif.astro';
+import Carousel from '../components/Carousel.astro';
+import ParallaxPhoto from '../components/ParallaxPhoto.astro';
+import ClaimRotator from '../components/ClaimRotator.astro';
+
+const differentiators = [
+  ['TICC-IMA', 'An educational methodology — not a curriculum of techniques alone.'],
+  ['Mentorship Model', 'Assessment, guidance, and accountability at the center.'],
+  ['Education, Not Combat', 'Martial arts as the vehicle for self-governance.'],
+  ['Since 1992', 'A practice grounded in decades of disciplined study.'],
+];
+---
+
+<Base home>
+  <!-- 1 · Peel Hero -->
+  <PeelHero />
+  <section class="bg-navy text-stone border-t border-stone/10">
+    <div class="container-content py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="font-display italic text-lg sm:text-xl text-stone/85">A Martial Arts Education in Self-Governance.</p>
+      <div class="flex gap-3">
+        <a href="/admissions" class="btn-accent">Begin Your Inquiry</a>
+        <a href="/admissions#visit" class="btn-ghost !border-stone/40 !text-stone hover:!bg-stone hover:!text-navy">Observe a Class</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · Founding statement (navy text, no photos — matches source section 2) -->
+  <section class="bg-navy text-stone relative overflow-hidden">
+    <TopoTexture id="topo-founding" />
+    <div class="container-content relative py-section-sm lg:py-section grid lg:grid-cols-[0.7fr_1.8fr] gap-8 lg:gap-12 items-start">
+      <div class="reveal pt-4 hidden lg:block"><span class="block w-24 h-px bg-red"></span></div>
+      <p class="reveal font-display text-2xl sm:text-3xl lg:text-[2.4rem] leading-[1.35] text-stone">
+        The purpose of the academy is not merely to teach martial arts. It is to develop an individual's
+        capacity to perceive more clearly, choose more deliberately, act more effectively, and contribute
+        more responsibly — a practice grounded in disciplined study since 1992.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3 · Pinned Stat-Map -->
+  <StatMap />
+
+  <!-- 4 · A Curriculum that Challenges — bespoke layered photo cluster + Cohort Constellation -->
+  <section class="bg-navy text-stone relative overflow-hidden">
+    <TopoTexture id="topo-curric" />
+    <div class="container-content relative py-section">
+      <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
+        <!-- Layered cluster: large primary top-right + big secondary overhanging bottom-left (crosses past
+             the primary's edge and hangs below it). Top-aligned with the heading; taller than the copy. -->
+        <div class="relative reveal min-h-[460px] lg:min-h-[620px]">
+          <ParallaxPhoto
+            alt="[IMAGE — primary (BACK layer) · 1040×1300px (4:5) · students mid-practice / focused learning]"
+            frameClass="aspect-[4/5] w-[80%] ml-auto"
+            parallax={-104}
+            innerClass="!text-xs"
+          />
+          <ParallaxPhoto
+            alt="[IMAGE — secondary (FRONT layer, overhangs bottom-left) · 760×570px (4:3) · instructor guiding a student]"
+            frameClass="absolute -bottom-6 left-0 lg:-left-8 w-[58%] aspect-[4/3] z-20 ring-[10px] ring-navy"
+            parallax={-100}
+            innerClass="!p-3 !text-[10px]"
+          />
+        </div>
+        <div class="reveal">
+          <HighlightEyebrow pre="A Curriculum that" mark="Challenges" class="mb-5 text-stone/70" />
+          <h2 class="text-3xl lg:text-4xl text-stone mb-6">A training that builds capable participants.</h2>
+          <p class="text-stone/80 mb-8 leading-relaxed">
+            For more than three decades the academy has pushed beyond technique alone — developing
+            perception, discernment, and responsibility. Students form lasting bonds with mentors who
+            guide them toward capability and character.
+          </p>
+          <GoldArrowLink href="/learning" text="Learn More" />
+        </div>
+      </div>
+
+      <div class="mt-16 lg:mt-24 reveal">
+        <p class="text-center font-accent uppercase tracking-[0.18em] text-xs text-stone/50 mb-8">The Developmental Journey</p>
+        <CohortConstellation />
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · A Truly International Community — INSET assembly photo + left copy/age-boxes + right overlaid photos + hover-enlarge video (1:1 with source) -->
+  <section class="bg-navy text-stone relative overflow-hidden">
+    <TopoTexture id="topo-community" />
+    <div class="container-content relative z-10 py-section">
+      <!-- Inset assembly photo: navy gutters on all sides (NOT edge-to-edge); clip-and-drift parallax; spiral overlaps lower-left -->
+      <div class="relative reveal mb-14 lg:mb-20">
+        <ParallaxPhoto
+          alt="[IMAGE — community assembly / gathering · INSET (navy gutters all sides) · 1500×625px (≈12:5) · participation, belonging]"
+          frameClass="aspect-[12/5]"
+          parallax={-52}
+          innerClass="!text-xs"
+        />
+        <SpiralMotif class="absolute -bottom-6 left-4 lg:left-8 w-20 h-20 lg:w-28 lg:h-28 text-gold/80 z-20" />
+      </div>
+
+      <!-- Two columns — LEFT: heading + copy + Learn More + three age/track boxes · RIGHT: overlaid clip-drift photos; video pill BELOW in open space -->
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div class="reveal">
+          <h2 class="text-3xl lg:text-4xl text-stone mb-6 leading-tight">The individual develops through <span class="bg-red text-stone px-2 box-decoration-clone">participation</span>.</h2>
+          <p class="text-stone/80 mb-7 leading-relaxed">The community develops through contribution. The institution develops through stewardship. Legacy emerges naturally when these remain aligned.</p>
+          <GoldArrowLink href="/community" text="Learn More" class="mb-9 text-stone" />
+          <div class="space-y-3 max-w-md">
+            {[['Youth Practice', 'Ages 6–13'], ['Adult Practice', 'Ages 14+'], ['Families & Community', 'All ages']].map(([t, a]) => (
+              <a href="/learning" class="flex items-center gap-4 border border-stone/20 px-5 py-4 hover:border-gold transition-colors">
+                <span class="w-9 h-9 border border-gold/50 flex items-center justify-center text-gold shrink-0">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M17 11l2 2 4-4" /></svg>
+                </span>
+                <span class="font-accent text-sm uppercase tracking-[0.14em] text-stone">{t}<span class="text-stone/45 normal-case tracking-normal"> · {a} [confirm]</span></span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div class="reveal">
+          <!-- Layered cluster: large PORTRAIT primary top-right + big LANDSCAPE secondary that overhangs
+               bottom-left, crossing LEFT past the column into the copy's space (the reference's layered overlap). -->
+          <div class="relative min-h-[440px] lg:min-h-[600px]">
+            <ParallaxPhoto
+              alt="[IMAGE — community life (primary) · PORTRAIT 5:6 · 1000×1200px · members across ages training together]"
+              frameClass="w-[74%] ml-auto aspect-[5/6]"
+              parallax={-104}
+              innerClass="!text-xs"
+            />
+            <ParallaxPhoto
+              alt="[IMAGE — shared moment (secondary) · LANDSCAPE 4:3 · 900×675px]"
+              frameClass="absolute -bottom-6 left-0 lg:-left-20 w-[62%] aspect-[4/3] z-20 ring-[10px] ring-navy"
+              parallax={-100}
+              innerClass="!p-3 !text-[10px]"
+            />
+          </div>
+          <!-- Video pill: BELOW the cluster, right-aligned, in open navy space (NOT overlapping the photos) -->
+          <div class="flex justify-end mt-7">
+            <button class="group inline-flex items-center gap-3 rounded-full border border-stone/25 bg-navy/40 hover:bg-navy/70 pl-1.5 pr-5 py-1.5 transition-colors" aria-label="Play: A Qi-House Tradition">
+              <span class="w-9 h-9 rounded-full bg-red flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110">
+                <svg width="10" height="12" viewBox="0 0 10 12" class="text-stone ml-0.5" fill="currentColor"><polygon points="0,0 10,6 0,12" /></svg>
+              </span>
+              <span class="font-accent text-sm tracking-wide text-stone">A Qi-House Tradition</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · Life at the Qi-House (= source panel-04 "Life on the Mountain") — full-bleed feature: bg + centered text + red icon CTA; placed directly after Community to match source order -->
+  <section class="relative bg-navy text-stone overflow-hidden min-h-[70vh] flex items-center">
+    <div class="absolute inset-x-0 -top-16 -bottom-16 bg-gradient-to-b from-navy-700 via-navy to-navy-900" data-parallax="-48" aria-hidden="true"></div>
+    <span class="absolute left-1/2 -translate-x-1/2 bottom-5 z-10 text-[11px] italic text-stone/30 text-center px-4">[IMAGE — full-bleed environment / the Qi-House setting · 1920×1080px (16:9) · calm, aspirational, never combat]</span>
+    <div class="container-content relative z-10 py-section text-center max-w-2xl mx-auto reveal">
+      <HighlightEyebrow pre="Life at the" mark="Qi-House" class="justify-center text-stone/80 mb-6" />
+      <h2 class="text-3xl lg:text-4xl text-stone mb-6">An environment designed for development.</h2>
+      <p class="text-stone/80 mb-9 leading-relaxed">The space itself is part of the education — arranged for presence, reflection, and the deliberate practice of awareness. Students need only step inside to feel it.</p>
+      <a href="/daily-life" class="btn-accent inline-flex items-center gap-2">
+        <svg width="14" height="16" viewBox="0 0 14 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1C3.7 1 1 3.6 1 6.8 1 11 7 15 7 15s6-4 6-8.2C13 3.6 10.3 1 7 1z" /><circle cx="7" cy="6.8" r="2" /></svg>
+        Visit the Qi-House
+      </a>
+    </div>
+  </section>
+
+  <!-- 8 · A Life Changing Adventure — composed 2-col (1:1 panel-05): LEFT offset photo pair + ▶ pill · RIGHT copy + claim-rotator card -->
+  <section class="bg-navy text-stone relative overflow-hidden">
+    <TopoTexture id="topo-adventure" />
+    <div class="container-content relative z-10 py-section grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
+      <!-- LEFT: offset photo pair (secondary overlaps bottom-right) + video pill in open space below -->
+      <div class="reveal">
+        <!-- Layered cluster: large primary top-left + big secondary overhanging bottom-right, crossing right toward the copy. -->
+        <div class="relative min-h-[440px] lg:min-h-[600px]">
+          <ParallaxPhoto
+            alt="[IMAGE — meaningful challenge / leadership · PORTRAIT 4:5 · 1040×1300px]"
+            frameClass="aspect-[4/5] w-[80%]"
+            parallax={-104}
+            innerClass="!text-xs"
+          />
+          <ParallaxPhoto
+            alt="[IMAGE — service / outdoor development · LANDSCAPE 4:3 · 900×675px]"
+            frameClass="absolute -bottom-6 right-0 lg:-right-12 w-[58%] aspect-[4/3] z-20 ring-[10px] ring-navy"
+            parallax={-100}
+            innerClass="!p-3 !text-[10px]"
+          />
+        </div>
+        <div class="flex justify-start mt-6">
+          <button class="group inline-flex items-center gap-3 rounded-full border border-stone/25 bg-navy/40 hover:bg-navy/70 pl-1.5 pr-5 py-1.5 transition-colors" aria-label="Play: The Practice in Motion">
+            <span class="w-9 h-9 rounded-full bg-red flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110">
+              <svg width="10" height="12" viewBox="0 0 10 12" class="text-stone ml-0.5" fill="currentColor"><polygon points="0,0 10,6 0,12" /></svg>
+            </span>
+            <span class="font-accent text-sm tracking-wide text-stone">The Practice in Motion</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- RIGHT: copy + Learn More + rotating claim card (icon + title + body + dots + pause) -->
+      <div class="reveal">
+        <HighlightEyebrow pre="A Meaningful" mark="Challenge" class="mb-5 text-stone/70" />
+        <h2 class="text-3xl lg:text-4xl text-stone mb-6">Learning beyond the training floor.</h2>
+        <p class="text-stone/80 mb-7 leading-relaxed">Leadership development, service, and the Summer Academy extend the practice into responsibility for systems larger than oneself.</p>
+        <GoldArrowLink href="/community/summer-academy" text="Explore the Summer Academy" class="mb-10 text-stone" />
+        <ClaimRotator items={differentiators} label="What sets the academy apart" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · The Twelve Houses + Program structure (CLIENT ORIGINALITY — no source panel; relocated here to preserve the source spine Community→Life→Adventure) -->
+  <section class="bg-navy text-stone relative overflow-hidden">
+    <TopoTexture id="topo-houses" />
+    <div class="container-content relative z-10 py-section-sm lg:py-section">
+      <div class="text-center max-w-2xl mx-auto mb-10 reveal">
+        <HighlightEyebrow pre="The Twelve" mark="Houses" class="justify-center mb-4 text-stone/70" />
+        <h2 class="text-3xl lg:text-4xl text-stone mb-3 mt-2">Domains of participation.</h2>
+        <p class="text-stone/75 italic font-display text-xl">The Houses are lenses. They are domains. They are not destinations.</p>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-16">
+        {Array.from({ length: 12 }).map((_, i) => (
+          <div class="reveal border border-stone/15 bg-white/[0.04] p-5 hover:border-gold transition-colors">
+            <div class="font-display text-2xl text-stone">House {i + 1}</div>
+            <p class="ph mt-3 !p-3 !text-xs">[HOUSE {i + 1}: evocative one-line — non-explanatory]</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="reveal bg-white/[0.04] border border-gold/30 p-8">
+          <p class="eyebrow !text-gold mb-3">Private Instruction</p>
+          <h3 class="text-2xl text-stone mb-3">The Core</h3>
+          <p class="text-stone/75 text-sm">Assessment, mentorship, curriculum delivery, individual guidance, development planning, and personal accountability.</p>
+        </div>
+        <div class="reveal border border-stone/15 p-8">
+          <p class="eyebrow !text-stone/70 mb-3">Group Training</p>
+          <h3 class="text-2xl text-stone mb-3">The Application</h3>
+          <p class="text-stone/75 text-sm">Repetition, conditioning, leadership, participation, partner development, community learning, and embodied application.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · Testimonials — carousel of B&W portrait cards (CLIENT ORIGINALITY: alumni→member stories; grouped with Twelve Houses before the source tail Prep→News→Video→CTA) -->
+  <section class="bg-navy text-stone relative overflow-hidden">
+    <TopoTexture id="topo-voices" />
+    <div class="container-content relative z-10 py-section">
+      <div class="text-center mb-10 reveal">
+        <HighlightEyebrow pre="Voices of the" mark="Community" class="justify-center text-stone/70" />
+      </div>
+      <Carousel class="text-stone reveal" label="Community voices">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <figure class="snap-start shrink-0 w-[260px] sm:w-[300px]">
+            <div class="ph aspect-[4/5] grayscale !text-[10px]">[PORTRAIT {i + 1} — B&W · 640×800px (4:5) · member / alum / instructor, candid]</div>
+            <figcaption class="mt-4">
+              <div class="font-display text-xl text-stone">[Name]</div>
+              <div class="font-accent uppercase tracking-[0.18em] text-[11px] text-stone/50 mt-1">[Role / Cohort]</div>
+            </figcaption>
+          </figure>
+        ))}
+      </Carousel>
+    </div>
+  </section>
+
+  <!-- 11 · A Preparation for Life — full-width photo band + offset text/photo -->
+  <section class="bg-navy text-stone relative overflow-hidden">
+    <TopoTexture id="topo-prep" />
+    <div class="relative w-full aspect-[21/9] overflow-hidden">
+      <div class="absolute inset-x-0 -top-16 -bottom-16 bg-gradient-to-br from-navy-700 to-navy-900 flex items-center justify-center" data-parallax="-52">
+        <span class="text-[11px] italic text-stone/30 px-6 text-center max-w-md">[IMAGE — full-width · 2400×1030px (≈21:9) · service / contribution / outdoor development]</span>
+      </div>
+    </div>
+    <div class="container-content relative z-10 py-section grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
+      <div class="reveal lg:pt-6">
+        <HighlightEyebrow pre="A Preparation for" mark="Life" class="mb-5 text-stone/70" />
+        <h2 class="text-3xl lg:text-4xl text-stone mb-6">Building future stewards.</h2>
+        <p class="text-stone/80 mb-8 leading-relaxed">The academy exists to strengthen individuals, families, and communities. We lead with a single question — <span class="font-display italic text-gold">how can we serve?</span></p>
+        <GoldArrowLink href="/community/impact" text="Community Impact" class="text-stone" />
+      </div>
+      <!-- Layered cluster: large primary top-right + big secondary overhanging bottom-left, crossing left toward the copy. -->
+      <div class="reveal relative min-h-[420px] lg:min-h-[600px]">
+        <ParallaxPhoto alt="[IMAGE — service / contribution (primary) · PORTRAIT 4:5 · 960×1200px]" frameClass="aspect-[4/5] w-[78%] ml-auto" parallax={-104} innerClass="!text-xs" />
+        <ParallaxPhoto alt="[IMAGE — outdoor development (secondary) · LANDSCAPE 4:3 · 900×675px]" frameClass="absolute -bottom-6 left-0 lg:-left-16 w-[60%] aspect-[4/3] z-20 ring-[10px] ring-navy" parallax={-100} innerClass="!p-3 !text-[10px]" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 · News & Events — image-card carousel + View All -->
+  <section class="bg-navy text-stone relative overflow-hidden">
+    <TopoTexture id="topo-news" />
+    <div class="container-content relative z-10 py-section">
+      <div class="flex items-end justify-between mb-8 reveal">
+        <HighlightEyebrow pre="News &" mark="Events" class="text-stone/70" />
+        <GoldArrowLink href="/community/events" text="View All News" class="hidden sm:inline-flex text-stone" />
+      </div>
+      <Carousel class="text-stone reveal" label="News and events">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <article class="snap-start shrink-0 w-[280px] sm:w-[320px]">
+            <div class="ph aspect-[4/3] !text-[10px]">[IMAGE — news / event {i + 1} · 640×480px (4:3)]</div>
+            <div class="mt-4">
+              <div class="font-accent uppercase tracking-[0.18em] text-[10px] text-stone/50">[DD Mon 2026] · [Category]</div>
+              <a href="/community/events" class="font-display text-lg text-stone hover:text-gold transition-colors block mt-1.5">[NEWS / EVENT {i + 1} — title]</a>
+            </div>
+          </article>
+        ))}
+      </Carousel>
+    </div>
+  </section>
+
+  <!-- 13 · 3-up video feature (thumbnail + red play button + title beside) -->
+  <section class="bg-navy">
+    <div class="container-content py-section grid md:grid-cols-3 gap-5">
+      {['Why the Qi-House', 'A Day at the Qi-House', 'Leadership & Stewardship'].map((label) => (
+        <button class="reveal flex items-center gap-4 border border-stone/15 p-3 text-left hover:border-gold transition-colors">
+          <span class="relative w-24 h-16 shrink-0 bg-navy-700 overflow-hidden flex items-center justify-center">
+            <span class="w-9 h-9 rounded-full bg-red flex items-center justify-center">
+              <svg width="11" height="13" viewBox="0 0 11 13" class="text-stone ml-0.5" fill="currentColor"><polygon points="0,0 11,6.5 0,13" /></svg>
+            </span>
+          </span>
+          <span class="font-accent text-sm text-stone/90">{label}</span>
+        </button>
+      ))}
+    </div>
+  </section>
+
+  <!-- 14 · Closing CTA — navy + topo + red CTA (matches source) -->
+  <section class="bg-navy text-stone relative overflow-hidden">
+    <TopoTexture id="topo-cta" />
+    <div class="container-content relative z-10 py-section text-center reveal">
+      <h2 class="text-3xl lg:text-5xl text-stone mb-6">Find out more.</h2>
+      <p class="text-lg text-stone/80 max-w-xl mx-auto mb-10">An education that would still make sense if martial arts were removed and education remained.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/admissions" class="btn-accent">Begin Your Inquiry</a>
+        <a href="/admissions#visit" class="btn-ghost !border-stone/40 !text-stone hover:!bg-stone hover:!text-navy">Schedule a Visit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Off-canvas News & Events flyout -->
+  <NewsFlyout />
+</Base>

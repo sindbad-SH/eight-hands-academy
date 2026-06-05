@@ -1,0 +1,115 @@
+---
+/**
+ * ClaimRotator — the reference's panel-05 "claim card": a bordered rounded card that rotates through
+ * single claims (icon + gold uppercase title + body), with pager DOTS at the top and a PAUSE toggle at
+ * the bottom-left, autoplaying. One claim shown at a time (fade). Mirrors aiglon.ch "A Life Changing
+ * Adventure" right-column card ("Not-for-Profit Independence", etc.).
+ *
+ * Rounded corners are intentional here (per-element reference match, CLAUDE.md §6) even though most
+ * boxes in this build are sharp — the source card itself is rounded.
+ */
+interface Props {
+  items: [string, string][]; // [title, body]
+  label?: string;
+  interval?: number; // autoplay ms
+  dark?: boolean; // true = on a navy section; false = light variant for a stone/white content area
+}
+const { items, label = 'Highlights', interval = 5000, dark = true } = Astro.props;
+const cardCls = dark ? 'border-stone/15 bg-navy-700/20' : 'border-navy/15 bg-white';
+const dotCls = dark ? 'bg-stone/30' : 'bg-navy/25';
+const bodyCls = dark ? 'text-stone/75' : 'text-slate';
+const pauseCls = dark ? 'text-stone/55 border-stone/40 hover:text-stone' : 'text-slate/70 border-navy/25 hover:text-navy';
+---
+
+<div
+  class:list={['claim-rotator relative border rounded-[14px] px-7 py-7 lg:px-8', cardCls]}
+  role="group"
+  aria-label={label}
+  data-interval={interval}
+>
+  <!-- pager dots (top, centered) -->
+  <div class="flex gap-2 justify-center mb-6">
+    {items.map((_, i) => (
+      <button class:list={['claim-dot w-1.5 h-1.5 rounded-full transition-colors', dotCls]} data-i={i} aria-label={`Show item ${i + 1}`}></button>
+    ))}
+  </div>
+
+  <!-- slides (one visible; others absolute/hidden) -->
+  <div class="relative min-h-[164px]">
+    {items.map(([title, body], i) => (
+      <div
+        class="claim-slide transition-opacity duration-500"
+        data-i={i}
+        style={i === 0 ? 'position:relative' : 'position:absolute;inset:0;opacity:0;pointer-events:none'}
+      >
+        <div class="w-11 h-11 mb-4 border border-gold/50 flex items-center justify-center text-gold">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2l2.6 6.6L21 9l-5 4.2L17.5 21 12 16.6 6.5 21 8 13.2 3 9l6.4-.4z" /></svg>
+        </div>
+        <h3 class="font-accent uppercase tracking-[0.14em] text-gold text-sm mb-3">{title}</h3>
+        <p class:list={['text-sm leading-relaxed', bodyCls]}>{body}</p>
+      </div>
+    ))}
+  </div>
+
+  <!-- pause/play toggle (bottom-left) -->
+  <button class:list={['claim-pause absolute left-7 bottom-5 w-6 h-6 rounded-full border flex items-center justify-center text-[9px] leading-none', pauseCls]} aria-label="Pause rotation">❚❚</button>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.claim-rotator').forEach((root) => {
+    const slides = Array.from(root.querySelectorAll<HTMLElement>('.claim-slide'));
+    const dots = Array.from(root.querySelectorAll<HTMLElement>('.claim-dot'));
+    const pauseBtn = root.querySelector<HTMLButtonElement>('.claim-pause');
+    const interval = parseInt(root.dataset.interval || '5000', 10);
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let cur = 0;
+    let timer: number | undefined;
+    let playing = true;
+
+    function show(n: number) {
+      cur = (n + slides.length) % slides.length;
+      slides.forEach((s, i) => {
+        const on = i === cur;
+        s.style.position = on ? 'relative' : 'absolute';
+        if (!on) {
+          s.style.top = '0';
+          s.style.left = '0';
+          s.style.right = '0';
+        }
+        s.style.opacity = on ? '1' : '0';
+        s.style.pointerEvents = on ? 'auto' : 'none';
+      });
+      dots.forEach((d, i) => {
+        // active dot = gold (inline); inactive = clear inline so the resting class colour shows (works for
+        // both the dark and light variants).
+        d.style.background = i === cur ? 'var(--color-gold)' : '';
+      });
+    }
+    function stop() {
+      if (timer) clearInterval(timer);
+      timer = undefined;
+    }
+    function play() {
+      if (reduce) return;
+      stop();
+      timer = window.setInterval(() => show(cur + 1), interval);
+      playing = true;
+      if (pauseBtn) pauseBtn.textContent = '❚❚';
+    }
+    function toggle() {
+      if (playing) {
+        stop();
+        playing = false;
+        if (pauseBtn) pauseBtn.textContent = '►';
+      } else {
+        play();
+      }
+    }
+
+    dots.forEach((d, i) => d.addEventListener('click', () => { show(i); if (playing) play(); }));
+    pauseBtn?.addEventListener('click', toggle);
+
+    show(0);
+    play();
+  });
+</script>

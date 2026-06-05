@@ -1,0 +1,96 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionSubnav from '../../components/SectionSubnav.astro';
+import GoldArrowLink from '../../components/GoldArrowLink.astro';
+import ParallaxPhoto from '../../components/ParallaxPhoto.astro';
+import ClaimRotator from '../../components/ClaimRotator.astro';
+import PhotoNavCard from '../../components/PhotoNavCard.astro';
+
+// Section sub-nav (the About-section pages). Adapt-don't-pad: 7 real pages vs the reference's 11.
+const subnav: [string, string][] = [
+  ['About the Qi-House', '/about'],
+  ["Director's Welcome", '/about/directors-welcome'],
+  ['The Qi-House Ethos', '/about/ethos'],
+  ['Founder & History', '/about/founder'],
+  ['Governance', '/about/governance'],
+  ['Leadership', '/about/leadership'],
+  ['Stewardship & Legacy', '/about/stewardship'],
+];
+
+// Rotating claim card — real brand facts only (no fabrication), mapping the reference's institutional claims.
+const claims: [string, string][] = [
+  ['Education, Not Combat', 'Martial arts is the medium; the development of conscious participation is the work.'],
+  ['Practicing Since 1992', 'Decades of disciplined study, refined into a coherent methodology.'],
+  ['The TICC-IMA Method', 'An educational framework — not a curriculum of techniques alone.'],
+  ['Mentorship at the Center', 'Assessment, guidance, and accountability — the relationship that carries the practice.'],
+];
+
+// Photo-button hub — one image card per About sub-page (the reference's About card grid).
+const navCards: [string, string, string][] = [
+  ["Director's Welcome", '/about/directors-welcome', '[IMAGE — director portrait, candid · 4:3 · 960×720px]'],
+  ['The Qi-House Ethos', '/about/ethos', '[IMAGE — ethos / philosophy motif, calm + considered · 4:3 · 960×720px]'],
+  ['Founder & History', '/about/founder', '[IMAGE — founder portrait / archival origins · 4:3 · 960×720px]'],
+  ['Governance', '/about/governance', '[IMAGE — standards / stewardship, architectural · 4:3 · 960×720px]'],
+  ['Leadership', '/about/leadership', '[IMAGE — instructors / mentors, candid · 4:3 · 960×720px]'],
+  ['Stewardship & Legacy', '/about/stewardship', '[IMAGE — continuity / legacy across generations · 4:3 · 960×720px]'],
+];
+---
+<Base home title="About — The Qi-House" description="An educational institution whose medium is martial arts.">
+  <!-- Section sub-nav directly under the navy header (reference: the About-section local nav) -->
+  <SectionSubnav items={subnav} active="/about" label="About section" />
+
+  <!-- White content body (navy header + footer are the chrome; this interior page's body is light) -->
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section">
+      <h1 class="text-center text-4xl lg:text-5xl text-navy mb-14 lg:mb-20">About the Qi-House</h1>
+
+      <!-- Intro: LEFT layered photo pair + ▶ pill · RIGHT eyebrow + copy + link + rotating claim card -->
+      <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
+        <div class="reveal">
+          <div class="relative min-h-[420px] lg:min-h-[540px]">
+            <ParallaxPhoto
+              alt="[IMAGE — community / practice (primary) · PORTRAIT 4:5 · 1000×1250px · participation, belonging]"
+              frameClass="aspect-[4/5] w-[78%]"
+              parallax={-104}
+              innerClass="!text-xs"
+            />
+            <ParallaxPhoto
+              alt="[IMAGE — origins / archival (secondary, B&W) · LANDSCAPE 4:3 · 900×675px]"
+              frameClass="absolute -bottom-6 right-0 lg:-right-10 w-[58%] aspect-[4/3] grayscale z-20 ring-[10px] ring-stone"
+              parallax={-100}
+              innerClass="!p-3 !text-[10px]"
+            />
+          </div>
+          <div class="flex justify-start mt-8">
+            <button class="group inline-flex items-center gap-3 rounded-full border border-navy/20 bg-white/50 hover:bg-white pl-1.5 pr-5 py-1.5 transition-colors" aria-label="Play: The Practice in Motion">
+              <span class="w-9 h-9 rounded-full bg-red flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110">
+                <svg width="10" height="12" viewBox="0 0 10 12" class="text-stone ml-0.5" fill="currentColor"><polygon points="0,0 10,6 0,12" /></svg>
+              </span>
+              <span class="font-accent text-sm tracking-wide text-navy">The Practice in Motion</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <p class="font-accent uppercase tracking-[0.14em] text-base lg:text-lg text-navy/85 mb-6 flex flex-wrap items-center gap-x-2.5 gap-y-1">
+            <span class="bg-red text-stone px-2 py-0.5">Developing</span> the Individual
+          </p>
+          <p class="text-slate/90 leading-relaxed mb-8">
+            Founded in 1992, the academy set into motion an evolving practice — more than martial arts alone.
+            Drawing from foundational principles, we hold that through the balanced development of mind, body,
+            and discernment, the individual learns to participate consciously across the systems they move within.
+          </p>
+          <GoldArrowLink href="/about/ethos" text="The Founding Principles" class="mb-10" />
+          <ClaimRotator items={claims} dark={false} label="What defines the academy" />
+        </div>
+      </div>
+
+      <!-- Photo-button hub: image cards to each About sub-page (flush grid, image + title overlay) -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 mt-20 lg:mt-28">
+        {navCards.map(([label, href, alt]) => (
+          <div class="reveal"><PhotoNavCard label={label} href={href} alt={alt} /></div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

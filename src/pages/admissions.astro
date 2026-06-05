@@ -1,0 +1,97 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Cta from '../components/Cta.astro';
+
+const steps = [
+  ['01', 'Inquire', 'Begin a conversation. Tell us about the student and what you are looking for in an education.'],
+  ['02', 'Visit / Observe a Class', 'Come to the Qi-House. Observe the environment, the teaching, and the culture of participation firsthand.'],
+  ['03', 'Apply', 'Submit the application materials. [COPY: list required materials — confirm with academy; do not invent fees.]'],
+  ['04', 'Conversation & Assessment', 'A developmental conversation and assessment to understand fit, readiness, and the right starting point.'],
+  ['05', 'Decision', 'A shared decision about beginning. Enrollment is considered, not transactional.'],
+];
+
+const hub = [
+  ['Scholarships', '/admissions#scholarships'],
+  ['Summer Academy', '/community/summer-academy'],
+  ['Events & Gatherings', '/community/events'],
+  ['Meet the Founder', '/about/founder'],
+  ['The Qi-House Ethos', '/about/ethos'],
+  ['Community Impact', '/community/impact'],
+];
+---
+<Base title="Admissions · Begin Your Inquiry — The Qi-House">
+  <PageHeader
+    eyebrow="Admissions"
+    title="Begin Your Inquiry"
+    subtitle="Admission to the Qi-House begins with a conversation, not a checkout."
+  />
+
+  <!-- Value prop + pull quote -->
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section grid lg:grid-cols-2 gap-12 items-center">
+      <div class="reveal">
+        <p class="eyebrow mb-4">An Invitation</p>
+        <h2 class="text-3xl mb-5">A deliberate beginning.</h2>
+        <p class="text-slate/90">We look for families who value development over decoration — students ready to learn to perceive more clearly, choose more deliberately, and contribute more responsibly.</p>
+      </div>
+      <blockquote class="reveal border-l-2 border-gold pl-6 font-display text-2xl text-navy italic">
+        [PULL-QUOTE: a thoughtful endorsement — parent, educator, or community figure. Never fabricated.]
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Process accordion -->
+  <section id="visit" class="bg-stone-200">
+    <div class="container-content py-section-sm lg:py-section">
+      <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+        <p class="eyebrow mb-4">Step by Step</p>
+        <h2 class="text-3xl lg:text-4xl">The Admissions Process</h2>
+      </div>
+      <div class="max-w-3xl mx-auto space-y-3">
+        {steps.map(([num, title, body], i) => (
+          <details class="reveal group bg-white border border-navy/10 rounded-sm" open={i === 0}>
+            <summary class="flex items-center gap-5 p-6 cursor-pointer list-none">
+              <span class="font-display text-3xl text-gold w-12 shrink-0">{num}</span>
+              <span class="font-display text-xl text-navy flex-1">{title}</span>
+              <span class="text-navy/40 group-open:rotate-45 transition-transform text-2xl" aria-hidden="true">+</span>
+            </summary>
+            <div class="px-6 pb-6 pl-[4.25rem] text-slate/90">{body}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- People grid -->
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section">
+      <p class="eyebrow mb-8 text-center reveal">Who You'll Meet</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div class="reveal text-center">
+            <div class="ph aspect-square mb-3">[PORTRAIT {i + 1}: instructor / admissions — real, candid]</div>
+            <div class="font-display text-lg text-navy">[Name]</div>
+            <div class="eyebrow !text-slate-400">[Role]</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Learn-more hub -->
+  <section class="bg-stone-200">
+    <div class="container-content py-section-sm lg:py-section">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {hub.map(([label, href]) => (
+          <a href={href} class="reveal flex items-center justify-between bg-white border border-navy/10 rounded-sm p-6 hover:border-gold transition-colors">
+            <span class="font-display text-lg text-navy">{label}</span>
+            <span class="text-red font-accent text-xs uppercase tracking-eyebrow">Learn More</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

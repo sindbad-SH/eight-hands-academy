@@ -1,0 +1,65 @@
+---
+import TopoTexture from './TopoTexture.astro';
+
+const quickLinks = [
+  ['Events & Gatherings', '/community/events'],
+  ['Summer Academy', '/community/summer-academy'],
+  ['Community Impact', '/community/impact'],
+  ['Alumni', '/community/alumni'],
+];
+const engage = [
+  ['Visit the Qi-House', '/admissions#visit'],
+  ['Instructor Development', '/community/instructor-development'],
+  ['Governance', '/about/governance'],
+];
+---
+
+<footer class="bg-navy text-stone/80 relative overflow-hidden">
+  <TopoTexture id="topo-footer" />
+  <div class="container-content relative z-10 py-16 grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+    <div>
+      <div class="font-display text-2xl text-stone">8 Hands</div>
+      <div class="eyebrow !text-gold mt-1">The Qi-House</div>
+      <p class="mt-4 text-sm leading-relaxed text-stone/70 max-w-xs">
+        A Martial Arts Education in Self-Governance.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="eyebrow !text-stone/60 mb-4">Quick Links</h3>
+      <ul class="space-y-2 text-sm">
+        {quickLinks.map(([label, href]) => (
+          <li><a href={href} class="hover:text-gold transition-colors">{label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="eyebrow !text-stone/60 mb-4">Engagement</h3>
+      <ul class="space-y-2 text-sm">
+        {engage.map(([label, href]) => (
+          <li><a href={href} class="hover:text-gold transition-colors">{label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="eyebrow !text-stone/60 mb-4">Contact</h3>
+      <address class="not-italic text-sm space-y-2 text-stone/70">
+        <p>[ADDRESS — confirm from salvage]</p>
+        <p>[PHONE — confirm]</p>
+        <p><a href="mailto:info@example.com" class="hover:text-gold">[EMAIL — confirm]</a></p>
+      </address>
+      <div class="mt-4 flex gap-4 text-xs font-accent tracking-wide">
+        <span class="text-stone/50">[Social — only where accounts exist]</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-stone/10 relative z-10">
+    <div class="container-content py-5 flex flex-col sm:flex-row justify-between gap-2 text-xs text-stone/50">
+      <p>&copy; {new Date().getFullYear()} 8 Hands Martial Arts Academy · The Qi-House</p>
+      <p>A Martial Arts Education in Self-Governance.</p>
+    </div>
+  </div>
+</footer>

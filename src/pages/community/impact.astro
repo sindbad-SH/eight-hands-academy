@@ -1,0 +1,31 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Cta from '../../components/Cta.astro';
+
+const initiatives = [
+  'Charity Partnerships', 'Fundraisers', 'Youth Sponsorship', 'Scholarship Programs',
+  'Community Service', 'Food Drives', 'Leadership Projects', 'Educational Outreach',
+];
+---
+<Base title="Community Impact — The Qi-House">
+  <PageHeader
+    eyebrow="Community"
+    title="How can we serve?"
+    subtitle="The academy leads with contribution, not consumption."
+  />
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section max-w-3xl mx-auto text-center reveal mb-12">
+      <p class="text-lg text-slate/90">
+        The academy exists to strengthen individuals, families, and communities — and to develop future
+        leaders, mentors, and stewards. Every initiative begins with a single question: how can we serve?
+      </p>
+    </div>
+    <div class="container-content grid grid-cols-2 sm:grid-cols-4 gap-4">
+      {initiatives.map((item) => (
+        <div class="reveal bg-white border border-navy/10 rounded-sm px-5 py-6 text-center text-sm font-accent text-navy">{item}</div>
+      ))}
+    </div>
+  </section>
+  <Cta title="Serve alongside us." text="Join a project, support a scholarship, or begin your inquiry." />
+</Base>

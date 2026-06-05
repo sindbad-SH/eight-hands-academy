@@ -1,0 +1,36 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Cta from '../../components/Cta.astro';
+
+const path = [
+  ['Participant', 'Learning to participate consciously and responsibly.'],
+  ['Mentor', 'Learning to guide others — assessment, patience, and care.'],
+  ['Steward', 'Learning to contribute to systems larger than oneself.'],
+];
+---
+<Base title="Instructor Development — The Qi-House">
+  <PageHeader
+    eyebrow="Community"
+    title="Instructor Development"
+    subtitle="From participant, to mentor, to steward."
+  />
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section">
+      <div class="grid md:grid-cols-3 gap-6 mb-12">
+        {path.map(([stage, body], i) => (
+          <div class="reveal bg-white border border-navy/10 rounded-sm p-8">
+            <div class="font-display text-3xl text-gold mb-2">{String(i + 1).padStart(2, '0')}</div>
+            <h3 class="text-2xl mb-2">{stage}</h3>
+            <p class="text-sm text-slate/90">{body}</p>
+          </div>
+        ))}
+      </div>
+      <div class="max-w-3xl mx-auto reveal text-slate/90">
+        <p>[COPY: how the academy develops instructors — the standards, the mentorship, and the
+          responsibility of teaching. Leadership as service.]</p>
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>

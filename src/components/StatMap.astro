@@ -1,0 +1,86 @@
+---
+// PART: "Pinned Stat-Map" (teardown-motion.md §2) — GSAP ScrollTrigger PIN: the panel HOLDS while you
+// scroll and the leader-line flags scrub/pop in by scroll progress (the "force slow-down").
+// Source = panel-01 "An Environment that Inspires": 7 leader-line flags scattered across a pinned alpine
+// scene, ALTERNATING orientation (red number box left vs right), measured positions below. Real figures
+// only where confirmed; the rest are [#]/[confirm] placeholders (no fabrication) — Jeanette fills these.
+// `numLeft` = red number box on the LEFT (label to the right); false = number on the right (label left).
+const stats = [
+  { num: '1992', label: 'Practicing Since', x: 25, y: 28, numLeft: false },
+  { num: '[#]', label: 'Forms in The Core [confirm]', x: 55, y: 35, numLeft: true },
+  { num: '[#]', label: 'Students Enrolled [confirm]', x: 33, y: 45, numLeft: false },
+  { num: '[#]', label: 'Member & Family Community [confirm]', x: 40, y: 57, numLeft: true },
+  { num: '[#]%', label: 'Member Retention [confirm]', x: 19, y: 67, numLeft: false },
+  { num: '12', label: 'Houses of Participation', x: 43, y: 69, numLeft: false },
+  { num: '[#]', label: 'Average Class Size [confirm]', x: 53, y: 80, numLeft: true },
+];
+---
+<section id="statmap" class="relative bg-navy text-stone">
+  <div class="statmap-pin relative h-screen w-full overflow-hidden">
+    <!-- Full-bleed landscape placeholder (parallax-feel) -->
+    <div class="absolute inset-0 bg-gradient-to-b from-navy-700 via-navy to-navy-900" aria-hidden="true"></div>
+
+    <div class="container-content relative h-full pt-20 lg:pt-28">
+      <div class="text-center max-w-2xl mx-auto reveal">
+        <p class="font-accent uppercase tracking-[0.18em] text-sm font-semibold inline-flex items-center gap-2 text-stone/80">
+          An Environment That <span class="bg-red text-stone px-2 py-0.5">Inspires</span>
+        </p>
+        <p class="mt-5 text-stone/70 max-w-xl mx-auto text-sm">
+          A disciplined practice, a culture of participation, and an environment designed for development.
+        </p>
+      </div>
+    </div>
+
+    <!-- Flags (revealed by scroll progress) — alternating orientation + leader line/node toward the number side -->
+    {stats.map((s) => (
+      <div class="statmap-flag absolute" style={`left:${s.x}%; top:${s.y}%`}>
+        <div class:list={['flex items-stretch shadow-lg w-max', s.numLeft ? '' : 'flex-row-reverse']}>
+          <span class="bg-red text-stone font-display text-lg px-3 py-2 leading-none flex items-center">{s.num}</span>
+          <span class="bg-stone text-navy font-accent text-[11px] uppercase tracking-wide px-3 py-2 flex items-center whitespace-nowrap">{s.label}</span>
+        </div>
+        <div class:list={['flex flex-col', s.numLeft ? 'items-start ml-4' : 'items-end mr-4']}>
+          <span class="block w-px h-10 bg-stone/50"></span>
+          <span class="block w-2 h-2 rounded-full border border-stone/70 -mt-1"></span>
+        </div>
+      </div>
+    ))}
+
+    <p class="absolute left-1/2 -translate-x-1/2 bottom-5 text-[11px] italic text-stone/30 text-center px-4">
+      [IMAGE — full-bleed environment / landscape · 1920×1000px (≈16:8.3) · calm, aspirational, never combat]
+    </p>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const section = document.getElementById('statmap');
+  if (section) {
+    const pin = section.querySelector('.statmap-pin');
+    const flags = section.querySelectorAll('.statmap-flag');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduce) {
+      gsap.set(flags, { autoAlpha: 1, y: 0 });
+    } else {
+      gsap.set(flags, { autoAlpha: 0, y: 26 });
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: '+=1700',
+          pin: pin,
+          scrub: 1,
+          anticipatePin: 1,
+          // This pin inserts ~1700px of pin-spacing (end '+=1700'). Without a higher refreshPriority it gets
+          // recalculated AFTER the parallax/reveal triggers lower on the page, so those compute
+          // their start/end ~1400px too early and finish (freeze at rest) before they're in view.
+          refreshPriority: 1,
+        },
+      });
+      flags.forEach((f, i) => tl.to(f, { autoAlpha: 1, y: 0, ease: 'power2.out', duration: 1 }, i * 1.1));
+    }
+  }
+</script>

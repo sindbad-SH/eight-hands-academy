@@ -1,0 +1,19 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  variant?: 'navy' | 'stone';
+}
+const { eyebrow, title, subtitle, variant = 'navy' } = Astro.props;
+const dark = variant === 'navy';
+---
+<section class={dark ? 'bg-navy text-stone' : 'bg-stone-200'}>
+  <div class="container-content py-16 lg:py-24 text-center">
+    {eyebrow && <p class:list={['eyebrow mb-4', dark && '!text-gold']}>{eyebrow}</p>}
+    <h1 class:list={['font-display text-4xl lg:text-5xl font-semibold', dark && 'text-stone']}>{title}</h1>
+    {subtitle && (
+      <p class:list={['mt-5 text-lg max-w-2xl mx-auto', dark ? 'text-stone/80' : 'text-slate/90']}>{subtitle}</p>
+    )}
+  </div>
+</section>

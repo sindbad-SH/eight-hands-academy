@@ -1,0 +1,15 @@
+---
+// PART: "Highlight-Box Eyebrow" (teardown-motion.md §6) — caps section label where the last word(s)
+// sit in a solid box. Reference signature, used on most sections. Box is SHARP (per corner system).
+interface Props {
+  pre?: string;
+  mark: string;
+  class?: string;
+  boxClass?: string;
+}
+const { pre = '', mark, class: cls = '', boxClass = 'bg-red text-stone' } = Astro.props;
+---
+<p class:list={['font-accent uppercase tracking-[0.18em] text-xs sm:text-sm font-semibold inline-flex flex-wrap items-center gap-x-2 gap-y-1', cls]}>
+  {pre && <span>{pre}</span>}
+  <span class:list={['px-2 py-0.5', boxClass]}>{mark}</span>
+</p>

@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Cta from '../../components/Cta.astro';
+---
+<Base title="Leadership — The Qi-House">
+  <PageHeader eyebrow="About" title="Leadership" subtitle="The people who steward the work." />
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <div class="reveal text-center">
+            <div class="ph aspect-square mb-4">[PORTRAIT {i + 1}: leader / senior instructor — dignified, candid]</div>
+            <div class="font-display text-xl text-navy">[Name]</div>
+            <div class="eyebrow !text-slate-400 mt-1">[Role]</div>
+            <p class="text-sm text-slate/90 mt-3">[COPY: one line on their contribution and stewardship.]</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>

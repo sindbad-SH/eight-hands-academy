@@ -1,0 +1,30 @@
+---
+// Section sub-nav (local nav) — the row of links to the pages WITHIN a section, shown directly under the
+// header on interior pages. Mirrors the reference's About-section nav: a light bar, centered links that
+// wrap to multiple rows, a red bottom rule separating it from the content, and a subtle active state.
+interface Props {
+  items: [string, string][]; // [label, href]
+  active?: string; // current page href
+  label?: string;
+}
+const { items, active = '', active: _a, label = 'Section' } = Astro.props;
+---
+<nav class="bg-stone border-b-2 border-red" aria-label={label}>
+  <div class="container-content py-4 flex flex-wrap items-center justify-center gap-x-7 gap-y-2">
+    {items.map(([text, href]) => {
+      const isActive = href === active;
+      return (
+        <a
+          href={href}
+          aria-current={isActive ? 'page' : undefined}
+          class:list={[
+            'font-accent text-sm tracking-wide transition-colors',
+            isActive ? 'text-gold font-semibold' : 'text-navy/80 hover:text-gold',
+          ]}
+        >
+          {text}
+        </a>
+      );
+    })}
+  </div>
+</nav>

@@ -1,0 +1,37 @@
+---
+/**
+ * ParallaxPhoto — WHOLE-ELEMENT scroll parallax (matches the reference's actual visible behaviour).
+ *
+ * CRITICAL LESSON: the reference's photo frames have `overflow: visible` and the ENTIRE photo element
+ * translateY's on scroll, so the whole photo is VISIBLY SEEN MOVING relative to its neighbours — e.g.
+ * the photo's top edge rises past the section heading as you scroll down (and lowers as you scroll up).
+ * It is NOT a clip-and-drift of an inner layer inside an `overflow:hidden` frame: with PLACEHOLDER boxes
+ * (no real photo yet) that produces ZERO visible motion — the frame stays put and there's no image to
+ * see drifting inside it. So the parallax MUST move the whole visible box. Verify by watching the box's
+ * rendered position change on scroll, not by reading a transform value on a hidden inner layer.
+ *
+ * Direction: NEGATIVE parallax drifts the photo UP as the page scrolls down (matches the reference).
+ * `parallax` = px travelled from rest toward each extreme (total travel ≈ 2×).
+ *
+ * INTER-LAYER BALANCE (operator feedback 2026-06-05): the smaller/front (secondary) photo is INHERENTLY
+ * faster — the manual driver in Base.astro normalises by element height, so a smaller element moves more
+ * per scroll at the same magnitude. So keep the secondary's magnitude ≈ or slightly BELOW the primary's
+ * (e.g. primary -104 / secondary -100); they then drift at SIMILAR perceived rates. A large secondary>primary
+ * differential reads as the front photo "racing" the back one. (This supersedes the earlier "secondary
+ * ~2× larger" guidance, which assumed an un-normalised driver.)
+ */
+interface Props {
+  alt: string; // intent-annotated placeholder / shot brief
+  frameClass?: string; // aspect ratio, width, positioning, ring, z-index
+  parallax?: number; // px; sign sets direction (neg = up on scroll-down)
+  innerClass?: string;
+}
+const { alt, frameClass = '', parallax = -64, innerClass = '' } = Astro.props;
+// The frame itself is the parallax target. It needs a positioning context for the absolute fill.
+const positioned = /(^|\s)(absolute|fixed|sticky|relative)(\s|$)/.test(frameClass);
+const base = positioned ? '' : 'relative';
+---
+
+<div class={`${base} overflow-hidden ${frameClass}`} data-parallax={parallax}>
+  <div class={`ph absolute inset-0 ${innerClass}`}>{alt}</div>
+</div>

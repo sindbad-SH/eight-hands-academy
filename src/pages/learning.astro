@@ -1,0 +1,114 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Cta from '../components/Cta.astro';
+
+const cohorts = [
+  ['wonder', 'Wonder', 'Foundation through curiosity.'],
+  ['discovery', 'Discovery', 'Foundation through experience.'],
+  ['exploration', 'Exploration', 'Foundation through responsibility.'],
+  ['integration', 'Integration', 'Foundation through application.'],
+];
+
+const framework = [
+  ['Choice', 'The ability to govern participation.'],
+  ['Presence', 'The capacity to contain awareness.'],
+  ['Awareness', 'Recognition of existence and condition.'],
+  ['Discernment', 'Determining what to do with awareness.'],
+  ['Responsibility', 'Ownership of choice and consequence.'],
+  ['Capability', 'The ability to perform effectively.'],
+  ['Stewardship', 'To contribute responsibly to systems larger than oneself.'],
+];
+
+const programs = [
+  ['private', 'Private Instruction — The Core', 'Assessment, mentorship, curriculum delivery, individual guidance, development planning, and personal accountability.'],
+  ['group', 'Group Training — The Application', 'Repetition, conditioning, leadership, participation, partner development, community learning, and embodied application.'],
+  ['summer', 'Summer Academy', 'An educational experience — not a camp. Leadership, awareness, responsibility, and stewardship.'],
+  ['instructor', 'Instructor Development', 'A path from participant to mentor, and from mentor to steward.'],
+];
+---
+<Base title="Learning at the Qi-House">
+  <PageHeader
+    eyebrow="Learning at the Qi-House"
+    title="The objective is mastery of participation."
+    subtitle="The novice sees pieces. The advanced student sees relationships. The master sees systems."
+  />
+
+  <!-- Cohorts -->
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section">
+      <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+        <p class="eyebrow mb-4">The Developmental Journey</p>
+        <h2 class="text-3xl lg:text-4xl">Cohorts of emphasis — not ranks.</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {cohorts.map(([id, name, blurb]) => (
+          <div id={id} class="reveal border border-navy/10 bg-white rounded-sm p-7 scroll-mt-28">
+            <h3 class="text-2xl mb-2">{name}</h3>
+            <p class="text-sm text-slate/90">{blurb}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-center text-slate/80 mt-8 reveal">…culminating in <span class="font-display italic text-navy">Stewardship — foundation through contribution.</span></p>
+    </div>
+  </section>
+
+  <!-- Constitutional framework (tabs) -->
+  <section class="bg-stone-200">
+    <div class="container-content py-section-sm lg:py-section">
+      <div class="text-center max-w-2xl mx-auto mb-10 reveal">
+        <p class="eyebrow mb-4">The Constitutional Framework</p>
+        <h2 class="text-3xl lg:text-4xl">Principles that govern all practice.</h2>
+      </div>
+      <div class="max-w-4xl mx-auto reveal" id="framework">
+        <div class="flex flex-wrap gap-2 mb-6 justify-center" role="tablist">
+          {framework.map(([name], i) => (
+            <button
+              class="fw-tab font-accent text-sm px-4 py-2 rounded-[3px] border border-navy/20 text-navy transition-colors"
+              data-tab={i}
+            >{name}</button>
+          ))}
+        </div>
+        {framework.map(([name, desc], i) => (
+          <div class="fw-panel bg-white border border-navy/10 rounded-sm p-8 text-center" data-panel={i} hidden={i !== 0}>
+            <h3 class="text-3xl mb-3">{name}</h3>
+            <p class="text-lg text-slate/90 max-w-xl mx-auto">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Program modules -->
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section">
+      <p class="eyebrow mb-8 text-center reveal">How the Education Is Delivered</p>
+      <div class="grid md:grid-cols-2 gap-6">
+        {programs.map(([id, title, body]) => (
+          <div id={id} class="reveal bg-white border border-navy/10 rounded-sm p-8 scroll-mt-28 hover:border-gold transition-colors">
+            <h3 class="text-2xl mb-3">{title}</h3>
+            <p class="text-slate/90 text-sm">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+
+  <script>
+    const tabs = document.querySelectorAll<HTMLButtonElement>('.fw-tab');
+    const panels = document.querySelectorAll<HTMLElement>('.fw-panel');
+    function setActive(idx: string) {
+      tabs.forEach((t) => {
+        const on = t.dataset.tab === idx;
+        t.classList.toggle('bg-navy', on);
+        t.classList.toggle('text-stone', on);
+        t.classList.toggle('text-navy', !on);
+      });
+      panels.forEach((p) => (p.hidden = p.dataset.panel !== idx));
+    }
+    tabs.forEach((tab) => tab.addEventListener('click', () => setActive(tab.dataset.tab!)));
+    setActive('0');
+  </script>
+</Base>
