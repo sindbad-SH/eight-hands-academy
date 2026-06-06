@@ -1,11 +1,12 @@
 ---
+import { BOOKING_URL } from '../data/site';
 interface Props {
   title?: string;
   text?: string;
 }
 const {
-  title = 'Begin your inquiry.',
-  text = 'An education that would still make sense if martial arts were removed and education remained.',
+  title = 'Schedule your assessment.',
+  text = 'Admission is a recommendation, not a sale. We begin with an assessment — a conversation to understand your goals and prescribe the right developmental path.',
 } = Astro.props;
 ---
 <section class="bg-navy text-stone">
@@ -13,8 +14,8 @@ const {
     <h2 class="text-3xl lg:text-4xl text-stone mb-5">{title}</h2>
     <p class="text-stone/80 max-w-xl mx-auto mb-9">{text}</p>
     <div class="flex flex-wrap justify-center gap-4">
-      <a href="/admissions" class="btn-accent">Begin Your Inquiry</a>
-      <a href="/admissions#visit" class="btn-ghost !border-stone/40 !text-stone hover:!bg-stone hover:!text-navy">Schedule a Visit</a>
+      <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">Schedule an Assessment</a>
+      <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-ghost !border-stone/40 !text-stone hover:!bg-stone hover:!text-navy">Book a Visit</a>
     </div>
   </div>
 </section>
