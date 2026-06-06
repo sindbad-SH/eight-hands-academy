@@ -5,9 +5,9 @@
 @layer base {
   :root {
     --color-navy: #0B2341;
-    --color-gold: #C9A44C;
+    --color-gold: #C39A3C;
     --color-red: #8C1D18;
-    --color-stone: #F8F6F2;
+    --color-stone: #F3F4F6;
     --color-slate: #4B5563;
   }
 
@@ -40,7 +40,7 @@
 
   .btn {
     @apply inline-flex items-center justify-center font-accent text-sm font-medium tracking-wide
-           rounded-[3px] px-6 py-3 transition-colors duration-200;
+           rounded-[10px] px-6 py-3 transition-colors duration-200;
   }
   .btn-primary {
     @apply btn bg-navy text-stone hover:bg-navy-700;
@@ -50,6 +50,10 @@
   }
   .btn-ghost {
     @apply btn border border-navy/30 text-navy hover:bg-navy hover:text-stone;
+  }
+  /* Red-outline / red-text button — client ask: a treatment that separates the site from the reference. */
+  .btn-redline {
+    @apply btn border-2 border-red text-red bg-transparent hover:bg-red hover:text-stone;
   }
 
   /* Placeholder slot — visually marks an intent-annotated asset/copy brief in dev */

@@ -29,9 +29,9 @@ export default {
       colors: {
         // Qi-House brand constitution — authoritative
         navy: { DEFAULT: '#0B2341', 900: '#081a31', 700: '#13335a' },
-        gold: { DEFAULT: '#C9A44C', 600: '#b08f3f' },
+        gold: { DEFAULT: '#C39A3C', 600: '#A8842F' },
         red: { DEFAULT: '#8C1D18' },
-        stone: { DEFAULT: '#F8F6F2', 200: '#efece5' },
+        stone: { DEFAULT: '#F3F4F6', 200: '#E5E7EB' },
         slate: { DEFAULT: '#4B5563', 400: '#6b7280' },
       },
       fontFamily: {
