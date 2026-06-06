@@ -3,6 +3,7 @@
 // topographic texture + coordinate/route motif behind. Mirrors Aiglon's .fsHeader behavior.
 import { nav } from '../data/nav';
 import TopoTexture from './TopoTexture.astro';
+import { BOOKING_URL } from '../data/site';
 ---
 <header class="relative z-50 bg-navy text-stone">
   <!-- Decorative bg layer — clipped so the topo/motifs don't overflow, but the nav + its dropdowns are NOT
@@ -23,8 +24,8 @@ import TopoTexture from './TopoTexture.astro';
     <div class="container-content flex items-start justify-between gap-6 py-4 lg:py-5">
       <!-- Logo (left, spans both rows) -->
       <a href="/" class="flex flex-col leading-none shrink-0 pt-0.5">
-        <span class="font-display text-3xl lg:text-4xl font-semibold text-stone">8 Hands</span>
-        <span class="eyebrow !text-gold mt-1">The Qi-House</span>
+        <span class="font-display text-3xl lg:text-4xl font-semibold text-stone">Eight Hands</span>
+        <span class="eyebrow !text-gold mt-1">Martial Arts Academy</span>
       </a>
 
       <!-- Right column: utility row (top) + nav row (below), both right-aligned -->
@@ -43,7 +44,7 @@ import TopoTexture from './TopoTexture.astro';
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9-9C1.5 8 4 4 8 5c2 .5 3 2 4 3 1-1 2-2.5 4-3 4-1 6.5 3 5 7-2 4.5-9 9-9 9z" /></svg>
             Support
           </a>
-          <a href="/admissions" class="btn-accent !py-1.5 !px-4 !text-[11px] uppercase">Enquire</a>
+          <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent !py-1.5 !px-4 !text-[11px] uppercase">Schedule an Assessment</a>
           <a href="/members" class="border border-stone/35 px-3 py-1.5 rounded-[3px] uppercase hover:border-gold transition-colors">Members</a>
           <button aria-label="Search" class="hover:text-gold transition-colors">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7" /><path d="M21 21l-4-4" /></svg>
@@ -92,7 +93,7 @@ import TopoTexture from './TopoTexture.astro';
             </div>
           </details>
         ))}
-        <a href="/admissions" class="btn-accent mt-4 w-full">Begin Your Inquiry</a>
+        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent mt-4 w-full">Schedule an Assessment</a>
       </nav>
     </div>
   </div>
