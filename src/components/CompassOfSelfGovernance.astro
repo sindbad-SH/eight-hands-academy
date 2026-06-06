@@ -1,23 +1,46 @@
 ---
 // "The Compass of Self-Governance" — replaces the homepage StatMap ("An Environment That Inspires").
-// Client brief (Jeanette, 2026-06-06, relayed as an AI-generated spec): an interactive GOLD COMPASS ROSE with
-// 8 points (Purpose · Mind · Discipline · Communication · Courage · Body · Service · Leadership), on deep navy
-// with a barely-visible topographic texture; points default GOLD, hover → WHITE card + RED accent line;
-// minimalist, Swiss-academy, no logo in center. Built within our system/tokens (NOT a copied asset).
-// 8 points = the "Eight" in Eight Hands. Point descriptors are DRAFT copy (confirm with the academy).
+// Full client spec (Jeanette, 2026-06-06): gold compass rose, 8 points. HOVER → micro-popup (Title + Kanji +
+// one-line summary + "Learn More →"); CLICK → right-side educational sidebar (Kanji, Definition, Development
+// Focus, Student Outcomes, Applications, Related Programs). Navy + barely-visible topo texture; default gold,
+// hover white card + red accent + gold title. Built within our tokens (not a copied asset). All point content
+// is HER copy from the spec; the one-line hover summaries are short draft lines in her voice.
 import TopoTexture from './TopoTexture.astro';
 
 const points = [
-  { name: 'Purpose', desc: 'Knowing why you train, and where the work leads.' },
-  { name: 'Mind', desc: 'Focus, clarity, and the discipline of attention.' },
-  { name: 'Discipline', desc: 'Doing the work consistently — especially when it is hard.' },
-  { name: 'Communication', desc: 'Translating meaning across people and situations.' },
-  { name: 'Courage', desc: 'Meeting challenge with composure rather than avoidance.' },
-  { name: 'Body', desc: 'Capability, health, and command of your own movement.' },
-  { name: 'Service', desc: 'Contributing to something larger than yourself.' },
-  { name: 'Leadership', desc: 'Governing yourself first, then guiding others.' },
+  { name: 'Purpose', kanji: '目的', summary: 'Align action with meaning.',
+    definition: 'Purpose is the ability to align actions with meaning and long-term direction.',
+    focus: ['Vision', 'Values', 'Legacy', 'Contribution'], outcomes: ['Direction', 'Motivation', 'Meaning'],
+    applications: 'Goal setting, leadership, career planning, service.' },
+  { name: 'Mind', kanji: '心智', summary: 'Clarity sharpens every choice.',
+    definition: 'Mind represents awareness, clarity, understanding, and learning.',
+    focus: ['Focus', 'Critical Thinking', 'Awareness', 'Learning'], outcomes: ['Better decisions', 'Mental clarity', 'Adaptability'],
+    applications: 'Academics, leadership, communication, problem solving.' },
+  { name: 'Discipline', kanji: '形成', summary: 'Habits shape destiny.',
+    definition: 'Discipline is the daily commitment to what matters most.',
+    focus: ['Consistency', 'Self-Control', 'Time Management', 'Follow Through'], outcomes: ['Reliability', 'Confidence', 'Achievement'],
+    applications: 'Training, study, work, relationships.' },
+  { name: 'Communication', kanji: '伝達', summary: 'Understand, connect, convey.',
+    definition: 'Communication is the ability to understand, connect, and convey meaning effectively.',
+    focus: ['Listening', 'Speaking', 'Connection', 'Influence'], outcomes: ['Better relationships', 'Leadership presence', 'Conflict reduction'],
+    applications: 'Family, business, teaching, teamwork.' },
+  { name: 'Courage', kanji: '勇気', summary: 'Act well despite fear.',
+    definition: 'Courage is taking appropriate action despite uncertainty or fear.',
+    focus: ['Initiative', 'Resilience', 'Adaptability', 'Action'], outcomes: ['Confidence', 'Persistence', 'Growth'],
+    applications: 'Public speaking, leadership, conflict, challenge.' },
+  { name: 'Body', kanji: '身体', summary: 'Capability, trained and expressed.',
+    definition: 'The body is the vehicle through which discipline, health, and capability are expressed.',
+    focus: ['Strength', 'Mobility', 'Conditioning', 'Self-Defense'], outcomes: ['Physical confidence', 'Health', 'Capability'],
+    applications: 'Martial arts, athletics, daily life.' },
+  { name: 'Service', kanji: '奉仕', summary: 'Create value beyond yourself.',
+    definition: 'Service is the commitment to creating value beyond oneself.',
+    focus: ['Contribution', 'Stewardship', 'Responsibility', 'Compassion'], outcomes: ['Empathy', 'Leadership', 'Community impact'],
+    applications: 'Family, community, mentorship.' },
+  { name: 'Leadership', kanji: '指導', summary: 'Guide yourself, then others.',
+    definition: 'Leadership is the ability to guide yourself and others toward a shared vision.',
+    focus: ['Accountability', 'Influence', 'Stewardship', 'Initiative'], outcomes: ['Responsibility', 'Presence', 'Decision Making'],
+    applications: 'Teams, business, education, family.' },
 ];
-// Ring positions (start at top, clockwise) for the 8 point-cards, as % of the square container.
 const placed = points.map((p, i) => {
   const a = (i * 45 - 90) * (Math.PI / 180);
   return { ...p, x: (50 + 40 * Math.cos(a)).toFixed(2), y: (50 + 40 * Math.sin(a)).toFixed(2) };
@@ -27,10 +50,7 @@ const diagonals = [45, 135, 225, 315];
 const ticks = Array.from({ length: 24 }, (_, i) => {
   const a = i * 15 * (Math.PI / 180);
   const r1 = i % 6 === 0 ? 82 : 88;
-  return {
-    x1: (100 + r1 * Math.cos(a)).toFixed(2), y1: (100 + r1 * Math.sin(a)).toFixed(2),
-    x2: (100 + 94 * Math.cos(a)).toFixed(2), y2: (100 + 94 * Math.sin(a)).toFixed(2),
-  };
+  return { x1: (100 + r1 * Math.cos(a)).toFixed(2), y1: (100 + r1 * Math.sin(a)).toFixed(2), x2: (100 + 94 * Math.cos(a)).toFixed(2), y2: (100 + 94 * Math.sin(a)).toFixed(2) };
 });
 ---
 <section class="bg-navy text-stone relative overflow-hidden">
@@ -45,11 +65,12 @@ const ticks = Array.from({ length: 24 }, (_, i) => {
       <p class="mt-6 font-accent uppercase tracking-[0.16em] text-[10px] sm:text-xs text-gold/80 leading-relaxed">
         {points.map((p) => p.name).join('  ·  ')}
       </p>
+      <p class="mt-3 text-stone/40 text-xs italic">Hover a point for a glimpse — click it to explore.</p>
     </div>
 
-    <!-- Interactive compass: gold rose center + 8 points around it (gold default → white card + red accent on hover) -->
-    <div class="relative mx-auto mt-14 lg:mt-20 w-[min(640px,90vw)] aspect-square reveal">
-      <svg viewBox="0 0 200 200" class="absolute inset-[21%]" aria-hidden="true">
+    <!-- DESKTOP/TABLET compass: rose + 8 positioned points -->
+    <div class="relative mx-auto mt-12 lg:mt-16 w-[min(660px,92vw)] aspect-square reveal hidden sm:block">
+      <svg viewBox="0 0 200 200" class="absolute inset-[22%]" aria-hidden="true">
         <g fill="none" stroke="#C39A3C">
           <circle cx="100" cy="100" r="94" stroke-width="0.6" opacity="0.85" />
           <circle cx="100" cy="100" r="72" stroke-width="0.5" opacity="0.4" />
@@ -72,14 +93,77 @@ const ticks = Array.from({ length: 24 }, (_, i) => {
         ))}
       </svg>
 
-      {placed.map((p) => (
-        <div class="group absolute -translate-x-1/2 -translate-y-1/2 w-[108px] sm:w-[140px] z-10" style={`left:${p.x}%; top:${p.y}%;`}>
-          <div class="cursor-default border border-gold/40 bg-navy/55 backdrop-blur-sm px-3 py-2 text-center transition-all duration-200 group-hover:bg-stone group-hover:border-l-4 group-hover:border-l-red group-hover:shadow-xl">
-            <span class="font-accent uppercase tracking-[0.12em] text-[10px] sm:text-xs text-gold group-hover:text-navy transition-colors">{p.name}</span>
-            <span class="block overflow-hidden max-h-0 opacity-0 group-hover:max-h-24 group-hover:opacity-100 group-hover:mt-1.5 transition-all duration-300 text-[11px] leading-snug text-slate text-left">{p.desc}</span>
-          </div>
-        </div>
+      {placed.map((p, i) => (
+        <button
+          type="button"
+          class="compass-pt group absolute -translate-x-1/2 -translate-y-1/2 w-[152px] lg:w-[168px] text-center z-10 hover:z-20"
+          style={`left:${p.x}%; top:${p.y}%;`}
+          data-i={i}
+          aria-label={`Explore ${p.name}`}
+        >
+          <span class="block border border-gold/40 bg-navy/55 backdrop-blur-sm px-3 py-2 transition-all duration-200 group-hover:bg-stone group-hover:border-l-4 group-hover:border-l-red group-hover:shadow-xl">
+            <span class="font-accent uppercase tracking-[0.08em] text-[11px] lg:text-xs text-gold group-hover:text-navy transition-colors">{p.name}</span>
+            <span class="block overflow-hidden max-h-0 opacity-0 group-hover:max-h-32 group-hover:opacity-100 group-hover:mt-2 transition-all duration-300">
+              <span class="block font-display text-2xl text-navy leading-none">{p.kanji}</span>
+              <span class="block text-[11px] leading-snug text-slate mt-1.5">{p.summary}</span>
+              <span class="block font-accent text-[10px] uppercase tracking-wide text-red mt-2">Learn More →</span>
+            </span>
+          </span>
+        </button>
+      ))}
+    </div>
+
+    <!-- MOBILE: tappable list of the 8 points (each opens the sidebar) -->
+    <div class="sm:hidden mt-10 grid grid-cols-2 gap-3 reveal">
+      {points.map((p, i) => (
+        <button type="button" class="compass-pt border border-gold/40 bg-navy/50 px-3 py-3 text-center" data-i={i} aria-label={`Explore ${p.name}`}>
+          <span class="block font-display text-xl text-gold leading-none mb-1">{p.kanji}</span>
+          <span class="font-accent uppercase tracking-[0.08em] text-[10px] text-stone">{p.name}</span>
+        </button>
       ))}
     </div>
   </div>
+
+  <!-- Click-to-open educational sidebar -->
+  <div id="compassOverlay" class="fixed inset-0 z-[90] bg-navy/60 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+  <aside id="compassPanel" class="fixed top-0 right-0 z-[95] h-full w-full sm:w-[38%] sm:min-w-[360px] max-w-[440px] bg-stone shadow-2xl border-l-4 border-l-red translate-x-full transition-transform duration-300 ease-out overflow-y-auto" aria-hidden="true" aria-label="Compass detail">
+    <div class="p-8 lg:p-10">
+      <button id="compassClose" class="absolute right-5 top-5 text-navy/40 hover:text-navy text-3xl leading-none" aria-label="Close">&times;</button>
+      <div id="compassPanelBody"></div>
+    </div>
+  </aside>
+
+  <script type="application/json" id="compassData" set:html={JSON.stringify(points)}></script>
+  <script>
+    const data = JSON.parse(document.getElementById('compassData')?.textContent || '[]');
+    const panel = document.getElementById('compassPanel');
+    const overlay = document.getElementById('compassOverlay');
+    const body = document.getElementById('compassPanelBody');
+    const li = (arr: string[]) => arr.map((x) => `<li class="flex gap-2"><span class="text-red">·</span>${x}</li>`).join('');
+    const open = (p: any) => {
+      if (body) body.innerHTML = `
+        <div class="font-display text-5xl text-gold mb-1">${p.kanji}</div>
+        <h3 class="font-accent uppercase tracking-[0.16em] text-gold text-xl mb-3">${p.name}</h3>
+        <p class="text-slate leading-relaxed mb-7">${p.definition}</p>
+        <div class="mb-6"><div class="font-accent uppercase tracking-[0.14em] text-[11px] text-navy/55 mb-2">Development Focus</div><ul class="space-y-1 text-sm text-navy/90">${li(p.focus)}</ul></div>
+        <div class="mb-6"><div class="font-accent uppercase tracking-[0.14em] text-[11px] text-navy/55 mb-2">Student Outcomes</div><ul class="space-y-1 text-sm text-navy/90">${li(p.outcomes)}</ul></div>
+        <div class="mb-6"><div class="font-accent uppercase tracking-[0.14em] text-[11px] text-navy/55 mb-2">Applications</div><p class="text-sm text-slate">${p.applications}</p></div>
+        <div><div class="font-accent uppercase tracking-[0.14em] text-[11px] text-navy/55 mb-2">Related Programs</div><p class="text-sm text-slate mb-3">Academy Membership · Academy Scholar · Academy Fellow</p><a href="/learning" class="font-accent text-xs uppercase tracking-wide text-red hover:text-navy transition-colors">Explore Learning →</a></div>`;
+      panel?.classList.remove('translate-x-full');
+      overlay?.classList.remove('opacity-0', 'pointer-events-none');
+      panel?.setAttribute('aria-hidden', 'false');
+    };
+    const close = () => {
+      panel?.classList.add('translate-x-full');
+      overlay?.classList.add('opacity-0', 'pointer-events-none');
+      panel?.setAttribute('aria-hidden', 'true');
+    };
+    document.querySelectorAll<HTMLElement>('.compass-pt').forEach((b) => b.addEventListener('click', () => {
+      const i = parseInt(b.dataset.i || '0', 10);
+      if (data[i]) open(data[i]);
+    }));
+    document.getElementById('compassClose')?.addEventListener('click', close);
+    overlay?.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  </script>
 </section>
