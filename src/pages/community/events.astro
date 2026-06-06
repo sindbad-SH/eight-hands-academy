@@ -13,7 +13,7 @@ const filters = ['All', 'Community News', 'Events', 'Leadership', 'Service'];
       <!-- Filters -->
       <div class="flex flex-wrap gap-2 mb-10 reveal">
         {filters.map((f, i) => (
-          <button class="font-accent text-sm px-4 py-2 rounded-[3px] border border-navy/20 text-navy hover:bg-navy hover:text-stone transition-colors" data-active={i === 0 ? 'true' : 'false'}>{f}</button>
+          <button class="font-accent text-sm px-4 py-2 rounded-[10px] border border-navy/20 text-navy hover:bg-navy hover:text-stone transition-colors" data-active={i === 0 ? 'true' : 'false'}>{f}</button>
         ))}
       </div>
 

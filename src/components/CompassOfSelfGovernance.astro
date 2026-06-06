@@ -1,0 +1,85 @@
+---
+// "The Compass of Self-Governance" — replaces the homepage StatMap ("An Environment That Inspires").
+// Client brief (Jeanette, 2026-06-06, relayed as an AI-generated spec): an interactive GOLD COMPASS ROSE with
+// 8 points (Purpose · Mind · Discipline · Communication · Courage · Body · Service · Leadership), on deep navy
+// with a barely-visible topographic texture; points default GOLD, hover → WHITE card + RED accent line;
+// minimalist, Swiss-academy, no logo in center. Built within our system/tokens (NOT a copied asset).
+// 8 points = the "Eight" in Eight Hands. Point descriptors are DRAFT copy (confirm with the academy).
+import TopoTexture from './TopoTexture.astro';
+
+const points = [
+  { name: 'Purpose', desc: 'Knowing why you train, and where the work leads.' },
+  { name: 'Mind', desc: 'Focus, clarity, and the discipline of attention.' },
+  { name: 'Discipline', desc: 'Doing the work consistently — especially when it is hard.' },
+  { name: 'Communication', desc: 'Translating meaning across people and situations.' },
+  { name: 'Courage', desc: 'Meeting challenge with composure rather than avoidance.' },
+  { name: 'Body', desc: 'Capability, health, and command of your own movement.' },
+  { name: 'Service', desc: 'Contributing to something larger than yourself.' },
+  { name: 'Leadership', desc: 'Governing yourself first, then guiding others.' },
+];
+// Ring positions (start at top, clockwise) for the 8 point-cards, as % of the square container.
+const placed = points.map((p, i) => {
+  const a = (i * 45 - 90) * (Math.PI / 180);
+  return { ...p, x: (50 + 40 * Math.cos(a)).toFixed(2), y: (50 + 40 * Math.sin(a)).toFixed(2) };
+});
+const cardinals = [0, 90, 180, 270];
+const diagonals = [45, 135, 225, 315];
+const ticks = Array.from({ length: 24 }, (_, i) => {
+  const a = i * 15 * (Math.PI / 180);
+  const r1 = i % 6 === 0 ? 82 : 88;
+  return {
+    x1: (100 + r1 * Math.cos(a)).toFixed(2), y1: (100 + r1 * Math.sin(a)).toFixed(2),
+    x2: (100 + 94 * Math.cos(a)).toFixed(2), y2: (100 + 94 * Math.sin(a)).toFixed(2),
+  };
+});
+---
+<section class="bg-navy text-stone relative overflow-hidden">
+  <TopoTexture id="topo-compass" />
+  <div class="container-content relative z-10 py-section text-center">
+    <div class="max-w-2xl mx-auto reveal">
+      <h2 class="text-3xl lg:text-4xl text-stone mb-5">Development With Direction</h2>
+      <p class="text-stone/80 font-display italic text-xl leading-relaxed">
+        The Compass of Self-Governance guides students in developing mind, body, and spirit through purposeful
+        practice, individualized education, and personal responsibility.
+      </p>
+      <p class="mt-6 font-accent uppercase tracking-[0.16em] text-[10px] sm:text-xs text-gold/80 leading-relaxed">
+        {points.map((p) => p.name).join('  ·  ')}
+      </p>
+    </div>
+
+    <!-- Interactive compass: gold rose center + 8 points around it (gold default → white card + red accent on hover) -->
+    <div class="relative mx-auto mt-14 lg:mt-20 w-[min(640px,90vw)] aspect-square reveal">
+      <svg viewBox="0 0 200 200" class="absolute inset-[21%]" aria-hidden="true">
+        <g fill="none" stroke="#C39A3C">
+          <circle cx="100" cy="100" r="94" stroke-width="0.6" opacity="0.85" />
+          <circle cx="100" cy="100" r="72" stroke-width="0.5" opacity="0.4" />
+          <circle cx="100" cy="100" r="9" stroke-width="0.8" opacity="0.9" />
+        </g>
+        <g stroke="#C39A3C" stroke-width="0.5" opacity="0.5">
+          {ticks.map((t) => <line x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} />)}
+        </g>
+        {cardinals.map((d) => (
+          <g transform={`rotate(${d} 100 100)`}>
+            <polygon points="100,18 100,100 94.5,100" fill="#C39A3C" opacity="0.9" />
+            <polygon points="100,18 105.5,100 100,100" fill="#8f7128" opacity="0.95" />
+          </g>
+        ))}
+        {diagonals.map((d) => (
+          <g transform={`rotate(${d} 100 100)`}>
+            <polygon points="100,52 100,100 96.5,100" fill="#C39A3C" opacity="0.55" />
+            <polygon points="100,52 103.5,100 100,100" fill="#8f7128" opacity="0.6" />
+          </g>
+        ))}
+      </svg>
+
+      {placed.map((p) => (
+        <div class="group absolute -translate-x-1/2 -translate-y-1/2 w-[108px] sm:w-[140px] z-10" style={`left:${p.x}%; top:${p.y}%;`}>
+          <div class="cursor-default border border-gold/40 bg-navy/55 backdrop-blur-sm px-3 py-2 text-center transition-all duration-200 group-hover:bg-stone group-hover:border-l-4 group-hover:border-l-red group-hover:shadow-xl">
+            <span class="font-accent uppercase tracking-[0.12em] text-[10px] sm:text-xs text-gold group-hover:text-navy transition-colors">{p.name}</span>
+            <span class="block overflow-hidden max-h-0 opacity-0 group-hover:max-h-24 group-hover:opacity-100 group-hover:mt-1.5 transition-all duration-300 text-[11px] leading-snug text-slate text-left">{p.desc}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
