@@ -2,7 +2,8 @@
 // Client-side site search. Static site = no backend: an overlay opened by any [data-search-open] element
 // (the header magnifier icons). Typing filters a known page index by title + keywords; click or Enter
 // navigates to the page. Rendered once in Base.astro so it's on every page.
-const pages = [
+import { withBase } from '../data/site';
+const rawPages = [
   { t: 'Home', h: '/', k: 'home eight hands martial arts academy qi-house self-governance' },
   { t: 'About', h: '/about', k: 'about mission vision self-governance educational institution philosophy' },
   { t: "Director's Welcome", h: '/about/directors-welcome', k: 'director welcome message leadership' },
@@ -23,6 +24,8 @@ const pages = [
   { t: 'Events & Gatherings', h: '/community/events', k: 'events gatherings workshops open house calendar' },
   { t: 'Member Portal', h: '/members', k: 'members portal login students resources schedule' },
 ];
+// Base-prefix every page path so search results link correctly under the GitHub Pages sub-path.
+const pages = rawPages.map((p) => ({ ...p, h: withBase(p.h) }));
 ---
 <div id="siteSearch" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true" aria-label="Site search">
   <div class="absolute inset-0 bg-navy/70" data-search-close></div>

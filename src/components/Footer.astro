@@ -1,5 +1,6 @@
 ---
 import TopoTexture from './TopoTexture.astro';
+import { withBase } from '../data/site';
 
 const quickLinks = [
   ['Events & Gatherings', '/community/events'],
@@ -29,7 +30,7 @@ const engage = [
       <h3 class="eyebrow !text-stone/60 mb-4">Quick Links</h3>
       <ul class="space-y-2 text-sm">
         {quickLinks.map(([label, href]) => (
-          <li><a href={href} class="hover:text-gold transition-colors">{label}</a></li>
+          <li><a href={withBase(href)} class="hover:text-gold transition-colors">{label}</a></li>
         ))}
       </ul>
     </div>
@@ -38,7 +39,7 @@ const engage = [
       <h3 class="eyebrow !text-stone/60 mb-4">Engagement</h3>
       <ul class="space-y-2 text-sm">
         {engage.map(([label, href]) => (
-          <li><a href={href} class="hover:text-gold transition-colors">{label}</a></li>
+          <li><a href={withBase(href)} class="hover:text-gold transition-colors">{label}</a></li>
         ))}
       </ul>
     </div>

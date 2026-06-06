@@ -20,7 +20,7 @@ import GoldArrowLink from '../components/GoldArrowLink.astro';
 import ProcessTabs from '../components/ProcessTabs.astro';
 import PhotoNavCard from '../components/PhotoNavCard.astro';
 import Cta from '../components/Cta.astro';
-import { BOOKING_URL } from '../data/site';
+import { BOOKING_URL, withBase } from '../data/site';
 
 const subnav: [string, string][] = [
   ['Schedule an Assessment', '/admissions'],
@@ -193,7 +193,7 @@ const hub: [string, string, string][] = [
         {Array.from({ length: 4 }).map((_, i) => (
           <div class="reveal">
             <div class="ph aspect-[3/4] mb-3 !text-[10px]">[PORTRAIT {i + 1} — 720×960px (3:4) · admissions lead / instructor, candid not posed]</div>
-            <a href="/about/leadership" class="font-display text-lg text-navy underline decoration-red/50 underline-offset-2 hover:text-red transition-colors">[Name — confirm]</a>
+            <a href={withBase('/about/leadership')} class="font-display text-lg text-navy underline decoration-red/50 underline-offset-2 hover:text-red transition-colors">[Name — confirm]</a>
             <div class="eyebrow !text-slate-400 mt-1">[Role — confirm]</div>
           </div>
         ))}

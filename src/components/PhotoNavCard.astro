@@ -8,9 +8,10 @@ interface Props {
   alt: string; // dimensioned, intent-annotated placeholder
   center?: boolean; // true = title centered with an even scrim (the reference's Admissions hub); default = bottom-left (About hub)
 }
+import { withBase } from '../data/site';
 const { label, href, alt, center = false } = Astro.props;
 ---
-<a href={href} class="group relative block aspect-[4/3] overflow-hidden bg-navy">
+<a href={withBase(href)} class="group relative block aspect-[4/3] overflow-hidden bg-navy">
   <div class="ph absolute inset-0 !rounded-none !border-0 !text-[10px] transition-transform duration-500 ease-out group-hover:scale-105">
     {alt}
   </div>

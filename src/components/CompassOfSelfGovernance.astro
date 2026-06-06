@@ -6,6 +6,7 @@
 // Programs). All point content is HER copy. (Her text spec said a *white* sidebar; her image shows *dark* —
 // matched the image, which is also more on-brand. A coded/interactive vector take on her raster reference.)
 import TopoTexture from './TopoTexture.astro';
+import { withBase } from '../data/site';
 
 const points = [
   { name: 'Purpose', kanji: '目的', summary: 'Align action with meaning.',
@@ -122,15 +123,19 @@ const ticks = Array.from({ length: 24 }, (_, i) => {
         >
           <span class="block w-1.5 h-1.5 rounded-full bg-gold mx-auto mb-1.5 transition-all group-hover:bg-red group-hover:ring-4 group-hover:ring-red/25"></span>
           <span class="block font-accent uppercase tracking-[0.16em] text-[11px] lg:text-xs text-gold/90 group-hover:opacity-0 transition-opacity duration-200 whitespace-nowrap">{p.name}</span>
-          <!-- offset white micro-card + connector stem; lingers briefly after hover-out -->
-          <div class:list={['pointer-events-none absolute left-1/2 -translate-x-1/2 w-44 bg-stone shadow-xl border-l-4 border-l-red px-4 py-3 text-left opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 delay-[450ms] group-hover:delay-0 z-40', p.below ? 'top-full mt-4' : 'bottom-full mb-4']}>
-            <span class:list={['absolute left-1/2 -translate-x-1/2 w-px h-4 bg-stone/55', p.below ? 'bottom-full' : 'top-full']}></span>
-            <div class="flex items-center justify-between gap-2">
-              <span class="font-accent uppercase tracking-wide text-[11px] text-navy">{p.name}</span>
-              <span class="font-display text-lg text-red leading-none">{p.kanji}</span>
+          <!-- offset white micro-card. Outer wrapper bridges the gap with PADDING (not margin) so the
+               cursor never crosses a dead zone — the card stays open while you hover it. Connector stem is
+               anchored to this borderless wrapper so it lines up dead-center over the dot. Lingers after hover-out. -->
+          <div class:list={['absolute left-1/2 -translate-x-1/2 w-44 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 delay-[450ms] group-hover:delay-0 z-40', p.below ? 'top-full pt-4' : 'bottom-full pb-4']}>
+            <span class:list={['absolute left-1/2 -translate-x-1/2 w-px h-4 bg-stone/55', p.below ? 'top-0' : 'bottom-0']}></span>
+            <div class="group/card relative bg-stone shadow-xl border-l-4 border-l-red px-4 py-3 text-left transition-all duration-150 hover:shadow-2xl hover:ring-1 hover:ring-red/30">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-accent uppercase tracking-wide text-[11px] text-navy">{p.name}</span>
+                <span class="font-display text-lg text-red leading-none">{p.kanji}</span>
+              </div>
+              <p class="text-[11px] leading-snug text-slate mt-1.5">{p.summary}</p>
+              <span class="mt-2 inline-block font-accent text-[10px] uppercase tracking-wide rounded-[6px] px-2 py-1 bg-red/10 text-red transition-colors group-hover/card:bg-red group-hover/card:text-stone">Learn More →</span>
             </div>
-            <p class="text-[11px] leading-snug text-slate mt-1.5">{p.summary}</p>
-            <span class="block font-accent text-[10px] uppercase tracking-wide text-red mt-2">Learn More →</span>
           </div>
         </div>
       ))}
@@ -149,7 +154,7 @@ const ticks = Array.from({ length: 24 }, (_, i) => {
 
   <!-- Click-to-open educational sidebar (dark navy, per the reference image) -->
   <div id="compassOverlay" class="fixed inset-0 z-[90] bg-navy/70 opacity-0 pointer-events-none transition-opacity duration-300"></div>
-  <aside id="compassPanel" class="fixed top-0 right-0 z-[95] h-full w-full sm:w-[38%] sm:min-w-[360px] max-w-[440px] bg-navy-900 text-stone shadow-2xl border-l-4 border-l-red translate-x-full transition-transform duration-300 ease-out overflow-y-auto" aria-hidden="true" aria-label="Compass detail">
+  <aside id="compassPanel" data-learning-href={withBase('/learning')} class="fixed top-0 right-0 z-[95] h-full w-full sm:w-[38%] sm:min-w-[360px] max-w-[440px] bg-navy-900 text-stone shadow-2xl border-l-4 border-l-red translate-x-full transition-transform duration-300 ease-out overflow-y-auto" aria-hidden="true" aria-label="Compass detail">
     <div class="p-8 lg:p-10">
       <button id="compassClose" class="absolute right-5 top-5 text-stone/50 hover:text-stone text-3xl leading-none" aria-label="Close">&times;</button>
       <div id="compassPanelBody"></div>
@@ -163,6 +168,7 @@ const ticks = Array.from({ length: 24 }, (_, i) => {
     const overlay = document.getElementById('compassOverlay');
     const body = document.getElementById('compassPanelBody');
     const li = (arr: string[]) => arr.map((x) => `<li class="flex gap-2"><span class="text-red">·</span>${x}</li>`).join('');
+    const learningHref = panel?.getAttribute('data-learning-href') || '/learning';
     const open = (p: any) => {
       if (body) body.innerHTML = `
         <h3 class="font-accent uppercase tracking-[0.18em] text-gold text-xl">${p.name}</h3>
@@ -172,7 +178,7 @@ const ticks = Array.from({ length: 24 }, (_, i) => {
         <div class="mb-6"><div class="font-accent uppercase tracking-[0.16em] text-[11px] text-gold/70 mb-2">Development Focus</div><ul class="space-y-1 text-sm text-stone/90">${li(p.focus)}</ul></div>
         <div class="mb-6"><div class="font-accent uppercase tracking-[0.16em] text-[11px] text-gold/70 mb-2">Student Outcomes</div><ul class="space-y-1 text-sm text-stone/90">${li(p.outcomes)}</ul></div>
         <div class="mb-7"><div class="font-accent uppercase tracking-[0.16em] text-[11px] text-gold/70 mb-2">Applications</div><p class="text-sm text-stone/75">${p.applications}</p></div>
-        <div><div class="font-accent uppercase tracking-[0.16em] text-[11px] text-gold/70 mb-3">Related Programs</div><a href="/learning" class="inline-flex items-center gap-2 border border-gold/50 text-gold hover:bg-gold hover:text-navy transition-colors rounded-[10px] px-4 py-2 font-accent text-xs uppercase tracking-wide">Academy Pathways →</a></div>`;
+        <div><div class="font-accent uppercase tracking-[0.16em] text-[11px] text-gold/70 mb-3">Related Programs</div><a href="${learningHref}" class="inline-flex items-center gap-2 border border-gold/50 text-gold hover:bg-gold hover:text-navy transition-colors rounded-[10px] px-4 py-2 font-accent text-xs uppercase tracking-wide">Academy Pathways →</a></div>`;
       panel?.classList.remove('translate-x-full');
       overlay?.classList.remove('opacity-0', 'pointer-events-none');
       panel?.setAttribute('aria-hidden', 'false');

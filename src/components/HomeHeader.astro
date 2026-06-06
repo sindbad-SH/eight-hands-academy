@@ -3,7 +3,7 @@
 // topographic texture + coordinate/route motif behind. Mirrors Aiglon's .fsHeader behavior.
 import { nav } from '../data/nav';
 import TopoTexture from './TopoTexture.astro';
-import { BOOKING_URL } from '../data/site';
+import { BOOKING_URL, withBase } from '../data/site';
 ---
 <header class="relative z-50 bg-navy text-stone">
   <!-- Decorative bg layer — clipped so the topo/motifs don't overflow, but the nav + its dropdowns are NOT
@@ -23,7 +23,7 @@ import { BOOKING_URL } from '../data/site';
   <div class="relative z-20">
     <div class="container-content flex items-start justify-between gap-6 py-4 lg:py-5">
       <!-- Logo (left, spans both rows) -->
-      <a href="/" class="flex flex-col leading-none shrink-0 pt-0.5">
+      <a href={withBase('/')} class="flex flex-col leading-none shrink-0 pt-0.5">
         <span class="font-display text-3xl lg:text-4xl font-semibold text-stone">Eight Hands</span>
         <span class="eyebrow !text-gold mt-1">Martial Arts Academy</span>
       </a>
@@ -32,20 +32,20 @@ import { BOOKING_URL } from '../data/site';
       <div class="hidden lg:flex flex-col items-end gap-3.5">
         <!-- Utility row -->
         <div class="flex items-center gap-4 text-[11px] font-accent tracking-wide text-stone/70">
-          <a href="/community/summer-academy" class="inline-flex items-center gap-1.5 hover:text-gold transition-colors">
+          <a href={withBase('/community/summer-academy')} class="inline-flex items-center gap-1.5 hover:text-gold transition-colors">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19" /></svg>
             Summer Academy
           </a>
-          <a href="/community/alumni" class="inline-flex items-center gap-1.5 hover:text-gold transition-colors">
+          <a href={withBase('/community/alumni')} class="inline-flex items-center gap-1.5 hover:text-gold transition-colors">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11l9-5 9 5-9 5-9-5z" /><path d="M7 13v4c0 1 2 2 5 2s5-1 5-2v-4" /></svg>
             Alumni
           </a>
-          <a href="/community/impact" class="inline-flex items-center gap-1.5 hover:text-gold transition-colors">
+          <a href={withBase('/community/impact')} class="inline-flex items-center gap-1.5 hover:text-gold transition-colors">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9-9C1.5 8 4 4 8 5c2 .5 3 2 4 3 1-1 2-2.5 4-3 4-1 6.5 3 5 7-2 4.5-9 9-9 9z" /></svg>
             Support
           </a>
           <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent !py-1.5 !px-4 !text-[11px] uppercase">Schedule an Assessment</a>
-          <a href="/members" class="border border-stone/35 px-3 py-1.5 rounded-[10px] uppercase hover:border-gold transition-colors">Members</a>
+          <a href={withBase('/members')} class="border border-stone/35 px-3 py-1.5 rounded-[10px] uppercase hover:border-gold transition-colors">Members</a>
           <button data-search-open aria-label="Search" class="hover:text-gold transition-colors">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7" /><path d="M21 21l-4-4" /></svg>
           </button>
@@ -55,7 +55,7 @@ import { BOOKING_URL } from '../data/site';
         <nav class="flex items-center gap-7">
           {nav.map((item) => (
             <div class="group relative">
-              <a href={item.href} class="font-accent text-sm font-medium uppercase tracking-wide text-stone/90 hover:text-gold py-1.5 inline-flex items-center">
+              <a href={withBase(item.href)} class="font-accent text-sm font-medium uppercase tracking-wide text-stone/90 hover:text-gold py-1.5 inline-flex items-center">
                 {item.label}
               </a>
               <!-- Dropdown (measured on the reference): single narrow PORTRAIT column (~280×439), white panel
@@ -63,7 +63,7 @@ import { BOOKING_URL } from '../data/site';
                    RED on hover (no fill). -->
               <div class="absolute right-0 top-full hidden group-hover:block w-[260px] bg-stone border-t-2 border-red shadow-md z-30 divide-y divide-navy/10">
                 {item.children.map(([label, href]) => (
-                  <a href={href} class="block px-5 py-2.5 text-sm text-slate hover:text-red transition-colors">{label}</a>
+                  <a href={withBase(href)} class="block px-5 py-2.5 text-sm text-slate hover:text-red transition-colors">{label}</a>
                 ))}
               </div>
             </div>
@@ -88,7 +88,7 @@ import { BOOKING_URL } from '../data/site';
             </summary>
             <div class="pl-3 pb-2 flex flex-col">
               {item.children.map(([label, href]) => (
-                <a href={href} class="py-1.5 text-sm text-stone/70">{label}</a>
+                <a href={withBase(href)} class="py-1.5 text-sm text-stone/70">{label}</a>
               ))}
             </div>
           </details>

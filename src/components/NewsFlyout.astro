@@ -1,6 +1,7 @@
 ---
 // PART: "Off-Canvas Flyout Tab" (teardown-motion.md §3) — fixed right-edge "News & Events" tab; opens a
 // full-height panel sliding in from the right + dim overlay. Esc / overlay / × closes.
+import { withBase } from '../data/site';
 const items = Array.from({ length: 4 }, (_, i) => i);
 ---
 <button
@@ -28,11 +29,11 @@ const items = Array.from({ length: 4 }, (_, i) => i);
       {items.map((i) => (
         <li class="border-b border-navy/10 pb-6">
           <div class="font-accent uppercase tracking-[0.18em] text-[10px] text-slate-400 mb-1">[Category] · [Date]</div>
-          <a href="/community/events" class="font-display text-lg text-navy hover:text-red transition-colors">[NEWS / EVENT {i + 1} — title]</a>
+          <a href={withBase('/community/events')} class="font-display text-lg text-navy hover:text-red transition-colors">[NEWS / EVENT {i + 1} — title]</a>
         </li>
       ))}
     </ul>
-    <a href="/community/events" class="btn-ghost mt-8 w-full">View All</a>
+    <a href={withBase('/community/events')} class="btn-ghost mt-8 w-full">View All</a>
   </div>
 </aside>
 

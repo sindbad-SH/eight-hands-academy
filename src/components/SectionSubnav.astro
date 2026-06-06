@@ -7,6 +7,7 @@ interface Props {
   active?: string; // current page href
   label?: string;
 }
+import { withBase } from '../data/site';
 const { items, active = '', active: _a, label = 'Section' } = Astro.props;
 ---
 <nav class="bg-stone border-b-2 border-red" aria-label={label}>
@@ -15,7 +16,7 @@ const { items, active = '', active: _a, label = 'Section' } = Astro.props;
       const isActive = href === active;
       return (
         <a
-          href={href}
+          href={withBase(href)}
           aria-current={isActive ? 'page' : undefined}
           class:list={[
             'font-accent text-sm tracking-wide transition-colors',

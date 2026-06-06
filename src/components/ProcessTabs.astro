@@ -6,6 +6,7 @@
 // invented nested sub-accordions; the live source shows one panel visible at a time = tabs. Reusable for the
 // Learning page's tabbed modules.)
 import HighlightEyebrow from './HighlightEyebrow.astro';
+import { withBase } from '../data/site';
 
 interface Step {
   tab: string;       // numbered tab label, e.g. "1 - INQUIRE"
@@ -55,7 +56,7 @@ const { eyebrow, heading, steps } = Astro.props;
           <h3 class="font-accent uppercase tracking-[0.12em] text-navy text-lg mb-4">{s.subhead}</h3>
           <p class="text-slate/90 leading-relaxed mb-7">{s.body}</p>
           {s.ctaText && (
-            <a href={s.ctaHref} class="btn-ghost w-full sm:w-auto">{s.ctaText}</a>
+            <a href={s.ctaHref ? withBase(s.ctaHref) : undefined} class="btn-ghost w-full sm:w-auto">{s.ctaText}</a>
           )}
         </div>
       </div>
