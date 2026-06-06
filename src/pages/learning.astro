@@ -58,7 +58,7 @@ const framework: [string, string][] = [
 ];
 
 // Build the segmented framework wheel (7 equal arcs, cycling navy/red/gold) + label positions.
-const wheelColors = ['#0B2341', '#8C1D18', '#C9A44C'];
+const wheelColors = ['#0B2341', '#8C1D18', '#C39A3C'];
 const segDeg = 360 / framework.length;
 const wheelStops = framework
   .map((_, i) => `${wheelColors[i % 3]} ${(i * segDeg).toFixed(2)}deg ${((i + 1) * segDeg).toFixed(2)}deg`)
