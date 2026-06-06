@@ -1,0 +1,18 @@
+---
+// Member portal — placeholder stub (Phase-2 functionality). Stops the header "Members" link from 404-ing.
+import Base from '../layouts/Base.astro';
+import { BOOKING_URL } from '../data/site';
+---
+<Base home title="Member Portal — Eight Hands Martial Arts Academy" description="The Eight Hands member portal.">
+  <section class="bg-stone">
+    <div class="container-content py-section text-center">
+      <p class="eyebrow mb-4">Member Portal</p>
+      <h1 class="text-4xl lg:text-5xl text-navy mb-6">Coming Soon</h1>
+      <p class="text-slate/90 max-w-xl mx-auto mb-9 leading-relaxed">
+        The member portal — progress tracking, schedules, and resources for current students — is in
+        development. [COPY: confirm portal scope + how members sign in · PLACEHOLDER, Phase-2 functionality.]
+      </p>
+      <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">Schedule an Assessment</a>
+    </div>
+  </section>
+</Base>

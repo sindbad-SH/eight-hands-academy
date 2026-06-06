@@ -1,0 +1,67 @@
+---
+// Client-side site search. Static site = no backend: an overlay opened by any [data-search-open] element
+// (the header magnifier icons). Typing filters a known page index by title + keywords; click or Enter
+// navigates to the page. Rendered once in Base.astro so it's on every page.
+const pages = [
+  { t: 'Home', h: '/', k: 'home eight hands martial arts academy qi-house self-governance' },
+  { t: 'About', h: '/about', k: 'about mission vision self-governance educational institution philosophy' },
+  { t: "Director's Welcome", h: '/about/directors-welcome', k: 'director welcome message leadership' },
+  { t: 'The Ethos', h: '/about/ethos', k: 'ethos philosophy principles values self-governance' },
+  { t: 'Founder & History', h: '/about/founder', k: 'founder history origins lineage 1992' },
+  { t: 'Governance', h: '/about/governance', k: 'governance standards stewardship' },
+  { t: 'Leadership', h: '/about/leadership', k: 'leadership instructors mentors team' },
+  { t: 'Stewardship & Legacy', h: '/about/stewardship', k: 'stewardship legacy continuity' },
+  { t: 'Admissions — Schedule an Assessment', h: '/admissions', k: 'admissions assessment booking enroll enrollment inquiry orientation process' },
+  { t: 'Learning', h: '/learning', k: 'learning programs membership scholar fellow private instruction group training framework' },
+  { t: 'Daily Life', h: '/daily-life', k: 'daily life environment reflection presence wellbeing safety' },
+  { t: 'The Twelve Houses', h: '/the-twelve-houses', k: 'twelve houses domains development' },
+  { t: 'Community', h: '/community', k: 'community participation belonging parents alumni events impact' },
+  { t: 'Summer Academy', h: '/community/summer-academy', k: 'summer academy seasonal intensive' },
+  { t: 'Instructor Development', h: '/community/instructor-development', k: 'instructor development teaching mentor' },
+  { t: 'Alumni', h: '/community/alumni', k: 'alumni former students graduates' },
+  { t: 'Community Impact', h: '/community/impact', k: 'impact service charity contribution' },
+  { t: 'Events & Gatherings', h: '/community/events', k: 'events gatherings workshops open house calendar' },
+  { t: 'Member Portal', h: '/members', k: 'members portal login students resources schedule' },
+];
+---
+<div id="siteSearch" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true" aria-label="Site search">
+  <div class="absolute inset-0 bg-navy/70" data-search-close></div>
+  <div class="relative mx-auto mt-20 lg:mt-28 w-[92%] max-w-xl bg-stone rounded-[10px] shadow-xl overflow-hidden">
+    <div class="flex items-center gap-3 px-5 py-4 border-b border-navy/10">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="text-navy/50 shrink-0"><circle cx="11" cy="11" r="7" /><path d="M21 21l-4-4" /></svg>
+      <input id="searchInput" type="text" placeholder="Search the site…" autocomplete="off" class="flex-1 bg-transparent outline-none text-navy placeholder:text-slate/50 text-lg" />
+      <button data-search-close aria-label="Close search" class="text-navy/40 hover:text-navy text-2xl leading-none">&times;</button>
+    </div>
+    <ul id="searchResults" class="max-h-[60vh] overflow-y-auto divide-y divide-navy/5"></ul>
+  </div>
+  <script type="application/json" id="searchData" set:html={JSON.stringify(pages)}></script>
+</div>
+
+<script>
+  const overlay = document.getElementById('siteSearch');
+  if (overlay) {
+    const pages = JSON.parse(document.getElementById('searchData')?.textContent || '[]');
+    const input = document.getElementById('searchInput') as HTMLInputElement | null;
+    const results = document.getElementById('searchResults');
+    const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c] as string));
+    const render = (q: string) => {
+      const query = (q || '').trim().toLowerCase();
+      const list = !query ? pages : pages.filter((p: any) => (p.t + ' ' + p.k).toLowerCase().includes(query));
+      if (results) {
+        results.innerHTML = list.length
+          ? list.map((p: any) => `<li><a href="${p.h}" class="block px-5 py-3 hover:bg-navy/5 transition-colors"><span class="block text-navy font-accent text-sm">${esc(p.t)}</span><span class="block text-xs text-slate/60">${p.h}</span></a></li>`).join('')
+          : `<li class="px-5 py-5 text-slate/60 text-sm">No pages match &ldquo;${esc(query)}&rdquo;.</li>`;
+      }
+    };
+    const open = () => { overlay.classList.remove('hidden'); if (input) input.value = ''; render(''); document.body.style.overflow = 'hidden'; setTimeout(() => input?.focus(), 30); };
+    const close = () => { overlay.classList.add('hidden'); document.body.style.overflow = ''; };
+    input?.addEventListener('input', (e) => render((e.target as HTMLInputElement).value));
+    input?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { const a = results?.querySelector('a'); if (a) location.href = a.getAttribute('href')!; }
+      if (e.key === 'Escape') close();
+    });
+    document.querySelectorAll('[data-search-close]').forEach((b) => b.addEventListener('click', close));
+    document.querySelectorAll('[data-search-open]').forEach((b) => b.addEventListener('click', open));
+    render('');
+  }
+</script>
