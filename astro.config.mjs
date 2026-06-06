@@ -6,6 +6,6 @@ import tailwind from '@astrojs/tailwind';
 // `site` is the Pages origin (USERNAME.github.io). All internal links go through withBase() (src/data/site.ts).
 export default defineConfig({
   integrations: [tailwind({ applyBaseStyles: false })],
-  site: 'https://USERNAME.github.io',
+  site: 'https://sindbad-sh.github.io',
   base: '/eight-hands-academy',
 });
