@@ -20,10 +20,10 @@ const subnav: [string, string][] = [
 ];
 
 const claims: [string, string][] = [
-  ['Not Just for Students', 'Families, alumni, and instructors form a community of practice that extends well beyond the floor.'],
-  ['Participation Is the Method', 'Belonging is earned the way skill is — by showing up and contributing.'],
-  ['A Living Lineage', 'Each cohort carries the practice forward and hands it on to the next.'],
-  ['Service Beyond the Studio', 'The practice is meant to be useful to the wider community, not only to the practitioner.'],
+  ['Growth Is Shared', 'Confidence, focus, and accountability develop faster among people pursuing the same outcomes together.'],
+  ['Parents Are Included', 'Families are kept informed and involved, so progress at the Qi-House is reinforced at home.'],
+  ['Participation Is the Method', 'Belonging is earned the way capability is — by showing up, contributing, and supporting others.'],
+  ['Leadership in Practice', 'Advanced students apply what they have learned by guiding newer ones — leadership as a living skill.'],
 ];
 
 const hub: [string, string, string][] = [
@@ -35,7 +35,7 @@ const hub: [string, string, string][] = [
   ['Get Involved', '/admissions#visit', '[IMAGE — a newcomer welcomed onto the floor · 4:3 · 760×570px]'],
 ];
 ---
-<Base home title="Community — The Qi-House" description="The individual develops through participation; the community develops through contribution.">
+<Base home title="Community — The Qi-House" description="Confidence, discipline, and focus develop fastest in community — among students, instructors, and families pursuing the same outcomes together.">
   <SectionSubnav items={subnav} active="/community" label="Community section" />
 
   <section class="bg-stone">
@@ -43,16 +43,16 @@ const hub: [string, string, string][] = [
       <h1 class="text-4xl lg:text-5xl text-navy mb-12 lg:mb-16">Community</h1>
 
       <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
-        <div class="reveal">
+        <div class="reveal lg:order-2">
           <div class="relative min-h-[420px] lg:min-h-[540px]">
             <ParallaxPhoto
-              alt="[IMAGE — a family / member welcomed into the community (primary) · PORTRAIT 4:5 · 1000×1250px]"
+              alt="[IMAGE — a student supported by peers / an instructor mid-encouragement, candid (primary) · PORTRAIT 4:5 · 1000×1250px]"
               frameClass="aspect-[4/5] w-[78%]"
               parallax={-104}
               innerClass="!text-xs"
             />
             <ParallaxPhoto
-              alt="[IMAGE — a public gathering / event (secondary) · LANDSCAPE 4:3 · 900×675px]"
+              alt="[IMAGE — parents and members at a gathering / demonstration, engaged (secondary) · LANDSCAPE 4:3 · 900×675px]"
               frameClass="absolute -bottom-6 right-0 lg:-right-10 w-[58%] aspect-[4/3] z-20 ring-[10px] ring-stone"
               parallax={-100}
               innerClass="!p-3 !text-[10px]"
@@ -68,18 +68,19 @@ const hub: [string, string, string][] = [
           </div>
         </div>
 
-        <div class="reveal">
+        <div class="reveal lg:order-1">
           <p class="font-accent uppercase tracking-[0.14em] text-xl lg:text-2xl text-navy mb-7 inline-flex flex-wrap items-center gap-x-2.5 gap-y-1">
-            <span class="bg-red text-stone px-2 py-0.5">Belonging</span><span>Through Participation</span>
+            <span class="bg-red text-stone px-2 py-0.5">Growth</span><span>Develops Together</span>
           </p>
           <p class="text-slate/90 leading-relaxed mb-5">
-            A community like this doesn't simply happen. It is built from a culture of attention and seized
-            opportunity — the relationships between instructors and students, and students kept at the centre
-            of things.
+            Confidence, discipline, and focus are not built in isolation. They grow fastest among people working
+            toward the same outcomes — students supporting students, instructors who know each individual, and
+            families kept informed and involved in the progress being made.
           </p>
           <p class="text-slate/90 leading-relaxed mb-8">
-            From everyday practice to gatherings, alumni who carry the work into the world, and service beyond
-            the studio — community and consistent effort are what make the Qi-House what it is.
+            Around the daily work of training sits a wider community: parents who reinforce what is learned at
+            home, alumni who carry their development into the world, and members who serve beyond the studio. To
+            take part is to give and receive the encouragement that makes lasting growth possible.
           </p>
           <GoldArrowLink href="/community/impact" text="How We Serve" class="mb-10" />
           <ClaimRotator items={claims} dark={false} label="What the community is built on" />

@@ -17,12 +17,12 @@ const subnav: [string, string][] = [
   ['Stewardship & Legacy', '/about/stewardship'],
 ];
 
-// Rotating claim card — real brand facts only (no fabrication), mapping the reference's institutional claims.
+// Rotating claim card — outcomes-led, real brand facts only (no fabrication). Maps the reference's institutional claims.
 const claims: [string, string][] = [
-  ['Education, Not Combat', 'Martial arts is the medium; the development of conscious participation is the work.'],
-  ['Practicing Since 1992', 'Decades of disciplined study, refined into a coherent methodology.'],
-  ['The TICC-IMA Method', 'An educational framework — not a curriculum of techniques alone.'],
-  ['Mentorship at the Center', 'Assessment, guidance, and accountability — the relationship that carries the practice.'],
+  ['Confidence & Self-Governance', 'Students learn to govern themselves first — clearly and steadily, on their own terms.'],
+  ['Discipline, Focus, Resilience', 'Capability is developed, not awarded — built through study that demands the whole person.'],
+  ['An Education, Not a Belt', 'Martial arts is the medium. The development of the individual is the work.'],
+  ['Mentorship at the Center', 'Assessment, guidance, and accountability — the relationship that carries each student forward.'],
 ];
 
 // Photo-button hub — one image card per About sub-page (the reference's About card grid).
@@ -44,12 +44,12 @@ const navCards: [string, string, string][] = [
     <div class="container-content py-section-sm lg:py-section">
       <h1 class="text-center text-4xl lg:text-5xl text-navy mb-14 lg:mb-20">About the Qi-House</h1>
 
-      <!-- Intro: LEFT layered photo pair + ▶ pill · RIGHT eyebrow + copy + link + rotating claim card -->
+      <!-- Intro (mirrored R→L): RIGHT layered photo pair + ▶ pill · LEFT eyebrow + copy + link + rotating claim card -->
       <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
-        <div class="reveal">
+        <div class="reveal lg:order-2">
           <div class="relative min-h-[420px] lg:min-h-[540px]">
             <ParallaxPhoto
-              alt="[IMAGE — community / practice (primary) · PORTRAIT 4:5 · 1000×1250px · participation, belonging]"
+              alt="[IMAGE — student mid-practice, focused and composed (primary) · PORTRAIT 4:5 · 1000×1250px · development, self-governance]"
               frameClass="aspect-[4/5] w-[78%]"
               parallax={-104}
               innerClass="!text-xs"
@@ -71,16 +71,22 @@ const navCards: [string, string, string][] = [
           </div>
         </div>
 
-        <div class="reveal">
+        <div class="reveal lg:order-1">
           <p class="font-accent uppercase tracking-[0.14em] text-base lg:text-lg text-navy/85 mb-6 flex flex-wrap items-center gap-x-2.5 gap-y-1">
             <span class="bg-red text-stone px-2 py-0.5">Developing</span> the Individual
           </p>
           <p class="text-slate/90 leading-relaxed mb-8">
-            Founded in 1992, the academy set into motion an evolving practice — more than martial arts alone.
-            Drawing from foundational principles, we hold that through the balanced development of mind, body,
-            and discernment, the individual learns to participate consciously across the systems they move within.
+            Eight Hands is an educational institution whose medium is martial arts. The work is to build the
+            confidence, discipline, focus, and self-awareness an individual needs to govern themselves — clearly,
+            steadily, and on their own terms — before they set out to influence the world around them.
           </p>
-          <GoldArrowLink href="/about/ethos" text="The Founding Principles" class="mb-10" />
+          <p class="text-slate/90 leading-relaxed mb-8">
+            We teach that capability is developed, not awarded. Through study that draws mind, body, and
+            discernment into balance, students learn to communicate with intent, lead with accountability, and
+            meet challenge with resilience. The same education serves parents seeking it for their children,
+            adults pursuing it for themselves, and students ready to go further.
+          </p>
+          <GoldArrowLink href="/about/ethos" text="How We Define Self-Governance" class="mb-10" />
           <ClaimRotator items={claims} dark={false} label="What defines the academy" />
         </div>
       </div>

@@ -23,37 +23,38 @@ const subnav: [string, string][] = [
   ['How We Learn', '/learning#programs'],
 ];
 
-// Two group cards (reference: Junior/Senior School) → two arcs of the practice.
+// Two group cards (reference: Junior/Senior School) → the two pillars of the educational model.
 const groups = [
-  ['Beginning', 'The Foundation', 'Wonder & Discovery — learning to perceive, and to participate.', '#wonder'],
-  ['Continuing', 'The Application', 'Exploration & Integration — discernment, responsibility, and stewardship.', '#exploration'],
+  ['Education', 'Private Instruction', 'Where the teaching happens — one-on-one work that builds confidence, focus, and self-governance at each student’s own pace.', '#private'],
+  ['Application', 'Group Training', 'The application laboratory — where developing skills are tested with others, building communication, accountability, and resilience.', '#group'],
 ];
 
-// Four cohorts (reference: Wonder/Discovery/Exploration/Inspiration → Integration). Stage label, not age years.
+// Three enrollment pathways (reskin-map §3.2). Recommended after an assessment — not chosen off a menu.
 const cohorts: [string, string, string, string][] = [
-  ['wonder', 'Wonder', 'Beginning', 'Foundation through curiosity — learning to perceive more clearly.'],
-  ['discovery', 'Discovery', 'Developing', 'Foundation through experience — learning to choose deliberately.'],
-  ['exploration', 'Exploration', 'Refining', 'Foundation through responsibility — learning to act with discernment.'],
-  ['integration', 'Integration', 'Integrating', 'Foundation through application — participating consciously across systems.'],
+  ['membership', 'Academy Membership', 'Foundation', 'The starting pathway: structured private instruction plus group application, building discipline, focus, and confidence from the ground up.'],
+  ['scholar', 'Academy Scholar', 'Advancing', 'For the committed student: a deeper course of study that develops awareness, discernment, and accountability across every part of the practice.'],
+  ['fellow', 'Academy Fellow', 'By Invitation', 'Extended to advanced students ready to lead — the leadership track where capability is expressed by guiding and developing others.'],
+  ['recommended', 'A Recommended Path', 'After Assessment', 'Eight Hands does not sell memberships; it recommends an educational pathway suited to your goals after your assessment conversation.'],
 ];
 
 // Rotating claims for the "More than technique" intro card (reference: panel-05 rotating claim card).
 const claims: [string, string][] = [
-  ['A Multidisciplinary Practice', 'The diploma of this practice is not a belt — it is the capacity to participate consciously.'],
-  ['Mind, Body & Discernment', 'Three faculties developed together; none advanced at the expense of another.'],
-  ['Beyond the Training Floor', 'The work is meant to be carried into every system the student moves within.'],
-  ['Practiced Since 1992', 'Decades of disciplined study, refined into a coherent methodology.'],
+  ['An Education, Not a Belt Mill', 'Progress is measured in confidence, discipline, and accountability — not by collecting rank.'],
+  ['Mind, Body & Discernment', 'Focus, resilience, and clear judgment are developed together; none advanced at the expense of another.'],
+  ['Carried Beyond the Floor', 'What you build here is meant to govern how you participate in every part of your life.'],
+  ['Pathways, Not Pressure', 'We recommend the right course of study for your goals — we do not push a sale.'],
 ];
 
-// The 7-principle Constitutional Framework (reskin-map §3.2) — a disclosure accordion + a segmented wheel.
+// The 7-principle development framework (reskin-map §3.2) — a disclosure accordion + a segmented wheel.
+// Framed plainly as the outcomes the education develops (de-esoterica: no realms/houses).
 const framework: [string, string][] = [
-  ['Choice', 'The ability to govern participation — to act rather than merely react.'],
-  ['Presence', 'The capacity to contain awareness in the moment, without drifting from it.'],
-  ['Awareness', 'Recognition of existence and condition — of oneself, others, and the system.'],
-  ['Discernment', 'Determining what to do with awareness; judgment under real conditions.'],
-  ['Responsibility', 'Ownership of choice and of its consequence, claimed rather than assigned.'],
-  ['Capability', 'The developed ability to perform effectively when it matters.'],
-  ['Stewardship', 'To contribute responsibly to systems larger than oneself.'],
+  ['Confidence', 'A grounded sense of your own capability — the steadiness to act rather than hesitate.'],
+  ['Focus', 'The ability to stay present and give your full attention to what matters, without drifting.'],
+  ['Awareness', 'Clear perception of yourself, of others, and of the situation you are actually in.'],
+  ['Discernment', 'Sound judgment under real conditions — knowing what to do with what you notice.'],
+  ['Accountability', 'Ownership of your choices and their consequences, claimed rather than assigned.'],
+  ['Resilience', 'The developed capacity to perform, recover, and keep your footing when it is hard.'],
+  ['Leadership', 'The ability to govern yourself first, then contribute responsibly to those around you.'],
 ];
 
 // Build the segmented framework wheel (7 equal arcs, cycling navy/red/gold) + label positions.
@@ -68,12 +69,13 @@ const wheelLabels = framework.map(([name], i) => {
   return { name, x: (50 + r * Math.cos(a)).toFixed(1), y: (50 + r * Math.sin(a)).toFixed(1) };
 });
 
-// "Go Deeper / How We Learn" hub — the program modules (reskin-map §3.2).
+// "Go Deeper / How We Learn" hub — the educational model (reskin-map §3.2).
+// Private = Education · Group = Application Laboratory · Leadership = Advanced Application.
 const programs: [string, string, string][] = [
-  ['The Core — Private Instruction', '/learning#programs', '[IMAGE — one-on-one instruction, mentor + student · 4:3 · 760×570px]'],
-  ['The Application — Group Training', '/learning#programs', '[IMAGE — group practice on the floor, candid · 4:3 · 760×570px]'],
-  ['Summer Academy', '/community/summer-academy', '[IMAGE — intensive seasonal practice, outdoors · 4:3 · 760×570px]'],
-  ['Instructor Development', '/community/instructor-development', '[IMAGE — senior student teaching / leading · 4:3 · 760×570px]'],
+  ['Private Instruction — The Education', '/learning#private', '[IMAGE — one-on-one instruction, mentor + student · 4:3 · 760×570px]'],
+  ['Group Training — The Application Lab', '/learning#group', '[IMAGE — group practice on the floor, candid · 4:3 · 760×570px]'],
+  ['Leadership — Advanced Application', '/community/instructor-development', '[IMAGE — advanced student guiding / leading others · 4:3 · 760×570px]'],
+  ['Your Assessment — Where to Begin', '/learning#cohorts', '[IMAGE — calm one-on-one conversation, welcoming · 4:3 · 760×570px]'],
 ];
 ---
 <Base home title="Learning at the Qi-House" description="An education in participation — martial arts as the medium.">
@@ -83,12 +85,12 @@ const programs: [string, string, string][] = [
   <section class="bg-stone">
     <div class="container-content py-section-sm lg:py-section">
       <div class="text-center max-w-3xl mx-auto reveal">
-        <div class="flex justify-center mb-5"><HighlightEyebrow mark="Holistic Practice" /></div>
+        <div class="flex justify-center mb-5"><HighlightEyebrow mark="A Martial Arts Education" /></div>
         <h1 class="text-4xl lg:text-5xl text-navy mb-6">Learning at the Qi-House</h1>
         <p class="text-slate/90 text-lg leading-relaxed">
-          The objective is not a catalogue of techniques but the mastery of participation. The novice sees
-          pieces; the advanced student sees relationships; the steward sees systems. Martial arts is the
-          medium — the development of mind, body, and discernment is the work.
+          Students leave with confidence, focus, and the discipline to govern themselves — the outcomes that
+          carry into school, work, and home. Martial arts is the medium; the real work is developing the
+          awareness, resilience, and accountability of a person who can lead themselves before influencing others.
         </p>
       </div>
       <div class="ph aspect-[16/6] mt-12 reveal">[IMAGE — wide shot of practice in motion / the training space · 16:6 · 1760×660px · focused, calm]</div>
@@ -99,8 +101,9 @@ const programs: [string, string, string][] = [
   <section id="cohorts" class="bg-stone-200 scroll-mt-24">
     <div class="container-content py-section-sm lg:py-section">
       <div class="text-center max-w-2xl mx-auto mb-12 reveal">
-        <div class="flex justify-center mb-4"><HighlightEyebrow mark="One Practice" /></div>
-        <h2 class="text-3xl lg:text-4xl">Four Cohorts of Emphasis</h2>
+        <div class="flex justify-center mb-4"><HighlightEyebrow mark="Educational Pathways" /></div>
+        <h2 class="text-3xl lg:text-4xl">How Students Enroll &amp; Advance</h2>
+        <p class="text-slate/80 mt-3">Two ways the education is delivered, and the pathways we may recommend after your assessment.</p>
       </div>
       <div class="grid md:grid-cols-2 gap-6 mb-6">
         {groups.map(([label, title, blurb, href]) => (
@@ -116,7 +119,7 @@ const programs: [string, string, string][] = [
         {cohorts.map(([id, name, stage, blurb]) => (
           <div id={id} class="reveal scroll-mt-28">
             <a href={`#${id}`} class="group relative block aspect-[4/5] overflow-hidden bg-navy mb-4">
-              <div class="ph absolute inset-0 !rounded-none !border-0 !text-[10px] transition-transform duration-500 group-hover:scale-105">[IMAGE — {name} cohort · 4:5 · 640×800px · candid practice]</div>
+              <div class="ph absolute inset-0 !rounded-none !border-0 !text-[10px] transition-transform duration-500 group-hover:scale-105">[IMAGE — {name} · 4:5 · 640×800px · candid student practice, focused]</div>
               <div class="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/20 to-transparent"></div>
               <div class="absolute left-4 bottom-4"><HighlightEyebrow mark={stage} /></div>
             </a>
@@ -131,7 +134,7 @@ const programs: [string, string, string][] = [
   <!-- 3. "More than technique" intro: layered photo pair + ▶ pill (left) + highlight heading + copy + ClaimRotator (right) -->
   <section class="bg-stone">
     <div class="container-content py-section-sm lg:py-section grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
-      <div class="reveal">
+      <div class="reveal lg:order-2">
         <div class="relative min-h-[420px] lg:min-h-[540px]">
           <ParallaxPhoto
             alt="[IMAGE — focused practice / instruction (primary) · PORTRAIT 4:5 · 1000×1250px]"
@@ -155,16 +158,17 @@ const programs: [string, string, string][] = [
           </button>
         </div>
       </div>
-      <div class="reveal">
+      <div class="reveal lg:order-1">
         <p class="font-accent uppercase tracking-[0.14em] text-xl lg:text-2xl text-navy mb-7 inline-flex flex-wrap items-center gap-x-2.5 gap-y-1">
           <span>More Than</span><span class="bg-red text-stone px-2 py-0.5">Technique</span>
         </p>
         <p class="text-slate/90 leading-relaxed mb-8">
-          The practice asks the student to adopt a multidisciplinary approach: the work is not finished by
-          excelling on the training floor alone. Mind, body, and discernment are developed together, and the
-          result is meant to be carried into every system the student moves within.
+          The skills students build here are not finished on the training floor. Confidence, focus, and sound
+          judgment are developed together — mind, body, and discernment at once — so the discipline carries
+          into how a student shows up at school, at work, and at home. The outcome is a person better able to
+          govern themselves.
         </p>
-        <GoldArrowLink href="/about/ethos" text="The Founding Principles" class="mb-10" />
+        <GoldArrowLink href="/about/ethos" text="Why Eight Hands" class="mb-10" />
         <ClaimRotator items={claims} dark={false} label="What the practice develops" />
       </div>
     </div>
@@ -174,14 +178,14 @@ const programs: [string, string, string][] = [
   <section id="framework" class="bg-stone-200 scroll-mt-24">
     <div class="container-content py-section-sm lg:py-section">
       <div class="text-center max-w-2xl mx-auto mb-12 reveal">
-        <h2 class="text-3xl lg:text-4xl">The Constitutional Framework</h2>
-        <p class="text-slate/80 mt-3">Principles that govern all practice.</p>
+        <h2 class="text-3xl lg:text-4xl">What the Education Develops</h2>
+        <p class="text-slate/80 mt-3">Seven outcomes every student builds through the practice.</p>
       </div>
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        <div class="reveal flex justify-center">
+        <div class="reveal flex justify-center lg:order-2">
           <div class="relative w-[min(420px,90vw)] aspect-square rounded-full" style={`background: conic-gradient(${wheelStops});`}>
             <div class="absolute inset-[26%] rounded-full bg-stone-200 flex items-center justify-center text-center">
-              <span class="font-display text-navy text-lg leading-tight px-4">The Practice<br />of Participation</span>
+              <span class="font-display text-navy text-lg leading-tight px-4">Self-<br />Governance</span>
             </div>
             {wheelLabels.map((l) => (
               <span
@@ -191,8 +195,8 @@ const programs: [string, string, string][] = [
             ))}
           </div>
         </div>
-        <div class="reveal">
-          <p class="text-slate/80 mb-5">Aspirational and inspirational development through:</p>
+        <div class="reveal lg:order-1">
+          <p class="text-slate/80 mb-5">Each outcome is developed deliberately, one capability building on the next:</p>
           <div class="divide-y divide-navy/10 border-t border-b border-navy/10">
             {framework.map(([name, desc], i) => (
               <details class="group" open={i === 0}>
@@ -213,8 +217,8 @@ const programs: [string, string, string][] = [
   <section id="programs" class="bg-stone scroll-mt-24">
     <div class="container-content py-section-sm lg:py-section">
       <div class="text-center max-w-2xl mx-auto mb-12 reveal">
-        <div class="flex justify-center mb-4"><HighlightEyebrow mark="Go Deeper" /></div>
-        <h2 class="text-3xl lg:text-4xl">How the Practice Is Delivered</h2>
+        <div class="flex justify-center mb-4"><HighlightEyebrow mark="The Educational Model" /></div>
+        <h2 class="text-3xl lg:text-4xl">How the Education Is Delivered</h2>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4">
         {programs.map(([label, href, alt]) => (

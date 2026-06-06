@@ -19,10 +19,10 @@ const subnav: [string, string][] = [
 ];
 
 const claims: [string, string][] = [
-  ['An Environment for Presence', 'The space itself is arranged for order, attention, and the deliberate practice of awareness.'],
-  ['Stillness Trained with Movement', 'Reflection is not an interlude between training — it is part of the training.'],
-  ['Safety as a Precondition', 'Development requires safety; the academy holds clear standards for physical and psychological wellbeing.'],
-  ['Twelve Houses', 'Domains of participation that frame how the practice is lived — referenced, not ranked.'],
+  ['Focus & Attention', 'The environment is arranged for order and attention, so students build the focus that carries into the rest of life.'],
+  ['Discipline & Awareness', 'Stillness, breath, and review are part of the training — the habits that grow self-awareness and self-governance.'],
+  ['Resilience within Safety', 'Clear standards for physical and psychological wellbeing create the conditions for real growth and accountability.'],
+  ['A Community of Practice', 'Daily life is lived alongside others, where confidence and leadership are practiced, not just taught.'],
 ];
 
 const hub: [string, string, string][] = [
@@ -34,7 +34,7 @@ const hub: [string, string, string][] = [
   ['A Day at the Qi-House', '/admissions#visit', '[IMAGE — the rhythm of a training day, candid · 4:3 · 760×570px]'],
 ];
 ---
-<Base home title="Daily Life — The Qi-House" description="An environment designed for presence, order, and the practice of awareness.">
+<Base home title="Daily Life — The Qi-House" description="An environment designed to build focus, discipline, and self-awareness in the ordinary work of daily practice.">
   <SectionSubnav items={subnav} active="/daily-life" label="Daily Life section" />
 
   <!-- Left-aligned page title (reference: Student Life), then intro block -->
@@ -43,19 +43,20 @@ const hub: [string, string, string][] = [
       <h1 class="text-4xl lg:text-5xl text-navy mb-12 lg:mb-16">Daily Life</h1>
 
       <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
-        <div class="ph aspect-[4/3] reveal !text-[10px]">[IMAGE — students/practitioners at ease in the Qi-House environment · 4:3 · 1040×780px · candid, warm]</div>
-        <div class="reveal">
+        <div class="ph aspect-[4/3] reveal !text-[10px] lg:order-2">[IMAGE — students/practitioners at ease in the Qi-House environment · 4:3 · 1040×780px · candid, warm]</div>
+        <div class="reveal lg:order-1">
           <p class="font-accent uppercase tracking-[0.14em] text-xl lg:text-2xl text-navy mb-7 inline-flex flex-wrap items-center gap-x-2.5 gap-y-1">
-            <span>A Place for</span><span class="bg-red text-stone px-2 py-0.5">Presence</span>
+            <span>An Education in</span><span class="bg-red text-stone px-2 py-0.5">Presence</span>
           </p>
           <p class="text-slate/90 leading-relaxed mb-5">
-            The environment itself is part of the education. The Qi-House is arranged for order, attention, and
-            the deliberate practice of awareness — the dynamics of how the community trains together matter as
-            much as any single technique.
+            Daily life at the Qi-House is the place where confidence, discipline, and focus are built in the
+            ordinary work of showing up. The environment is arranged to support attention and self-governance:
+            how a student prepares, trains, and conducts themselves matters as much as any single technique.
           </p>
           <p class="text-slate/90 leading-relaxed mb-8">
-            Daily life is the practice made ordinary: arriving, preparing, training, reflecting, and carrying
-            what is learned back out into the world. Each student is meant to make a kind of home here.
+            The practice is made ordinary — arriving, preparing, training, reflecting, and carrying what is
+            learned back out into the world. Over time, the awareness developed here becomes the way a student
+            governs their own attention, effort, and conduct everywhere else.
           </p>
           <GoldArrowLink href="/the-twelve-houses" text="The Twelve Houses" class="mb-10" />
           <ClaimRotator items={claims} dark={false} label="What daily life is arranged to do" />
@@ -67,30 +68,30 @@ const hub: [string, string, string][] = [
   <!-- Reflection & Presence (anchored sub-topic; copy-left / image-right) -->
   <section id="reflection" class="bg-stone-200 scroll-mt-24">
     <div class="container-content py-section-sm lg:py-section grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-      <div class="reveal">
+      <div class="reveal lg:order-2">
         <p class="eyebrow mb-4">Reflection &amp; Presence</p>
-        <h2 class="text-3xl mb-5">Stillness is trained alongside movement.</h2>
+        <h2 class="text-3xl mb-5">Awareness is trained alongside movement.</h2>
         <p class="text-slate/90 leading-relaxed">
-          Reflection is not an interlude; it is the practice of containing awareness. Time for stillness,
-          breath, and review is built into the rhythm of training — the place where movement becomes
-          understanding.
+          Reflection is not an interlude; it is how focus and self-awareness are built. Time for stillness,
+          breath, and review is part of the rhythm of training — the place where movement becomes
+          understanding, and where a student learns to observe and govern their own attention.
         </p>
       </div>
-      <div class="ph reveal aspect-[4/3] lg:order-2">[IMAGE — a quiet, reflective moment, candid · 4:3 · 960×720px]</div>
+      <div class="ph reveal aspect-[4/3] lg:order-1">[IMAGE — a quiet, reflective moment, candid · 4:3 · 960×720px]</div>
     </div>
   </section>
 
   <!-- Wellbeing & Safety (anchored sub-topic; image-left / copy-right) -->
   <section id="wellbeing" class="bg-stone scroll-mt-24">
     <div class="container-content py-section-sm lg:py-section grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-      <div class="ph reveal aspect-[4/3]">[IMAGE — attentive instruction / care on the training floor · 4:3 · 960×720px]</div>
-      <div class="reveal">
+      <div class="ph reveal aspect-[4/3] lg:order-2">[IMAGE — attentive instruction / care on the training floor · 4:3 · 960×720px]</div>
+      <div class="reveal lg:order-1">
         <p class="eyebrow mb-4">Wellbeing &amp; Safety</p>
-        <h2 class="text-3xl mb-5">Development requires safety.</h2>
+        <h2 class="text-3xl mb-5">Real growth requires safety.</h2>
         <p class="text-slate/90 leading-relaxed">
           The academy holds clear standards for the physical and psychological wellbeing of every student.
-          Challenge is real, but it is held within care — the conditions that let a person take a risk worth
-          taking.
+          Challenge is real, but it is held within care — the conditions that let a person build resilience by
+          taking a risk worth taking, and accept accountability without fear.
         </p>
       </div>
     </div>

@@ -7,16 +7,16 @@ import HighlightEyebrow from '../components/HighlightEyebrow.astro';
 import GoldArrowLink from '../components/GoldArrowLink.astro';
 import CohortConstellation from '../components/CohortConstellation.astro';
 import TopoTexture from '../components/TopoTexture.astro';
-import SpiralMotif from '../components/SpiralMotif.astro';
 import Carousel from '../components/Carousel.astro';
 import ParallaxPhoto from '../components/ParallaxPhoto.astro';
 import ClaimRotator from '../components/ClaimRotator.astro';
+import { BOOKING_URL } from '../data/site';
 
 const differentiators = [
-  ['TICC-IMA', 'An educational methodology — not a curriculum of techniques alone.'],
-  ['Mentorship Model', 'Assessment, guidance, and accountability at the center.'],
-  ['Education, Not Combat', 'Martial arts as the vehicle for self-governance.'],
-  ['Since 1992', 'A practice grounded in decades of disciplined study.'],
+  ['Confidence & Focus', 'Outcomes you can see — clearer attention, steadier resolve, and the discipline to follow through.'],
+  ['A Mentorship Model', 'Private instruction is the education: assessment, guidance, and accountability at the center.'],
+  ['Education, Not Combat', 'Martial arts is the medium; self-governance is the curriculum.'],
+  ['Leadership & Accountability', 'Group training is the application laboratory — where capability becomes contribution.'],
 ];
 ---
 
@@ -27,7 +27,7 @@ const differentiators = [
     <div class="container-content py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
       <p class="font-display italic text-lg sm:text-xl text-stone/85">A Martial Arts Education in Self-Governance.</p>
       <div class="flex gap-3">
-        <a href="/admissions" class="btn-accent">Begin Your Inquiry</a>
+        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">Schedule an Assessment</a>
         <a href="/admissions#visit" class="btn-ghost !border-stone/40 !text-stone hover:!bg-stone hover:!text-navy">Observe a Class</a>
       </div>
     </div>
@@ -39,9 +39,10 @@ const differentiators = [
     <div class="container-content relative py-section-sm lg:py-section grid lg:grid-cols-[0.7fr_1.8fr] gap-8 lg:gap-12 items-start">
       <div class="reveal pt-4 hidden lg:block"><span class="block w-24 h-px bg-red"></span></div>
       <p class="reveal font-display text-2xl sm:text-3xl lg:text-[2.4rem] leading-[1.35] text-stone">
-        The purpose of the academy is not merely to teach martial arts. It is to develop an individual's
-        capacity to perceive more clearly, choose more deliberately, act more effectively, and contribute
-        more responsibly — a practice grounded in disciplined study since 1992.
+        Eight Hands develops individuals capable of governing themselves before they set out to influence
+        the world. The outcome is practical: greater confidence, sharper focus, deeper awareness, and the
+        discipline to act with accountability. Martial arts is the medium; the education is in how you carry
+        yourself — a practice grounded in disciplined study since 1992.
       </p>
     </div>
   </section>
@@ -56,27 +57,29 @@ const differentiators = [
       <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
         <!-- Layered cluster: large primary top-right + big secondary overhanging bottom-left (crosses past
              the primary's edge and hangs below it). Top-aligned with the heading; taller than the copy. -->
-        <div class="relative reveal min-h-[460px] lg:min-h-[620px]">
+        <div class="relative reveal min-h-[460px] lg:min-h-[620px] lg:order-2">
           <ParallaxPhoto
-            alt="[IMAGE — primary (BACK layer) · 1040×1300px (4:5) · students mid-practice / focused learning]"
+            alt="[IMAGE — primary (BACK layer) · 1040×1300px (4:5) · student mid-practice, focused and composed]"
             frameClass="aspect-[4/5] w-[80%] ml-auto"
             parallax={-104}
             innerClass="!text-xs"
           />
           <ParallaxPhoto
-            alt="[IMAGE — secondary (FRONT layer, overhangs bottom-left) · 760×570px (4:3) · instructor guiding a student]"
+            alt="[IMAGE — secondary (FRONT layer, overhangs bottom-left) · 760×570px (4:3) · instructor guiding a student one-on-one]"
             frameClass="absolute -bottom-6 left-0 lg:-left-8 w-[58%] aspect-[4/3] z-20 ring-[10px] ring-navy"
             parallax={-100}
             innerClass="!p-3 !text-[10px]"
           />
         </div>
-        <div class="reveal">
+        <div class="reveal lg:order-1">
           <HighlightEyebrow pre="A Curriculum that" mark="Challenges" class="mb-5 text-stone/70" />
-          <h2 class="text-3xl lg:text-4xl text-stone mb-6">A training that builds capable participants.</h2>
+          <h2 class="text-3xl lg:text-4xl text-stone mb-6">Training that builds discipline, focus, and resolve.</h2>
           <p class="text-stone/80 mb-8 leading-relaxed">
-            For more than three decades the academy has pushed beyond technique alone — developing
-            perception, discernment, and responsibility. Students form lasting bonds with mentors who
-            guide them toward capability and character.
+            The work begins with the individual. Private instruction is the education — a mentor assesses
+            where you are, guides where you are going, and holds you accountable along the way. Group
+            training is the laboratory where that capability is applied. Over more than three decades, the
+            method has produced people who think more clearly, choose more deliberately, and lead with
+            character.
           </p>
           <GoldArrowLink href="/learning" text="Learn More" />
         </div>
@@ -93,22 +96,21 @@ const differentiators = [
   <section class="bg-navy text-stone relative overflow-hidden">
     <TopoTexture id="topo-community" />
     <div class="container-content relative z-10 py-section">
-      <!-- Inset assembly photo: navy gutters on all sides (NOT edge-to-edge); clip-and-drift parallax; spiral overlaps lower-left -->
+      <!-- Inset assembly photo: navy gutters on all sides (NOT edge-to-edge); clip-and-drift parallax -->
       <div class="relative reveal mb-14 lg:mb-20">
         <ParallaxPhoto
-          alt="[IMAGE — community assembly / gathering · INSET (navy gutters all sides) · 1500×625px (≈12:5) · participation, belonging]"
+          alt="[IMAGE — community assembly / gathering · INSET (navy gutters all sides) · 1500×625px (≈12:5) · participation, belonging across ages]"
           frameClass="aspect-[12/5]"
           parallax={-52}
           innerClass="!text-xs"
         />
-        <SpiralMotif class="absolute -bottom-6 left-4 lg:left-8 w-20 h-20 lg:w-28 lg:h-28 text-gold/80 z-20" />
       </div>
 
       <!-- Two columns — LEFT: heading + copy + Learn More + three age/track boxes · RIGHT: overlaid clip-drift photos; video pill BELOW in open space -->
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-        <div class="reveal">
-          <h2 class="text-3xl lg:text-4xl text-stone mb-6 leading-tight">The individual develops through <span class="bg-red text-stone px-2 box-decoration-clone">participation</span>.</h2>
-          <p class="text-stone/80 mb-7 leading-relaxed">The community develops through contribution. The institution develops through stewardship. Legacy emerges naturally when these remain aligned.</p>
+        <div class="reveal lg:order-2">
+          <h2 class="text-3xl lg:text-4xl text-stone mb-6 leading-tight">You grow through <span class="bg-red text-stone px-2 box-decoration-clone">participation</span>.</h2>
+          <p class="text-stone/80 mb-7 leading-relaxed">Confidence and communication are built in company, not in isolation. Training alongside others — across ages and stages — is where awareness sharpens, accountability takes hold, and a sense of belonging takes root.</p>
           <GoldArrowLink href="/community" text="Learn More" class="mb-9 text-stone" />
           <div class="space-y-3 max-w-md">
             {[['Youth Practice', 'Ages 6–13'], ['Adult Practice', 'Ages 14+'], ['Families & Community', 'All ages']].map(([t, a]) => (
@@ -122,7 +124,7 @@ const differentiators = [
           </div>
         </div>
 
-        <div class="reveal">
+        <div class="reveal lg:order-1">
           <!-- Layered cluster: large PORTRAIT primary top-right + big LANDSCAPE secondary that overhangs
                bottom-left, crossing LEFT past the column into the copy's space (the reference's layered overlap). -->
           <div class="relative min-h-[440px] lg:min-h-[600px]">
@@ -160,7 +162,7 @@ const differentiators = [
     <div class="container-content relative z-10 py-section text-center max-w-2xl mx-auto reveal">
       <HighlightEyebrow pre="Life at the" mark="Qi-House" class="justify-center text-stone/80 mb-6" />
       <h2 class="text-3xl lg:text-4xl text-stone mb-6">An environment designed for development.</h2>
-      <p class="text-stone/80 mb-9 leading-relaxed">The space itself is part of the education — arranged for presence, reflection, and the deliberate practice of awareness. Students need only step inside to feel it.</p>
+      <p class="text-stone/80 mb-9 leading-relaxed">The space itself is part of the education — arranged to cultivate presence, focus, and the deliberate practice of awareness. Most people feel the difference the moment they step inside.</p>
       <a href="/daily-life" class="btn-accent inline-flex items-center gap-2">
         <svg width="14" height="16" viewBox="0 0 14 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1C3.7 1 1 3.6 1 6.8 1 11 7 15 7 15s6-4 6-8.2C13 3.6 10.3 1 7 1z" /><circle cx="7" cy="6.8" r="2" /></svg>
         Visit the Qi-House
@@ -172,8 +174,8 @@ const differentiators = [
   <section class="bg-navy text-stone relative overflow-hidden">
     <TopoTexture id="topo-adventure" />
     <div class="container-content relative z-10 py-section grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
-      <!-- LEFT: offset photo pair (secondary overlaps bottom-right) + video pill in open space below -->
-      <div class="reveal">
+      <!-- Offset photo pair (secondary overlaps bottom-right) + video pill in open space below -->
+      <div class="reveal lg:order-2">
         <!-- Layered cluster: large primary top-left + big secondary overhanging bottom-right, crossing right toward the copy. -->
         <div class="relative min-h-[440px] lg:min-h-[600px]">
           <ParallaxPhoto
@@ -199,11 +201,11 @@ const differentiators = [
         </div>
       </div>
 
-      <!-- RIGHT: copy + Learn More + rotating claim card (icon + title + body + dots + pause) -->
-      <div class="reveal">
+      <!-- Copy + Learn More + rotating claim card (icon + title + body + dots + pause) -->
+      <div class="reveal lg:order-1">
         <HighlightEyebrow pre="A Meaningful" mark="Challenge" class="mb-5 text-stone/70" />
-        <h2 class="text-3xl lg:text-4xl text-stone mb-6">Learning beyond the training floor.</h2>
-        <p class="text-stone/80 mb-7 leading-relaxed">Leadership development, service, and the Summer Academy extend the practice into responsibility for systems larger than oneself.</p>
+        <h2 class="text-3xl lg:text-4xl text-stone mb-6">Leadership that reaches beyond the training floor.</h2>
+        <p class="text-stone/80 mb-7 leading-relaxed">Leadership development, service, and the Summer Academy extend the practice into accountability for something larger than yourself — where capability becomes contribution.</p>
         <GoldArrowLink href="/community/summer-academy" text="Explore the Summer Academy" class="mb-10 text-stone" />
         <ClaimRotator items={differentiators} label="What sets the academy apart" />
       </div>
@@ -218,6 +220,7 @@ const differentiators = [
         <HighlightEyebrow pre="The Twelve" mark="Houses" class="justify-center mb-4 text-stone/70" />
         <h2 class="text-3xl lg:text-4xl text-stone mb-3 mt-2">Domains of participation.</h2>
         <p class="text-stone/75 italic font-display text-xl">The Houses are lenses. They are domains. They are not destinations.</p>
+        <p class="text-stone/70 mt-5 leading-relaxed">Within them, Eight Hands recommends a pathway suited to you — Academy Membership, Academy Scholar, or Academy Fellow (by invitation). We don't sell memberships; we recommend the education that fits.</p>
       </div>
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-16">
         {Array.from({ length: 12 }).map((_, i) => (
@@ -273,14 +276,14 @@ const differentiators = [
       </div>
     </div>
     <div class="container-content relative z-10 py-section grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
-      <div class="reveal lg:pt-6">
+      <div class="reveal lg:pt-6 lg:order-2">
         <HighlightEyebrow pre="A Preparation for" mark="Life" class="mb-5 text-stone/70" />
-        <h2 class="text-3xl lg:text-4xl text-stone mb-6">Building future stewards.</h2>
-        <p class="text-stone/80 mb-8 leading-relaxed">The academy exists to strengthen individuals, families, and communities. We lead with a single question — <span class="font-display italic text-gold">how can we serve?</span></p>
+        <h2 class="text-3xl lg:text-4xl text-stone mb-6">Preparing people to lead and serve.</h2>
+        <p class="text-stone/80 mb-8 leading-relaxed">Eight Hands exists to strengthen individuals, families, and communities — to develop people who can govern themselves and then contribute. We lead with a single question — <span class="font-display italic text-gold">how can we serve?</span></p>
         <GoldArrowLink href="/community/impact" text="Community Impact" class="text-stone" />
       </div>
       <!-- Layered cluster: large primary top-right + big secondary overhanging bottom-left, crossing left toward the copy. -->
-      <div class="reveal relative min-h-[420px] lg:min-h-[600px]">
+      <div class="reveal relative min-h-[420px] lg:min-h-[600px] lg:order-1">
         <ParallaxPhoto alt="[IMAGE — service / contribution (primary) · PORTRAIT 4:5 · 960×1200px]" frameClass="aspect-[4/5] w-[78%] ml-auto" parallax={-104} innerClass="!text-xs" />
         <ParallaxPhoto alt="[IMAGE — outdoor development (secondary) · LANDSCAPE 4:3 · 900×675px]" frameClass="absolute -bottom-6 left-0 lg:-left-16 w-[60%] aspect-[4/3] z-20 ring-[10px] ring-navy" parallax={-100} innerClass="!p-3 !text-[10px]" />
       </div>
@@ -329,10 +332,10 @@ const differentiators = [
   <section class="bg-navy text-stone relative overflow-hidden">
     <TopoTexture id="topo-cta" />
     <div class="container-content relative z-10 py-section text-center reveal">
-      <h2 class="text-3xl lg:text-5xl text-stone mb-6">Find out more.</h2>
-      <p class="text-lg text-stone/80 max-w-xl mx-auto mb-10">An education that would still make sense if martial arts were removed and education remained.</p>
+      <h2 class="text-3xl lg:text-5xl text-stone mb-6">See where you'd begin.</h2>
+      <p class="text-lg text-stone/80 max-w-xl mx-auto mb-10">Your assessment is a conversation about your goals, challenges, and readiness — not a sales presentation. We listen, then recommend the pathway that fits.</p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href="/admissions" class="btn-accent">Begin Your Inquiry</a>
+        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">Schedule an Assessment</a>
         <a href="/admissions#visit" class="btn-ghost !border-stone/40 !text-stone hover:!bg-stone hover:!text-navy">Schedule a Visit</a>
       </div>
     </div>

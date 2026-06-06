@@ -20,54 +20,78 @@ import GoldArrowLink from '../components/GoldArrowLink.astro';
 import ProcessTabs from '../components/ProcessTabs.astro';
 import PhotoNavCard from '../components/PhotoNavCard.astro';
 import Cta from '../components/Cta.astro';
+import { BOOKING_URL } from '../data/site';
 
 const subnav: [string, string][] = [
-  ['Begin Your Inquiry', '/admissions'],
+  ['Schedule an Assessment', '/admissions'],
   ['The Process', '/admissions#process'],
   ["Who You'll Meet", '/admissions#people'],
   ['Visit / Observe a Class', '/admissions#visit'],
 ];
 
-// Process TABS — the 5-step inquiry journey (reskin-map §3.1). Each panel: image left + subhead/copy/CTA right.
+// Process TABS — the ADS 8-step admissions flow (Inquiry → 90-Day Review). Each panel: image left +
+// subhead/copy/CTA right. Outcomes-led; the assessment is a recommendation, not a sale. CTAs book an
+// assessment at the live scheduling link.
 const steps = [
   {
-    tab: '1 — Inquire',
-    subhead: 'Begin a Conversation',
+    tab: '1 — Inquiry',
+    subhead: 'Tell Us What You Are Working Toward',
     body:
-      'The first step is a short inquiry. Tell us about the student and what you are seeking from a practice that treats martial arts as the medium for an education in conscious participation. A member of the academy will reach out to begin the conversation.',
-    ctaText: 'Begin Your Inquiry',
-    ctaHref: '#visit',
+      'Start by telling us about the student and the outcomes you are after — confidence, discipline, focus, leadership, or a clearer sense of self-governance. Eight Hands does not sell memberships; it recommends an educational pathway. Your inquiry simply opens that conversation.',
+    ctaText: 'Schedule an Assessment',
+    ctaHref: BOOKING_URL,
     img: '[IMAGE — prospective student/family in conversation with an instructor · 4:3 · 960×720px · candid, warm]',
   },
   {
-    tab: '2 — Visit',
-    subhead: 'Visit / Observe a Class',
+    tab: '2 — Assessment Booking',
+    subhead: 'Reserve a Time That Works for You',
     body:
-      'Come to the Qi-House and observe a class. See the environment, the teaching, and the culture of participation firsthand — before any decision is made.',
-    ctaText: 'Plan Your Visit',
-    ctaHref: '#visit',
-    img: '[IMAGE — visitor observing a class from the edge of the training floor · 4:3 · 960×720px]',
+      'Book your assessment directly. This is a developmental conversation, not a sales presentation — a chance to understand the goals, challenges, and readiness of the student before any pathway is recommended.',
+    ctaText: 'Schedule an Assessment',
+    ctaHref: BOOKING_URL,
+    img: '[IMAGE — hands selecting a time / a calendar moment, warm and unhurried · 4:3 · 960×720px]',
   },
   {
-    tab: '3 — Apply',
-    subhead: 'Apply',
+    tab: '3 — Pre-Assessment Questionnaire',
+    subhead: 'Clarify Goals Before You Arrive',
     body:
-      'Submit the application materials. [COPY: list the required materials once confirmed with the academy — do not invent forms or a registration fee.]',
-    img: '[IMAGE — a considered application moment, not bureaucratic · 4:3 · 960×720px]',
+      'Ahead of the session, a short questionnaire helps surface what the student wants to develop and where they are starting from. It lets the conversation begin from understanding rather than guesswork, so the recommendation fits the person.',
+    img: '[IMAGE — a thoughtful, considered moment completing a brief questionnaire · 4:3 · 960×720px · not bureaucratic]',
   },
   {
-    tab: '4 — Assess',
-    subhead: 'Conversation & Assessment',
+    tab: '4 — Assessment Session',
+    subhead: 'A Developmental Conversation',
     body:
-      'A developmental conversation and assessment to understand fit, readiness, and the right starting point — not a test to pass, but a way to begin well.',
-    img: '[IMAGE — one-on-one developmental conversation · 4:3 · 960×720px]',
+      'The assessment is a guided conversation about goals, challenges, and readiness — not a test to pass and not a sales pitch. It is where we learn how the practice can serve the student\'s growth in focus, resilience, and accountability.',
+    img: '[IMAGE — one-on-one developmental conversation on the training floor · 4:3 · 960×720px]',
   },
   {
-    tab: '5 — Decision',
-    subhead: 'Decision',
+    tab: '5 — Program Recommendation',
+    subhead: 'A Recommendation, Not a Sale',
     body:
-      'A shared, mutual decision about beginning. Enrollment is considered and deliberate, not transactional.',
-    img: '[IMAGE — a student bowing in on their first day on the floor · 4:3 · 960×720px]',
+      'Based on the conversation, we recommend the educational pathway that best fits the student — Academy Membership, Academy Scholar, or Academy Fellow (by invitation). You are guided toward the right starting point rather than asked to choose blindly.',
+    img: '[IMAGE — instructor walking a family through a recommended pathway · 4:3 · 960×720px]',
+  },
+  {
+    tab: '6 — Enrollment',
+    subhead: 'Begin With Intention',
+    body:
+      'Enrollment is a considered, mutual decision to begin. It marks a commitment to the work of self-governance — deliberate and intentional, never transactional.',
+    img: '[IMAGE — a considered enrollment moment, calm and grounded · 4:3 · 960×720px]',
+  },
+  {
+    tab: '7 — Orientation',
+    subhead: 'Start on Solid Ground',
+    body:
+      'Orientation introduces the student to the culture, expectations, and rhythm of the academy. Private Instruction is the education, group training the application laboratory — and orientation sets the foundation for both.',
+    img: '[IMAGE — a new student being welcomed and oriented on the floor · 4:3 · 960×720px]',
+  },
+  {
+    tab: '8 — 90-Day Review',
+    subhead: 'Measure Real Progress',
+    body:
+      'At ninety days, we review progress against the outcomes set at the assessment — growth in discipline, awareness, communication, and confidence — and adjust the path forward. Development is tracked, not assumed.',
+    img: '[IMAGE — instructor and student reviewing progress together · 4:3 · 960×720px]',
   },
 ];
 
@@ -80,48 +104,50 @@ const hub: [string, string, string][] = [
   ['Community Impact', '/community/impact', '[IMAGE — service / contribution beyond the studio · 4:3 · 760×570px]'],
 ];
 ---
-<Base home title="Admissions · Begin Your Inquiry — The Qi-House" description="Admission to the Qi-House begins with a conversation, not a checkout.">
+<Base home title="Admissions · Schedule an Assessment — The Qi-House" description="Admission to Eight Hands begins with an assessment — a developmental conversation about goals and readiness, not a sales presentation.">
   <SectionSubnav items={subnav} active="/admissions" label="Admissions section" />
 
   <!-- 1. Header band: eyebrow pill + H1 + centered intro + wide image + centered primary CTA -->
   <section class="bg-stone">
     <div class="container-content py-section-sm lg:py-section">
       <div class="text-center max-w-3xl mx-auto reveal">
-        <div class="flex justify-center mb-5"><HighlightEyebrow mark="Welcome to the Qi-House" /></div>
-        <h1 class="text-4xl lg:text-5xl text-navy mb-6">Qi-House Admissions</h1>
+        <div class="flex justify-center mb-5"><HighlightEyebrow mark="Admissions at Eight Hands" /></div>
+        <h1 class="text-4xl lg:text-5xl text-navy mb-6">Begin With an Assessment</h1>
         <p class="text-slate/90 text-lg leading-relaxed">
-          Founded in 1992, the academy was built on the balanced development of mind, body, and discernment —
-          a philosophy that still guides everything here. Admission is an invitation, and we welcome inquiries
-          from students ready to participate consciously in their own growth.
+          Eight Hands is an educational institution whose medium is martial arts, and admission here is a
+          recommendation, not a sale. We help students develop the confidence, discipline, focus, and
+          self-governance to lead their own lives well — and it starts with a conversation about where you
+          are and where you want to go.
         </p>
       </div>
       <div class="ph aspect-[16/6] mt-12 reveal">[IMAGE — wide establishing shot of the Qi-House / training space · 16:6 · 1760×660px · calm, grounded, architectural]</div>
       <div class="text-center mt-10 reveal">
-        <a href="#visit" class="btn-accent">Begin Your Inquiry</a>
+        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">Schedule an Assessment</a>
       </div>
     </div>
   </section>
 
-  <!-- 2. Value-prop: IMAGE left + (highlight heading + copy + inline link) right -->
+  <!-- 2. Value-prop: MIRRORED — IMAGE right + (highlight heading + copy + inline link) left on lg -->
   <section class="bg-stone-200">
     <div class="container-content py-section-sm lg:py-section grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
-      <div class="ph aspect-[4/3] reveal !text-[10px]">[IMAGE — an open day / family meeting an instructor on the floor · 4:3 · 1040×780px · candid]</div>
-      <div class="reveal">
+      <div class="ph aspect-[4/3] reveal !text-[10px] lg:order-2">[IMAGE — an open day / family meeting an instructor on the floor · 4:3 · 1040×780px · candid]</div>
+      <div class="reveal lg:order-1">
         <p class="font-accent uppercase tracking-[0.14em] text-xl lg:text-2xl text-navy mb-7 inline-flex flex-wrap items-center gap-x-2.5 gap-y-1">
-          <span>An</span><span class="bg-red text-stone px-2 py-0.5">Invitation</span><span>to Join Us</span>
+          <span>A</span><span class="bg-red text-stone px-2 py-0.5">Recommended</span><span>Path</span>
         </p>
         <p class="text-slate/90 leading-relaxed mb-5">
-          To ensure every new student can genuinely thrive within the community, the Qi-House keeps a
-          considered, unhurried admissions process.
+          Eight Hands does not sell memberships; it recommends educational pathways. The admissions process is
+          considered and unhurried because the goal is a genuine fit, not a quick close.
         </p>
         <p class="text-slate/90 leading-relaxed mb-5">
-          We look at each applicant in terms of fit — whether the practice can truly serve their development,
-          and whether they are ready to meet it. The medium is martial arts; the work is conscious participation.
+          We meet each student where they are and look at what they want to develop — confidence, focus,
+          resilience, leadership, accountability. The medium is martial arts; the work is learning to govern
+          yourself before you set out to influence the world.
         </p>
         <p class="text-slate/90 leading-relaxed">
-          The best way to understand the Qi-House is to
-          <a href="#visit" class="text-navy font-medium underline decoration-red/60 underline-offset-2 hover:text-red transition-colors">submit an inquiry</a>,
-          so we can begin sharing the practice, the community, and the culture with you directly.
+          The clearest way to understand whether Eight Hands is right for you is to
+          <a href={BOOKING_URL} target="_blank" rel="noopener" class="text-navy font-medium underline decoration-red/60 underline-offset-2 hover:text-red transition-colors">schedule an assessment</a> —
+          a developmental conversation about goals and readiness, not a sales presentation.
         </p>
       </div>
     </div>
@@ -147,7 +173,7 @@ const hub: [string, string, string][] = [
   <!-- 4. Process TABS -->
   <section id="process" class="bg-stone-200 scroll-mt-24">
     <div class="container-content py-section-sm lg:py-section">
-      <ProcessTabs eyebrow="Step by Step" heading="The Admissions Process" steps={steps} />
+      <ProcessTabs eyebrow="What Happens Next" heading="The Admissions Process" steps={steps} />
     </div>
   </section>
 
@@ -158,8 +184,9 @@ const hub: [string, string, string][] = [
         <div class="flex justify-center mb-4"><HighlightEyebrow mark="Here to Help" /></div>
         <h2 class="text-3xl lg:text-4xl mb-5">Meet the Team</h2>
         <p class="text-slate/90">
-          The team is here to support each step — a question, a visit, or beginning the journey. We look forward
-          to welcoming your family to the Qi-House community.
+          You will work with real instructors from your first conversation onward. They are here to answer
+          questions, host your visit, and guide your assessment — so you can make a clear, confident decision
+          about beginning.
         </p>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
