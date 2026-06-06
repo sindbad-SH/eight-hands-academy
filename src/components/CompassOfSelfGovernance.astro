@@ -43,11 +43,12 @@ const points = [
 ];
 const placed = points.map((p, i) => {
   const a = (i * 45 - 90) * (Math.PI / 180);
-  const y = 50 + 41 * Math.sin(a);
-  return { ...p, x: (50 + 41 * Math.cos(a)).toFixed(2), y: y.toFixed(2), below: y >= 50 };
+  const y = 50 + 44 * Math.sin(a);
+  return { ...p, x: (50 + 44 * Math.cos(a)).toFixed(2), y: y.toFixed(2), below: y >= 50 };
 });
 const cardinals = [0, 90, 180, 270];
 const diagonals = [45, 135, 225, 315];
+const secondary = [22.5, 67.5, 112.5, 157.5, 202.5, 247.5, 292.5, 337.5];
 const ticks = Array.from({ length: 24 }, (_, i) => {
   const a = i * 15 * (Math.PI / 180);
   const r1 = i % 6 === 0 ? 80 : 86;
@@ -71,36 +72,44 @@ const ticks = Array.from({ length: 24 }, (_, i) => {
 
     <!-- DESKTOP/TABLET compass: dimensional rose + 8 floating labels -->
     <div class="relative mx-auto mt-12 lg:mt-16 w-[min(680px,92vw)] aspect-square reveal hidden sm:block">
-      <svg viewBox="0 0 200 200" class="absolute inset-[16%]" aria-hidden="true">
+      <svg viewBox="0 0 200 200" class="absolute inset-[9%]" aria-hidden="true">
         <defs>
           <linearGradient id="goldFace" x1="0" y1="0" x2="0.9" y2="1">
-            <stop offset="0" stop-color="#E8CB80" /><stop offset="1" stop-color="#9C7C30" />
+            <stop offset="0" stop-color="#EBD089" /><stop offset="0.5" stop-color="#C9A44C" /><stop offset="1" stop-color="#94742B" />
           </linearGradient>
         </defs>
         <g fill="none" stroke="#C39A3C">
-          <circle cx="100" cy="100" r="94" stroke-width="0.5" opacity="0.7" />
-          <circle cx="100" cy="100" r="74" stroke-width="0.4" opacity="0.35" />
-          <circle cx="100" cy="100" r="50" stroke-width="0.4" opacity="0.25" />
-          <circle cx="100" cy="100" r="8" stroke-width="0.8" opacity="0.9" />
+          <circle cx="100" cy="100" r="97" stroke-width="0.35" opacity="0.55" />
+          <circle cx="100" cy="100" r="91" stroke-width="0.3" opacity="0.3" />
+          <circle cx="100" cy="100" r="66" stroke-width="0.35" opacity="0.3" />
+          <circle cx="100" cy="100" r="40" stroke-width="0.35" opacity="0.22" />
+          <circle cx="100" cy="100" r="11" stroke-width="0.6" opacity="0.8" />
         </g>
-        <g stroke="#C39A3C" stroke-width="0.5" opacity="0.45">
+        <g stroke="#C39A3C" stroke-width="0.4" opacity="0.4">
           {ticks.map((t) => <line x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} />)}
         </g>
+        <!-- secondary thin points between the mains (16-point detail) -->
+        {secondary.map((d) => (
+          <g transform={`rotate(${d} 100 100)`}>
+            <polygon points="100,30 101.5,100 98.5,100" fill="#C39A3C" opacity="0.4" />
+          </g>
+        ))}
+        <!-- long faceted intercardinal points (now reach the labels) -->
+        {diagonals.map((d) => (
+          <g transform={`rotate(${d} 100 100)`}>
+            <polygon points="100,14 100,100 96,100" fill="url(#goldFace)" opacity="0.9" />
+            <polygon points="100,14 104,100 100,100" fill="#5e4818" opacity="0.95" />
+          </g>
+        ))}
         <!-- long faceted cardinal points (lit half / shadow half) -->
         {cardinals.map((d) => (
           <g transform={`rotate(${d} 100 100)`}>
-            <polygon points="100,9 100,100 94,100" fill="url(#goldFace)" />
-            <polygon points="100,9 106,100 100,100" fill="#6E551E" />
+            <polygon points="100,6 100,100 94.5,100" fill="url(#goldFace)" />
+            <polygon points="100,6 105.5,100 100,100" fill="#6E551E" />
           </g>
         ))}
-        <!-- medium diagonal points -->
-        {diagonals.map((d) => (
-          <g transform={`rotate(${d} 100 100)`}>
-            <polygon points="100,44 100,100 96,100" fill="url(#goldFace)" opacity="0.85" />
-            <polygon points="100,44 104,100 100,100" fill="#5e4818" opacity="0.9" />
-          </g>
-        ))}
-        <circle cx="100" cy="100" r="5" fill="#C39A3C" />
+        <circle cx="100" cy="100" r="6.5" fill="#C39A3C" />
+        <circle cx="100" cy="100" r="3" fill="#6E551E" />
       </svg>
 
       {placed.map((p, i) => (
@@ -113,9 +122,10 @@ const ticks = Array.from({ length: 24 }, (_, i) => {
           aria-label={`Explore ${p.name}`}
         >
           <span class="block w-1.5 h-1.5 rounded-full bg-gold mx-auto mb-1.5 transition-all group-hover:bg-red group-hover:ring-4 group-hover:ring-red/25"></span>
-          <span class="font-accent uppercase tracking-[0.16em] text-[11px] lg:text-xs text-gold/90 group-hover:text-gold transition-colors whitespace-nowrap">{p.name}</span>
-          <!-- offset white micro-card on hover -->
-          <div class:list={['pointer-events-none absolute left-1/2 -translate-x-1/2 w-44 bg-stone shadow-xl border-l-4 border-l-red px-4 py-3 text-left opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-40', p.below ? 'top-full mt-3' : 'bottom-full mb-3']}>
+          <span class="block font-accent uppercase tracking-[0.16em] text-[11px] lg:text-xs text-gold/90 group-hover:opacity-0 transition-opacity duration-200 whitespace-nowrap">{p.name}</span>
+          <!-- offset white micro-card + connector stem; lingers briefly after hover-out -->
+          <div class:list={['pointer-events-none absolute left-1/2 -translate-x-1/2 w-44 bg-stone shadow-xl border-l-4 border-l-red px-4 py-3 text-left opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 delay-[450ms] group-hover:delay-0 z-40', p.below ? 'top-full mt-4' : 'bottom-full mb-4']}>
+            <span class:list={['absolute left-1/2 -translate-x-1/2 w-px h-4 bg-stone/55', p.below ? 'bottom-full' : 'top-full']}></span>
             <div class="flex items-center justify-between gap-2">
               <span class="font-accent uppercase tracking-wide text-[11px] text-navy">{p.name}</span>
               <span class="font-display text-lg text-red leading-none">{p.kanji}</span>
