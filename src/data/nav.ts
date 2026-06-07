@@ -7,7 +7,7 @@ export const nav = [
     children: [
       ["Director's Welcome", '/about/directors-welcome'],
       ['The Qi-House Ethos', '/about/ethos'],
-      ['Founder & History', '/about/founder'],
+      ['A Message to Students', '/about/founder'],
       ['Governance', '/about/governance'],
       ['Leadership', '/about/leadership'],
       ['Stewardship & Legacy', '/about/stewardship'],
