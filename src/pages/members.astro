@@ -1,18 +1,62 @@
 ---
-// Member portal — placeholder stub (Phase-2 functionality). Stops the header "Members" link from 404-ing.
+// Member access — TEMPORARY client-side gate (Phase-2 placeholder). A SINGLE shared password (below) reveals
+// a link to the real member portal hosted EXTERNALLY (Panthers Gate). This is intentionally NOT secure: the
+// password ships in the page and is reversible. That's acceptable here because it only gates a coming-soon /
+// redirect for a small test group, and the real login + data security live on the external system — so this
+// stays a static page and needs NO backend. (Real per-user logins / stored data WOULD need a backend e.g.
+// Netlify Functions — not GitHub Pages. We're deliberately not doing that here.)
 import Base from '../layouts/Base.astro';
-import { BOOKING_URL } from '../data/site';
+import PageHeader from '../components/PageHeader.astro';
+import { withBase } from '../data/site';
+
+const MEMBER_PASSWORD = 'qihouse';   // ← TEMP shared password — change here, then share with the test group.
+const PORTAL_URL = '';               // ← paste the external portal link here when Sang provides it (empty = "coming soon").
 ---
-<Base home title="Member Portal — Eight Hands Martial Arts Academy" description="The Eight Hands member portal.">
+<Base title="Member Access — Eight Hands Martial Arts Academy" description="Member access for current Eight Hands students.">
+  <PageHeader eyebrow="Members" title="Member Access" subtitle="Enter your member password to continue to the student portal." />
   <section class="bg-stone">
-    <div class="container-content py-section text-center">
-      <p class="eyebrow mb-4">Member Portal</p>
-      <h1 class="text-4xl lg:text-5xl text-navy mb-6">Coming Soon</h1>
-      <p class="text-slate/90 max-w-xl mx-auto mb-9 leading-relaxed">
-        The member portal — progress tracking, schedules, and resources for current students — is in
-        development. [COPY: confirm portal scope + how members sign in · PLACEHOLDER, Phase-2 functionality.]
-      </p>
-      <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">Schedule an Assessment</a>
+    <div class="container-content py-section flex justify-center">
+      <div id="memberGate" data-pw={MEMBER_PASSWORD} data-portal={PORTAL_URL} class="w-full max-w-md">
+        <!-- Gate -->
+        <form id="gateForm" class="bg-white border border-navy/10 rounded-[12px] shadow-sm p-8 text-center">
+          <span class="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full border border-gold/50 text-gold">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          </span>
+          <h2 class="font-display text-2xl text-navy mb-2">Student Portal Access</h2>
+          <p class="text-slate/80 text-sm mb-6">Enter the member password you were given. Don’t have one? <a href={withBase('/admissions#visit')} class="text-red underline decoration-red/40">Visit the academy</a>.</p>
+          <input id="pw" type="password" autocomplete="off" placeholder="Member password" class="w-full border border-navy/15 rounded-[8px] px-4 py-3 text-navy outline-none focus:border-gold mb-3" />
+          <p id="err" class="text-red text-sm mb-3 hidden">That password isn’t right — try again.</p>
+          <button type="submit" class="btn-accent w-full">Enter</button>
+        </form>
+        <!-- Welcome (revealed on correct password) -->
+        <div id="gateWelcome" class="hidden bg-navy text-stone rounded-[12px] shadow-sm p-8 text-center">
+          <h2 class="font-display text-2xl text-stone mb-3">Welcome.</h2>
+          <p class="text-stone/80 text-sm mb-6">The student portal is launching here shortly — your access is confirmed. Check back soon.</p>
+          <a id="portalLink" href="#" target="_blank" rel="noopener" class="btn-accent hidden">Enter the Portal →</a>
+        </div>
+      </div>
     </div>
   </section>
+
+  <script>
+    const gate = document.getElementById('memberGate');
+    const form = document.getElementById('gateForm');
+    const pw = document.getElementById('pw') as HTMLInputElement | null;
+    const err = document.getElementById('err');
+    const welcome = document.getElementById('gateWelcome');
+    const portalLink = document.getElementById('portalLink') as HTMLAnchorElement | null;
+    const PW = gate?.getAttribute('data-pw') || '';
+    const PORTAL = gate?.getAttribute('data-portal') || '';
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if ((pw?.value || '').trim() === PW) {
+        form.classList.add('hidden');
+        welcome?.classList.remove('hidden');
+        if (PORTAL && portalLink) { portalLink.href = PORTAL; portalLink.classList.remove('hidden'); }
+      } else {
+        err?.classList.remove('hidden');
+        if (pw) { pw.value = ''; pw.focus(); }
+      }
+    });
+  </script>
 </Base>
