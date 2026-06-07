@@ -1,0 +1,65 @@
+---
+// Learning sub-page 5/6 — "Individualized Instruction · The Core". Client copy verbatim (Jeanette 2026-06-06).
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Cta from '../../components/Cta.astro';
+
+const areas = [
+  'Martial Arts',
+  'Leadership Development',
+  'Communication Skills',
+  'Neurohacking & Human Development',
+  'Counseling & Life Skills',
+  'Astrology & Symbolic Systems',
+  'Herbology & Traditional Wellness Studies',
+];
+const recommendedBy = [
+  'Individual goals',
+  'Current experience level',
+  'Desired outcomes',
+  'Commitment to development',
+  'Areas of personal interest',
+];
+---
+<Base title="Individualized Instruction — Learning at the Qi-House">
+  <PageHeader eyebrow="The Educational Model" title="Individualized Instruction" subtitle="The Core" />
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section max-w-3xl">
+      <blockquote class="reveal border-l-2 border-gold pl-6 mb-10">
+        <p class="font-display text-2xl text-navy italic">“If a child cannot learn the way we teach, perhaps we should teach the way they learn.”</p>
+        <cite class="eyebrow !text-slate-400 mt-3 block not-italic">— Ignacio Estrada</cite>
+      </blockquote>
+
+      <div class="reveal space-y-5 text-slate/90">
+        <p>Every student arrives with different goals, experiences, strengths, challenges, and learning styles. For this reason, individualized instruction serves as the foundation of education at Eight Hands Martial Arts Academy. Rather than placing every student into the same pathway, instruction begins with understanding the individual and developing a course of study that supports their growth.</p>
+        <p>Through ongoing assessment, guided instruction, and regular review, students work directly with an instructor to identify goals, develop skills, and build the habits necessary for long-term success. This individualized approach allows instruction to remain aligned with the student’s needs while providing clear direction and accountability throughout the educational process.</p>
+        <p>Individualized instruction also creates the opportunity to address areas of development that may not be effectively supported within a group environment alone. Students receive personalized feedback, focused coaching, and targeted challenges designed to help them progress at an appropriate pace. The result is an educational experience that is both structured and adaptable.</p>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">Areas of Study</p>
+        <p class="text-slate/90 mb-4">Depending on the student’s educational pathway, individualized instruction may include:</p>
+        <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-2 text-slate/90">
+          {areas.map((x) => <li class="flex gap-3"><span class="text-red" aria-hidden="true">·</span>{x}</li>)}
+        </ul>
+        <p class="text-slate/70 text-sm mt-4">Not every pathway includes every subject. Instruction is recommended according to the student’s goals, level of participation, and educational program.</p>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">Educational Pathways</p>
+        <p class="text-slate/90 mb-4">Students begin with an assessment and educational consultation designed to identify goals, interests, and developmental priorities. Programs are then recommended based upon:</p>
+        <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-2 text-slate/90">
+          {recommendedBy.map((x) => <li class="flex gap-3"><span class="text-red" aria-hidden="true">·</span>{x}</li>)}
+        </ul>
+        <p class="text-slate/90 mt-4">The objective is not simply to teach information. The objective is to provide students with a practical framework through which confidence, discipline, focus, communication, and self-governance can be developed over time.</p>
+      </div>
+
+      <div class="reveal mt-12 border-t border-navy/10 pt-8 space-y-5 text-slate/90">
+        <p class="eyebrow !text-navy mb-1">Why It Matters</p>
+        <p>Meaningful development is personal. Students learn at different rates, respond to different forms of instruction, and encounter different challenges throughout their journey. Individualized instruction ensures that education remains centered on the student while providing the guidance, accountability, and support necessary for lasting growth.</p>
+        <p>At Eight Hands, individualized instruction is not an enhancement to the educational experience—it is the foundation upon which the entire academy is built.</p>
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>

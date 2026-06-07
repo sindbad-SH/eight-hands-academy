@@ -1,0 +1,47 @@
+---
+// Learning sub-page 4/6 — "Contribute" (development stage 4). Client copy verbatim (Jeanette 2026-06-06).
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Cta from '../../components/Cta.astro';
+
+const learns = [
+  'Service and stewardship',
+  'Leadership through example',
+  'Mentorship and support',
+  'Community participation',
+  'Responsibility beyond self',
+  'Positive contribution',
+];
+---
+<Base title="Contribute — Learning at the Qi-House">
+  <PageHeader eyebrow="The Development Path" title="Contribute" subtitle="Leadership Begins When Development Serves Others" />
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section max-w-3xl">
+      <blockquote class="reveal border-l-2 border-gold pl-6 mb-10">
+        <p class="font-display text-2xl text-navy italic">“The purpose of human life is to serve, and to show compassion and the will to help others.”</p>
+        <cite class="eyebrow !text-slate-400 mt-3 block not-italic">— Albert Schweitzer</cite>
+      </blockquote>
+
+      <div class="reveal space-y-5 text-slate/90">
+        <p>Development is ultimately measured not by what a person gains, but by what they are able to contribute. Confidence, discipline, focus, communication, and leadership become most meaningful when they are used in service of something beyond oneself.</p>
+        <p>At Eight Hands, students are encouraged to recognize that personal growth carries responsibility. As individuals develop greater capability, they gain new opportunities to support their families, contribute to their communities, mentor others, and participate in ways that create positive impact. Leadership is not viewed as a position or title, but as a practice of responsibility, service, and example.</p>
+        <p>Contribution begins in small ways. Students learn to support training partners, assist newer members, participate in academy activities, and take ownership of their role within the community. Over time, these experiences help students understand that meaningful leadership begins with a willingness to serve.</p>
+        <p>The strongest communities are built by individuals who choose to contribute rather than merely consume. Through participation, mentorship, and stewardship, students learn that their actions affect others and that their development has value beyond their personal success.</p>
+        <p>Contribution is where self-governance becomes stewardship. Students who learn to serve others responsibly discover that leadership is not about authority, but about helping others grow, succeed, and thrive.</p>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">What Students Learn</p>
+        <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-2 text-slate/90">
+          {learns.map((x) => <li class="flex gap-3"><span class="text-red" aria-hidden="true">·</span>{x}</li>)}
+        </ul>
+      </div>
+
+      <div class="reveal mt-12 border-t border-navy/10 pt-8">
+        <p class="eyebrow !text-navy mb-3">Why It Matters</p>
+        <p class="text-slate/90">The ultimate purpose of development is not personal achievement alone. Students who learn to contribute their skills, knowledge, and leadership create lasting value for the people and communities around them. In doing so, they become stewards of both their own growth and the growth of others.</p>
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>

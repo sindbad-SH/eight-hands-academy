@@ -1,0 +1,47 @@
+---
+// Learning sub-page 2/6 — "Practice" (development stage 2). Client copy verbatim (Jeanette 2026-06-06).
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Cta from '../../components/Cta.astro';
+
+const learns = [
+  'Consistency and discipline',
+  'Skill development through repetition',
+  'Resilience through challenge',
+  'Focus and attention management',
+  'Confidence through preparation',
+  'Personal responsibility',
+];
+---
+<Base title="Practice — Learning at the Qi-House">
+  <PageHeader eyebrow="The Development Path" title="Practice" subtitle="Action Develops Capability" />
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section max-w-3xl">
+      <blockquote class="reveal border-l-2 border-gold pl-6 mb-10">
+        <p class="font-display text-2xl text-navy italic">“We are what we repeatedly do. Excellence, then, is not an act, but a habit.”</p>
+        <cite class="eyebrow !text-slate-400 mt-3 block not-italic">— Aristotle</cite>
+      </blockquote>
+
+      <div class="reveal space-y-5 text-slate/90">
+        <p>Awareness creates possibility, but development requires action. Once a student learns to observe clearly, the next step is to apply what they have learned through consistent practice. Knowledge may provide direction, but capability is built through participation, repetition, and experience.</p>
+        <p>At Eight Hands, practice is more than performing techniques. It is the process of transforming understanding into action. Students learn to apply lessons repeatedly and deliberately, developing confidence through experience rather than assumption. Whether learning a martial arts skill, improving communication, strengthening focus, or developing leadership, progress is achieved through consistent effort over time.</p>
+        <p>Practice teaches students that growth is rarely immediate. Improvement occurs through repetition, adjustment, and persistence. Mistakes become opportunities for learning, challenges become opportunities for development, and setbacks become opportunities to strengthen resilience. Through this process, students begin to understand that confidence is not something they are given—it is something they earn through participation.</p>
+        <p>As capability increases, so does responsibility. Students learn to trust their preparation because they have invested in the process. The discipline developed through practice extends beyond the academy into school, work, family, and daily life. The habits formed through consistent action often become the foundation for future success.</p>
+        <p>Practice transforms intention into capability. Students who commit to the process develop the skills, discipline, and confidence necessary to navigate challenges with greater effectiveness and self-control.</p>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">What Students Learn</p>
+        <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-2 text-slate/90">
+          {learns.map((x) => <li class="flex gap-3"><span class="text-red" aria-hidden="true">·</span>{x}</li>)}
+        </ul>
+      </div>
+
+      <div class="reveal mt-12 border-t border-navy/10 pt-8">
+        <p class="eyebrow !text-navy mb-3">Why It Matters</p>
+        <p class="text-slate/90">Capability is not built through knowledge alone. Students who engage in consistent practice learn that meaningful growth requires effort, patience, and persistence. These habits become transferable skills that support success in every area of life.</p>
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>

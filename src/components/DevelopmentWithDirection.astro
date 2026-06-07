@@ -4,12 +4,13 @@
 // Integrate → Contribute) that expand on hover/tap; RIGHT a 16:9 rounded image panel that crossfades to the
 // active stage's image. Navy/gold/white, red hover accents. Real photography slots (no stock/AI per her note).
 import TopoTexture from './TopoTexture.astro';
+import { withBase } from '../data/site';
 
 const stages = [
-  { n: 'Observe', short: 'Awareness creates possibility.', long: 'Students learn to recognize patterns, understand themselves, and develop the awareness necessary for meaningful growth.', img: '[IMAGE — student receiving instruction during a private lesson · 16:9 · 1280×720px · real Eight Hands photo]', icon: 'eye' },
-  { n: 'Practice', short: 'Action develops capability.', long: 'Through consistent repetition and guided application, students transform knowledge into skill.', img: '[IMAGE — students actively training in class · 16:9 · 1280×720px · real photo]', icon: 'needle' },
-  { n: 'Integrate', short: 'Consistency transforms knowledge into character.', long: 'Physical, mental, and emotional skills begin working together as a unified system.', img: '[IMAGE — student demonstrating leadership while training · 16:9 · 1280×720px · real photo]', icon: 'geo' },
-  { n: 'Contribute', short: 'Development becomes service.', long: 'Students learn to apply their growth in ways that positively influence family, community, and future generations.', img: '[IMAGE — senior student mentoring younger students · 16:9 · 1280×720px · real photo]', icon: 'laurel' },
+  { n: 'Observe', href: '/learning/observe', short: 'Awareness creates possibility.', long: 'Students learn to recognize patterns, understand themselves, and develop the awareness necessary for meaningful growth.', img: '[IMAGE — student receiving instruction during a private lesson · 16:9 · 1280×720px · real Eight Hands photo]', icon: 'eye' },
+  { n: 'Practice', href: '/learning/practice', short: 'Action develops capability.', long: 'Through consistent repetition and guided application, students transform knowledge into skill.', img: '[IMAGE — students actively training in class · 16:9 · 1280×720px · real photo]', icon: 'needle' },
+  { n: 'Integrate', href: '/learning/integrate', short: 'Consistency transforms knowledge into character.', long: 'Physical, mental, and emotional skills begin working together as a unified system.', img: '[IMAGE — student demonstrating leadership while training · 16:9 · 1280×720px · real photo]', icon: 'geo' },
+  { n: 'Contribute', href: '/learning/contribute', short: 'Development becomes service.', long: 'Students learn to apply their growth in ways that positively influence family, community, and future generations.', img: '[IMAGE — senior student mentoring younger students · 16:9 · 1280×720px · real photo]', icon: 'laurel' },
 ];
 ---
 <section class="bg-navy text-stone relative overflow-hidden">
@@ -23,7 +24,7 @@ const stages = [
       </div>
       <div class="space-y-3 reveal">
         {stages.map((s, i) => (
-          <button type="button" class="dwd-card group block w-full text-left border border-stone/15 bg-navy/40 px-5 py-4 rounded-[10px] transition-all duration-[250ms] hover:-translate-y-1.5 hover:border-gold/50" data-stage={i} aria-label={s.n}>
+          <a href={withBase(s.href)} class="dwd-card group block w-full text-left border border-stone/15 bg-navy/40 px-5 py-4 rounded-[10px] transition-all duration-[250ms] hover:-translate-y-1.5 hover:border-gold/50" data-stage={i} aria-label={`${s.n} — learn more`}>
             <div class="flex items-center gap-4">
               <span class="dwd-icon w-10 h-10 border border-gold/50 rounded-[8px] flex items-center justify-center text-gold shrink-0 transition-transform duration-[250ms]">
                 {s.icon === 'eye' && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" /><circle cx="12" cy="12" r="3" /></svg>}
@@ -40,7 +41,8 @@ const stages = [
               </div>
             </div>
             <p class="dwd-long overflow-hidden max-h-0 opacity-0 text-stone/70 text-sm leading-relaxed pl-14 transition-all duration-300">{s.long}</p>
-          </button>
+            <span class="block pl-14 mt-2 font-accent text-[11px] uppercase tracking-[0.16em] text-gold/80 group-hover:text-gold transition-colors">Explore →</span>
+          </a>
         ))}
       </div>
     </div>

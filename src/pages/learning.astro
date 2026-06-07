@@ -15,18 +15,28 @@ import ParallaxPhoto from '../components/ParallaxPhoto.astro';
 import ClaimRotator from '../components/ClaimRotator.astro';
 import PhotoNavCard from '../components/PhotoNavCard.astro';
 import Cta from '../components/Cta.astro';
+import { withBase } from '../data/site';
 
 const subnav: [string, string][] = [
   ['Learning', '/learning'],
+  ['The Development Path', '/learning#path'],
   ['The Cohorts', '/learning#cohorts'],
   ['The Framework', '/learning#framework'],
   ['How We Learn', '/learning#programs'],
 ];
 
+// The four development stages → their detail pages (Jeanette's 2026-06-06 Learning copy).
+const path: [string, string, string][] = [
+  ['Observe', 'Awareness creates possibility.', '/learning/observe'],
+  ['Practice', 'Action develops capability.', '/learning/practice'],
+  ['Integrate', 'Consistency transforms knowledge into character.', '/learning/integrate'],
+  ['Contribute', 'Leadership begins when development serves others.', '/learning/contribute'],
+];
+
 // Two group cards (reference: Junior/Senior School) → the two pillars of the educational model.
 const groups = [
-  ['Education', 'Private Instruction', 'Where the teaching happens — one-on-one work that builds confidence, focus, and self-governance at each student’s own pace.', '#private'],
-  ['Application', 'Group Training', 'The application laboratory — where developing skills are tested with others, building communication, accountability, and resilience.', '#group'],
+  ['Education', 'Individualized Instruction', 'Where the teaching happens — one-on-one work that builds confidence, focus, and self-governance at each student’s own pace.', '/learning/individualized-instruction'],
+  ['Application', 'Group Instruction', 'The application laboratory — where developing skills are tested with others, building communication, accountability, and resilience.', '/learning/group-instruction'],
 ];
 
 // Three enrollment pathways (reskin-map §3.2). Recommended after an assessment — not chosen off a menu.
@@ -72,8 +82,8 @@ const wheelLabels = framework.map(([name], i) => {
 // "Go Deeper / How We Learn" hub — the educational model (reskin-map §3.2).
 // Private = Education · Group = Application Laboratory · Leadership = Advanced Application.
 const programs: [string, string, string][] = [
-  ['Private Instruction — The Education', '/learning#private', '[IMAGE — one-on-one instruction, mentor + student · 4:3 · 760×570px]'],
-  ['Group Training — The Application Lab', '/learning#group', '[IMAGE — group practice on the floor, candid · 4:3 · 760×570px]'],
+  ['Individualized Instruction — The Core', '/learning/individualized-instruction', '[IMAGE — one-on-one instruction, mentor + student · 4:3 · 760×570px]'],
+  ['Group Instruction — The Application', '/learning/group-instruction', '[IMAGE — group practice on the floor, candid · 4:3 · 760×570px]'],
   ['Leadership — Advanced Application', '/community/instructor-development', '[IMAGE — advanced student guiding / leading others · 4:3 · 760×570px]'],
   ['Your Assessment — Where to Begin', '/learning#cohorts', '[IMAGE — calm one-on-one conversation, welcoming · 4:3 · 760×570px]'],
 ];
@@ -111,7 +121,7 @@ const programs: [string, string, string][] = [
             <div class="flex justify-center mb-4"><HighlightEyebrow mark={label} /></div>
             <h3 class="font-display text-3xl text-stone mb-3">{title}</h3>
             <p class="text-stone/70 text-sm max-w-md mx-auto mb-6">{blurb}</p>
-            <a href={href} class="btn-ghost !border-stone/40 !text-stone hover:!bg-stone hover:!text-navy">Explore</a>
+            <a href={withBase(href)} class="btn-ghost !border-stone/40 !text-stone hover:!bg-stone hover:!text-navy">Explore</a>
           </div>
         ))}
       </div>
@@ -170,6 +180,27 @@ const programs: [string, string, string][] = [
         </p>
         <GoldArrowLink href="/about/ethos" text="Why Eight Hands" class="mb-10" />
         <ClaimRotator items={claims} dark={false} label="What the practice develops" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 3b. The Development Path: four stage cards → detail pages (Observe → Practice → Integrate → Contribute) -->
+  <section id="path" class="bg-stone scroll-mt-24">
+    <div class="container-content py-section-sm lg:py-section">
+      <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+        <div class="flex justify-center mb-4"><HighlightEyebrow mark="The Development Path" /></div>
+        <h2 class="text-3xl lg:text-4xl">How Students Develop</h2>
+        <p class="text-slate/80 mt-3">Four stages every student moves through — each one building on the last.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {path.map(([name, tagline, href], i) => (
+          <a href={withBase(href)} class="reveal group block border border-navy/10 bg-white p-6 hover:border-gold hover:-translate-y-1 transition-all duration-200">
+            <div class="font-accent text-[11px] uppercase tracking-[0.16em] text-red mb-2">Step {i + 1}</div>
+            <h3 class="font-display text-2xl text-navy mb-2">{name}</h3>
+            <p class="text-slate/80 text-sm mb-4">{tagline}</p>
+            <span class="font-accent text-[11px] uppercase tracking-[0.16em] text-gold-600 group-hover:text-gold transition-colors">Explore →</span>
+          </a>
+        ))}
       </div>
     </div>
   </section>

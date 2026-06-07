@@ -27,12 +27,12 @@ export const nav = [
     href: '/learning',
     children: [
       ['Learning at the Qi-House', '/learning'],
-      ['Wonder', '/learning#wonder'],
-      ['Discovery', '/learning#discovery'],
-      ['Exploration', '/learning#exploration'],
-      ['Integration', '/learning#integration'],
-      ['Private Instruction — The Core', '/learning#private'],
-      ['Group Training — The Application', '/learning#group'],
+      ['Observe', '/learning/observe'],
+      ['Practice', '/learning/practice'],
+      ['Integrate', '/learning/integrate'],
+      ['Contribute', '/learning/contribute'],
+      ['Individualized Instruction — The Core', '/learning/individualized-instruction'],
+      ['Group Instruction — The Application', '/learning/group-instruction'],
     ] as [string, string][],
   },
   {

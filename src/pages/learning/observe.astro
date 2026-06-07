@@ -1,0 +1,48 @@
+---
+// Learning sub-page 1/6 — "Observe" (development stage 1). Client copy verbatim (Jeanette 2026-06-06).
+// Canonical template for the Learning detail pages: PageHeader → quote → body → labelled list(s) → Why It Matters → CTA.
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Cta from '../../components/Cta.astro';
+
+const learns = [
+  'Awareness and attention',
+  'Pattern recognition',
+  'Listening and observation',
+  'Emotional awareness',
+  'Situational awareness',
+  'Decision-making foundations',
+];
+---
+<Base title="Observe — Learning at the Qi-House">
+  <PageHeader eyebrow="The Development Path" title="Observe" subtitle="Awareness Creates Possibility" />
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section max-w-3xl">
+      <blockquote class="reveal border-l-2 border-gold pl-6 mb-10">
+        <p class="font-display text-2xl text-navy italic">“The real voyage of discovery consists not in seeking new landscapes, but in having new eyes.”</p>
+        <cite class="eyebrow !text-slate-400 mt-3 block not-italic">— Marcel Proust</cite>
+      </blockquote>
+
+      <div class="reveal space-y-5 text-slate/90">
+        <p>Every meaningful decision begins with perception. Before a student can improve a skill, solve a problem, or overcome a challenge, they must first learn to observe what is happening without rushing to react. Awareness creates the foundation upon which confidence, discipline, and responsibility are built.</p>
+        <p>At Eight Hands, observation is an active skill. Students learn to pay attention to their actions, habits, surroundings, and responses under pressure. A beginner may be learning to notice posture, balance, or timing. A more experienced student may be recognizing patterns in communication, leadership, decision-making, or personal behavior. While the depth changes, the process remains the same: understanding begins with observation.</p>
+        <p>Students are encouraged to develop the ability to gather information before acting. Through guided instruction and practical application, they learn to separate reaction from response, assumption from understanding, and impulse from intention. This process strengthens focus, improves decision-making, and helps students become more effective participants in their own development.</p>
+        <p>Awareness is also the beginning of accountability. Individuals cannot take responsibility for what they do not perceive. As students become more aware of themselves, their environment, and the consequences of their choices, they gain greater capacity to act intentionally and navigate challenges with confidence.</p>
+        <p>Self-governance begins with awareness. Students who learn to observe clearly become more adaptable, more thoughtful, and better prepared to make responsible decisions both inside and outside the academy.</p>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">What Students Learn</p>
+        <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-2 text-slate/90">
+          {learns.map((x) => <li class="flex gap-3"><span class="text-red" aria-hidden="true">·</span>{x}</li>)}
+        </ul>
+      </div>
+
+      <div class="reveal mt-12 border-t border-navy/10 pt-8">
+        <p class="eyebrow !text-navy mb-3">Why It Matters</p>
+        <p class="text-slate/90">Students who learn to perceive clearly gain the ability to make better decisions, take greater responsibility, and approach challenges with increased confidence and purpose. Observation is not simply the first step in development—it is the skill that makes every other step possible.</p>
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>

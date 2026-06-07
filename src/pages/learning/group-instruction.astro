@@ -1,0 +1,56 @@
+---
+// Learning sub-page 6/6 — "Group Instruction · The Application". Client copy verbatim (Jeanette 2026-06-06).
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Cta from '../../components/Cta.astro';
+
+const experience = [
+  'Apply skills in dynamic situations',
+  'Communicate effectively with others',
+  'Develop confidence through participation',
+  'Practice leadership and teamwork',
+  'Strengthen adaptability and resilience',
+  'Learn from a diverse community of students',
+];
+---
+<Base title="Group Instruction — Learning at the Qi-House">
+  <PageHeader eyebrow="The Educational Model" title="Group Instruction" subtitle="The Application" />
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section max-w-3xl">
+      <blockquote class="reveal border-l-2 border-gold pl-6 mb-10">
+        <p class="font-display text-2xl text-navy italic">“Education is not preparation for life; education is life itself.”</p>
+        <cite class="eyebrow !text-slate-400 mt-3 block not-italic">— John Dewey</cite>
+      </blockquote>
+
+      <div class="reveal space-y-5 text-slate/90">
+        <p>Learning becomes meaningful when it can be applied in real situations. While individualized instruction provides direction and personalized development, group instruction provides the environment in which students practice, test, and refine what they have learned alongside others.</p>
+        <p>At Eight Hands Martial Arts Academy, group instruction serves as the practical application of the educational process. Students are given opportunities to train with partners, participate in structured activities, develop communication skills, and experience the challenges and rewards of learning within a community. The lessons introduced through individualized instruction are strengthened through participation.</p>
+        <p>Group training provides experiences that cannot be fully replicated in a private setting. Students learn to work with different personalities, adapt to changing circumstances, support others, and apply their skills under varying levels of pressure. These interactions help develop confidence, resilience, leadership, and accountability while reinforcing technical proficiency.</p>
+        <p>The group environment also creates opportunities for mentorship and service. More experienced students learn to assist newer members, model positive habits, and contribute to the development of the academy community. In doing so, students discover that growth is not solely an individual pursuit but a shared responsibility.</p>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">What Students Experience</p>
+        <p class="text-slate/90 mb-4">Through group instruction, students learn to:</p>
+        <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-2 text-slate/90">
+          {experience.map((x) => <li class="flex gap-3"><span class="text-red" aria-hidden="true">·</span>{x}</li>)}
+        </ul>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">Community Through Participation</p>
+        <div class="space-y-5 text-slate/90">
+          <p>Group instruction creates a culture of participation where students learn alongside individuals of different ages, backgrounds, experiences, and goals. This diversity strengthens the educational experience by exposing students to new perspectives and encouraging mutual respect.</p>
+          <p>The academy community becomes an extension of the learning environment. Students are challenged to contribute positively, support one another, and uphold the standards that help everyone succeed.</p>
+        </div>
+      </div>
+
+      <div class="reveal mt-12 border-t border-navy/10 pt-8 space-y-5 text-slate/90">
+        <p class="eyebrow !text-navy mb-1">Why It Matters</p>
+        <p>Development does not occur in isolation. Many of life’s most important lessons are learned through interaction with others. Group instruction provides students with opportunities to apply what they have learned, test their capabilities, and grow through shared experience.</p>
+        <p>At Eight Hands, group instruction is not simply a class format. It is the environment where learning becomes action, where capability becomes confidence, and where individual development becomes community contribution.</p>
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>
