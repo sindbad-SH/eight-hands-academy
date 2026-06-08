@@ -48,9 +48,10 @@ const engage = [
     <div>
       <h3 class="eyebrow !text-stone/60 mb-4">Contact</h3>
       <address class="not-italic text-sm space-y-2 text-stone/70">
-        <p>{CONTACT.cityState}</p>
-        <p><a href={CONTACT.mapUrl} target="_blank" rel="noopener" class="hover:text-gold transition-colors">View on Google Maps →</a></p>
+        <p>{CONTACT.address}</p>
+        <p><a href={CONTACT.phoneHref} class="hover:text-gold transition-colors">{CONTACT.phone}</a></p>
         <p><a href={`mailto:${CONTACT.email}`} class="hover:text-gold transition-colors">{CONTACT.email}</a></p>
+        <p><a href={CONTACT.mapUrl} target="_blank" rel="noopener" class="hover:text-gold transition-colors">View on Google Maps →</a></p>
       </address>
       <div class="mt-5 flex gap-3">
         <a href={SOCIAL.facebook} target="_blank" rel="noopener" aria-label="Facebook" class="w-9 h-9 rounded-full border border-stone/25 flex items-center justify-center text-stone/70 hover:text-navy hover:bg-gold hover:border-gold transition-colors">
@@ -63,7 +64,7 @@ const engage = [
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14.2 3.5c.3 2 1.6 3.5 3.6 3.7v2.4c-1.2 0-2.4-.4-3.5-1.1v5.4c0 2.7-2.1 4.7-4.7 4.7s-4.6-2-4.6-4.6 2-4.7 4.6-4.7c.3 0 .6 0 .9.1v2.5c-.3-.1-.6-.2-.9-.2-1.3 0-2.2 1-2.2 2.3s1 2.3 2.3 2.3 2.3-1 2.3-2.4V3.5h2.7z"/></svg>
         </a>
         <a href={SOCIAL.yelp} target="_blank" rel="noopener" aria-label="Yelp" class="w-9 h-9 rounded-full border border-stone/25 flex items-center justify-center text-stone/70 hover:text-navy hover:bg-gold hover:border-gold transition-colors">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l2.5 5.7 6 .5-4.5 3.9 1.4 5.9L12 16.8 6.6 19l1.4-5.9L3.5 9.2l6-.5L12 3z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><g transform="translate(0 -1)"><rect x="11" y="3" width="2" height="7" rx="1" transform="rotate(-40 12 13)"/><rect x="11" y="2.5" width="2" height="7.8" rx="1" transform="rotate(-15 12 13)"/><rect x="11" y="2" width="2" height="8.4" rx="1" transform="rotate(8 12 13)"/><rect x="11" y="3" width="2" height="7.2" rx="1" transform="rotate(32 12 13)"/><rect x="11" y="3.5" width="2" height="6.2" rx="1" transform="rotate(55 12 13)"/></g></svg>
         </a>
       </div>
     </div>

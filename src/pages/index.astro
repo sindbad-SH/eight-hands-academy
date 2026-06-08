@@ -35,8 +35,15 @@ const houses: [string, string][] = [
   ['Resonance', 'Resonance occurs when understanding becomes influence.'],
 ];
 
-// News & Events thumbnails — rotate through available people/community photos.
-const newsImages = ['community-1', 'group-2', 'service-1', 'mentoring-2', 'group-1'];
+// Community Impact — upcoming community events the academy supports (client 2026-06-08). [title, date, url]
+const events: [string, string, string][] = [
+  ['Cerus Knocks Out Addiction', 'Sat · June 20, 2026', 'https://www.instagram.com/p/DY2n5kxjWGq/'],
+  ['Tap Cancer Out — Global Grappling Day', '2026', 'https://wecan.tapcancerout.org/campaign/2026-tap-cancer-out-global-grappling-day/c756894'],
+  ['America’s Cup Open Martial Arts Championship', 'Sep 19, 2026 · Denver', 'https://denvermartialartsevent.com/'],
+  ['Red Wine & Brew — First Responders Benefit', 'Fri · June 25, 2026', 'https://www.koobit.com/red-wine-and-brew-e188225'],
+  ['Summerfest Fundraiser', 'Thu · June 14, 2026', 'https://www.schoolofrock.com/locations/highlandsranch/events/school-of-rock-highlands-ranch-broomfield-summerfest-fundraiser-at-bar-404-june-14-2026'],
+  ['Roots & Rhythm — Wildlands Restoration Benefit', 'Jul 22, 2026', 'https://www.bathgardencenter.com/event-details/roots-rhythm-with-the-friendly-reminders-trio'],
+];
 
 // Age-based program pathways → dedicated pages (client 2026-06-08).
 const programs: [string, string, string][] = [
@@ -319,25 +326,23 @@ const programs: [string, string, string][] = [
     </div>
   </section>
 
-  <!-- 12 · News & Events — image-card carousel + View All -->
+  <!-- 12 · Community Impact — upcoming events the academy supports (client 2026-06-08) -->
   <section class="bg-navy text-stone relative overflow-hidden">
     <TopoTexture id="topo-news" />
     <div class="container-content relative z-10 py-section">
       <div class="flex items-end justify-between mb-8 reveal">
-        <HighlightEyebrow pre="News &" mark="Events" class="text-stone/70" />
-        <GoldArrowLink href="/community/events" text="View All News" class="hidden sm:inline-flex text-stone" />
+        <HighlightEyebrow pre="Community" mark="Impact" class="text-stone/70" />
+        <GoldArrowLink href="/community/impact" text="More Ways We Serve" class="hidden sm:inline-flex text-stone" />
       </div>
-      <Carousel class="text-stone reveal" label="News and events">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <article class="snap-start shrink-0 w-[280px] sm:w-[320px]">
-            <img src={withBase(`/img/${newsImages[i]}.jpg`)} alt={`News and events thumbnail ${i + 1}`} loading="lazy" class="aspect-[4/3] w-full h-full object-cover" />
-            <div class="mt-4">
-              <div class="font-accent uppercase tracking-[0.18em] text-[10px] text-stone/50">[DD Mon 2026] · [Category]</div>
-              <a href={withBase('/community/events')} class="font-display text-lg text-stone hover:text-gold transition-colors block mt-1.5">[NEWS / EVENT {i + 1} — title]</a>
-            </div>
-          </article>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 reveal">
+        {events.map(([title, date, url]) => (
+          <a href={url} target="_blank" rel="noopener" class="group flex flex-col border border-stone/15 bg-white/[0.04] p-6 hover:border-gold transition-colors">
+            <div class="font-accent uppercase tracking-[0.18em] text-[11px] text-gold/80 mb-3">{date}</div>
+            <h3 class="font-display text-xl text-stone leading-snug mb-5 group-hover:text-gold transition-colors">{title}</h3>
+            <span class="mt-auto font-accent text-[11px] uppercase tracking-[0.16em] text-stone/60 group-hover:text-gold transition-colors">Details →</span>
+          </a>
         ))}
-      </Carousel>
+      </div>
     </div>
   </section>
 

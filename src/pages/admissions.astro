@@ -96,7 +96,7 @@ const steps = [
 ];
 
 const hub: [string, string, string, string][] = [
-  ['Scholarships', '/admissions/scholarships', '[IMAGE — access / support, dignified · 4:3 · 760×570px · CONFIRM program exists]', '/img/service-1.jpg'],
+  ['Scholarship & Stewardship', '/admissions/scholarships', '[IMAGE — access / support, dignified · 4:3 · 760×570px]', '/img/service-1.jpg'],
   ['Summer Academy', '/community/summer-academy', '[IMAGE — intensive seasonal practice, outdoors/candid · 4:3 · 760×570px]', '/img/community-1.jpg'],
   ['Events & Gatherings', '/community/events', '[IMAGE — community gathering / demonstration · 4:3 · 760×570px]', '/img/kasemir-portrait.jpg'],
   ['Meet the Founder', '/about/founder', '[IMAGE — founder portrait / archival origins · 4:3 · 760×570px]', '/img/reflection-1.jpg'],
@@ -120,7 +120,7 @@ const hub: [string, string, string, string][] = [
           are and where you want to go.
         </p>
       </div>
-      <img src={withBase('/img/interior-wide.jpg')} alt="The Qi-House training space" loading="lazy" class="aspect-[16/6] mt-12 reveal w-full h-full object-cover" />
+      <img src={withBase('/img/interior-wide.jpg')} alt="The Qi-House training space" loading="lazy" class="aspect-[16/6] mt-12 reveal w-full object-cover" />
       <div class="text-center mt-10 reveal">
         <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">Schedule an Assessment</a>
       </div>
@@ -130,7 +130,7 @@ const hub: [string, string, string, string][] = [
   <!-- 2. Value-prop: MIRRORED — IMAGE right + (highlight heading + copy + inline link) left on lg -->
   <section class="bg-stone-200">
     <div class="container-content py-section-sm lg:py-section grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
-      <img src={withBase('/img/community-1.jpg')} alt="An open day at the Qi-House" loading="lazy" class="aspect-[4/3] reveal lg:order-2 w-full h-full object-cover" />
+      <img src={withBase('/img/community-1.jpg')} alt="An open day at the Qi-House" loading="lazy" class="aspect-[4/3] reveal lg:order-2 w-full object-cover" />
       <div class="reveal lg:order-1">
         <p class="font-accent uppercase tracking-[0.14em] text-xl lg:text-2xl text-navy mb-7 inline-flex flex-wrap items-center gap-x-2.5 gap-y-1">
           <span>A</span><span class="bg-red text-stone px-2 py-0.5">Recommended</span><span>Path</span>
@@ -161,11 +161,14 @@ const hub: [string, string, string, string][] = [
           <span class="absolute left-1/2 -translate-x-1/2 -top-5 bg-stone px-3 font-display text-5xl leading-none text-red">&ldquo;</span>
         </div>
         <blockquote class="font-display text-2xl lg:text-3xl text-navy italic leading-snug mb-6">
-          [PULL-QUOTE — a real external review or endorsement of the academy. 1–2 sentences, serif italic. Never fabricated.]
+          &ldquo;The classes have helped me understand people more accurately and become far more intentional in how I approach communication, decision-making, and problem-solving. It has made communications clearer and negotiations more effective.&rdquo;
         </blockquote>
-        <div class="font-accent text-navy font-semibold mb-1">[Source — publication or person · CONFIRM]</div>
-        <div class="eyebrow !text-slate-400 mb-6">[Year · context]</div>
-        <GoldArrowLink href="#" text="Read the Full Review" class="justify-center" />
+        <div class="font-accent text-navy font-semibold mb-1">Kelsey Cain · Student Review</div>
+        <div class="eyebrow !text-slate-400 mb-6">2026 · Neurohacking Program</div>
+        <details class="max-w-2xl mx-auto text-left">
+          <summary class="cursor-pointer list-none text-center font-accent text-xs uppercase tracking-[0.18em] font-semibold text-gold-600 hover:text-gold">Read the Full Review →</summary>
+          <p class="mt-5 text-slate/90 leading-relaxed">8 Hands Neurohacking classes have been genuinely transformative for me. The material goes far beyond theory and gives practical, strategic tools that I&rsquo;ve been able to apply directly to real business decisions. One of the biggest benefits has been learning how to read people more accurately. The classes help me understand mental processes by identifying behavioral patterns and decision-making cues in others and I&rsquo;ve become much more intentional in how I approach, analyze, and develop solutions. It has made communications clearer and negotiations more effective. I now feel more confident breaking down why people think the way they do and adjusting my approach to interactions in a way that&rsquo;s ethical, grounded, and strategic. 8 Hands provides deep insight and practical frameworks that can be applied in multiple aspects of our day to day interactions. If you&rsquo;re serious about improving your mindset, decision-making, and understanding of human behavior, especially in a business context, these classes are absolutely worth it.</p>
+        </details>
       </div>
     </div>
   </section>
@@ -189,17 +192,17 @@ const hub: [string, string, string, string][] = [
           about beginning.
         </p>
       </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 items-start">
         {[
-          ['/img/kasemir-portrait.jpg', 'Dr. Kasemir'],
-          ['/img/sang-portrait.jpg', 'Sang Nguyen'],
-          ['/img/cole-portrait.jpg', 'Cole Wilson'],
-          ['/img/juan-portrait.jpg', 'Juan Gurule'],
-        ].map(([portrait, name]) => (
+          ['/img/kasemir-portrait.jpg', 'Dr. Kasemir, Kyoshi', 'Director · Head Instructor'],
+          ['/img/sang-portrait.jpg', 'Sang Nguyen', 'Director of Operations'],
+          ['/img/cole-portrait.jpg', 'Cole Wilson', 'Assistant Instructor'],
+          ['/img/juan-portrait.jpg', 'Juan Gurule', 'Assistant Instructor'],
+        ].map(([portrait, name, role]) => (
           <div class="reveal">
-            <img src={withBase(portrait)} alt={name} loading="lazy" class="aspect-[3/4] mb-3 w-full h-full object-cover" />
-            <a href={withBase('/about/leadership')} class="font-display text-lg text-navy underline decoration-red/50 underline-offset-2 hover:text-red transition-colors">[Name — confirm]</a>
-            <div class="eyebrow !text-slate-400 mt-1">[Role — confirm]</div>
+            <img src={withBase(portrait)} alt={name} loading="lazy" class="aspect-[3/4] mb-3 w-full object-cover" />
+            <a href={withBase('/about/leadership')} class="font-display text-lg text-navy underline decoration-red/50 underline-offset-2 hover:text-red transition-colors">{name}</a>
+            <div class="eyebrow !text-slate-400 mt-1">{role}</div>
           </div>
         ))}
       </div>
@@ -245,7 +248,7 @@ const hub: [string, string, string, string][] = [
         <div class="reveal bg-navy p-5 lg:p-6">
           <h3 class="font-accent uppercase tracking-[0.1em] text-stone text-lg lg:text-xl mb-4">Find the Qi-House</h3>
           <div class="aspect-video overflow-hidden mb-4 bg-stone/10">
-            <iframe src={CONTACT.mapEmbed} title="Eight Hands Martial Arts — Berthoud, CO" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full h-full" style="border:0;"></iframe>
+            <iframe src={CONTACT.mapEmbed} title="Eight Hands Martial Arts — Longmont, CO" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full h-full" style="border:0;"></iframe>
           </div>
           <a href={CONTACT.mapUrl} target="_blank" rel="noopener" class="btn-ghost w-full !border-stone/40 !text-stone hover:!bg-stone hover:!text-navy">View on Google Maps</a>
         </div>
@@ -265,13 +268,14 @@ const hub: [string, string, string, string][] = [
       <div class="max-w-3xl mx-auto text-center reveal bg-stone border border-navy/10 px-6 py-10 lg:px-12">
         <div class="flex justify-center mb-6"><HighlightEyebrow mark="Visiting the Qi-House" /></div>
         <p class="text-slate/90 leading-relaxed mb-7">
-          The Qi-House is located in Berthoud, Colorado. Use the map to find us and get directions, or reach
+          The Qi-House is located in Longmont, Colorado. Use the map to find us and get directions, or reach
           out any time and we'll help you plan your visit.
         </p>
         <address class="not-italic text-slate space-y-1">
-          <p>Berthoud, Colorado</p>
-          <p><a href={CONTACT.mapUrl} target="_blank" rel="noopener" class="text-red hover:text-navy underline decoration-red/40 underline-offset-2">View on Google Maps</a></p>
+          <p>{CONTACT.address}</p>
+          <p><a href={CONTACT.phoneHref} class="text-red hover:text-navy underline decoration-red/40 underline-offset-2">{CONTACT.phone}</a></p>
           <p><a href={`mailto:${CONTACT.email}`} class="text-red hover:text-navy underline decoration-red/40 underline-offset-2">{CONTACT.email}</a></p>
+          <p><a href={CONTACT.mapUrl} target="_blank" rel="noopener" class="text-red hover:text-navy underline decoration-red/40 underline-offset-2">View on Google Maps</a></p>
         </address>
       </div>
     </div>

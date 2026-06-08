@@ -16,14 +16,17 @@ export const BOOKING_URL =
 export const SOCIAL = {
   facebook: 'https://www.facebook.com/8handsqihouse/',
   instagram: 'https://www.instagram.com/panthersgate',
-  tiktok: 'https://tr.ee/c8kV2FAIAx', // NOTE: resolves to linktr.ee/panthersgate (a links hub), not a direct TikTok profile — confirm real TikTok URL.
-  yelp: 'https://www.yelp.com/biz/8-hands-martial-arts-berthoud',
+  tiktok: 'https://www.tiktok.com/@panthersgate',
+  yelp: 'https://www.yelp.com/biz/8-hands-martial-arts-berthoud', // Yelp listing slug still says "berthoud" (Yelp's, can't change); it's the active listing.
 };
 export const CONTACT = {
   email: 'ask@panthersgate.com',
-  cityState: 'Berthoud, Colorado',
-  mapUrl: 'https://share.google/vK3w0k4eZKqzUYDet', // client's Google share link → "The Qi House · 8 Hands Martial Arts"
-  mapEmbed: 'https://www.google.com/maps?q=8+Hands+Martial+Arts,+Berthoud,+CO&output=embed', // keyless embed by business name
+  phone: '(720) 238-1353',
+  phoneHref: 'tel:+17202381353',
+  address: '520 Main St C, Longmont, CO 80501',
+  cityState: 'Longmont, Colorado', // CURRENT location. (Berthoud was the prior school and is closed — never display Berthoud.)
+  mapUrl: 'https://maps.app.goo.gl/E1HfDMe5GvwTDzL89', // client's directions link
+  mapEmbed: 'https://www.google.com/maps?q=520+Main+St+C,+Longmont,+CO+80501&output=embed', // precise pin by full address
 };
 
 // Prefix an internal path with the deploy base (set in astro.config.mjs `base`). On GitHub Pages the

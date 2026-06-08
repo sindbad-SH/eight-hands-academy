@@ -16,10 +16,10 @@ const team = [
   <PageHeader eyebrow="About" title="Leadership" subtitle="The instructors and leaders who guide students toward confidence, discipline, and self-governance." />
   <section class="bg-stone">
     <div class="container-content py-section-sm lg:py-section">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 items-start">
         {team.map((m) => (
           <div class="reveal text-center">
-            <img src={withBase(m.img)} alt={m.name} loading="lazy" class="aspect-square mb-4 w-full h-full object-cover" />
+            <img src={withBase(m.img)} alt={m.name} loading="lazy" class="aspect-square mb-4 w-full object-cover" />
             <div class="font-display text-xl text-navy">{m.name}</div>
             <div class="eyebrow !text-slate-400 mt-1">{m.role}</div>
             <p class="text-sm text-slate/90 mt-3">{m.bio}</p>

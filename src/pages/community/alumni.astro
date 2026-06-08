@@ -17,7 +17,7 @@ const alumPhotos = ['/img/member-1.jpg', '/img/member-2.jpg'];
       <div class="grid md:grid-cols-3 gap-6">
         {Array.from({ length: 3 }).map((_, i) => (
           <figure class="reveal bg-white border border-navy/10 rounded-sm overflow-hidden">
-            <img src={withBase(alumPhotos[i % alumPhotos.length])} alt="Eight Hands member" loading="lazy" class="aspect-[4/3] !border-0 !rounded-none w-full h-full object-cover" />
+            <img src={withBase(alumPhotos[i % alumPhotos.length])} alt="Eight Hands member" loading="lazy" class="aspect-[4/3] !border-0 !rounded-none w-full object-cover" />
             <figcaption class="p-6">
               <blockquote class="text-slate/90 italic">[ALUMNI STORY {i + 1}: growth-arc, in their words — never fabricated]</blockquote>
               <p class="eyebrow !text-slate-400 mt-4">[Name · Year / Path]</p>

@@ -1,0 +1,73 @@
+---
+// Admissions sub-page — "Scholarship & Stewardship". Client copy verbatim (Sindbad 2026-06-07).
+// Mirrors the Learning detail template: PageHeader → quote → body → labelled sub-sections → CTA.
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Cta from '../../components/Cta.astro';
+
+const recipients = [
+  'Youth experiencing bullying or social difficulties',
+  'Families navigating divorce or major transitions',
+  'Individuals recovering from traumatic experiences',
+  'Victims of domestic violence seeking practical self-protection skills',
+  'Students demonstrating exceptional effort or academic achievement despite financial limitations',
+  'Individuals who would benefit from intensive personal development but lack access to resources',
+];
+---
+<Base title="Scholarship & Stewardship — Eight Hands Martial Arts Academy">
+  <PageHeader eyebrow="Admissions" title="Scholarship & Stewardship" subtitle="Expanding Access Through Participation, Contribution, and Service" />
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section max-w-3xl">
+      <blockquote class="reveal border-l-2 border-gold pl-6 mb-10">
+        <p class="font-display text-2xl text-navy italic">“The meaning of life is to find your gift. The purpose of life is to give it away.”</p>
+        <cite class="eyebrow !text-slate-400 mt-3 block not-italic">— Often attributed to Pablo Picasso</cite>
+      </blockquote>
+
+      <div class="reveal space-y-5 text-slate/90">
+        <p>At Eight Hands Martial Arts Academy, we believe that meaningful education should be accessible to individuals who demonstrate commitment, character, and a desire to grow. While participation requires investment from both students and families, we also recognize that circumstances sometimes create barriers to opportunity.</p>
+        <p>Scholarships and stewardship initiatives exist to help bridge those gaps. Through community support, fundraising efforts, academy contributions, and acts of generosity from members and families, opportunities are created for individuals who may benefit from additional assistance during critical moments in their development.</p>
+        <p>These programs are not based solely upon financial need. They are intended to support individuals who demonstrate effort, responsibility, potential, and a willingness to participate fully in the educational process.</p>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">Sponsor a Student · Donate to Match</p>
+        <div class="space-y-5">
+          <p class="text-slate/90">The Donate to Match Program allows community members, families, and supporters to directly assist students pursuing their development at the academy.</p>
+          <p class="text-slate/90">For students enrolled in programs of six months or longer, Eight Hands matches the contribution by providing an equivalent amount of educational support. For shorter-term programs, academy support is provided proportionally according to the student's commitment and participation.</p>
+          <p class="text-slate/90">The objective is simple: when a member of the community invests in a student's development, the academy invests alongside them.</p>
+        </div>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">Kick-A-Thon · Development Through Contribution</p>
+        <div class="space-y-5">
+          <p class="text-slate/90">Throughout the year, students may participate in academy fundraising events that combine physical challenge with community impact.</p>
+          <p class="text-slate/90">One example is the Kick-A-Thon, where students gather sponsorships and perform a predetermined number of kicks, strikes, or physical challenges in support of a selected cause. Sponsors may pledge support per repetition completed or make fixed contributions toward the effort.</p>
+          <p class="text-slate/90">Funds raised may support scholarship opportunities, community initiatives, charitable organizations, or students facing exceptional circumstances.</p>
+          <p class="text-slate/90">The purpose is not only to raise funds, but also to teach students the value of service, participation, and collective effort.</p>
+        </div>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">Academy Stewardship Scholarships · Investing in Potential</p>
+        <p class="text-slate/90">For every ten students enrolled in the academy, Eight Hands commits resources toward supporting the development of an individual who may benefit from additional educational opportunities.</p>
+        <p class="text-slate/90 mt-5">These scholarships may be awarded to students facing significant life challenges, including:</p>
+        <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-2 text-slate/90 mt-5">
+          {recipients.map((x) => <li class="flex gap-3"><span class="text-red" aria-hidden="true">·</span>{x}</li>)}
+        </ul>
+        <p class="text-slate/90 mt-5">Each application is reviewed individually, with consideration given to both circumstances and commitment.</p>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">A Community That Gives First</p>
+        <div class="space-y-5">
+          <p class="text-slate/90">The strongest communities are built by individuals who choose to contribute to something larger than themselves.</p>
+          <p class="text-slate/90">Scholarships and stewardship programs reflect the academy's belief that development creates responsibility. As students grow in confidence, discipline, leadership, and capability, they are encouraged to consider how they might help create opportunities for others.</p>
+          <p class="text-slate/90">Every scholarship awarded, every sponsorship provided, and every fundraiser completed represents an investment not only in one individual, but in the future of the entire community.</p>
+          <p class="text-slate/90">At Eight Hands, stewardship means leaving something stronger than we found it. These programs are one way we put that principle into practice.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>

@@ -3,35 +3,65 @@ import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Cta from '../../components/Cta.astro';
 
-const path = [
+const triad = [
   ['Participant', 'Learning to participate consciously and responsibly.'],
-  ['Mentor', 'Learning to guide others — assessment, patience, and care.'],
-  ['Steward', 'Learning to contribute to systems larger than oneself.'],
+  ['Mentor', 'Learning to guide others through example, patience, and encouragement.'],
+  ['Steward', 'Learning to contribute to the long-term health and development of the community.'],
+];
+
+const cultivate = [
+  'Focus and attention',
+  'Communication and listening skills',
+  'Patience and emotional regulation',
+  'Accountability and responsibility',
+  'Mentorship and guidance',
+  'Service and stewardship',
 ];
 ---
-<Base title="Instructor Development — Eight Hands Martial Arts Academy">
+<Base title="Community Development Through Service — Eight Hands Martial Arts Academy">
   <PageHeader
     eyebrow="Community"
-    title="Instructor Development"
+    title="Community Development Through Service"
     subtitle="From participant, to mentor, to steward."
   />
   <section class="bg-stone">
-    <div class="container-content py-section-sm lg:py-section">
-      <div class="grid md:grid-cols-3 gap-6 mb-12">
-        {path.map(([stage, body], i) => (
-          <div class="reveal bg-white border border-navy/10 rounded-sm p-8">
-            <div class="font-display text-3xl text-gold mb-2">{String(i + 1).padStart(2, '0')}</div>
-            <h3 class="text-2xl mb-2">{stage}</h3>
-            <p class="text-sm text-slate/90">{body}</p>
+    <div class="container-content py-section-sm lg:py-section max-w-3xl">
+      <div class="grid md:grid-cols-3 gap-6 reveal">
+        {triad.map(([name, line]) => (
+          <div class="bg-stone-200 border border-navy/10 rounded-sm p-6">
+            <p class="font-display text-2xl text-navy mb-2">{name}</p>
+            <p class="text-slate/90">{line}</p>
           </div>
         ))}
       </div>
-      <div class="max-w-3xl mx-auto reveal text-slate/90">
-        <p>[COPY: how the Academy develops instructors as an advanced application of self-governance —
-          the standards, the mentorship, and the responsibility of teaching. Frame leadership as service
-          and accountability: the outcomes a developing instructor builds (focus, communication, patience,
-          accountability) and how guiding others deepens their own discipline. No hype; recommend the path,
-          do not sell it.]</p>
+
+      <blockquote class="reveal border-l-2 border-gold pl-6 mt-12 mb-10">
+        <p class="font-display text-2xl text-navy italic">“The best way to find yourself is to lose yourself in the service of others.”</p>
+        <cite class="eyebrow !text-slate-400 mt-3 block not-italic">— Mahatma Gandhi</cite>
+      </blockquote>
+
+      <div class="reveal space-y-5 text-slate/90">
+        <p>At Eight Hands Martial Arts Academy, leadership is viewed as an advanced application of self-governance. Before an individual can effectively guide others, they must first learn to govern their own attention, effort, conduct, and responsibility. For this reason, leadership development begins not with authority, but with participation.</p>
+        <p>Students who demonstrate maturity, consistency, and a commitment to growth may be invited to participate in mentorship and leadership opportunities within the academy. These experiences provide opportunities to assist newer students, contribute to the learning environment, and develop the habits necessary for responsible leadership.</p>
+        <p>Mentorship requires more than technical knowledge. Students learn to communicate clearly, remain patient under pressure, observe the needs of others, and provide support without removing responsibility. Through this process, developing leaders often discover that teaching strengthens their own learning. The act of guiding another person deepens awareness, reinforces discipline, and creates greater accountability for one's own actions.</p>
+        <p>As leadership responsibilities increase, students are encouraged to think beyond individual achievement and consider the wellbeing of the broader community. Stewardship involves contributing to systems that support others, helping preserve the culture of the academy, and ensuring that future students benefit from the same opportunities for growth and development.</p>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">Leadership in Practice</p>
+        <p class="text-slate/90 mb-4">Developing leaders are encouraged to cultivate:</p>
+        <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-2 text-slate/90">
+          {cultivate.map((x) => <li class="flex gap-3"><span class="text-red" aria-hidden="true">·</span>{x}</li>)}
+        </ul>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">A Recommended Path</p>
+        <div class="space-y-5 text-slate/90">
+          <p>Leadership opportunities are not required and are not pursued by every student. They are recommended for individuals who demonstrate a desire to contribute, support others, and deepen their own development through service.</p>
+          <p>The objective is not simply to create instructors. It is to develop individuals capable of leading responsibly, teaching effectively, and contributing positively to the communities they serve.</p>
+          <p>At its highest expression, leadership becomes stewardship—the willingness to leave people, places, and systems stronger than they were found.</p>
+        </div>
       </div>
     </div>
   </section>
