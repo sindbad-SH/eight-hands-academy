@@ -12,7 +12,7 @@ const SLIDE_COUNT = 5;
 const words = ['Responsibility', 'Participation', 'Discernment', 'Stewardship', 'Awareness', 'Presence', 'Character'];
 const slides = Array.from({ length: SLIDE_COUNT }, (_, i) => i);
 // Strongest shots rotated across the hero slides: mentoring / one-on-one instruction / community gathering.
-const slideImages = ['mentoring-1', 'instruction-3', 'community-1', 'mentoring-2', 'group-2'];
+const slideImages = ['mentoring-1', 'service-1', 'community-1', 'mentoring-2', 'group-2'];
 ---
 <section class="relative bg-navy overflow-hidden h-[480px] sm:h-[580px] lg:h-[700px]">
   <!-- Photo panel (inset, offset right). Peel slides clipped here. -->
@@ -25,7 +25,7 @@ const slideImages = ['mentoring-1', 'instruction-3', 'community-1', 'mentoring-2
       <div class="peel-slide absolute inset-0 will-change-transform" data-i={i}>
         <div class="absolute inset-0 bg-gradient-to-br from-navy-700 to-navy flex items-center justify-center">
           <span class="font-display leading-none text-stone/[0.06] select-none absolute text-[24vw] lg:text-[14rem]">{i + 1}</span>
-          <img src={withBase(`/img/${slideImages[i]}.jpg`)} alt="" loading={i === 0 ? 'eager' : 'lazy'} class="absolute inset-0 w-full h-full object-cover" />
+          <img src={withBase(`/img/${slideImages[i]}.jpg`)} alt="" loading={i === 0 ? 'eager' : 'lazy'} class="absolute inset-0 w-full h-full object-cover object-top" />
         </div>
       </div>
     ))}
