@@ -33,10 +33,10 @@ import { BOOKING_URL } from '../data/site';
     try { sessionStorage.setItem(KEY, '1'); } catch {}
   };
   if (pop && !dismissed()) {
-    setTimeout(reveal, 22000); // industry-standard time delay
+    setTimeout(reveal, 12000); // time delay
     const onScroll = () => {
       const p = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
-      if (p > 0.5) reveal();
+      if (p > 0.3) reveal();
     };
     window.addEventListener('scroll', onScroll, { passive: true });
   }
