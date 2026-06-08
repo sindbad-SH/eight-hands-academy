@@ -75,8 +75,15 @@ const wheelStops = framework
   .join(', ');
 const wheelLabels = framework.map(([name], i) => {
   const a = ((i + 0.5) * segDeg - 90) * (Math.PI / 180);
-  const r = 35; // % from center
+  const r = 36; // % from center
   return { name, x: (50 + r * Math.cos(a)).toFixed(1), y: (50 + r * Math.sin(a)).toFixed(1) };
+});
+// Cream divider lines between all 7 segments — so adjacent same-color arcs (e.g. Leadership & Confidence,
+// both navy where the 3-color cycle wraps) read as clearly separate sections.
+const wheelDividers = framework.map((_, i) => {
+  const t = (i * segDeg) * (Math.PI / 180);
+  const s = Math.sin(t), c = Math.cos(t);
+  return { x1: (50 + 25 * s).toFixed(2), y1: (50 - 25 * c).toFixed(2), x2: (50 + 50 * s).toFixed(2), y2: (50 - 50 * c).toFixed(2) };
 });
 
 // "Go Deeper / How We Learn" hub — the educational model (reskin-map §3.2).
@@ -216,13 +223,16 @@ const programs: [string, string, string, string][] = [
       </div>
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div class="reveal flex justify-center lg:order-2">
-          <div class="relative w-[min(420px,90vw)] aspect-square rounded-full" style={`background: conic-gradient(${wheelStops});`}>
-            <div class="absolute inset-[26%] rounded-full bg-stone-200 flex items-center justify-center text-center">
+          <div class="relative w-[min(420px,90vw)] aspect-square rounded-full overflow-hidden" style={`background: conic-gradient(${wheelStops});`}>
+            <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true">
+              {wheelDividers.map((d) => <line x1={d.x1} y1={d.y1} x2={d.x2} y2={d.y2} stroke="#F8F6F2" stroke-width="0.7" opacity="0.9" />)}
+            </svg>
+            <div class="absolute inset-[26%] rounded-full bg-stone-200 flex items-center justify-center text-center z-10 ring-2 ring-stone/70">
               <span class="font-display text-navy text-lg leading-tight px-4">Self-<br />Governance</span>
             </div>
             {wheelLabels.map((l) => (
               <span
-                class="absolute -translate-x-1/2 -translate-y-1/2 font-accent text-[10px] lg:text-xs uppercase tracking-wide text-stone font-semibold text-center w-16 leading-tight"
+                class="absolute -translate-x-1/2 -translate-y-1/2 z-10 font-accent text-[10px] uppercase tracking-tight text-stone font-semibold text-center w-24 leading-[1.1] [text-shadow:0_1px_3px_rgba(11,35,65,0.9)]"
                 style={`left:${l.x}%; top:${l.y}%;`}
               >{l.name}</span>
             ))}

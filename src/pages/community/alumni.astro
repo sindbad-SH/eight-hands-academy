@@ -4,10 +4,10 @@ import PageHeader from '../../components/PageHeader.astro';
 import Cta from '../../components/Cta.astro';
 import { withBase } from '../../data/site';
 
-// 3 distinct images (Jeanette 2026-06-08: alumni had her bag photo twice — de-duplicated).
-// member-1 = one bag photo (kept), member-2 = students training, reflection-2 = instructor + young student.
-// TODO: swap reflection-2 → /img/youth-1.jpg once the operator drops IMG_20260607_211528.jpg (the "kiddo" she sent) into the photo folder.
-const alumPhotos = ['/img/member-1.jpg', '/img/member-2.jpg', '/img/reflection-2.jpg'];
+// 3 distinct images (Jeanette 2026-06-08: alumni had her bag photo twice → de-duped; one bag photo
+// swapped for the "kiddo" she sent). member-1 = the kept bag photo, member-2 = students training,
+// youth-1 = the young student she emailed (IMG_20260607_211528.jpg, optimized).
+const alumPhotos = ['/img/member-1.jpg', '/img/member-2.jpg', '/img/youth-1.jpg'];
 ---
 <Base title="Alumni — Eight Hands Martial Arts Academy">
   <PageHeader
