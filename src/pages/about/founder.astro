@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Cta from '../../components/Cta.astro';
+import { withBase } from '../../data/site';
 
 const background = [
   'Martial Arts Since 1992',
@@ -23,7 +24,7 @@ const background = [
   <section class="bg-stone">
     <div class="container-content py-section-sm lg:py-section grid lg:grid-cols-[1fr_1.4fr] gap-12 items-start">
       <div class="reveal">
-        <div class="ph aspect-[3/4] mb-4">[PORTRAIT: founder — dignified, candid, not posed]</div>
+        <img src={withBase('/img/kasemir-portrait.jpg')} alt="Dr. Kasemir, Director" loading="lazy" class="aspect-[3/4] mb-4 w-full h-full object-cover" />
       </div>
       <div class="reveal space-y-5 text-slate/90">
         <p class="text-lg">Every student begins their journey for a different reason.</p>

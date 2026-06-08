@@ -40,11 +40,11 @@ const groups = [
 ];
 
 // Three enrollment pathways (reskin-map §3.2). Recommended after an assessment — not chosen off a menu.
-const cohorts: [string, string, string, string][] = [
-  ['membership', 'Academy Membership', 'Foundation', 'The starting pathway: structured private instruction plus group application, building discipline, focus, and confidence from the ground up.'],
-  ['scholar', 'Academy Scholar', 'Advancing', 'For the committed student: a deeper course of study that develops awareness, discernment, and accountability across every part of the practice.'],
-  ['fellow', 'Academy Fellow', 'By Invitation', 'Extended to advanced students ready to lead — the leadership track where capability is expressed by guiding and developing others.'],
-  ['recommended', 'A Recommended Path', 'After Assessment', 'Membership establishes a student’s place within the academy. Educational pathways determine how they develop within it.'],
+const cohorts: [string, string, string, string, string][] = [
+  ['membership', 'Academy Membership', 'Foundation', 'The starting pathway: structured private instruction plus group application, building discipline, focus, and confidence from the ground up.', '/img/instruction-2.jpg'],
+  ['scholar', 'Academy Scholar', 'Advancing', 'For the committed student: a deeper course of study that develops awareness, discernment, and accountability across every part of the practice.', '/img/group-1.jpg'],
+  ['fellow', 'Academy Fellow', 'By Invitation', 'Extended to advanced students ready to lead — the leadership track where capability is expressed by guiding and developing others.', '/img/reflection-2.jpg'],
+  ['recommended', 'A Recommended Path', 'After Assessment', 'Membership establishes a student’s place within the academy. Educational pathways determine how they develop within it.', '/img/mentoring-2.jpg'],
 ];
 
 // Rotating claims for the "More than technique" intro card (reference: panel-05 rotating claim card).
@@ -81,11 +81,11 @@ const wheelLabels = framework.map(([name], i) => {
 
 // "Go Deeper / How We Learn" hub — the educational model (reskin-map §3.2).
 // Private = Education · Group = Application Laboratory · Leadership = Advanced Application.
-const programs: [string, string, string][] = [
-  ['Individualized Instruction — The Core', '/learning/individualized-instruction', '[IMAGE — one-on-one instruction, mentor + student · 4:3 · 760×570px]'],
-  ['Group Instruction — The Application', '/learning/group-instruction', '[IMAGE — group practice on the floor, candid · 4:3 · 760×570px]'],
-  ['Leadership — Advanced Application', '/community/instructor-development', '[IMAGE — advanced student guiding / leading others · 4:3 · 760×570px]'],
-  ['Your Assessment — Where to Begin', '/learning#cohorts', '[IMAGE — calm one-on-one conversation, welcoming · 4:3 · 760×570px]'],
+const programs: [string, string, string, string][] = [
+  ['Individualized Instruction — The Core', '/learning/individualized-instruction', '[IMAGE — one-on-one instruction, mentor + student · 4:3 · 760×570px]', '/img/instruction-3.jpg'],
+  ['Group Instruction — The Application', '/learning/group-instruction', '[IMAGE — group practice on the floor, candid · 4:3 · 760×570px]', '/img/group-2.jpg'],
+  ['Leadership — Advanced Application', '/community/instructor-development', '[IMAGE — advanced student guiding / leading others · 4:3 · 760×570px]', '/img/mentoring-1.jpg'],
+  ['Your Assessment — Where to Begin', '/learning#cohorts', '[IMAGE — calm one-on-one conversation, welcoming · 4:3 · 760×570px]', '/img/instruction-2.jpg'],
 ];
 ---
 <Base home title="Learning at the Qi-House" description="An education in participation — martial arts as the medium.">
@@ -103,7 +103,7 @@ const programs: [string, string, string][] = [
           awareness, resilience, and accountability of a person who can lead themselves before influencing others.
         </p>
       </div>
-      <div class="ph aspect-[16/6] mt-12 reveal">[IMAGE — wide shot of practice in motion / the training space · 16:6 · 1760×660px · focused, calm]</div>
+      <div class="relative aspect-[16/6] mt-12 reveal overflow-hidden"><img src={withBase('/img/environment-1.jpg')} alt="The Qi-House training space" loading="lazy" class="absolute inset-0 w-full h-full object-cover" /></div>
     </div>
   </section>
 
@@ -126,10 +126,10 @@ const programs: [string, string, string][] = [
         ))}
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        {cohorts.map(([id, name, stage, blurb]) => (
+        {cohorts.map(([id, name, stage, blurb, img]) => (
           <div id={id} class="reveal scroll-mt-28">
             <a href={`#${id}`} class="group relative block aspect-[4/5] overflow-hidden bg-navy mb-4">
-              <div class="ph absolute inset-0 !rounded-none !border-0 !text-[10px] transition-transform duration-500 group-hover:scale-105">[IMAGE — {name} · 4:5 · 640×800px · candid student practice, focused]</div>
+              <img src={withBase(img)} alt={name} loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
               <div class="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/20 to-transparent"></div>
               <div class="absolute left-4 bottom-4"><HighlightEyebrow mark={stage} /></div>
             </a>
@@ -147,12 +147,14 @@ const programs: [string, string, string][] = [
       <div class="reveal lg:order-2">
         <div class="relative min-h-[420px] lg:min-h-[540px]">
           <ParallaxPhoto
+            img="/img/instruction-1.jpg"
             alt="[IMAGE — focused practice / instruction (primary) · PORTRAIT 4:5 · 1000×1250px]"
             frameClass="aspect-[4/5] w-[78%]"
             parallax={-104}
             innerClass="!text-xs"
           />
           <ParallaxPhoto
+            img="/img/service-1.jpg"
             alt="[IMAGE — practice carried outdoors / beyond the floor (secondary) · LANDSCAPE 4:3 · 900×675px]"
             frameClass="absolute -bottom-6 right-0 lg:-right-10 w-[58%] aspect-[4/3] z-20 ring-[10px] ring-stone"
             parallax={-100}
@@ -252,8 +254,8 @@ const programs: [string, string, string][] = [
         <h2 class="text-3xl lg:text-4xl">How the Education Is Delivered</h2>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4">
-        {programs.map(([label, href, alt]) => (
-          <div class="reveal"><PhotoNavCard label={label} href={href} alt={alt} center /></div>
+        {programs.map(([label, href, alt, img]) => (
+          <div class="reveal"><PhotoNavCard label={label} href={href} alt={alt} img={img} center /></div>
         ))}
       </div>
     </div>

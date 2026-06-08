@@ -6,15 +6,16 @@ interface Props {
   label: string;
   href: string;
   alt: string; // dimensioned, intent-annotated placeholder
+  img?: string; // real image src (e.g. /img/foo.jpg). When set, renders the photo instead of the placeholder.
   center?: boolean; // true = title centered with an even scrim (the reference's Admissions hub); default = bottom-left (About hub)
 }
 import { withBase } from '../data/site';
-const { label, href, alt, center = false } = Astro.props;
+const { label, href, alt, img, center = false } = Astro.props;
 ---
 <a href={withBase(href)} class="group relative block aspect-[4/3] overflow-hidden bg-navy">
-  <div class="ph absolute inset-0 !rounded-none !border-0 !text-[10px] transition-transform duration-500 ease-out group-hover:scale-105">
-    {alt}
-  </div>
+  {img
+    ? <img src={withBase(img)} alt={label} loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" />
+    : <div class="ph absolute inset-0 !rounded-none !border-0 !text-[10px] transition-transform duration-500 ease-out group-hover:scale-105">{alt}</div>}
   <div class:list={['absolute inset-0 transition-opacity duration-300', center ? 'bg-navy/45 group-hover:bg-navy/55' : 'bg-gradient-to-t from-navy/85 via-navy/25 to-transparent group-hover:from-navy/90']}></div>
   <h3
     class:list={[

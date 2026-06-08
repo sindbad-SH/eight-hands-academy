@@ -2,12 +2,13 @@
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Cta from '../../components/Cta.astro';
+import { withBase } from '../../data/site';
 ---
 <Base title="Director's Welcome — Eight Hands Martial Arts Academy">
   <PageHeader eyebrow="About" title="Director's Welcome" />
   <section class="bg-stone">
     <div class="container-content py-section-sm lg:py-section grid lg:grid-cols-[1fr_1.6fr] gap-12 items-start">
-      <div class="ph aspect-[3/4] reveal">[PORTRAIT: director — warm, composed]</div>
+      <img src={withBase('/img/kasemir-portrait.jpg')} alt="Dr. Kasemir, Director" loading="lazy" class="aspect-[3/4] reveal w-full h-full object-cover" />
       <div class="reveal space-y-5 text-lg text-slate/90">
         <p class="font-display text-2xl text-navy italic">Welcome to the Qi-House.</p>
         <p>Eight Hands Martial Arts Academy was founded on a simple belief: the most important lessons a person learns are not merely what to think or what to do, but how to govern themselves. While martial arts provide the vehicle, our purpose is much broader. We help students develop the confidence to act, the discipline to follow through, the focus to remain present, and the awareness to make thoughtful decisions under pressure.</p>

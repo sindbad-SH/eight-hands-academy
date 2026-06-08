@@ -26,13 +26,13 @@ const claims: [string, string][] = [
 ];
 
 // Photo-button hub — one image card per About sub-page (the reference's About card grid).
-const navCards: [string, string, string][] = [
-  ["Director's Welcome", '/about/directors-welcome', '[IMAGE — director portrait, candid · 4:3 · 960×720px]'],
-  ['The Qi-House Ethos', '/about/ethos', '[IMAGE — ethos / philosophy motif, calm + considered · 4:3 · 960×720px]'],
-  ['A Message to Students', '/about/founder', '[IMAGE — founder portrait / archival origins · 4:3 · 960×720px]'],
-  ['Governance', '/about/governance', '[IMAGE — standards / stewardship, architectural · 4:3 · 960×720px]'],
-  ['Leadership', '/about/leadership', '[IMAGE — instructors / mentors, candid · 4:3 · 960×720px]'],
-  ['Stewardship & Legacy', '/about/stewardship', '[IMAGE — continuity / legacy across generations · 4:3 · 960×720px]'],
+const navCards: [string, string, string, string][] = [
+  ["Director's Welcome", '/about/directors-welcome', '[IMAGE — director portrait, candid · 4:3 · 960×720px]', '/img/kasemir-portrait.jpg'],
+  ['The Qi-House Ethos', '/about/ethos', '[IMAGE — ethos / philosophy motif, calm + considered · 4:3 · 960×720px]', '/img/reflection-1.jpg'],
+  ['A Message to Students', '/about/founder', '[IMAGE — founder portrait / archival origins · 4:3 · 960×720px]', '/img/kasemir-portrait.jpg'],
+  ['Governance', '/about/governance', '[IMAGE — standards / stewardship, architectural · 4:3 · 960×720px]', '/img/environment-2.jpg'],
+  ['Leadership', '/about/leadership', '[IMAGE — instructors / mentors, candid · 4:3 · 960×720px]', '/img/group-2.jpg'],
+  ['Stewardship & Legacy', '/about/stewardship', '[IMAGE — continuity / legacy across generations · 4:3 · 960×720px]', '/img/community-1.jpg'],
 ];
 ---
 <Base home title="About — The Qi-House" description="An educational institution whose medium is martial arts.">
@@ -49,12 +49,14 @@ const navCards: [string, string, string][] = [
         <div class="reveal lg:order-2">
           <div class="relative min-h-[420px] lg:min-h-[540px]">
             <ParallaxPhoto
+              img="/img/instruction-2.jpg"
               alt="[IMAGE — student mid-practice, focused and composed (primary) · PORTRAIT 4:5 · 1000×1250px · development, self-governance]"
               frameClass="aspect-[4/5] w-[78%]"
               parallax={-104}
               innerClass="!text-xs"
             />
             <ParallaxPhoto
+              img="/img/exterior-wide.jpg"
               alt="[IMAGE — origins / archival (secondary, B&W) · LANDSCAPE 4:3 · 900×675px]"
               frameClass="absolute -bottom-6 right-0 lg:-right-10 w-[58%] aspect-[4/3] grayscale z-20 ring-[10px] ring-stone"
               parallax={-100}
@@ -93,8 +95,8 @@ const navCards: [string, string, string][] = [
 
       <!-- Photo-button hub: image cards to each About sub-page (flush grid, image + title overlay) -->
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 mt-20 lg:mt-28">
-        {navCards.map(([label, href, alt]) => (
-          <div class="reveal"><PhotoNavCard label={label} href={href} alt={alt} /></div>
+        {navCards.map(([label, href, alt, img]) => (
+          <div class="reveal"><PhotoNavCard label={label} href={href} alt={alt} img={img} /></div>
         ))}
       </div>
     </div>

@@ -51,7 +51,9 @@ const { eyebrow, heading, steps } = Astro.props;
   <div class="max-w-5xl mx-auto">
     {steps.map((s, i) => (
       <div class="pt-panel grid lg:grid-cols-2 gap-10 lg:gap-14 items-center" data-i={i} style={i === 0 ? '' : 'display:none'}>
-        <div class="ph aspect-[4/3] !text-[10px]">{s.img}</div>
+        {s.img.startsWith('/img/')
+          ? <div class="aspect-[4/3] overflow-hidden"><img src={withBase(s.img)} alt={s.subhead} loading="lazy" class="w-full h-full object-cover" /></div>
+          : <div class="ph aspect-[4/3] !text-[10px]">{s.img}</div>}
         <div>
           <h3 class="font-accent uppercase tracking-[0.12em] text-navy text-lg mb-4">{s.subhead}</h3>
           <p class="text-slate/90 leading-relaxed mb-7">{s.body}</p>

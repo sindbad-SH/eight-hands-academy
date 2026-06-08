@@ -20,18 +20,23 @@
  * differential reads as the front photo "racing" the back one. (This supersedes the earlier "secondary
  * ~2× larger" guidance, which assumed an un-normalised driver.)
  */
+import { withBase } from '../data/site';
 interface Props {
   alt: string; // intent-annotated placeholder / shot brief
+  img?: string; // real image src (e.g. /img/foo.jpg). When set, renders the photo instead of the placeholder.
+  imgAlt?: string;
   frameClass?: string; // aspect ratio, width, positioning, ring, z-index
   parallax?: number; // px; sign sets direction (neg = up on scroll-down)
   innerClass?: string;
 }
-const { alt, frameClass = '', parallax = -64, innerClass = '' } = Astro.props;
+const { alt, img, imgAlt, frameClass = '', parallax = -64, innerClass = '' } = Astro.props;
 // The frame itself is the parallax target. It needs a positioning context for the absolute fill.
 const positioned = /(^|\s)(absolute|fixed|sticky|relative)(\s|$)/.test(frameClass);
 const base = positioned ? '' : 'relative';
 ---
 
 <div class={`${base} overflow-hidden ${frameClass}`} data-parallax={parallax}>
-  <div class={`ph absolute inset-0 ${innerClass}`}>{alt}</div>
+  {img
+    ? <img src={withBase(img)} alt={imgAlt || 'Eight Hands Martial Arts Academy'} loading="lazy" class="absolute inset-0 w-full h-full object-cover" />
+    : <div class={`ph absolute inset-0 ${innerClass}`}>{alt}</div>}
 </div>

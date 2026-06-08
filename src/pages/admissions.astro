@@ -40,7 +40,7 @@ const steps = [
       'Start by telling us about the student and the outcomes you are after — confidence, discipline, focus, leadership, or a clearer sense of self-governance. Membership establishes your place within the academy, and the educational pathway we recommend determines how you develop within it. Your inquiry simply opens that conversation.',
     ctaText: 'Schedule an Assessment',
     ctaHref: BOOKING_URL,
-    img: '[IMAGE — prospective student/family in conversation with an instructor · 4:3 · 960×720px · candid, warm]',
+    img: '/img/instruction-2.jpg',
   },
   {
     tab: '2 — Assessment Booking',
@@ -49,59 +49,59 @@ const steps = [
       'Book your assessment directly. This is a developmental conversation, not a sales presentation — a chance to understand the goals, challenges, and readiness of the student before any pathway is recommended.',
     ctaText: 'Schedule an Assessment',
     ctaHref: BOOKING_URL,
-    img: '[IMAGE — hands selecting a time / a calendar moment, warm and unhurried · 4:3 · 960×720px]',
+    img: '/img/reflection-1.jpg',
   },
   {
     tab: '3 — Pre-Assessment Questionnaire',
     subhead: 'Clarify Goals Before You Arrive',
     body:
       'Ahead of the session, a short questionnaire helps surface what the student wants to develop and where they are starting from. It lets the conversation begin from understanding rather than guesswork, so the recommendation fits the person.',
-    img: '[IMAGE — a thoughtful, considered moment completing a brief questionnaire · 4:3 · 960×720px · not bureaucratic]',
+    img: '/img/instruction-1.jpg',
   },
   {
     tab: '4 — Assessment Session',
     subhead: 'A Developmental Conversation',
     body:
       'The assessment is a guided conversation about goals, challenges, and readiness — not a test to pass and not a sales pitch. It is where we learn how the practice can serve the student\'s growth in focus, resilience, and accountability.',
-    img: '[IMAGE — one-on-one developmental conversation on the training floor · 4:3 · 960×720px]',
+    img: '/img/instruction-3.jpg',
   },
   {
     tab: '5 — Program Recommendation',
     subhead: 'A Recommendation, Not a Sale',
     body:
       'Based on the conversation, we recommend the educational pathway that best fits the student — Academy Membership, Academy Scholar, or Academy Fellow (by invitation). You are guided toward the right starting point rather than asked to choose blindly.',
-    img: '[IMAGE — instructor walking a family through a recommended pathway · 4:3 · 960×720px]',
+    img: '/img/mentoring-2.jpg',
   },
   {
     tab: '6 — Enrollment',
     subhead: 'Begin With Intention',
     body:
       'Enrollment is a considered, mutual decision to begin. It marks a commitment to the work of self-governance — deliberate and intentional, never transactional.',
-    img: '[IMAGE — a considered enrollment moment, calm and grounded · 4:3 · 960×720px]',
+    img: '/img/instruction-2.jpg',
   },
   {
     tab: '7 — Orientation',
     subhead: 'Start on Solid Ground',
     body:
       'Orientation introduces the student to the culture, expectations, and rhythm of the academy. Individualized Instruction is the education, group instruction the application laboratory — and orientation sets the foundation for both.',
-    img: '[IMAGE — a new student being welcomed and oriented on the floor · 4:3 · 960×720px]',
+    img: '/img/community-1.jpg',
   },
   {
     tab: '8 — 90-Day Review',
     subhead: 'Measure Real Progress',
     body:
       'At ninety days, we review progress against the outcomes set at the assessment — growth in discipline, awareness, communication, and confidence — and adjust the path forward. Development is tracked, not assumed.',
-    img: '[IMAGE — instructor and student reviewing progress together · 4:3 · 960×720px]',
+    img: '/img/instruction-1.jpg',
   },
 ];
 
-const hub: [string, string, string][] = [
-  ['Scholarships', '/admissions/scholarships', '[IMAGE — access / support, dignified · 4:3 · 760×570px · CONFIRM program exists]'],
-  ['Summer Academy', '/community/summer-academy', '[IMAGE — intensive seasonal practice, outdoors/candid · 4:3 · 760×570px]'],
-  ['Events & Gatherings', '/community/events', '[IMAGE — community gathering / demonstration · 4:3 · 760×570px]'],
-  ['Meet the Founder', '/about/founder', '[IMAGE — founder portrait / archival origins · 4:3 · 760×570px]'],
-  ['The Qi-House Ethos', '/about/ethos', '[IMAGE — ethos / philosophy motif, calm + considered · 4:3 · 760×570px]'],
-  ['Community Impact', '/community/impact', '[IMAGE — service / contribution beyond the studio · 4:3 · 760×570px]'],
+const hub: [string, string, string, string][] = [
+  ['Scholarships', '/admissions/scholarships', '[IMAGE — access / support, dignified · 4:3 · 760×570px · CONFIRM program exists]', '/img/service-1.jpg'],
+  ['Summer Academy', '/community/summer-academy', '[IMAGE — intensive seasonal practice, outdoors/candid · 4:3 · 760×570px]', '/img/community-1.jpg'],
+  ['Events & Gatherings', '/community/events', '[IMAGE — community gathering / demonstration · 4:3 · 760×570px]', '/img/kasemir-portrait.jpg'],
+  ['Meet the Founder', '/about/founder', '[IMAGE — founder portrait / archival origins · 4:3 · 760×570px]', '/img/reflection-1.jpg'],
+  ['The Qi-House Ethos', '/about/ethos', '[IMAGE — ethos / philosophy motif, calm + considered · 4:3 · 760×570px]', '/img/service-1.jpg'],
+  ['Community Impact', '/community/impact', '[IMAGE — service / contribution beyond the studio · 4:3 · 760×570px]', '/img/community-1.jpg'],
 ];
 ---
 <Base home title="Admissions · Schedule an Assessment — The Qi-House" description="Admission to Eight Hands begins with an assessment — a developmental conversation about goals and readiness, not a sales presentation.">
@@ -120,7 +120,7 @@ const hub: [string, string, string][] = [
           are and where you want to go.
         </p>
       </div>
-      <div class="ph aspect-[16/6] mt-12 reveal">[IMAGE — wide establishing shot of the Qi-House / training space · 16:6 · 1760×660px · calm, grounded, architectural]</div>
+      <img src={withBase('/img/interior-wide.jpg')} alt="The Qi-House training space" loading="lazy" class="aspect-[16/6] mt-12 reveal w-full h-full object-cover" />
       <div class="text-center mt-10 reveal">
         <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">Schedule an Assessment</a>
       </div>
@@ -130,7 +130,7 @@ const hub: [string, string, string][] = [
   <!-- 2. Value-prop: MIRRORED — IMAGE right + (highlight heading + copy + inline link) left on lg -->
   <section class="bg-stone-200">
     <div class="container-content py-section-sm lg:py-section grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
-      <div class="ph aspect-[4/3] reveal !text-[10px] lg:order-2">[IMAGE — an open day / family meeting an instructor on the floor · 4:3 · 1040×780px · candid]</div>
+      <img src={withBase('/img/community-1.jpg')} alt="An open day at the Qi-House" loading="lazy" class="aspect-[4/3] reveal lg:order-2 w-full h-full object-cover" />
       <div class="reveal lg:order-1">
         <p class="font-accent uppercase tracking-[0.14em] text-xl lg:text-2xl text-navy mb-7 inline-flex flex-wrap items-center gap-x-2.5 gap-y-1">
           <span>A</span><span class="bg-red text-stone px-2 py-0.5">Recommended</span><span>Path</span>
@@ -190,9 +190,14 @@ const hub: [string, string, string][] = [
         </p>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
-        {Array.from({ length: 4 }).map((_, i) => (
+        {[
+          ['/img/kasemir-portrait.jpg', 'Dr. Kasemir'],
+          ['/img/sang-portrait.jpg', 'Sang Nguyen'],
+          ['/img/cole-portrait.jpg', 'Cole Wilson'],
+          ['/img/juan-portrait.jpg', 'Juan Gurule'],
+        ].map(([portrait, name]) => (
           <div class="reveal">
-            <div class="ph aspect-[3/4] mb-3 !text-[10px]">[PORTRAIT {i + 1} — 720×960px (3:4) · admissions lead / instructor, candid not posed]</div>
+            <img src={withBase(portrait)} alt={name} loading="lazy" class="aspect-[3/4] mb-3 w-full h-full object-cover" />
             <a href={withBase('/about/leadership')} class="font-display text-lg text-navy underline decoration-red/50 underline-offset-2 hover:text-red transition-colors">[Name — confirm]</a>
             <div class="eyebrow !text-slate-400 mt-1">[Role — confirm]</div>
           </div>
@@ -209,8 +214,8 @@ const hub: [string, string, string][] = [
         <h2 class="text-3xl lg:text-4xl">Learn More</h2>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3">
-        {hub.map(([label, href, alt]) => (
-          <div class="reveal"><PhotoNavCard label={label} href={href} alt={alt} center /></div>
+        {hub.map(([label, href, alt, img]) => (
+          <div class="reveal"><PhotoNavCard label={label} href={href} alt={alt} img={img} center /></div>
         ))}
       </div>
     </div>
@@ -237,12 +242,12 @@ const hub: [string, string, string][] = [
       </div>
       <div class="grid md:grid-cols-2 gap-6">
         {[
-          ['Find the Qi-House', '[IMAGE — the Qi-House entrance / exterior · 16:9 · 880×495px]', 'View Directions & Map', '#visit'],
-          ['Take a Virtual Tour', '[IMAGE — interior of the training space, wide · 16:9 · 880×495px]', 'Tour the Space', '#'],
+          ['Find the Qi-House', '/img/exterior-wide.jpg', 'View Directions & Map', '#visit'],
+          ['Take a Virtual Tour', '/img/interior-wide.jpg', 'Tour the Space', '#'],
         ].map(([title, img, btn, href]) => (
           <div class="reveal bg-navy p-5 lg:p-6">
             <h3 class="font-accent uppercase tracking-[0.1em] text-stone text-lg lg:text-xl mb-4">{title}</h3>
-            <div class="ph aspect-video !rounded-none mb-4">{img}</div>
+            <div class="aspect-video overflow-hidden mb-4"><img src={withBase(img)} alt={title} loading="lazy" class="w-full h-full object-cover" /></div>
             <a href={href} class="btn-ghost w-full !border-stone/40 !text-stone hover:!bg-stone hover:!text-navy">{btn}</a>
           </div>
         ))}

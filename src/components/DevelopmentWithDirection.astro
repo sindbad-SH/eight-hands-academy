@@ -7,10 +7,10 @@ import TopoTexture from './TopoTexture.astro';
 import { withBase } from '../data/site';
 
 const stages = [
-  { n: 'Observe', href: '/learning/observe', short: 'Awareness creates possibility.', long: 'Students learn to recognize patterns, understand themselves, and develop the awareness necessary for meaningful growth.', img: '[IMAGE — student receiving instruction during a private lesson · 16:9 · 1280×720px · real Eight Hands photo]', icon: 'eye' },
-  { n: 'Practice', href: '/learning/practice', short: 'Action develops capability.', long: 'Through consistent repetition and guided application, students transform knowledge into skill.', img: '[IMAGE — students actively training in class · 16:9 · 1280×720px · real photo]', icon: 'needle' },
-  { n: 'Integrate', href: '/learning/integrate', short: 'Consistency transforms knowledge into character.', long: 'Physical, mental, and emotional skills begin working together as a unified system.', img: '[IMAGE — student demonstrating leadership while training · 16:9 · 1280×720px · real photo]', icon: 'geo' },
-  { n: 'Contribute', href: '/learning/contribute', short: 'Development becomes service.', long: 'Students learn to apply their growth in ways that positively influence family, community, and future generations.', img: '[IMAGE — senior student mentoring younger students · 16:9 · 1280×720px · real photo]', icon: 'laurel' },
+  { n: 'Observe', href: '/learning/observe', short: 'Awareness creates possibility.', long: 'Students learn to recognize patterns, understand themselves, and develop the awareness necessary for meaningful growth.', img: '/img/instruction-1.jpg', icon: 'eye' },
+  { n: 'Practice', href: '/learning/practice', short: 'Action develops capability.', long: 'Through consistent repetition and guided application, students transform knowledge into skill.', img: '/img/group-2.jpg', icon: 'needle' },
+  { n: 'Integrate', href: '/learning/integrate', short: 'Consistency transforms knowledge into character.', long: 'Physical, mental, and emotional skills begin working together as a unified system.', img: '/img/mentoring-1.jpg', icon: 'geo' },
+  { n: 'Contribute', href: '/learning/contribute', short: 'Development becomes service.', long: 'Students learn to apply their growth in ways that positively influence family, community, and future generations.', img: '/img/mentoring-2.jpg', icon: 'laurel' },
 ];
 ---
 <section class="bg-navy text-stone relative overflow-hidden">
@@ -51,7 +51,7 @@ const stages = [
     <div class="reveal">
       <div class="relative aspect-video rounded-[16px] overflow-hidden shadow-2xl">
         {stages.map((s, i) => (
-          <div class="dwd-img ph absolute inset-0 !rounded-[16px] !border-0 !text-[10px] transition-opacity duration-300" data-stage={i} style={i === 0 ? 'opacity:1' : 'opacity:0'}>{s.img}</div>
+          <img src={withBase(s.img)} alt={`${s.n} stage`} loading="lazy" class="dwd-img absolute inset-0 w-full h-full object-cover rounded-[16px] transition-opacity duration-300" data-stage={i} style={i === 0 ? 'opacity:1' : 'opacity:0'} />
         ))}
       </div>
     </div>

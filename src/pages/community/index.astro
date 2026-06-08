@@ -26,13 +26,13 @@ const claims: [string, string][] = [
   ['Leadership in Practice', 'Advanced students apply what they have learned by guiding newer ones — leadership as a living skill.'],
 ];
 
-const hub: [string, string, string][] = [
-  ['Summer Academy', '/community/summer-academy', '[IMAGE — intensive seasonal practice, outdoors/candid · 4:3 · 760×570px]'],
-  ['Instructor Development', '/community/instructor-development', '[IMAGE — senior student teaching / leading a group · 4:3 · 760×570px]'],
-  ['Alumni', '/community/alumni', '[IMAGE — former students returned, across generations · 4:3 · 760×570px]'],
-  ['Community Impact', '/community/impact', '[IMAGE — service / contribution beyond the studio · 4:3 · 760×570px]'],
-  ['Events & Gatherings', '/community/events', '[IMAGE — a community gathering / demonstration · 4:3 · 760×570px]'],
-  ['Get Involved', '/admissions#visit', '[IMAGE — a newcomer welcomed onto the floor · 4:3 · 760×570px]'],
+const hub: [string, string, string, string][] = [
+  ['Summer Academy', '/community/summer-academy', '[IMAGE — intensive seasonal practice, outdoors/candid · 4:3 · 760×570px]', '/img/service-1.jpg'],
+  ['Instructor Development', '/community/instructor-development', '[IMAGE — senior student teaching / leading a group · 4:3 · 760×570px]', '/img/mentoring-1.jpg'],
+  ['Alumni', '/community/alumni', '[IMAGE — former students returned, across generations · 4:3 · 760×570px]', '/img/member-1.jpg'],
+  ['Community Impact', '/community/impact', '[IMAGE — service / contribution beyond the studio · 4:3 · 760×570px]', '/img/service-1.jpg'],
+  ['Events & Gatherings', '/community/events', '[IMAGE — a community gathering / demonstration · 4:3 · 760×570px]', '/img/community-1.jpg'],
+  ['Get Involved', '/admissions#visit', '[IMAGE — a newcomer welcomed onto the floor · 4:3 · 760×570px]', '/img/instruction-2.jpg'],
 ];
 ---
 <Base home title="Community — The Qi-House" description="Confidence, discipline, and focus develop fastest in community — among students, instructors, and families pursuing the same outcomes together.">
@@ -46,12 +46,14 @@ const hub: [string, string, string][] = [
         <div class="reveal lg:order-2">
           <div class="relative min-h-[420px] lg:min-h-[540px]">
             <ParallaxPhoto
+              img="/img/community-1.jpg"
               alt="[IMAGE — a student supported by peers / an instructor mid-encouragement, candid (primary) · PORTRAIT 4:5 · 1000×1250px]"
               frameClass="aspect-[4/5] w-[78%]"
               parallax={-104}
               innerClass="!text-xs"
             />
             <ParallaxPhoto
+              img="/img/group-2.jpg"
               alt="[IMAGE — parents and members at a gathering / demonstration, engaged (secondary) · LANDSCAPE 4:3 · 900×675px]"
               frameClass="absolute -bottom-6 right-0 lg:-right-10 w-[58%] aspect-[4/3] z-20 ring-[10px] ring-stone"
               parallax={-100}
@@ -89,8 +91,8 @@ const hub: [string, string, string][] = [
         <h2 class="text-3xl lg:text-4xl">Ways to Take Part</h2>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3">
-        {hub.map(([label, href, alt]) => (
-          <div class="reveal"><PhotoNavCard label={label} href={href} alt={alt} center /></div>
+        {hub.map(([label, href, alt, img]) => (
+          <div class="reveal"><PhotoNavCard label={label} href={href} alt={alt} img={img} center /></div>
         ))}
       </div>
     </div>

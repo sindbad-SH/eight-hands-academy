@@ -35,6 +35,9 @@ const houses: [string, string][] = [
   ['Resonance', 'Resonance occurs when understanding becomes influence.'],
 ];
 
+// News & Events thumbnails — rotate through available people/community photos.
+const newsImages = ['community-1', 'group-2', 'service-1', 'mentoring-2', 'group-1'];
+
 // Age-based program pathways → dedicated pages (client 2026-06-08).
 const programs: [string, string, string][] = [
   ['Early Youth Programs', 'Ages 2–6', '/programs/early-youth'],
@@ -83,12 +86,14 @@ const programs: [string, string, string][] = [
              the primary's edge and hangs below it). Top-aligned with the heading; taller than the copy. -->
         <div class="relative reveal min-h-[460px] lg:min-h-[620px] lg:order-2">
           <ParallaxPhoto
+            img="/img/instruction-3.jpg"
             alt="[IMAGE — primary (BACK layer) · 1040×1300px (4:5) · student mid-practice, focused and composed]"
             frameClass="aspect-[4/5] w-[80%] ml-auto"
             parallax={-104}
             innerClass="!text-xs"
           />
           <ParallaxPhoto
+            img="/img/instruction-1.jpg"
             alt="[IMAGE — secondary (FRONT layer, overhangs bottom-left) · 760×570px (4:3) · instructor guiding a student one-on-one]"
             frameClass="absolute -bottom-6 left-0 lg:-left-8 w-[58%] aspect-[4/3] z-20 ring-[10px] ring-navy"
             parallax={-100}
@@ -122,6 +127,7 @@ const programs: [string, string, string][] = [
       <!-- Inset assembly photo: navy gutters on all sides (NOT edge-to-edge); clip-and-drift parallax -->
       <div class="relative reveal mb-14 lg:mb-20">
         <ParallaxPhoto
+          img="/img/community-1.jpg"
           alt="[IMAGE — community assembly / gathering · INSET (navy gutters all sides) · 1500×625px (≈12:5) · participation, belonging across ages]"
           frameClass="aspect-[12/5]"
           parallax={-52}
@@ -152,12 +158,14 @@ const programs: [string, string, string][] = [
                bottom-left, crossing LEFT past the column into the copy's space (the reference's layered overlap). -->
           <div class="relative min-h-[440px] lg:min-h-[600px]">
             <ParallaxPhoto
+              img="/img/group-1.jpg"
               alt="[IMAGE — community life (primary) · PORTRAIT 5:6 · 1000×1200px · members across ages training together]"
               frameClass="w-[74%] ml-auto aspect-[5/6]"
               parallax={-104}
               innerClass="!text-xs"
             />
             <ParallaxPhoto
+              img="/img/group-2.jpg"
               alt="[IMAGE — shared moment (secondary) · LANDSCAPE 4:3 · 900×675px]"
               frameClass="absolute -bottom-6 left-0 lg:-left-20 w-[62%] aspect-[4/3] z-20 ring-[10px] ring-navy"
               parallax={-100}
@@ -180,8 +188,9 @@ const programs: [string, string, string][] = [
 
   <!-- 6 · Life at the Qi-House (= source panel-04 "Life on the Mountain") — full-bleed feature: bg + centered text + red icon CTA; placed directly after Community to match source order -->
   <section class="relative bg-navy text-stone overflow-hidden min-h-[70vh] flex items-center">
-    <div class="absolute inset-x-0 -top-16 -bottom-16 bg-gradient-to-b from-navy-700 via-navy to-navy-900" data-parallax="-48" aria-hidden="true"></div>
-    <span class="absolute left-1/2 -translate-x-1/2 bottom-5 z-10 text-[11px] italic text-stone/30 text-center px-4">[IMAGE — full-bleed environment / the Qi-House setting · 1920×1080px (16:9) · calm, aspirational, never combat]</span>
+    <div class="absolute inset-x-0 -top-16 -bottom-16 bg-gradient-to-b from-navy-700 via-navy to-navy-900" data-parallax="-48" aria-hidden="true">
+      <img src={withBase('/img/environment-1.jpg')} alt="" class="absolute inset-0 w-full h-full object-cover" />
+    </div>
     <div class="container-content relative z-10 py-section text-center max-w-2xl mx-auto reveal">
       <HighlightEyebrow pre="Life at the" mark="Qi-House" class="justify-center text-stone/80 mb-6" />
       <h2 class="text-3xl lg:text-4xl text-stone mb-6">An environment designed for development.</h2>
@@ -202,12 +211,14 @@ const programs: [string, string, string][] = [
         <!-- Layered cluster: large primary top-left + big secondary overhanging bottom-right, crossing right toward the copy. -->
         <div class="relative min-h-[440px] lg:min-h-[600px]">
           <ParallaxPhoto
+            img="/img/mentoring-1.jpg"
             alt="[IMAGE — meaningful challenge / leadership · PORTRAIT 4:5 · 1040×1300px]"
             frameClass="aspect-[4/5] w-[80%]"
             parallax={-104}
             innerClass="!text-xs"
           />
           <ParallaxPhoto
+            img="/img/service-1.jpg"
             alt="[IMAGE — service / outdoor development · LANDSCAPE 4:3 · 900×675px]"
             frameClass="absolute -bottom-6 right-0 lg:-right-12 w-[58%] aspect-[4/3] z-20 ring-[10px] ring-navy"
             parallax={-100}
@@ -290,7 +301,7 @@ const programs: [string, string, string][] = [
     <TopoTexture id="topo-prep" />
     <div class="relative w-full aspect-[21/9] overflow-hidden">
       <div class="absolute inset-x-0 -top-16 -bottom-16 bg-gradient-to-br from-navy-700 to-navy-900 flex items-center justify-center" data-parallax="-52">
-        <span class="text-[11px] italic text-stone/30 px-6 text-center max-w-md">[IMAGE — full-width · 2400×1030px (≈21:9) · service / contribution / outdoor development]</span>
+        <img src={withBase('/img/service-1.jpg')} alt="" class="absolute inset-0 w-full h-full object-cover" />
       </div>
     </div>
     <div class="container-content relative z-10 py-section grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
@@ -302,8 +313,8 @@ const programs: [string, string, string][] = [
       </div>
       <!-- Layered cluster: large primary top-right + big secondary overhanging bottom-left, crossing left toward the copy. -->
       <div class="reveal relative min-h-[420px] lg:min-h-[600px] lg:order-1">
-        <ParallaxPhoto alt="[IMAGE — service / contribution (primary) · PORTRAIT 4:5 · 960×1200px]" frameClass="aspect-[4/5] w-[78%] ml-auto" parallax={-104} innerClass="!text-xs" />
-        <ParallaxPhoto alt="[IMAGE — outdoor development (secondary) · LANDSCAPE 4:3 · 900×675px]" frameClass="absolute -bottom-6 left-0 lg:-left-16 w-[60%] aspect-[4/3] z-20 ring-[10px] ring-navy" parallax={-100} innerClass="!p-3 !text-[10px]" />
+        <ParallaxPhoto img="/img/mentoring-2.jpg" alt="[IMAGE — service / contribution (primary) · PORTRAIT 4:5 · 960×1200px]" frameClass="aspect-[4/5] w-[78%] ml-auto" parallax={-104} innerClass="!text-xs" />
+        <ParallaxPhoto img="/img/environment-3.jpg" alt="[IMAGE — outdoor development (secondary) · LANDSCAPE 4:3 · 900×675px]" frameClass="absolute -bottom-6 left-0 lg:-left-16 w-[60%] aspect-[4/3] z-20 ring-[10px] ring-navy" parallax={-100} innerClass="!p-3 !text-[10px]" />
       </div>
     </div>
   </section>
@@ -319,7 +330,7 @@ const programs: [string, string, string][] = [
       <Carousel class="text-stone reveal" label="News and events">
         {Array.from({ length: 5 }).map((_, i) => (
           <article class="snap-start shrink-0 w-[280px] sm:w-[320px]">
-            <div class="ph aspect-[4/3] !text-[10px]">[IMAGE — news / event {i + 1} · 640×480px (4:3)]</div>
+            <img src={withBase(`/img/${newsImages[i]}.jpg`)} alt={`News and events thumbnail ${i + 1}`} loading="lazy" class="aspect-[4/3] w-full h-full object-cover" />
             <div class="mt-4">
               <div class="font-accent uppercase tracking-[0.18em] text-[10px] text-stone/50">[DD Mon 2026] · [Category]</div>
               <a href={withBase('/community/events')} class="font-display text-lg text-stone hover:text-gold transition-colors block mt-1.5">[NEWS / EVENT {i + 1} — title]</a>
