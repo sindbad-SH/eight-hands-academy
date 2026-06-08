@@ -12,6 +12,20 @@ export const BRAND = {
 export const BOOKING_URL =
   'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1T_Oz4YqGFZD5nJfbWOzgz-G3mZnTYOh97zm_ko_h7e7hclLgzb_I4rmcdLkTwKPzk_hTRHkx9';
 
+// Real social profiles + contact (client-supplied 2026-06-08). Used in the footer and contact/visit spots.
+export const SOCIAL = {
+  facebook: 'https://www.facebook.com/8handsqihouse/',
+  instagram: 'https://www.instagram.com/panthersgate',
+  tiktok: 'https://tr.ee/c8kV2FAIAx', // NOTE: resolves to linktr.ee/panthersgate (a links hub), not a direct TikTok profile — confirm real TikTok URL.
+  yelp: 'https://www.yelp.com/biz/8-hands-martial-arts-berthoud',
+};
+export const CONTACT = {
+  email: 'ask@panthersgate.com',
+  cityState: 'Berthoud, Colorado',
+  mapUrl: 'https://share.google/vK3w0k4eZKqzUYDet', // client's Google share link → "The Qi House · 8 Hands Martial Arts"
+  mapEmbed: 'https://www.google.com/maps?q=8+Hands+Martial+Arts,+Berthoud,+CO&output=embed', // keyless embed by business name
+};
+
 // Prefix an internal path with the deploy base (set in astro.config.mjs `base`). On GitHub Pages the
 // site lives under a sub-path (e.g. /eight-hands-academy/), so every author-written internal link must
 // be run through this — Astro only auto-prefixes its own bundled `_astro/*` assets, not our <a href>s.
