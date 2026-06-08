@@ -1,0 +1,44 @@
+---
+// Homepage assessment-CTA popup: slides in from the bottom-right after a delay (or once the visitor
+// scrolls past ~50%). Dismissable (×) and remembers dismissal for the session so it never nags.
+// On-brand, low-pressure copy (no hype) — matches the academy's "a conversation, not a sale" voice.
+import { BOOKING_URL } from '../data/site';
+---
+<div
+  id="assessPopup"
+  class="fixed bottom-5 right-5 z-[60] w-[330px] max-w-[calc(100vw-2.5rem)] translate-y-8 opacity-0 invisible transition-all duration-500 ease-out"
+>
+  <div class="relative bg-navy text-stone rounded-[14px] shadow-2xl ring-1 ring-gold/30 p-6">
+    <button id="assessClose" type="button" aria-label="Dismiss" class="absolute right-3 top-2.5 text-stone/45 hover:text-stone text-2xl leading-none">&times;</button>
+    <div class="eyebrow !text-gold mb-2">Get Started</div>
+    <h3 class="font-display text-2xl text-stone mb-2 leading-snug">Ready to begin?</h3>
+    <p class="text-stone/75 text-sm leading-relaxed mb-5">Your assessment is a relaxed conversation about your goals and readiness — not a sales pitch. We'll help you find the right place to start.</p>
+    <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent w-full text-center">Schedule Your Assessment</a>
+  </div>
+</div>
+
+<script>
+  const KEY = 'eh_assess_popup_dismissed';
+  const pop = document.getElementById('assessPopup');
+  const closeBtn = document.getElementById('assessClose');
+  let shown = false;
+  const dismissed = () => { try { return sessionStorage.getItem(KEY) === '1'; } catch { return false; } };
+  const reveal = () => {
+    if (shown || !pop || dismissed()) return;
+    shown = true;
+    pop.classList.remove('translate-y-8', 'opacity-0', 'invisible');
+  };
+  const hide = () => {
+    pop?.classList.add('translate-y-8', 'opacity-0', 'invisible');
+    try { sessionStorage.setItem(KEY, '1'); } catch {}
+  };
+  if (pop && !dismissed()) {
+    setTimeout(reveal, 22000); // industry-standard time delay
+    const onScroll = () => {
+      const p = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+      if (p > 0.5) reveal();
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+  closeBtn?.addEventListener('click', hide);
+</script>
