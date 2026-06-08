@@ -50,7 +50,7 @@ import { BOOKING_URL, withBase } from '../data/site';
         </div>
 
         <!-- Main nav row (right-aligned) -->
-        <nav class="flex items-center gap-7">
+        <nav id="homeNav" class="flex items-center gap-7">
           {nav.map((item) => (
             <div class="group relative">
               <a href={withBase(item.href)} class="font-accent text-sm font-medium uppercase tracking-wide text-stone/90 hover:text-gold py-1.5 inline-flex items-center">
@@ -59,7 +59,7 @@ import { BOOKING_URL, withBase } from '../data/site';
               <!-- Dropdown (measured on the reference): single narrow PORTRAIT column (~280×439), white panel
                    with a RED top accent line, light hairline dividers between items, and item text that turns
                    RED on hover (no fill). -->
-              <div class="absolute right-0 top-full hidden group-hover:block w-[260px] bg-stone border-t-2 border-red shadow-md z-30 divide-y divide-navy/10">
+              <div class="dd absolute right-0 top-full invisible opacity-0 w-[260px] bg-stone border-t-2 border-red shadow-md z-30 divide-y divide-navy/10 transition-all duration-150">
                 {item.children.map(([label, href]) => (
                   <a href={withBase(href)} class="block px-5 py-2.5 text-sm text-slate hover:text-red transition-colors">{label}</a>
                 ))}
@@ -103,5 +103,19 @@ import { BOOKING_URL, withBase } from '../data/site';
       const open = m?.classList.toggle('hidden');
       t.setAttribute('aria-expanded', String(open === false));
     });
+
+    // Nav dropdowns: hover-open with a short close delay; only one open at a time (prevents stacking).
+    (() => {
+      const groups = [...document.querySelectorAll('#homeNav .group')];
+      let dt: ReturnType<typeof setTimeout>;
+      const hide = (g: Element) => { const d = g.querySelector('.dd'); if (!d) return; d.classList.add('invisible', 'opacity-0'); d.classList.remove('opacity-100', 'visible'); };
+      const show = (g: Element) => { groups.forEach((o) => { if (o !== g) hide(o); }); const d = g.querySelector('.dd'); if (!d) return; d.classList.remove('invisible', 'opacity-0'); d.classList.add('opacity-100', 'visible'); };
+      groups.forEach((g) => {
+        g.addEventListener('mouseenter', () => { clearTimeout(dt); show(g); });
+        g.addEventListener('mouseleave', () => { dt = setTimeout(() => hide(g), 260); });
+        g.addEventListener('focusin', () => { clearTimeout(dt); show(g); });
+        g.addEventListener('focusout', () => { dt = setTimeout(() => hide(g), 220); });
+      });
+    })();
   </script>
 </header>
