@@ -91,11 +91,11 @@ const programs: [string, string, string][] = [
       <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
         <!-- Layered cluster: large primary top-right + big secondary overhanging bottom-left (crosses past
              the primary's edge and hangs below it). Top-aligned with the heading; taller than the copy. -->
-        <div class="relative reveal min-h-[460px] lg:min-h-[620px] lg:order-2">
+        <div class="relative reveal min-h-[320px] lg:min-h-[420px] lg:order-2">
           <ParallaxPhoto
             img="/img/instruction-3.jpg"
-            alt="[IMAGE — primary (BACK layer) · 1040×1300px (4:5) · student mid-practice, focused and composed]"
-            frameClass="aspect-[4/5] w-[80%] ml-auto"
+            alt="[IMAGE — primary (BACK layer) · 1040×780px (4:3) · student mid-practice, focused and composed]"
+            frameClass="aspect-[4/3] w-[88%] ml-auto"
             parallax={-104}
             innerClass="!text-xs"
           />
@@ -216,11 +216,11 @@ const programs: [string, string, string][] = [
       <!-- Offset photo pair (secondary overlaps bottom-right) + video pill in open space below -->
       <div class="reveal lg:order-2">
         <!-- Layered cluster: large primary top-left + big secondary overhanging bottom-right, crossing right toward the copy. -->
-        <div class="relative min-h-[440px] lg:min-h-[600px]">
+        <div class="relative min-h-[320px] lg:min-h-[420px]">
           <ParallaxPhoto
             img="/img/mentoring-1.jpg"
-            alt="[IMAGE — meaningful challenge / leadership · PORTRAIT 4:5 · 1040×1300px]"
-            frameClass="aspect-[4/5] w-[80%]"
+            alt="[IMAGE — meaningful challenge / leadership · LANDSCAPE 4:3 · 1040×780px]"
+            frameClass="aspect-[4/3] w-[88%]"
             parallax={-104}
             innerClass="!text-xs"
           />
@@ -319,8 +319,8 @@ const programs: [string, string, string][] = [
         <GoldArrowLink href="/community/impact" text="Community Impact" class="text-stone" />
       </div>
       <!-- Layered cluster: large primary top-right + big secondary overhanging bottom-left, crossing left toward the copy. -->
-      <div class="reveal relative min-h-[420px] lg:min-h-[600px] lg:order-1">
-        <ParallaxPhoto img="/img/mentoring-2.jpg" alt="[IMAGE — service / contribution (primary) · PORTRAIT 4:5 · 960×1200px]" frameClass="aspect-[4/5] w-[78%] ml-auto" parallax={-104} innerClass="!text-xs" />
+      <div class="reveal relative min-h-[320px] lg:min-h-[420px] lg:order-1">
+        <ParallaxPhoto img="/img/mentoring-2.jpg" alt="[IMAGE — service / contribution (primary) · LANDSCAPE 4:3 · 960×720px]" frameClass="aspect-[4/3] w-[88%] ml-auto" parallax={-104} innerClass="!text-xs" />
         <ParallaxPhoto img="/img/environment-3.jpg" alt="[IMAGE — outdoor development (secondary) · LANDSCAPE 4:3 · 900×675px]" frameClass="absolute -bottom-6 left-0 lg:-left-16 w-[60%] aspect-[4/3] z-20 ring-[10px] ring-navy" parallax={-100} innerClass="!p-3 !text-[10px]" />
       </div>
     </div>

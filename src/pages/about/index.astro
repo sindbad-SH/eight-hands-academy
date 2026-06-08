@@ -27,9 +27,9 @@ const claims: [string, string][] = [
 
 // Photo-button hub — one image card per About sub-page (the reference's About card grid).
 const navCards: [string, string, string, string][] = [
-  ["Director's Welcome", '/about/directors-welcome', '[IMAGE — director portrait, candid · 4:3 · 960×720px]', '/img/kasemir-portrait.jpg'],
+  ["Director's Welcome", '/about/directors-welcome', '[IMAGE — director instructing, candid · 4:3 · 960×720px]', '/img/instruction-1.jpg'],
   ['The Qi-House Ethos', '/about/ethos', '[IMAGE — ethos / philosophy motif, calm + considered · 4:3 · 960×720px]', '/img/reflection-1.jpg'],
-  ['A Message to Students', '/about/founder', '[IMAGE — founder portrait / archival origins · 4:3 · 960×720px]', '/img/kasemir-portrait.jpg'],
+  ['A Message to Students', '/about/founder', '[IMAGE — instructor with students · 4:3 · 960×720px]', '/img/mentoring-2.jpg'],
   ['Governance', '/about/governance', '[IMAGE — standards / stewardship, architectural · 4:3 · 960×720px]', '/img/environment-2.jpg'],
   ['Leadership', '/about/leadership', '[IMAGE — instructors / mentors, candid · 4:3 · 960×720px]', '/img/group-2.jpg'],
   ['Stewardship & Legacy', '/about/stewardship', '[IMAGE — continuity / legacy across generations · 4:3 · 960×720px]', '/img/community-1.jpg'],
@@ -47,11 +47,11 @@ const navCards: [string, string, string, string][] = [
       <!-- Intro (mirrored R→L): RIGHT layered photo pair + ▶ pill · LEFT eyebrow + copy + link + rotating claim card -->
       <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-start">
         <div class="reveal lg:order-2">
-          <div class="relative min-h-[420px] lg:min-h-[540px]">
+          <div class="relative min-h-[300px] lg:min-h-[400px]">
             <ParallaxPhoto
               img="/img/instruction-2.jpg"
-              alt="[IMAGE — student mid-practice, focused and composed (primary) · PORTRAIT 4:5 · 1000×1250px · development, self-governance]"
-              frameClass="aspect-[4/5] w-[78%]"
+              alt="[IMAGE — student mid-practice, focused and composed (primary) · LANDSCAPE 4:3 · 1000×750px · development, self-governance]"
+              frameClass="aspect-[4/3] w-[88%]"
               parallax={-104}
               innerClass="!text-xs"
             />
