@@ -6,20 +6,23 @@ import { BOOKING_URL } from '../data/site';
 ---
 <div
   id="assessPopup"
-  class="fixed bottom-5 right-5 z-[60] w-[330px] max-w-[calc(100vw-2.5rem)] translate-y-8 opacity-0 invisible transition-all duration-500 ease-out"
+  class="fixed bottom-24 right-5 z-[60] w-[330px] max-w-[calc(100vw-2.5rem)] translate-y-8 opacity-0 invisible transition-all duration-500 ease-out"
 >
-  <div class="relative bg-navy text-stone rounded-[14px] shadow-2xl ring-1 ring-gold/30 p-6">
+  <div class="relative">
+    <div class="absolute -inset-2 rounded-[22px] bg-gold/40 blur-2xl" aria-hidden="true"></div>
+    <div class="relative bg-navy text-stone rounded-[14px] shadow-2xl ring-1 ring-gold/40 p-6">
     <button id="assessClose" type="button" aria-label="Dismiss" class="absolute right-3 top-2.5 text-stone/45 hover:text-stone text-2xl leading-none">&times;</button>
     <div class="eyebrow !text-gold mb-2">Get Started</div>
     <h3 class="font-display text-2xl text-stone mb-2 leading-snug">Ready to begin?</h3>
     <p class="text-stone/75 text-sm leading-relaxed mb-5">Your assessment is a relaxed conversation about your goals and readiness — not a sales pitch. We'll help you find the right place to start.</p>
     <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent w-full text-center">Schedule Your Assessment</a>
+    </div>
   </div>
 </div>
 
 <script>
   // Versioned key — bumping it resets all prior dismissals so the popup shows again for everyone.
-  const KEY = 'eh_assess_popup_v2';
+  const KEY = 'eh_assess_popup_v3';
   const pop = document.getElementById('assessPopup');
   const closeBtn = document.getElementById('assessClose');
   let shown = false;

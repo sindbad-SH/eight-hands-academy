@@ -15,7 +15,7 @@ export const BOOKING_URL =
 // Real social profiles + contact (client-supplied 2026-06-08). Used in the footer and contact/visit spots.
 export const SOCIAL = {
   facebook: 'https://www.facebook.com/8handsqihouse/',
-  instagram: 'https://www.instagram.com/panthersgate',
+  instagram: 'https://www.instagram.com/8hands_qihouse/',
   tiktok: 'https://www.tiktok.com/@panthersgate',
   yelp: 'https://www.yelp.com/biz/8-hands-martial-arts-berthoud', // Yelp listing slug still says "berthoud" (Yelp's, can't change); it's the active listing.
 };
