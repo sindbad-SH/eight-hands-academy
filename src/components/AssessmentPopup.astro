@@ -18,25 +18,24 @@ import { BOOKING_URL } from '../data/site';
 </div>
 
 <script>
-  const KEY = 'eh_assess_popup_dismissed';
+  // Versioned key — bumping it resets all prior dismissals so the popup shows again for everyone.
+  const KEY = 'eh_assess_popup_v2';
   const pop = document.getElementById('assessPopup');
   const closeBtn = document.getElementById('assessClose');
   let shown = false;
-  const dismissed = () => { try { return sessionStorage.getItem(KEY) === '1'; } catch { return false; } };
+  const seen = () => { try { return sessionStorage.getItem(KEY) === '1'; } catch { return false; } };
   const reveal = () => {
-    if (shown || !pop || dismissed()) return;
+    if (shown || !pop || seen()) return;
     shown = true;
+    try { sessionStorage.setItem(KEY, '1'); } catch {}   // show once per session (across pages)
     pop.classList.remove('translate-y-8', 'opacity-0', 'invisible');
   };
-  const hide = () => {
-    pop?.classList.add('translate-y-8', 'opacity-0', 'invisible');
-    try { sessionStorage.setItem(KEY, '1'); } catch {}
-  };
-  if (pop && !dismissed()) {
-    setTimeout(reveal, 12000); // time delay
+  const hide = () => { pop?.classList.add('translate-y-8', 'opacity-0', 'invisible'); };
+  if (pop && !seen()) {
+    setTimeout(reveal, 12000); // appears after ~12s …
     const onScroll = () => {
       const p = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
-      if (p > 0.3) reveal();
+      if (p > 0.3) reveal();   // … or once ~30% scrolled
     };
     window.addEventListener('scroll', onScroll, { passive: true });
   }

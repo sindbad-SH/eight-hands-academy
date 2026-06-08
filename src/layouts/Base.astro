@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import HomeHeader from '../components/HomeHeader.astro';
 import Footer from '../components/Footer.astro';
 import SearchOverlay from '../components/SearchOverlay.astro';
+import AssessmentPopup from '../components/AssessmentPopup.astro';
 import { withBase } from '../data/site';
 
 interface Props {
@@ -45,6 +46,7 @@ const {
     </main>
     <Footer />
     <SearchOverlay />
+    <AssessmentPopup />
 
     <script>
       import { gsap } from 'gsap';
