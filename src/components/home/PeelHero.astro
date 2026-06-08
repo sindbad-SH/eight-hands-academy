@@ -25,7 +25,7 @@ const slideImages = ['mentoring-1', 'service-1', 'community-1', 'mentoring-2', '
       <div class="peel-slide absolute inset-0 will-change-transform" data-i={i}>
         <div class="absolute inset-0 bg-gradient-to-br from-navy-700 to-navy flex items-center justify-center">
           <span class="font-display leading-none text-stone/[0.06] select-none absolute text-[24vw] lg:text-[14rem]">{i + 1}</span>
-          <img src={withBase(`/img/${slideImages[i]}.jpg`)} alt="" loading={i === 0 ? 'eager' : 'lazy'} class="absolute inset-0 w-full h-full object-cover object-top" />
+          <img src={withBase(`/img/${slideImages[i]}.jpg`)} alt="" loading={i === 0 ? 'eager' : 'lazy'} class:list={['absolute inset-0 w-full h-full object-cover', i === 0 && 'object-top']} />
         </div>
       </div>
     ))}
