@@ -1,0 +1,53 @@
+---
+// Programs sub-page — "Early Youth Programs" (Ages 2–6). Client copy verbatim (Sindbad 2026-06-06).
+// Mirrors the Learning detail template: PageHeader → quote → body → labelled list → prose sub-sections → CTA.
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Cta from '../../components/Cta.astro';
+
+const learns = [
+  'Listening and following directions',
+  'Balance and coordination',
+  'Focus and attention',
+  'Confidence through participation',
+  'Respect and social awareness',
+  'Self-control and emotional regulation',
+  'Positive learning habits',
+];
+---
+<Base title="Early Youth Programs — Eight Hands Martial Arts Academy">
+  <PageHeader eyebrow="Programs" title="Early Youth Programs" subtitle="Ages 2–6" />
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section max-w-3xl">
+      <blockquote class="reveal border-l-2 border-gold pl-6 mb-10">
+        <p class="font-display text-2xl text-navy italic">“Play is the highest form of research.”</p>
+        <cite class="eyebrow !text-slate-400 mt-3 block not-italic">— Albert Einstein</cite>
+      </blockquote>
+
+      <div class="reveal space-y-5 text-slate/90">
+        <p>The early years of childhood are a time of remarkable growth. During this stage, children are developing the habits, confidence, attention, and social skills that will influence how they learn and interact with the world for years to come. The Early Youth Program at Eight Hands provides a structured and supportive environment where young students can develop these foundational abilities through movement, participation, and guided instruction.</p>
+        <p>Classes are designed to be engaging, age-appropriate, and developmentally focused. Through carefully structured activities, children learn to listen, follow directions, take turns, communicate respectfully, and participate positively within a group setting. Physical skills such as balance, coordination, spatial awareness, and body control are introduced in ways that support both learning and enjoyment.</p>
+        <p>Our approach recognizes that confidence is built through experience. Young students are encouraged to try new things, overcome small challenges, and celebrate progress through consistent participation. Success is measured not by perfection, but by effort, growth, and a willingness to engage in the learning process.</p>
+        <p>Parents often seek martial arts for self-defense or discipline, but many discover benefits that extend far beyond physical skills. As students develop greater self-control, focus, and responsibility, these qualities frequently support positive outcomes at home, in school, and in social environments. The habits established during these formative years often become the foundation for future learning and personal development.</p>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">What Students Learn</p>
+        <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-2 text-slate/90">
+          {learns.map((x) => <li class="flex gap-3"><span class="text-red" aria-hidden="true">·</span>{x}</li>)}
+        </ul>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">The Role of Parents</p>
+        <p class="text-slate/90">Parents play an important role in the educational process. Consistent attendance, encouragement, and reinforcement at home help strengthen the lessons learned during training. By working together, families and instructors create an environment that supports healthy development and positive growth.</p>
+      </div>
+
+      <div class="reveal mt-12 border-t border-navy/10 pt-8">
+        <p class="eyebrow !text-navy mb-3">Foundations for Future Growth</p>
+        <p class="text-slate/90">The goal of the Early Youth Program is not simply to teach martial arts. It is to help children develop the confidence, focus, self-control, and learning habits that support future success. Through positive participation, structured challenge, and consistent encouragement, students begin building the foundations upon which later leadership, responsibility, and self-governance can grow.</p>
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>

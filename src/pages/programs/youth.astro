@@ -1,0 +1,55 @@
+---
+// Programs sub-page — "Youth Programs" (Ages 7–13). Client copy verbatim (_new_3.txt, 2nd group page).
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Cta from '../../components/Cta.astro';
+
+const growth = [
+  'Confidence through achievement',
+  'Discipline through consistency',
+  'Communication and interpersonal skills',
+  'Leadership and personal responsibility',
+  'Goal setting and perseverance',
+  'Focus and attention management',
+  'Problem-solving and adaptability',
+];
+---
+<Base title="Youth Programs — Eight Hands Martial Arts Academy">
+  <PageHeader eyebrow="Programs" title="Youth Programs" subtitle="Ages 7–13" />
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section max-w-3xl">
+      <blockquote class="reveal border-l-2 border-gold pl-6 mb-10">
+        <p class="font-display text-2xl text-navy italic">“The best way to predict the future is to create it.”</p>
+        <cite class="eyebrow !text-slate-400 mt-3 block not-italic">— Peter Drucker</cite>
+      </blockquote>
+
+      <div class="reveal space-y-5 text-slate/90">
+        <p>As children grow, so does their capacity for responsibility, independence, and leadership. The Youth Program is designed to help students develop the confidence, discipline, communication skills, and accountability necessary to navigate increasing challenges both inside and outside the academy.</p>
+        <p>During these years, students begin to encounter greater expectations at school, within friendships, and at home. They are asked to manage responsibilities, make decisions, communicate effectively, and persevere through difficulties. Training provides a practical environment in which these abilities can be developed through consistent participation, structured challenge, and meaningful achievement.</p>
+        <p>Students continue developing martial arts skills while also learning to set goals, solve problems, work cooperatively with others, and take ownership of their progress. Individualized instruction ensures that each student's educational pathway remains aligned with their unique strengths, challenges, and aspirations, while group participation provides opportunities to apply these lessons within a supportive community.</p>
+        <p>Confidence is developed through experience rather than encouragement alone. Students learn that capability grows through effort, that mistakes are part of learning, and that discipline is the bridge between goals and achievement. Over time, they begin to trust their own abilities because those abilities have been tested, refined, and earned.</p>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">Areas of Growth</p>
+        <p class="text-slate/90 mb-4">Students are encouraged to develop:</p>
+        <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-2 text-slate/90">
+          {growth.map((x) => <li class="flex gap-3"><span class="text-red" aria-hidden="true">·</span>{x}</li>)}
+        </ul>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">Learning Through Challenge</p>
+        <p class="text-slate/90">Growth occurs when students are presented with meaningful challenges and given the support necessary to overcome them. Whether learning a new skill, preparing for advancement, or navigating difficulties with peers, students are encouraged to approach obstacles as opportunities for development.</p>
+        <p class="text-slate/90 mt-4">This process helps students build resilience, self-confidence, and a greater willingness to engage with unfamiliar situations. Through repeated experiences of effort and achievement, they learn that capability is not fixed—it can be developed.</p>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">Preparing for Greater Responsibility</p>
+        <p class="text-slate/90">The Youth Program serves as a bridge between childhood and increasing independence. Students are encouraged to take ownership of their actions, contribute positively to their environment, and develop the habits that support future success.</p>
+        <p class="text-slate/90 mt-4">The objective is not simply to produce skilled martial artists. It is to help young people become capable, responsible, and confident individuals who are prepared to participate meaningfully in school, family life, and their communities.</p>
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>

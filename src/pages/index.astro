@@ -18,6 +18,30 @@ const differentiators = [
   ['Education, Not Combat', 'Martial arts is the medium; self-governance is the curriculum.'],
   ['Leadership & Accountability', 'Group training is the application laboratory — where capability becomes contribution.'],
 ];
+
+// The Twelve Houses — domains of participation (client copy, Jeanette 2026-06-08). Name + one-line aphorism.
+const houses: [string, string][] = [
+  ['Origins', 'Every journey begins with a reason to continue.'],
+  ['Foundations', 'Growth often arrives disguised as hunger.'],
+  ['Confidence', 'Confidence emerges when action meets uncertainty.'],
+  ['Relationship', 'Connection reveals what cannot be discovered alone.'],
+  ['Communication', 'What is expressed shapes what is remembered.'],
+  ['Perspective', 'Perspective changes the meaning of the path.'],
+  ['Purpose', 'Purpose gives direction to effort.'],
+  ['Contribution', 'What serves the individual eventually serves something greater.'],
+  ['Principle', 'Principles endure when circumstances change.'],
+  ['Exploration', 'Freedom expands with responsibility.'],
+  ['Integration', 'Wholeness is found not in perfection, but participation.'],
+  ['Resonance', 'Resonance occurs when understanding becomes influence.'],
+];
+
+// Age-based program pathways → dedicated pages (client 2026-06-08).
+const programs: [string, string, string][] = [
+  ['Early Youth Programs', 'Ages 2–6', '/programs/early-youth'],
+  ['Youth Programs', 'Ages 7–13', '/programs/youth'],
+  ['Adult Programs', 'Ages 14+', '/programs/adult'],
+  ['Community & Events', 'Students, Families & Guests', '/community/events'],
+];
 ---
 
 <Base home>
@@ -108,16 +132,16 @@ const differentiators = [
       <!-- Two columns — LEFT: heading + copy + Learn More + three age/track boxes · RIGHT: overlaid clip-drift photos; video pill BELOW in open space -->
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
         <div class="reveal lg:order-2">
-          <h2 class="text-3xl lg:text-4xl text-stone mb-6 leading-tight">You grow through <span class="bg-red text-stone px-2 box-decoration-clone">participation</span>.</h2>
-          <p class="text-stone/80 mb-7 leading-relaxed">Confidence and communication are built in company, not in isolation. Training alongside others — across ages and stages — is where awareness sharpens, accountability takes hold, and a sense of belonging takes root.</p>
+          <h2 class="text-3xl lg:text-4xl text-stone mb-6 leading-tight">Development Happens <span class="bg-red text-stone px-2 box-decoration-clone">Together</span></h2>
+          <p class="text-stone/80 mb-7 leading-relaxed">Confidence, communication, and leadership are strengthened through participation. Training alongside others—across ages, backgrounds, and levels of experience—creates opportunities to develop awareness, accountability, and a sense of belonging. The community becomes part of the educational experience, helping students learn not only from instructors, but from one another.</p>
           <GoldArrowLink href="/community" text="Learn More" class="mb-9 text-stone" />
           <div class="space-y-3 max-w-md">
-            {[['Youth Practice', 'Ages 6–13'], ['Adult Practice', 'Ages 14+'], ['Families & Community', 'All ages']].map(([t, a]) => (
-              <a href={withBase('/learning')} class="flex items-center gap-4 border border-stone/20 px-5 py-4 hover:border-gold transition-colors">
+            {programs.map(([t, a, href]) => (
+              <a href={withBase(href)} class="flex items-center gap-4 border border-stone/20 px-5 py-4 hover:border-gold transition-colors">
                 <span class="w-9 h-9 border border-gold/50 flex items-center justify-center text-gold shrink-0">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M17 11l2 2 4-4" /></svg>
                 </span>
-                <span class="font-accent text-sm uppercase tracking-[0.14em] text-stone">{t}<span class="text-stone/45 normal-case tracking-normal"> · {a} [confirm]</span></span>
+                <span class="font-accent text-sm uppercase tracking-[0.14em] text-stone">{t}<span class="text-stone/45 normal-case tracking-normal"> · {a}</span></span>
               </a>
             ))}
           </div>
@@ -222,10 +246,11 @@ const differentiators = [
         <p class="text-stone/70 mt-5 leading-relaxed">Within them, Eight Hands recommends a pathway suited to you — Academy Membership, Academy Scholar, or Academy Fellow (by invitation). Membership establishes your place within the academy; the pathway we recommend determines how you develop within it.</p>
       </div>
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-16">
-        {Array.from({ length: 12 }).map((_, i) => (
+        {houses.map(([name, line], i) => (
           <div class="reveal border border-stone/15 bg-white/[0.04] p-5 hover:border-gold transition-colors">
-            <div class="font-display text-2xl text-stone">House {i + 1}</div>
-            <p class="ph mt-3 !p-3 !text-xs">[HOUSE {i + 1}: evocative one-line — non-explanatory]</p>
+            <div class="font-accent text-[11px] uppercase tracking-[0.16em] text-gold/70 mb-1">Domain {i + 1}</div>
+            <div class="font-display text-2xl text-stone">{name}</div>
+            <p class="mt-2 text-stone/70 text-sm italic leading-snug">{line}</p>
           </div>
         ))}
       </div>
@@ -245,24 +270,18 @@ const differentiators = [
     </div>
   </section>
 
-  <!-- 10 · Testimonials — carousel of B&W portrait cards (CLIENT ORIGINALITY: alumni→member stories; grouped with Twelve Houses before the source tail Prep→News→Video→CTA) -->
+  <!-- 10 · A Culture of Stewardship (replaces the testimonials carousel per client 2026-06-08) -->
   <section class="bg-navy text-stone relative overflow-hidden">
     <TopoTexture id="topo-voices" />
-    <div class="container-content relative z-10 py-section">
-      <div class="text-center mb-10 reveal">
-        <HighlightEyebrow pre="Voices of the" mark="Community" class="justify-center text-stone/70" />
+    <div class="container-content relative z-10 py-section max-w-3xl mx-auto reveal">
+      <div class="text-center mb-8">
+        <HighlightEyebrow pre="A Culture of" mark="Stewardship" class="justify-center text-stone/70" />
       </div>
-      <Carousel class="text-stone reveal" label="Community voices">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <figure class="snap-start shrink-0 w-[260px] sm:w-[300px]">
-            <div class="ph aspect-[4/5] grayscale !text-[10px]">[PORTRAIT {i + 1} — B&W · 640×800px (4:5) · member / alum / instructor, candid]</div>
-            <figcaption class="mt-4">
-              <div class="font-display text-xl text-stone">[Name]</div>
-              <div class="font-accent uppercase tracking-[0.18em] text-[11px] text-stone/50 mt-1">[Role / Cohort]</div>
-            </figcaption>
-          </figure>
-        ))}
-      </Carousel>
+      <div class="space-y-5 text-stone/80 leading-relaxed">
+        <p>The strongest communities are built by individuals who choose to contribute. At the Qi-House, students are encouraged not only to pursue their own development, but also to support the growth of others through example, encouragement, and service.</p>
+        <p>Learning becomes more meaningful when it is shared. Families reinforce habits at home, instructors provide guidance and accountability, and students learn that their actions influence the people around them. In this way, development becomes more than a personal achievement—it becomes a responsibility.</p>
+        <p>Stewardship means leaving something stronger than you found it. Through participation, mentorship, and contribution, students help sustain a culture that benefits current members and future generations alike.</p>
+      </div>
     </div>
   </section>
 

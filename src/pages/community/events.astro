@@ -1,51 +1,52 @@
 ---
+// Community sub-page — "Community & Events". Client copy verbatim (Jeanette 2026-06-06).
+// Mirrors the Learning detail template: PageHeader → quote → body → labelled list → prose closing → CTA.
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Cta from '../../components/Cta.astro';
 
-const filters = ['All', 'Community News', 'Events', 'Leadership', 'Service'];
+const participate = [
+  'Academy celebrations and gatherings',
+  'Demonstrations and showcases',
+  'Educational workshops',
+  'Community service initiatives',
+  'Seasonal events and family activities',
+  'Leadership and mentorship opportunities',
+];
 ---
-<Base title="Events & Gatherings — The Qi-House">
-  <PageHeader eyebrow="Community" title="Events & Gatherings" subtitle="Where practice becomes participation — the shared life of the Qi-House community." />
-
+<Base title="Community & Events — Eight Hands Martial Arts Academy">
+  <PageHeader eyebrow="Community" title="Community & Events" subtitle="Students, Families & Guests" />
   <section class="bg-stone">
-    <div class="container-content py-section-sm lg:py-section">
-      <!-- Filters -->
-      <div class="flex flex-wrap gap-2 mb-10 reveal">
-        {filters.map((f, i) => (
-          <button class="font-accent text-sm px-4 py-2 rounded-[10px] border border-navy/20 text-navy hover:bg-navy hover:text-stone transition-colors" data-active={i === 0 ? 'true' : 'false'}>{f}</button>
-        ))}
+    <div class="container-content py-section-sm lg:py-section max-w-3xl">
+      <blockquote class="reveal border-l-2 border-gold pl-6 mb-10">
+        <p class="font-display text-2xl text-navy italic">“We cannot live only for ourselves. A thousand fibers connect us with our fellow men.”</p>
+        <cite class="eyebrow !text-slate-400 mt-3 block not-italic">— Herman Melville</cite>
+      </blockquote>
+
+      <div class="reveal space-y-5 text-slate/90">
+        <p>While development begins with the individual, it is strengthened through participation in a community. The Qi-House is more than a place where classes are taught; it is a gathering place for students, families, instructors, alumni, and guests who share a commitment to growth, learning, and positive contribution.</p>
+        <p>Throughout the year, the academy hosts a variety of events that bring the community together beyond regular training. Seasonal gatherings, demonstrations, workshops, celebrations, service projects, and special events provide opportunities for students and families to connect, share experiences, and participate in the culture of the academy.</p>
+        <p>These events serve an educational purpose as well as a social one. Students learn that development does not occur in isolation. Confidence grows through participation. Leadership develops through service. Communication improves through interaction. Community activities create opportunities to practice these skills in ways that extend beyond formal instruction.</p>
+        <p>Families play an important role in the educational process. By remaining informed, engaged, and supportive, they help reinforce the habits and values being developed through training. Community events create opportunities for parents and families to better understand the student's journey while strengthening relationships within the academy.</p>
       </div>
 
-      <!-- Featured -->
-      <article class="reveal grid lg:grid-cols-2 gap-8 items-center mb-14 bg-white border border-navy/10 rounded-sm overflow-hidden">
-        <div class="ph aspect-[4/3] !border-0 !rounded-none">[IMAGE: featured event — community gathering, candid]</div>
-        <div class="p-8">
-          <div class="eyebrow !text-slate-400 mb-3">[Category] · [Date]</div>
-          <h2 class="text-2xl lg:text-3xl mb-4">[FEATURED EVENT: title — workshop, leadership day, or community gathering]</h2>
-          <p class="text-slate/90 mb-6">[COPY: 2–3 sentences, lead with service and participation.]</p>
-          <a href="#" class="text-red font-accent text-xs uppercase tracking-eyebrow">Read More</a>
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">Opportunities to Participate</p>
+        <p class="text-slate/90 mb-4">Throughout the year, students and families may take part in:</p>
+        <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-2 text-slate/90">
+          {participate.map((x) => <li class="flex gap-3"><span class="text-red" aria-hidden="true">·</span>{x}</li>)}
+        </ul>
+      </div>
+
+      <div class="reveal mt-12 border-t border-navy/10 pt-8">
+        <p class="eyebrow !text-navy mb-3">A Culture of Participation</p>
+        <div class="space-y-5 text-slate/90">
+          <p>The strongest communities are built by individuals who choose to contribute. Students are encouraged not only to pursue their own development, but also to support the growth of others through encouragement, example, and participation.</p>
+          <p>Every event, gathering, and shared experience helps strengthen the relationships that make meaningful development possible. Through these opportunities, students discover that learning is not simply an individual pursuit—it is something that flourishes within a healthy and engaged community.</p>
+          <p>The Qi-House exists because of the people who participate within it. Together, students, families, instructors, and alumni help create an environment where growth, responsibility, and stewardship can thrive.</p>
         </div>
-      </article>
-
-      <!-- List -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <article class="reveal bg-white border border-navy/10 rounded-sm overflow-hidden">
-            <div class="ph aspect-[16/9] !border-0 !rounded-none">[IMAGE: event {i + 1}]</div>
-            <div class="p-6">
-              <div class="eyebrow !text-slate-400 mb-2">[Category] · [Date]</div>
-              <h3 class="font-display text-lg text-navy">[EVENT {i + 1}: title]</h3>
-            </div>
-          </article>
-        ))}
-      </div>
-
-      <div class="text-center mt-12 reveal">
-        <button class="btn-ghost">Load More</button>
       </div>
     </div>
   </section>
-
-  <Cta title="Join the community." text="Observe a class, attend a gathering, or begin your inquiry." />
+  <Cta />
 </Base>

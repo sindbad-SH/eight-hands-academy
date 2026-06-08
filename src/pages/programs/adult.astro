@@ -1,0 +1,57 @@
+---
+// Programs sub-page — "Adult Programs" (Ages 14+). Client copy verbatim (_new_3.txt, page 3).
+// Mirrors the Learning detail template: PageHeader → quote → body → labelled list → prose sub-sections → CTA.
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Cta from '../../components/Cta.astro';
+
+const develops = [
+  'Martial arts and self-defense',
+  'Communication and interpersonal effectiveness',
+  'Leadership and decision-making',
+  'Confidence and resilience',
+  'Neurohacking and human development',
+  'Personal effectiveness and productivity',
+  'Self-awareness and self-governance',
+];
+---
+<Base title="Adult Programs — Eight Hands Martial Arts Academy">
+  <PageHeader eyebrow="Programs" title="Adult Programs" subtitle="Ages 14+" />
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section max-w-3xl">
+      <blockquote class="reveal border-l-2 border-gold pl-6 mb-10">
+        <p class="font-display text-2xl text-navy italic">“Knowing others is intelligence; knowing yourself is true wisdom. Mastering others is strength; mastering yourself is true power.”</p>
+        <cite class="eyebrow !text-slate-400 mt-3 block not-italic">— Lao Tzu</cite>
+      </blockquote>
+
+      <div class="reveal space-y-5 text-slate/90">
+        <p>Adult students arrive with diverse goals and life experiences. Some seek practical self-defense, others are looking to improve confidence, communication, focus, leadership, health, or personal effectiveness. While the reasons for beginning may differ, many discover that the most meaningful outcomes come from developing a greater capacity to understand and govern themselves.</p>
+        <p>At Eight Hands, adult education is individualized. Students work directly with an instructor to identify goals, assess current strengths and challenges, and develop a pathway that supports their growth. Depending upon the student's interests and educational program, instruction may include martial arts, communication, leadership development, counseling, neurohacking, symbolic systems, and related areas of study.</p>
+        <p>The objective is not simply the acquisition of knowledge. Information has little value unless it can be applied. Students are encouraged to translate understanding into action, develop practical skills, and cultivate habits that support long-term growth. Through consistent participation, they learn to approach challenges with greater clarity, responsibility, and confidence.</p>
+        <p>Many adults spend years developing professional expertise while investing comparatively little time in understanding how they think, communicate, learn, make decisions, and respond under pressure. The educational model at Eight Hands seeks to address this imbalance by helping students develop both capability and self-awareness in ways that can be applied throughout daily life.</p>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">Areas of Development</p>
+        <p class="text-slate/90 mb-4">Students may pursue growth in areas including:</p>
+        <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-2 text-slate/90">
+          {develops.map((x) => <li class="flex gap-3"><span class="text-red" aria-hidden="true">·</span>{x}</li>)}
+        </ul>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">Individualized Educational Pathways</p>
+        <p class="text-slate/90">No two students begin from the same place. Educational pathways are recommended according to individual goals, interests, experience, and desired outcomes. This allows instruction to remain flexible while maintaining a clear focus on meaningful development.</p>
+        <p class="text-slate/90 mt-4">Students are encouraged to progress at a pace appropriate to their circumstances while receiving guidance, accountability, and support throughout the process.</p>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">Development Beyond Training</p>
+        <p class="text-slate/90">The purpose of adult education at Eight Hands is not simply to improve performance in a particular activity. It is to strengthen the ability to think clearly, act deliberately, communicate effectively, and take responsibility for one's choices.</p>
+        <p class="text-slate/90 mt-4">As students develop greater confidence, discipline, and self-awareness, they often discover that the lessons learned through training extend into relationships, careers, families, and communities. Growth becomes valuable not because it changes what a person does, but because it changes what they are capable of becoming.</p>
+        <p class="text-slate/90 mt-4">The ultimate goal is self-governance: the ability to perceive clearly, choose deliberately, and act responsibly in service of a meaningful life.</p>
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>

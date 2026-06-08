@@ -1,18 +1,45 @@
 ---
-// Learning sub-page 3/6 — "Integrate" (development stage 3). PLACEHOLDER: Jeanette's 2026-06-06 batch
-// supplied Observe, Practice, and Contribute but NOT Integrate — flagged for her. Interim body reuses her
-// own short stage copy from "Development With Direction"; the full treatment (quote + lists) is pending.
+// Learning sub-page 3/6 — "Integrate" (development stage 3). Client copy verbatim (Jeanette 2026-06-08).
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Cta from '../../components/Cta.astro';
+
+const learns = [
+  'Personal responsibility',
+  'Consistency of action',
+  'Emotional regulation',
+  'Alignment between values and behavior',
+  'Confidence through experience',
+  'Character development',
+];
 ---
 <Base title="Integrate — Learning at the Qi-House">
   <PageHeader eyebrow="The Development Path" title="Integrate" subtitle="Consistency Transforms Knowledge Into Character" />
   <section class="bg-stone">
     <div class="container-content py-section-sm lg:py-section max-w-3xl">
+      <blockquote class="reveal border-l-2 border-gold pl-6 mb-10">
+        <p class="font-display text-2xl text-navy italic">“One does not become enlightened by imagining figures of light, but by making the darkness conscious.”</p>
+        <cite class="eyebrow !text-slate-400 mt-3 block not-italic">— Carl Jung</cite>
+      </blockquote>
+
       <div class="reveal space-y-5 text-slate/90">
-        <p>Between practice and contribution comes integration — the stage where physical, mental, and emotional skills begin working together as a unified system. Confidence, focus, and discipline stop being separate exercises and start becoming character: the steady, dependable way a student carries themselves under pressure.</p>
-        <p class="ph !text-sm !text-left !p-5">[COPY — Integrate stage: full treatment pending from client, to match the Observe / Practice / Contribute pages: an opening quote, 4–5 paragraphs, a “What Students Learn” list, and a “Why It Matters” close.]</p>
+        <p>Learning begins with awareness and develops through practice, but lasting growth occurs when knowledge becomes part of how a person thinks, acts, and lives. Integration is the process through which skills, habits, and lessons become character.</p>
+        <p>At Eight Hands, students are encouraged to move beyond simply knowing what to do. Through consistent participation and application, they begin to embody the qualities they are developing. Discipline becomes more than following instructions. Confidence becomes more than feeling capable. Responsibility becomes more than completing a task. These qualities gradually become part of a student’s identity and everyday behavior.</p>
+        <p>Integration occurs when lessons learned in training begin to appear in other areas of life. A student who learns patience while practicing a skill may apply that same patience at school, at work, or in relationships. A student who develops confidence during training may begin communicating more effectively, taking greater initiative, or approaching challenges with increased resilience. Growth becomes meaningful when it extends beyond the environment in which it was first learned.</p>
+        <p>This process requires consistency. Knowledge alone rarely changes behavior. Real transformation occurs when individuals repeatedly apply what they have learned until it becomes natural. Through guided instruction, reflection, and experience, students learn to align their actions with their values and their intentions with their behavior.</p>
+        <p>Integration is where development becomes visible. Students begin to trust themselves because they have demonstrated their capabilities through action. They become more resilient because they have practiced overcoming difficulty. They become more accountable because responsibility has become part of their character rather than merely an expectation.</p>
+      </div>
+
+      <div class="reveal mt-12">
+        <p class="eyebrow !text-navy mb-4">What Students Learn</p>
+        <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-2 text-slate/90">
+          {learns.map((x) => <li class="flex gap-3"><span class="text-red" aria-hidden="true">·</span>{x}</li>)}
+        </ul>
+      </div>
+
+      <div class="reveal mt-12 border-t border-navy/10 pt-8">
+        <p class="eyebrow !text-navy mb-3">When Learning Becomes Character</p>
+        <p class="text-slate/90">Lasting development occurs when knowledge becomes behavior and behavior becomes character. Students who integrate what they learn develop greater self-trust, resilience, and accountability, allowing them to navigate life’s challenges with increasing confidence and maturity.</p>
       </div>
     </div>
   </section>
