@@ -5,17 +5,9 @@ import GoldArrowLink from '../../components/GoldArrowLink.astro';
 import ParallaxPhoto from '../../components/ParallaxPhoto.astro';
 import ClaimRotator from '../../components/ClaimRotator.astro';
 import PhotoNavCard from '../../components/PhotoNavCard.astro';
+import { aboutSubnav } from '../../data/nav';
 
-// Section sub-nav (the About-section pages). Adapt-don't-pad: 7 real pages vs the reference's 11.
-const subnav: [string, string][] = [
-  ['About the Qi-House', '/about'],
-  ["Director's Welcome", '/about/directors-welcome'],
-  ['The Qi-House Ethos', '/about/ethos'],
-  ['A Message to Students', '/about/founder'],
-  ['Governance', '/about/governance'],
-  ['Leadership', '/about/leadership'],
-  ['Stewardship & Legacy', '/about/stewardship'],
-];
+// Section sub-nav lives in data/nav.ts (aboutSubnav) so every About page stays in sync.
 
 // Rotating claim card — outcomes-led, real brand facts only (no fabrication). Maps the reference's institutional claims.
 const claims: [string, string][] = [
@@ -37,7 +29,7 @@ const navCards: [string, string, string, string][] = [
 ---
 <Base home title="About — The Qi-House" description="An educational institution whose medium is martial arts.">
   <!-- Section sub-nav directly under the navy header (reference: the About-section local nav) -->
-  <SectionSubnav items={subnav} active="/about" label="About section" />
+  <SectionSubnav items={aboutSubnav} active="/about" label="About section" />
 
   <!-- White content body (navy header + footer are the chrome; this interior page's body is light) -->
   <section class="bg-stone">

@@ -58,3 +58,16 @@ export const nav = [
     ] as [string, string][],
   },
 ];
+
+// The About-section local sub-nav — the strip shown under the header on EVERY About page (active item in
+// gold). Single source of truth so all seven About pages stay in sync; the leading item is the section
+// landing. Used by SectionSubnav on /about and each /about/* page.
+export const aboutSubnav: [string, string][] = [
+  ['About the Qi-House', '/about'],
+  ["Director's Welcome", '/about/directors-welcome'],
+  ['The Qi-House Ethos', '/about/ethos'],
+  ['A Message to Students', '/about/founder'],
+  ['Governance', '/about/governance'],
+  ['Leadership', '/about/leadership'],
+  ['Stewardship & Legacy', '/about/stewardship'],
+];

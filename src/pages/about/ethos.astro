@@ -1,9 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import SectionSubnav from '../../components/SectionSubnav.astro';
+import { aboutSubnav } from '../../data/nav';
 import Cta from '../../components/Cta.astro';
 ---
 <Base title="The Qi-House Ethos">
+  <SectionSubnav items={aboutSubnav} active="/about/ethos" label="About section" />
   <PageHeader
     eyebrow="About"
     title="The Qi-House Ethos"

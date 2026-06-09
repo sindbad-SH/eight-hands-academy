@@ -1,6 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import SectionSubnav from '../../components/SectionSubnav.astro';
+import { aboutSubnav } from '../../data/nav';
 import Cta from '../../components/Cta.astro';
 
 const beliefs = [
@@ -10,6 +12,7 @@ const beliefs = [
 ];
 ---
 <Base title="Stewardship & Legacy — Eight Hands Martial Arts Academy">
+  <SectionSubnav items={aboutSubnav} active="/about/stewardship" label="About section" />
   <PageHeader
     eyebrow="About"
     title="Stewardship & Legacy"

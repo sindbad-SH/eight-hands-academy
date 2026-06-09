@@ -1,6 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import SectionSubnav from '../../components/SectionSubnav.astro';
+import { aboutSubnav } from '../../data/nav';
 import Cta from '../../components/Cta.astro';
 import { withBase } from '../../data/site';
 
@@ -19,6 +21,7 @@ const background = [
 ];
 ---
 <Base title="A Message to Students — Eight Hands Martial Arts Academy">
+  <SectionSubnav items={aboutSubnav} active="/about/founder" label="About section" />
   <PageHeader eyebrow="About" title="A Message to Students" subtitle="The purpose of training is not merely to learn skills, but to develop the confidence, discipline, and responsibility to navigate life well." />
 
   <section class="bg-stone">
