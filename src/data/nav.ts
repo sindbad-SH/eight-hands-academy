@@ -51,7 +51,7 @@ export const nav = [
     children: [
       ['Participation in Practice', '/community'],
       ['Summer Academy', '/community/summer-academy'],
-      ['Instructor Development', '/community/instructor-development'],
+      ['Community Development', '/community/instructor-development'],
       ['Alumni', '/community/alumni'],
       ['Community Impact', '/community/impact'],
       ['Events & Gatherings', '/community/events'],
@@ -77,7 +77,7 @@ export const aboutSubnav: [string, string][] = [
 export const communitySubnav: [string, string][] = [
   ['Participation in Practice', '/community'],
   ['Summer Academy', '/community/summer-academy'],
-  ['Instructor Development', '/community/instructor-development'],
+  ['Community Development', '/community/instructor-development'],
   ['Alumni', '/community/alumni'],
   ['Community Impact', '/community/impact'],
   ['Events & Gatherings', '/community/events'],
