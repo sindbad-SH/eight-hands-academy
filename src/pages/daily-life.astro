@@ -4,7 +4,7 @@
 // highlight-heading + copy + ClaimRotator intro, then a centered-title photo hub of sub-topics, no closing
 // CTA. Adaptation: the reference routes "Reflection / Wellbeing" to separate pages via the hub; we HAVE real
 // content for those, so they're kept as inline anchored bands (so the nav anchors resolve) AND surfaced in
-// the hub. The Twelve Houses are REFERENCED, never explained (directive) — a hub card links out.
+// the hub. The Twelve Domains are REFERENCED, never explained (directive) — a hub card links out.
 import Base from '../layouts/Base.astro';
 import { withBase } from '../data/site';
 import SectionSubnav from '../components/SectionSubnav.astro';
@@ -16,7 +16,7 @@ const subnav: [string, string][] = [
   ['The Qi-House Environment', '/daily-life'],
   ['Reflection & Presence', '/daily-life#reflection'],
   ['Wellbeing & Safety', '/daily-life#wellbeing'],
-  ['The Twelve Houses', '/the-twelve-houses'],
+  ['The Twelve Domains', '/the-twelve-houses'],
 ];
 
 const claims: [string, string][] = [
@@ -27,7 +27,7 @@ const claims: [string, string][] = [
 ];
 
 const hub: [string, string, string, string][] = [
-  ['The Twelve Houses', '/the-twelve-houses', '[IMAGE — an evocative, non-literal motif for the Houses · 4:3 · 760×570px]', '/img/reflection-1.jpg'],
+  ['The Twelve Domains', '/the-twelve-houses', '[IMAGE — an evocative, non-literal motif for the Domains · 4:3 · 760×570px]', '/img/reflection-1.jpg'],
   ['Reflection & Presence', '/daily-life#reflection', '[IMAGE — a still, reflective moment before/after practice · 4:3 · 760×570px]', '/img/environment-1.jpg'],
   ['Wellbeing & Safety', '/daily-life#wellbeing', '[IMAGE — attentive instruction, care on the floor · 4:3 · 760×570px]', '/img/instruction-1.jpg'],
   ['The Practice Environment', '/daily-life#environment', '[IMAGE — the training space, ordered and calm · 4:3 · 760×570px]', '/img/interior-wide.jpg'],
@@ -59,7 +59,7 @@ const hub: [string, string, string, string][] = [
             learned back out into the world. Over time, the awareness developed here becomes the way a student
             governs their own attention, effort, and conduct everywhere else.
           </p>
-          <GoldArrowLink href="/the-twelve-houses" text="The Twelve Houses" class="mb-10" />
+          <GoldArrowLink href="/the-twelve-houses" text="The Twelve Domains" class="mb-10" />
           <ClaimRotator items={claims} dark={false} label="What daily life is arranged to do" />
         </div>
       </div>
@@ -98,7 +98,7 @@ const hub: [string, string, string, string][] = [
     </div>
   </section>
 
-  <!-- Photo hub: facets of daily life (centered titles), incl. The Twelve Houses (referenced, not explained) -->
+  <!-- Photo hub: facets of daily life (centered titles), incl. The Twelve Domains (referenced, not explained) -->
   <section class="bg-stone-200">
     <div class="container-content py-section-sm lg:py-section">
       <div class="text-center max-w-2xl mx-auto mb-12 reveal">

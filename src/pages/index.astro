@@ -19,8 +19,9 @@ const differentiators = [
   ['Leadership & Accountability', 'Group training is the application laboratory — where capability becomes contribution.'],
 ];
 
-// The Twelve Houses — domains of participation (client copy, Jeanette 2026-06-08). Name + one-line aphorism.
-const houses: [string, string][] = [
+// The Twelve Domains — the academy's educational model (client copy, Jeanette 2026-06-08). Name + one-line
+// aphorism here on the home page; the full developmental descriptions live on /the-twelve-houses.
+const domains: [string, string][] = [
   ['Origins', 'Every journey begins with a reason to continue.'],
   ['Foundations', 'Growth often arrives disguised as hunger.'],
   ['Confidence', 'Confidence emerges when action meets uncertainty.'],
@@ -256,18 +257,18 @@ const programs: [string, string, string][] = [
     </div>
   </section>
 
-  <!-- 9 · The Twelve Houses + Program structure (CLIENT ORIGINALITY — no source panel; relocated here to preserve the source spine Community→Life→Adventure) -->
+  <!-- 9 · The Twelve Domains + Program structure (CLIENT ORIGINALITY — no source panel; relocated here to preserve the source spine Community→Life→Adventure) -->
   <section class="bg-navy text-stone relative overflow-hidden">
     <TopoTexture id="topo-houses" />
     <div class="container-content relative z-10 py-section-sm lg:py-section">
       <div class="text-center max-w-2xl mx-auto mb-10 reveal">
-        <HighlightEyebrow pre="The Twelve" mark="Houses" class="justify-center mb-4 text-stone/70" />
-        <h2 class="text-3xl lg:text-4xl text-stone mb-3 mt-2">Domains of participation.</h2>
-        <p class="text-stone/75 italic font-display text-xl">The Houses are lenses. They are domains. They are not destinations.</p>
+        <HighlightEyebrow pre="The Twelve" mark="Domains" class="justify-center mb-4 text-stone/70" />
+        <h2 class="text-3xl lg:text-4xl text-stone mb-3 mt-2">Interconnected areas of development.</h2>
+        <p class="text-stone/75 italic font-display text-xl">They are lenses, not destinations — areas of development, not ranks to achieve or stages to complete.</p>
         <p class="text-stone/70 mt-5 leading-relaxed">Within them, Eight Hands recommends a pathway suited to you — Academy Membership, Academy Scholar, or Academy Fellow (by invitation). Membership establishes your place within the academy; the pathway we recommend determines how you develop within it.</p>
       </div>
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-16">
-        {houses.map(([name, line], i) => (
+        {domains.map(([name, line], i) => (
           <div class="reveal border border-stone/15 bg-white/[0.04] p-5 hover:border-gold transition-colors">
             <div class="font-accent text-[11px] uppercase tracking-[0.16em] text-gold/70 mb-1">Domain {i + 1}</div>
             <div class="font-display text-2xl text-stone">{name}</div>

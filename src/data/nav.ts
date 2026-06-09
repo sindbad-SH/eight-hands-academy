@@ -42,7 +42,7 @@ export const nav = [
       ['The Qi-House Environment', '/daily-life'],
       ['Reflection & Presence', '/daily-life#reflection'],
       ['Wellbeing & Safety', '/daily-life#wellbeing'],
-      ['The Twelve Houses', '/the-twelve-houses'],
+      ['The Twelve Domains', '/the-twelve-houses'],
     ] as [string, string][],
   },
   {
