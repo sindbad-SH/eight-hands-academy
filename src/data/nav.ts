@@ -82,3 +82,16 @@ export const communitySubnav: [string, string][] = [
   ['Community Impact', '/community/impact'],
   ['Events & Gatherings', '/community/events'],
 ];
+
+// The Learning-section local sub-nav — shown under the header on every Learning page (active item in gold).
+// Per client direction (2026-06-08) this links to the real sub-PAGES (like About/Community), not on-page
+// anchors. Labels match each page's title; the leading item is the section landing.
+export const learningSubnav: [string, string][] = [
+  ['Learning at the Qi-House', '/learning'],
+  ['Observe', '/learning/observe'],
+  ['Practice', '/learning/practice'],
+  ['Integrate', '/learning/integrate'],
+  ['Contribute', '/learning/contribute'],
+  ['Individualized Instruction', '/learning/individualized-instruction'],
+  ['Group Instruction', '/learning/group-instruction'],
+];

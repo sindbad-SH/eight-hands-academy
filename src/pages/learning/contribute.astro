@@ -2,6 +2,8 @@
 // Learning sub-page 4/6 — "Contribute" (development stage 4). Client copy verbatim (Jeanette 2026-06-06).
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import SectionSubnav from '../../components/SectionSubnav.astro';
+import { learningSubnav } from '../../data/nav';
 import Cta from '../../components/Cta.astro';
 
 const learns = [
@@ -14,6 +16,7 @@ const learns = [
 ];
 ---
 <Base title="Contribute — Learning at the Qi-House">
+  <SectionSubnav items={learningSubnav} active="/learning/contribute" label="Learning section" />
   <PageHeader eyebrow="The Development Path" title="Contribute" subtitle="Leadership Begins When Development Serves Others" />
   <section class="bg-stone">
     <div class="container-content py-section-sm lg:py-section max-w-3xl">

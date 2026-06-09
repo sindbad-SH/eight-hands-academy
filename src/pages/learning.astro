@@ -16,14 +16,7 @@ import ClaimRotator from '../components/ClaimRotator.astro';
 import PhotoNavCard from '../components/PhotoNavCard.astro';
 import Cta from '../components/Cta.astro';
 import { withBase } from '../data/site';
-
-const subnav: [string, string][] = [
-  ['Learning', '/learning'],
-  ['The Development Path', '/learning#path'],
-  ['The Cohorts', '/learning#cohorts'],
-  ['The Framework', '/learning#framework'],
-  ['How We Learn', '/learning#programs'],
-];
+import { learningSubnav } from '../data/nav';
 
 // The four development stages → their detail pages (Jeanette's 2026-06-06 Learning copy).
 const path: [string, string, string][] = [
@@ -96,7 +89,7 @@ const programs: [string, string, string, string][] = [
 ];
 ---
 <Base home title="Learning at the Qi-House" description="An education in participation — martial arts as the medium.">
-  <SectionSubnav items={subnav} active="/learning" label="Learning section" />
+  <SectionSubnav items={learningSubnav} active="/learning" label="Learning section" />
 
   <!-- 1. Header band -->
   <section class="bg-stone">

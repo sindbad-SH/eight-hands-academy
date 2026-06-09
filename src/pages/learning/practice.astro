@@ -2,6 +2,8 @@
 // Learning sub-page 2/6 — "Practice" (development stage 2). Client copy verbatim (Jeanette 2026-06-06).
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import SectionSubnav from '../../components/SectionSubnav.astro';
+import { learningSubnav } from '../../data/nav';
 import Cta from '../../components/Cta.astro';
 
 const learns = [
@@ -14,6 +16,7 @@ const learns = [
 ];
 ---
 <Base title="Practice — Learning at the Qi-House">
+  <SectionSubnav items={learningSubnav} active="/learning/practice" label="Learning section" />
   <PageHeader eyebrow="The Development Path" title="Practice" subtitle="Action Develops Capability" />
   <section class="bg-stone">
     <div class="container-content py-section-sm lg:py-section max-w-3xl">
