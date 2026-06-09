@@ -1,6 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import SectionSubnav from '../../components/SectionSubnav.astro';
+import { communitySubnav } from '../../data/nav';
 import Cta from '../../components/Cta.astro';
 import { withBase } from '../../data/site';
 
@@ -10,6 +12,7 @@ import { withBase } from '../../data/site';
 const alumPhotos = ['/img/member-1.jpg', '/img/member-2.jpg', '/img/youth-1.jpg'];
 ---
 <Base title="Alumni — Eight Hands Martial Arts Academy">
+  <SectionSubnav items={communitySubnav} active="/community/alumni" label="Community section" />
   <PageHeader
     eyebrow="Community"
     title="Alumni"

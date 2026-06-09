@@ -9,15 +9,9 @@ import GoldArrowLink from '../../components/GoldArrowLink.astro';
 import ParallaxPhoto from '../../components/ParallaxPhoto.astro';
 import ClaimRotator from '../../components/ClaimRotator.astro';
 import PhotoNavCard from '../../components/PhotoNavCard.astro';
+import { communitySubnav } from '../../data/nav';
 
-const subnav: [string, string][] = [
-  ['Participation in Practice', '/community'],
-  ['Summer Academy', '/community/summer-academy'],
-  ['Instructor Development', '/community/instructor-development'],
-  ['Alumni', '/community/alumni'],
-  ['Community Impact', '/community/impact'],
-  ['Events & Gatherings', '/community/events'],
-];
+// Section sub-nav lives in data/nav.ts (communitySubnav) so every Community page stays in sync.
 
 const claims: [string, string][] = [
   ['Growth Is Shared', 'Confidence, focus, and accountability develop faster among people pursuing the same outcomes together.'],
@@ -36,7 +30,7 @@ const hub: [string, string, string, string][] = [
 ];
 ---
 <Base home title="Community — The Qi-House" description="Confidence, discipline, and focus develop fastest in community — among students, instructors, and families pursuing the same outcomes together.">
-  <SectionSubnav items={subnav} active="/community" label="Community section" />
+  <SectionSubnav items={communitySubnav} active="/community" label="Community section" />
 
   <section class="bg-stone">
     <div class="container-content py-section-sm lg:py-section">

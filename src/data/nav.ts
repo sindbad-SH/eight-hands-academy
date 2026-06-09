@@ -71,3 +71,14 @@ export const aboutSubnav: [string, string][] = [
   ['Leadership', '/about/leadership'],
   ['Stewardship & Legacy', '/about/stewardship'],
 ];
+
+// The Community-section local sub-nav — shown under the header on every Community page (active item in
+// gold). Single source of truth so all six Community pages stay in sync; the leading item is the landing.
+export const communitySubnav: [string, string][] = [
+  ['Participation in Practice', '/community'],
+  ['Summer Academy', '/community/summer-academy'],
+  ['Instructor Development', '/community/instructor-development'],
+  ['Alumni', '/community/alumni'],
+  ['Community Impact', '/community/impact'],
+  ['Events & Gatherings', '/community/events'],
+];

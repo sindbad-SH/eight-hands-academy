@@ -3,6 +3,8 @@
 // Mirrors the Learning detail template: PageHeader → quote → body → labelled list → prose closing → CTA.
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import SectionSubnav from '../../components/SectionSubnav.astro';
+import { communitySubnav } from '../../data/nav';
 import Cta from '../../components/Cta.astro';
 
 const participate = [
@@ -15,6 +17,7 @@ const participate = [
 ];
 ---
 <Base title="Community & Events — Eight Hands Martial Arts Academy">
+  <SectionSubnav items={communitySubnav} active="/community/events" label="Community section" />
   <PageHeader eyebrow="Community" title="Community & Events" subtitle="Students, Families & Guests" />
   <section class="bg-stone">
     <div class="container-content py-section-sm lg:py-section max-w-3xl">

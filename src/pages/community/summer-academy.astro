@@ -1,15 +1,18 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import SectionSubnav from '../../components/SectionSubnav.astro';
+import { communitySubnav } from '../../data/nav';
 import Cta from '../../components/Cta.astro';
 
 const foundations = [
   '10 Kanji', '10 Japanese Numbers', '10 Foundational Stances', '10 Strikes', '10 Kicks',
-  '10 Ground Defenses', 'Two Foundational Mindsets', 'Selected Twelve House Concepts',
+  '10 Ground Defenses', 'Two Foundational Mindsets', 'Selected Twelve Domain Concepts',
   'Weapon Specialization', 'Personal Scroll Creation',
 ];
 ---
 <Base title="Summer Academy of Self-Governance — The Qi-House">
+  <SectionSubnav items={communitySubnav} active="/community/summer-academy" label="Community section" />
   <PageHeader
     eyebrow="Community"
     title="The Qi-House Summer Academy"
