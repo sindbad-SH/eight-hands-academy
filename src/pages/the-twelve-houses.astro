@@ -2,39 +2,63 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Cta from '../components/Cta.astro';
+
+// Client copy — Jeanette, 2026-06-08 "final edit to publish the site": the Twelve Domains of Development.
+// Names + descriptions are HER exact words (this page existed as a 12-card placeholder awaiting them); do
+// not paraphrase. Intro/closing paragraphs below are also verbatim from that email.
+const domains = [
+  { name: 'Origins',       desc: 'Develops self-awareness and initiative, helping students recognize opportunities for growth and take the first step forward.' },
+  { name: 'Foundations',   desc: 'Develops consistency and personal responsibility, creating habits that support long-term success.' },
+  { name: 'Confidence',    desc: 'Develops self-trust through action, helping students engage challenges with greater courage and resilience.' },
+  { name: 'Relationship',  desc: 'Develops connection and interpersonal awareness, strengthening the ability to work effectively with others.' },
+  { name: 'Communication', desc: 'Develops clear expression and active listening, improving understanding, cooperation, and leadership.' },
+  { name: 'Perspective',   desc: 'Develops adaptability and critical thinking, helping students respond thoughtfully rather than react impulsively.' },
+  { name: 'Purpose',       desc: 'Develops direction and commitment, helping students align effort with meaningful goals.' },
+  { name: 'Contribution',  desc: 'Develops service and responsibility, encouraging students to positively influence the people around them.' },
+  { name: 'Principle',     desc: 'Develops integrity and decision-making, helping students act consistently even under pressure.' },
+  { name: 'Exploration',   desc: 'Develops curiosity and lifelong learning, encouraging growth beyond familiar experiences.' },
+  { name: 'Integration',   desc: 'Develops balance and self-governance, bringing knowledge, action, and character into alignment.' },
+  { name: 'Resonance',     desc: 'Develops leadership through influence, helping students create positive impact within their families, communities, and professions.' },
+];
 ---
-<Base title="Domains of Development — The Qi-House">
+<Base title="The Domains of Development — The Qi-House">
   <PageHeader
     eyebrow="Our Educational Model"
-    title="The domains of development."
+    title="The Domains of Development"
     subtitle="A practical framework for building confidence, focus, communication, and self-governance."
   />
 
   <section class="bg-stone">
     <div class="container-content py-section-sm lg:py-section">
-      <div class="max-w-3xl mx-auto text-center mb-14 reveal">
+      <div class="max-w-3xl mx-auto text-center mb-14 reveal space-y-5">
         <p class="text-lg text-slate/90">
-          Real growth is more than a single skill. Our curriculum develops the whole person across several
-          connected domains — awareness, discipline, communication, accountability, and leadership among
-          them. These are not ranks or levels to clear. Every student carries the capacity for each, and
-          progress is measured by how readily you can draw on the right capability for the moment in front
-          of you.
+          Real growth is more than the acquisition of a single skill. At Eight Hands Martial Arts Academy,
+          development is approached as a whole-person process. Our educational model helps students build the
+          awareness, discipline, communication, responsibility, and leadership necessary to navigate life's
+          challenges with confidence and purpose.
+        </p>
+        <p class="text-lg text-slate/90">
+          The Twelve Domains represent interconnected areas of development. They are not ranks to achieve or
+          stages to complete. Every student possesses the capacity for each domain, and growth occurs through
+          learning when and how to apply the right capability to the situation at hand.
         </p>
       </div>
 
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-        {Array.from({ length: 12 }).map((_, i) => (
+        {domains.map((d, i) => (
           <div class="reveal border border-navy/10 bg-white rounded-sm p-6 hover:border-gold transition-colors">
             <div class="eyebrow !text-slate-400 mb-2">Domain {String(i + 1).padStart(2, '0')}</div>
-            <div class="font-display text-2xl text-navy mb-3">[Domain Name]</div>
-            <p class="ph !p-3 !text-xs">[DOMAIN {i + 1}: plain one-line naming the capability this develops and the outcome a student gains — e.g. "Steadiness under pressure" → keeps composure when challenged]</p>
+            <div class="font-display text-2xl text-navy mb-3">{d.name}</div>
+            <p class="text-sm text-slate/80 leading-relaxed">{d.desc}</p>
           </div>
         ))}
       </div>
 
-      <p class="text-center text-slate/80 italic font-display text-xl mt-14 reveal">
-        Progress shows up in everyday life: the ability to stay present, adapt to what a situation asks,
-        and take responsibility for the outcome.
+      <p class="text-center text-slate/80 italic font-display text-xl mt-14 reveal max-w-3xl mx-auto">
+        Progress is not measured by how many domains a student can name, but by how effectively they can apply
+        these capabilities in everyday life. Development becomes visible through the ability to remain present
+        under pressure, adapt to changing circumstances, communicate effectively, and take responsibility for
+        the outcomes one creates.
       </p>
     </div>
   </section>
