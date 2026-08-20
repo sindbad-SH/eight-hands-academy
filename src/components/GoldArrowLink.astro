@@ -11,7 +11,7 @@ const { href = '#', text = 'Learn More', class: cls = '' } = Astro.props;
 ---
 <a
   href={withBase(href)}
-  class:list={['group inline-flex items-center gap-3 font-accent text-xs uppercase tracking-[0.18em] font-semibold text-gold-600 hover:text-gold transition-colors', cls]}
+  class:list={['group inline-flex items-center gap-3 font-accent text-xs uppercase tracking-[0.18em] font-semibold text-gold-ink hover:text-gold-600 transition-colors', cls]}
 >
   {text}
   <svg width="22" height="10" viewBox="0 0 22 10" fill="none" stroke="currentColor" stroke-width="1.5" class="transition-transform duration-200 group-hover:translate-x-1">

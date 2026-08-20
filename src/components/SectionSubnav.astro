@@ -20,7 +20,8 @@ const { items, active = '', active: _a, label = 'Section' } = Astro.props;
           aria-current={isActive ? 'page' : undefined}
           class:list={[
             'font-accent text-sm tracking-wide transition-colors',
-            isActive ? 'text-gold font-semibold' : 'text-navy/80 hover:text-gold',
+            // this bar sits on a light ground, so gold text uses the AA-safe gold-ink
+            isActive ? 'text-gold-ink font-semibold' : 'text-navy/80 hover:text-gold-ink',
           ]}
         >
           {text}

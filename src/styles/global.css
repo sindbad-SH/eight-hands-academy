@@ -29,9 +29,16 @@
 }
 
 @layer components {
-  /* Institutional section-label / eyebrow — mirrors reference's uppercase +letterspacing h2 treatment */
+  /* Institutional section-label / eyebrow — mirrors reference's uppercase +letterspacing h2 treatment.
+     Defaults to the light-ground gold (clears AA on stone/white); dark sections opt back into the
+     brand gold below, which already clears AA against navy. */
   .eyebrow {
-    @apply font-accent uppercase tracking-eyebrow text-gold-600 text-xs font-semibold;
+    @apply font-accent uppercase tracking-eyebrow text-gold-ink text-xs font-semibold;
+  }
+  .bg-navy .eyebrow,
+  .bg-navy-700 .eyebrow,
+  .bg-navy-900 .eyebrow {
+    @apply text-gold;
   }
 
   .container-content {
