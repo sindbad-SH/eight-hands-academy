@@ -31,7 +31,7 @@ const { eyebrow, heading, steps } = Astro.props;
 
   <!-- Tab strip: horizontal, scrollable on narrow screens; active tab underlined red -->
   <div class="reveal border-b border-navy/10 mb-10 overflow-x-auto">
-    <div class="flex justify-start lg:justify-center gap-7 lg:gap-9 min-w-max px-1">
+    <div class="flex justify-start lg:justify-center gap-7 lg:gap-9 min-w-max px-1" role="tablist" aria-label="Admissions process steps">
       {steps.map((s, i) => (
         <button
           type="button"

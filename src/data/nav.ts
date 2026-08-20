@@ -19,7 +19,7 @@ export const nav = [
     children: [
       ['Begin Your Inquiry', '/admissions'],
       ['Visit / Observe a Class', '/admissions#visit'],
-      ['Scholarships', '/admissions#scholarships'],
+      ['Scholarships', '/admissions/scholarships'],
     ] as [string, string][],
   },
   {

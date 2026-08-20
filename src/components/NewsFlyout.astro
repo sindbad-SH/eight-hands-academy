@@ -27,6 +27,7 @@ const events: [string, string, string][] = [
   id="newsPanel"
   class="fixed top-0 right-0 z-50 h-full w-full sm:w-[420px] bg-stone shadow-2xl translate-x-full transition-transform duration-300 ease-out overflow-y-auto"
   aria-hidden="true"
+  inert
 >
   <div class="p-8">
     <div class="flex items-center justify-between mb-8">
@@ -55,12 +56,14 @@ const events: [string, string, string][] = [
     overlay?.classList.remove('opacity-0', 'pointer-events-none');
     tab?.setAttribute('aria-expanded', 'true');
     panel?.setAttribute('aria-hidden', 'false');
+    panel?.removeAttribute('inert');
   };
   const shut = () => {
     panel?.classList.add('translate-x-full');
     overlay?.classList.add('opacity-0', 'pointer-events-none');
     tab?.setAttribute('aria-expanded', 'false');
     panel?.setAttribute('aria-hidden', 'true');
+    panel?.setAttribute('inert', '');
   };
   tab?.addEventListener('click', open);
   close?.addEventListener('click', shut);
