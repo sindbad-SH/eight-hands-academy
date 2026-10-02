@@ -1,0 +1,12 @@
+---
+// The one contact block, identical everywhere contact info appears (client brief 2026-10):
+// address · phone · email, with the email as a mailto link. Phone and email never break mid-item.
+import { CONTACT } from '../data/site';
+interface Props {
+  linkClass?: string;
+}
+const { linkClass = '' } = Astro.props;
+---
+<p>
+  {CONTACT.address} · <a href={CONTACT.phoneHref} class:list={['whitespace-nowrap', linkClass]}>{CONTACT.phone}</a> · <a href={`mailto:${CONTACT.email}`} class:list={['whitespace-nowrap', linkClass]}>{CONTACT.email}</a>
+</p>

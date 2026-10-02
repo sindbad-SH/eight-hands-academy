@@ -12,6 +12,10 @@ export const BRAND = {
 export const BOOKING_URL =
   'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1T_Oz4YqGFZD5nJfbWOzgz-G3mZnTYOh97zm_ko_h7e7hclLgzb_I4rmcdLkTwKPzk_hTRHkx9';
 
+// The school's second site (class schedule, pricing, member app) — cross-linked as "Programs & Schedule"
+// in the header and footer so both sites read as one school (client brief 2026-10).
+export const PROGRAMS_URL = 'https://qihouse8handsmartialarts.com/';
+
 // Real social profiles + contact (client-supplied 2026-06-08). Used in the footer and contact/visit spots.
 export const SOCIAL = {
   facebook: 'https://www.facebook.com/8handsqihouse/',

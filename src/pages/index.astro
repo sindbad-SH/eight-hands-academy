@@ -10,7 +10,7 @@ import TopoTexture from '../components/TopoTexture.astro';
 import Carousel from '../components/Carousel.astro';
 import ParallaxPhoto from '../components/ParallaxPhoto.astro';
 import ClaimRotator from '../components/ClaimRotator.astro';
-import { BOOKING_URL, withBase, CONTACT } from '../data/site';
+import { BOOKING_URL, PROGRAMS_URL, withBase, CONTACT } from '../data/site';
 
 const differentiators = [
   ['Confidence & Focus', 'Outcomes you can see — clearer attention, steadier resolve, and the discipline to follow through.'],
@@ -56,9 +56,57 @@ const programs: [string, string, string][] = [
   ['Adult Programs', 'Ages 14+', '/programs/adult'],
   ['Events & Gatherings', 'Students, Families & Guests', '/community/events'],
 ];
+
+// Programs section (client brief 2026-10): [name, ages, description, detail page]. Descriptions are the brief's own
+// wording; the same five programs are listed on the Qi-House site, which carries the schedule.
+const programCards: [string, string | null, string, string][] = [
+  ['Early Youth', 'Ages 2–6', 'Foundational skills — coordination, awareness, communication, respect, and self-control — built through structured, age-appropriate activities.', '/programs/early-youth'],
+  ['Youth', 'Ages 7–13', 'Confidence, focus, communication, and accountability, developed through individualized instruction and group training.', '/programs/youth'],
+  ['Adult', 'Ages 14+', 'Martial arts training combined with personal development: self-defense, communication, leadership, and resilience.', '/programs/adult'],
+  ['Summer Academy', null, 'Training extended beyond the classroom through challenging activities, community engagement, and leadership opportunities.', '/community/summer-academy'],
+  ['Private Instruction', null, 'One-on-one guidance with customized training, progress planning, and accountability.', '/learning/individualized-instruction'],
+];
+
+// Testimonials — the six reviews published on qihouse8handsmartialarts.com (Google reviews), verbatim. Rating
+// summary (4.7 / 13) is the figure that site publishes in its structured data. [name, paragraphs]
+const RATING = { value: '4.7', count: 13 };
+const reviews: [string, string[]][] = [
+  ['Taylor I', [
+    `I’ve had the opportunity to work with Jeanette, and one of the things that stands out most is how unique her approach is. Her martial arts instruction goes far beyond just learning techniques. It helps you build strength, resilience, confidence, and a deeper sense of autonomy in your own body.`,
+    `Through working with her, I felt like I was developing not only physical skills, but also stronger mental, emotional, and physical boundaries. Jeanette has a way of teaching that helps you feel more grounded, capable, and empowered, and that has been incredibly valuable. If you’re looking for martial arts training that supports both self-defense and personal growth, I highly recommend working with her.`,
+  ]],
+  ['Rex Finfgeld', [
+    `I find the Neurohacking classes both helpful and challenging. There's always something to learn. The system is dynamic, expansive, and deep. Over time a person can develop a deeper understanding of themselves, others, and the situations around them. This applies to personal, social, business, and more. Jeannette is a wonderful teacher who is personable and incredibly knowledgeable. She takes the time to explain things in detail and answer everyone's questions. For anyone looking to learn and grow, I wholeheartedly recommend getting involved in these classes. Wishing you the best on your life journey!`,
+  ]],
+  ['Aife Rozen', [
+    `Qi House has been incredibly helpful. Sensei Jeanette has been wonderful with designing a method that accommodates my disabilities and I’ve made excellent progress in just three months.`,
+  ]],
+  ['Sindbad Horizon', [
+    `If you're in the Longmont area and even remotely curious about martial arts, stop overthinking it and just check it out.`,
+    `The Qi House is stunning. It feels intentional, clean, and serious in the best way. But what keeps me coming back is the people. Jeanette has a way of breaking things down that actually sticks, and the energy in class pushes you without making you feel like you're drowning.`,
+    `Genuinely wouldn't train anywhere else. Highly recommend.`,
+  ]],
+  ['Cole Wilson', [
+    `Fantastic place to learn about mind and body, the teachings here have a way of going as deep and far as you are willing to go with them. From physical self defense to self psychology and navigating the everyday.`,
+  ]],
+  ['Kelsey Cain', [
+    `8 Hands Neurohacking classes have been genuinely transformative for me. The material goes far beyond theory and gives practical, strategic tools that I’ve been able to apply directly to real business decisions. One of the biggest benefits has been learning how to read people more accurately. The classes help me understand mental processes by identifying behavioral patterns and decision-making cues in others and I’ve become much more intentional in how I approach, analyze, and develop solutions. It has made communications clearer and negotiations more effective. I now feel more confident breaking down why people think the way they do and adjusting my approach to interactions in a way that’s ethical, grounded, and strategic.`,
+    `8 Hands provides deep insight and practical frameworks that can be applied in multiple aspects of our day to day interactions. If you’re serious about improving your mindset, decision-making, and understanding of human behavior, especially in a business context, these classes are absolutely worth it.`,
+  ]],
+];
+
+// FAQ — shared with qihouse8handsmartialarts.com so both sites answer the same way (client brief 2026-10).
+const faqs: [string, string][] = [
+  ['What makes Eight Hands Martial Arts Academy different from other martial arts schools?', 'Eight Hands is more than a martial arts training facility. Martial arts is used as a medium for developing self-governance — the ability to think clearly, act responsibly, and make purposeful decisions. Students develop confidence, discipline, focus, communication skills, and leadership through individualized instruction and community participation.'],
+  ['What age groups does Eight Hands serve?', 'Eight Hands offers programs for children, youth, and adults. Early Youth Programs are designed for ages 2–6, Youth Programs for ages 7–13, and Adult Programs for ages 14 and above. Each program is tailored to the developmental needs, goals, and abilities of the student.'],
+  ['Do I need martial arts experience to join?', 'No prior martial arts experience is required. Students begin with an assessment to understand their goals, current abilities, and readiness. Instruction is personalized to meet each student where they are and provide an appropriate path for growth.'],
+  ['What will my child learn besides martial arts skills?', 'Students develop skills that extend beyond physical training, including confidence, focus, respect, communication, self-control, responsibility, problem-solving, and leadership. The goal is to help students build habits that support success at home, in school, and within their communities.'],
+  ['How does training support adult personal development?', 'Adult programs are designed around individual goals and may include martial arts, self-defense, communication, leadership, resilience, personal effectiveness, and self-awareness. Students learn practical skills while developing greater confidence, clarity, and the ability to respond effectively to life’s challenges.'],
+  ['What happens during the assessment process?', 'The assessment is a conversation designed to understand your goals, challenges, and desired outcomes. It allows the academy to recommend the most appropriate program and developmental pathway. The goal is to ensure that each student begins in an environment where they can grow and succeed.'],
+];
 ---
 
-<Base home>
+<Base home description="Eight Hands Martial Arts Academy in Longmont, CO — a martial arts education in self-governance for kids, youth, and adults since 1992. Schedule a free assessment.">
   <!-- 1 · Peel Hero -->
   <PeelHero />
   <section class="bg-navy text-stone border-t border-stone/10">
@@ -97,14 +145,14 @@ const programs: [string, string, string][] = [
              the primary's edge and hangs below it). Top-aligned with the heading; taller than the copy. -->
         <div class="relative reveal min-h-[320px] lg:min-h-[420px] lg:order-2">
           <ParallaxPhoto
-            img="/img/instruction-3.jpg"
+            img="/img/instruction-3.jpg" imgAlt="An instructor coaching two students through a partner blocking drill in the studio."
             alt="[IMAGE — primary (BACK layer) · 1040×780px (4:3) · student mid-practice, focused and composed]"
             frameClass="aspect-[4/3] w-[88%] ml-auto"
             parallax={-104}
             innerClass="!text-xs"
           />
           <ParallaxPhoto
-            img="/img/mentoring-1.jpg"
+            img="/img/mentoring-1.jpg" imgAlt="An instructor watches as two young students in white uniforms practice a raised-arm stance."
             alt="[IMAGE — secondary (FRONT layer, overhangs bottom-left) · 760×570px (4:3) · instructor guiding a student one-on-one]"
             frameClass="absolute -bottom-6 left-0 lg:-left-8 w-[58%] aspect-[4/3] z-20 ring-[10px] ring-navy"
             parallax={-100}
@@ -131,6 +179,34 @@ const programs: [string, string, string][] = [
   <!-- 4b · Development With Direction (4-stage journey + crossfading image) — replaces the cohort constellation per client -->
   <DevelopmentWithDirection />
 
+  <!-- 4c · Programs (client brief 2026-10) — the five programs + tuition line + cross-link to the schedule site -->
+  <section id="programs" class="bg-navy text-stone relative overflow-hidden">
+    <TopoTexture id="topo-programs" />
+    <div class="container-content relative z-10 py-section">
+      <div class="text-center max-w-2xl mx-auto mb-10 reveal">
+        <HighlightEyebrow pre="Our" mark="Programs" class="justify-center mb-4 text-stone/70" />
+        <h2 class="text-3xl lg:text-4xl text-stone mt-2 text-balance">Programs for every age, from early youth to adult.</h2>
+      </div>
+      <!-- 6-col grid, cards span 2: three on the first row, the last two centred beneath -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-6 gap-5 reveal">
+        {programCards.map(([name, ages, desc, href], i) => (
+          <a href={withBase(href)} class:list={['group flex flex-col border border-stone/15 bg-white/[0.04] p-6 hover:border-gold transition-colors lg:col-span-2', i === 3 && 'lg:col-start-2']}>
+            {ages && <div class="font-accent uppercase tracking-[0.16em] text-[11px] text-gold/80 mb-2">{ages}</div>}
+            <h3 class="font-display text-2xl text-stone mb-3 group-hover:text-gold transition-colors">{name}</h3>
+            <p class="text-stone/75 text-sm leading-relaxed">{desc}</p>
+          </a>
+        ))}
+      </div>
+      <div class="mt-10 text-center reveal">
+        <p class="text-stone/80 mb-6">Tuition is set at your free assessment, based on the program and schedule you choose.</p>
+        <a href={PROGRAMS_URL} target="_blank" rel="noopener" class="group inline-flex items-center gap-3 font-accent text-xs uppercase tracking-[0.18em] font-semibold text-gold hover:text-stone transition-colors">
+          See programs and class schedule
+          <svg width="22" height="10" viewBox="0 0 22 10" fill="none" stroke="currentColor" stroke-width="1.5" class="transition-transform duration-200 group-hover:translate-x-1"><line x1="0" y1="5" x2="20" y2="5" /><polyline points="15,1 20,5 15,9" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- 5 · A Truly International Community — INSET assembly photo + left copy/age-boxes + right overlaid photos + hover-enlarge video (1:1 with source) -->
   <section class="bg-navy text-stone relative overflow-hidden">
     <TopoTexture id="topo-community" />
@@ -138,7 +214,7 @@ const programs: [string, string, string][] = [
       <!-- Inset assembly photo: navy gutters on all sides (NOT edge-to-edge); clip-and-drift parallax -->
       <div class="relative reveal mb-14 lg:mb-20">
         <ParallaxPhoto
-          img="/img/community-1.jpg"
+          img="/img/community-1.jpg" imgAlt="Children in white uniforms practicing open-hand strikes together during a group class."
           alt="[IMAGE — community assembly / gathering · INSET (navy gutters all sides) · 1500×625px (≈12:5) · participation, belonging across ages]"
           frameClass="aspect-[12/5]"
           parallax={-52}
@@ -169,14 +245,14 @@ const programs: [string, string, string][] = [
                bottom-left, crossing LEFT past the column into the copy's space (the reference's layered overlap). -->
           <div class="relative min-h-[440px] lg:min-h-[600px]">
             <ParallaxPhoto
-              img="/img/group-1.jpg"
+              img="/img/group-1.jpg" imgAlt="Three students in uniform practicing kicks and guard stances across the training floor."
               alt="[IMAGE — community life (primary) · PORTRAIT 5:6 · 1000×1200px · members across ages training together]"
               frameClass="w-[74%] ml-auto aspect-[5/6]"
               parallax={-104}
               innerClass="!text-xs"
             />
             <ParallaxPhoto
-              img="/img/reflection-1.jpg"
+              img="/img/reflection-1.jpg" imgAlt="Students kneeling in quiet reflection on the training floor."
               alt="[IMAGE — shared moment (secondary) · LANDSCAPE 4:3 · 900×675px]"
               frameClass="absolute -bottom-6 left-0 lg:-left-20 w-[62%] aspect-[4/3] z-20 ring-[10px] ring-navy"
               parallax={-100}
@@ -222,14 +298,14 @@ const programs: [string, string, string][] = [
         <!-- Layered cluster: large primary top-left + big secondary overhanging bottom-right, crossing right toward the copy. -->
         <div class="relative min-h-[320px] lg:min-h-[420px]">
           <ParallaxPhoto
-            img="/img/form-1.jpg"
+            img="/img/form-1.jpg" imgAlt="A student in a white uniform holding a forms stance with an open-hand guard."
             alt="[IMAGE — meaningful challenge / leadership · LANDSCAPE 4:3 · 1040×780px]"
             frameClass="aspect-[4/3] w-[88%]"
             parallax={-104}
             innerClass="!text-xs"
           />
           <ParallaxPhoto
-            img="/img/service-1.jpg"
+            img="/img/service-1.jpg" imgAlt="Two instructors demonstrating a wooden staff exchange beside the Eight Hands booth at an outdoor community fair."
             alt="[IMAGE — service / outdoor development · LANDSCAPE 4:3 · 900×675px]"
             frameClass="absolute -bottom-6 right-0 lg:-right-12 w-[58%] aspect-[4/3] z-20 ring-[10px] ring-navy"
             parallax={-100}
@@ -324,8 +400,8 @@ const programs: [string, string, string][] = [
       </div>
       <!-- Layered cluster: large primary top-right + big secondary overhanging bottom-left, crossing left toward the copy. -->
       <div class="reveal relative min-h-[320px] lg:min-h-[420px] lg:order-1">
-        <ParallaxPhoto img="/img/mentoring-2.jpg" alt="[IMAGE — service / contribution (primary) · LANDSCAPE 4:3 · 960×720px]" frameClass="aspect-[4/3] w-[88%] ml-auto" parallax={-104} innerClass="!text-xs" />
-        <ParallaxPhoto img="/img/exterior-wide.jpg" alt="[IMAGE — outdoor development (secondary) · LANDSCAPE 4:3 · 900×675px]" frameClass="absolute -bottom-6 left-0 lg:-left-16 w-[60%] aspect-[4/3] z-20 ring-[10px] ring-navy" parallax={-100} innerClass="!p-3 !text-[10px]" />
+        <ParallaxPhoto img="/img/mentoring-2.jpg" imgAlt="A young student in a white uniform practicing a strike while an instructor looks on." alt="[IMAGE — service / contribution (primary) · LANDSCAPE 4:3 · 960×720px]" frameClass="aspect-[4/3] w-[88%] ml-auto" parallax={-104} innerClass="!text-xs" />
+        <ParallaxPhoto img="/img/exterior-wide.jpg" imgAlt="The brick storefront of the Qi-House on Main Street in Longmont, Colorado." alt="[IMAGE — outdoor development (secondary) · LANDSCAPE 4:3 · 900×675px]" frameClass="absolute -bottom-6 left-0 lg:-left-16 w-[60%] aspect-[4/3] z-20 ring-[10px] ring-navy" parallax={-100} innerClass="!p-3 !text-[10px]" />
       </div>
     </div>
   </section>
@@ -372,6 +448,54 @@ const programs: [string, string, string][] = [
           <span class="font-accent text-sm text-stone/90">{label}</span>
         </button>
       ))}
+    </div>
+  </section>
+
+  <!-- 13b · Testimonials (client brief 2026-10) — the six reviews shared with the Qi-House site -->
+  <section id="reviews" class="bg-navy text-stone relative overflow-hidden">
+    <TopoTexture id="topo-reviews" />
+    <div class="container-content relative z-10 py-section">
+      <div class="text-center max-w-2xl mx-auto mb-10 reveal">
+        <HighlightEyebrow pre="In Their" mark="Words" class="justify-center mb-4 text-stone/70" />
+        <h2 class="text-3xl lg:text-4xl text-stone mt-2 mb-4">What students say.</h2>
+        <p class="inline-flex items-center gap-2 text-stone/80">
+          <span class="text-gold tracking-[0.15em]" aria-hidden="true">★★★★★</span>
+          <span><span class="font-semibold text-stone">{RATING.value}</span> out of 5 · {RATING.count} reviews</span>
+        </p>
+      </div>
+      <div class="columns-1 md:columns-2 lg:columns-3 gap-5">
+        {reviews.map(([name, paras]) => (
+          <figure class="reveal break-inside-avoid mb-5 border border-stone/15 bg-white/[0.04] p-6">
+            <div class="text-gold tracking-[0.15em] text-sm mb-3" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote class="space-y-3 text-stone/80 text-sm leading-relaxed">
+              {paras.map((p) => <p>{p}</p>)}
+            </blockquote>
+            <figcaption class="mt-5 font-accent text-[11px] uppercase tracking-[0.16em] text-stone">{name}<span class="text-stone/45 normal-case tracking-normal"> · Google review</span></figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 13c · FAQ (client brief 2026-10) — shared with the Qi-House site -->
+  <section id="faq" class="bg-navy text-stone relative overflow-hidden">
+    <TopoTexture id="topo-faq" />
+    <div class="container-content relative z-10 py-section max-w-3xl mx-auto">
+      <div class="text-center mb-10 reveal">
+        <HighlightEyebrow pre="Common" mark="Questions" class="justify-center mb-4 text-stone/70" />
+        <h2 class="text-3xl lg:text-4xl text-stone mt-2">Questions families and adults ask us.</h2>
+      </div>
+      <div class="reveal border-t border-stone/15">
+        {faqs.map(([q, a]) => (
+          <details class="group border-b border-stone/15">
+            <summary class="flex items-start justify-between gap-6 py-5 cursor-pointer list-none font-display text-xl text-stone hover:text-gold transition-colors">
+              {q}
+              <span class="text-gold text-2xl leading-none mt-0.5 transition-transform duration-200 group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="pb-6 pr-10 text-stone/75 leading-relaxed">{a}</p>
+          </details>
+        ))}
+      </div>
     </div>
   </section>
 

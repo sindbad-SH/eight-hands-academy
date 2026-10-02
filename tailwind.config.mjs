@@ -7,6 +7,9 @@ export default {
       sm: '550px',
       md: '768px',
       lg: '900px',
+      // Header only: desktop nav from here up, mobile menu below. The header row needs ~920px, so at
+      // lg (900px) it overflowed and the page scrolled sideways.
+      nav: '1000px',
       xl: '1100px',
       '2xl': '1440px',
     },

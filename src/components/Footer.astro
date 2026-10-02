@@ -1,6 +1,7 @@
 ---
 import TopoTexture from './TopoTexture.astro';
-import { withBase, SOCIAL, CONTACT } from '../data/site';
+import ContactLine from './ContactLine.astro';
+import { withBase, SOCIAL, CONTACT, PROGRAMS_URL } from '../data/site';
 
 const quickLinks = [
   ['Events & Gatherings', '/community/events'],
@@ -29,6 +30,7 @@ const engage = [
     <div>
       <h3 class="eyebrow !text-stone/60 mb-4">Quick Links</h3>
       <ul class="space-y-2 text-sm">
+        <li><a href={PROGRAMS_URL} target="_blank" rel="noopener" class="hover:text-gold transition-colors">Programs &amp; Schedule ↗</a></li>
         {quickLinks.map(([label, href]) => (
           <li><a href={withBase(href)} class="hover:text-gold transition-colors">{label}</a></li>
         ))}
@@ -47,9 +49,7 @@ const engage = [
     <div>
       <h3 class="eyebrow !text-stone/60 mb-4">Contact</h3>
       <address class="not-italic text-sm space-y-2 text-stone/70">
-        <p>{CONTACT.address}</p>
-        <p><a href={CONTACT.phoneHref} class="hover:text-gold transition-colors">{CONTACT.phone}</a></p>
-        <p><a href={`mailto:${CONTACT.email}`} class="hover:text-gold transition-colors">{CONTACT.email}</a></p>
+        <ContactLine linkClass="hover:text-gold transition-colors" />
         <p><a href={CONTACT.mapUrl} target="_blank" rel="noopener" class="hover:text-gold transition-colors">View on Google Maps →</a></p>
       </address>
       <div class="mt-5 flex gap-3">

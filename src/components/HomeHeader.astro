@@ -3,7 +3,7 @@
 // topographic texture + coordinate/route motif behind. Mirrors Aiglon's .fsHeader behavior.
 import { nav } from '../data/nav';
 import TopoTexture from './TopoTexture.astro';
-import { BOOKING_URL, withBase } from '../data/site';
+import { BOOKING_URL, PROGRAMS_URL, withBase } from '../data/site';
 ---
 <header class="relative z-50 bg-navy text-stone">
   <!-- Decorative bg layer — clipped so the topo/motifs don't overflow, but the nav + its dropdowns are NOT
@@ -16,18 +16,18 @@ import { BOOKING_URL, withBase } from '../data/site';
   <!-- Layout mirrors the reference: logo LEFT; on the right two stacked RIGHT-ALIGNED rows — utility row
        (icon links + red CTA + portal buttons + search) on top, main nav row below. -->
   <div class="relative z-20">
-    <div class="container-content flex items-start justify-between gap-6 py-4 lg:py-5">
+    <div class="container-content flex items-start justify-between gap-3 sm:gap-6 py-4 lg:py-5">
       <!-- Logo (left, spans both rows) -->
       <a href={withBase('/')} class="group flex items-center gap-3.5 shrink-0">
-        <img src={withBase('/img/logo.png')} alt="Eight Hands emblem" class="h-20 lg:h-24 w-auto transition-all duration-300 ease-out group-hover:scale-110 drop-shadow-[0_0_0_rgba(201,164,76,0)] group-hover:drop-shadow-[0_0_14px_rgba(201,164,76,0.7)]" />
+        <img src={withBase('/img/logo.png')} alt="Eight Hands emblem" class="h-12 sm:h-20 lg:h-24 w-auto transition-all duration-300 ease-out group-hover:scale-110 drop-shadow-[0_0_0_rgba(201,164,76,0)] group-hover:drop-shadow-[0_0_14px_rgba(201,164,76,0.7)]" />
         <span class="flex flex-col leading-none pt-0.5">
-          <span class="font-display text-3xl lg:text-4xl font-semibold text-stone">Eight Hands</span>
-          <span class="eyebrow !text-gold mt-1">Martial Arts Academy</span>
+          <span class="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-stone">Eight Hands</span>
+          <span class="eyebrow !text-gold text-[10px] sm:text-xs mt-1">Martial Arts Academy</span>
         </span>
       </a>
 
       <!-- Right column: utility row (top) + nav row (below), both right-aligned -->
-      <div class="hidden lg:flex flex-col items-end gap-3.5">
+      <div class="hidden nav:flex flex-col items-end gap-3.5">
         <!-- Utility row -->
         <div class="flex items-center gap-4 text-[11px] font-accent tracking-wide text-stone/70">
           <a href={withBase('/community/summer-academy')} class="inline-flex items-center gap-1.5 hover:text-gold transition-colors">
@@ -42,7 +42,7 @@ import { BOOKING_URL, withBase } from '../data/site';
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9-9C1.5 8 4 4 8 5c2 .5 3 2 4 3 1-1 2-2.5 4-3 4-1 6.5 3 5 7-2 4.5-9 9-9 9z" /></svg>
             Support
           </a>
-          <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent !py-1.5 !px-4 !text-[11px] uppercase">Schedule an Assessment</a>
+          <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent !py-1.5 !px-4 !text-[11px] uppercase">Schedule Your Free Assessment</a>
           <a href={withBase('/members')} class="border border-stone/35 px-3 py-1.5 rounded-[10px] uppercase hover:border-gold transition-colors">Members</a>
           <button data-search-open aria-label="Search" class="hover:text-gold transition-colors">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7" /><path d="M21 21l-4-4" /></svg>
@@ -50,7 +50,7 @@ import { BOOKING_URL, withBase } from '../data/site';
         </div>
 
         <!-- Main nav row (right-aligned) -->
-        <nav id="homeNav" class="flex items-center gap-7">
+        <nav id="homeNav" class="flex items-center gap-7 xl:gap-5">
           {nav.map((item) => (
             <div class="group relative">
               <a href={withBase(item.href)} class="font-accent text-sm font-medium uppercase tracking-wide text-stone/90 hover:text-gold py-1.5 inline-flex items-center">
@@ -66,10 +66,13 @@ import { BOOKING_URL, withBase } from '../data/site';
               </div>
             </div>
           ))}
+          <!-- Cross-link to the schedule site. Only from xl up: below 1100px the row has no room for it (it's in the
+               mobile drawer, footer, and homepage Programs section instead). -->
+          <a href={PROGRAMS_URL} target="_blank" rel="noopener" class="hidden xl:inline-flex items-center whitespace-nowrap font-accent text-sm font-medium uppercase tracking-wide text-gold hover:text-stone py-1.5">Programs &amp; Schedule</a>
         </nav>
       </div>
 
-      <button id="mobileToggleHome" class="lg:hidden text-stone self-center" aria-label="Open menu" aria-expanded="false">
+      <button id="mobileToggleHome" class="nav:hidden text-stone self-center" aria-label="Open menu" aria-expanded="false">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
         </svg>
@@ -77,7 +80,7 @@ import { BOOKING_URL, withBase } from '../data/site';
     </div>
 
     <!-- Mobile drawer -->
-    <div id="mobileMenuHome" class="lg:hidden hidden border-t border-stone/15">
+    <div id="mobileMenuHome" class="nav:hidden hidden border-t border-stone/15">
       <nav class="container-content py-4 flex flex-col">
         {nav.map((item) => (
           <details class="border-b border-stone/15 py-1">
@@ -91,7 +94,8 @@ import { BOOKING_URL, withBase } from '../data/site';
             </div>
           </details>
         ))}
-        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent mt-4 w-full">Schedule an Assessment</a>
+        <a href={PROGRAMS_URL} target="_blank" rel="noopener" class="font-accent text-sm font-medium text-gold py-3 border-b border-stone/15">Programs &amp; Schedule ↗</a>
+        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent mt-4 w-full">Schedule Your Free Assessment</a>
       </nav>
     </div>
   </div>

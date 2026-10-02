@@ -20,6 +20,7 @@ import GoldArrowLink from '../components/GoldArrowLink.astro';
 import ProcessTabs from '../components/ProcessTabs.astro';
 import PhotoNavCard from '../components/PhotoNavCard.astro';
 import Cta from '../components/Cta.astro';
+import ContactLine from '../components/ContactLine.astro';
 import { BOOKING_URL, withBase, CONTACT } from '../data/site';
 
 const subnav: [string, string][] = [
@@ -272,9 +273,7 @@ const hub: [string, string, string, string][] = [
           out any time and we'll help you plan your visit.
         </p>
         <address class="not-italic text-slate space-y-1">
-          <p>{CONTACT.address}</p>
-          <p><a href={CONTACT.phoneHref} class="text-red hover:text-navy underline decoration-red/40 underline-offset-2">{CONTACT.phone}</a></p>
-          <p><a href={`mailto:${CONTACT.email}`} class="text-red hover:text-navy underline decoration-red/40 underline-offset-2">{CONTACT.email}</a></p>
+          <ContactLine linkClass="text-red hover:text-navy underline decoration-red/40 underline-offset-2" />
           <p><a href={CONTACT.mapUrl} target="_blank" rel="noopener" class="text-red hover:text-navy underline decoration-red/40 underline-offset-2">View on Google Maps</a></p>
         </address>
       </div>
