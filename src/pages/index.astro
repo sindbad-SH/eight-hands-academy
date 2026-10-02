@@ -11,6 +11,7 @@ import Carousel from '../components/Carousel.astro';
 import ParallaxPhoto from '../components/ParallaxPhoto.astro';
 import ClaimRotator from '../components/ClaimRotator.astro';
 import { BOOKING_URL, PROGRAMS_URL, withBase, CONTACT } from '../data/site';
+import { events } from '../data/events';
 
 const differentiators = [
   ['Confidence & Focus', 'Outcomes you can see — clearer attention, steadier resolve, and the discipline to follow through.'],
@@ -36,18 +37,6 @@ const domains: [string, string][] = [
   ['Resonance', 'Resonance occurs when understanding becomes influence.'],
 ];
 
-// Community Impact — upcoming community events the academy supports (client 2026-06-08). [title, date, url, img]
-// img = the event's own promo image, pulled from each link's og:image and cached locally. Re-run
-// `python scripts/fetch-event-images.py` to refresh them (e.g. when events change). null = link exposed
-// no usable image (Instagram / Tap Cancer Out) → branded fallback tile.
-const events: [string, string, string, string | null][] = [
-  ['Cerus Knocks Out Addiction', 'Sat · June 20, 2026', 'https://www.instagram.com/p/DY2n5kxjWGq/', null],
-  ['Tap Cancer Out — Global Grappling Day', '2026', 'https://wecan.tapcancerout.org/campaign/2026-tap-cancer-out-global-grappling-day/c756894', null],
-  ['America’s Cup Open Martial Arts Championship', 'Sep 19, 2026 · Denver', 'https://denvermartialartsevent.com/', '/img/events/americas-cup.jpg'],
-  ['Red Wine & Brew — First Responders Benefit', 'Fri · June 25, 2026', 'https://www.koobit.com/red-wine-and-brew-e188225', '/img/events/red-wine-brew.jpg'],
-  ['Summerfest Fundraiser', 'Thu · June 14, 2026', 'https://www.schoolofrock.com/locations/highlandsranch/events/school-of-rock-highlands-ranch-broomfield-summerfest-fundraiser-at-bar-404-june-14-2026', '/img/events/summerfest.jpg'],
-  ['Roots & Rhythm — Wildlands Restoration Benefit', 'Jul 22, 2026', 'https://www.bathgardencenter.com/event-details/roots-rhythm-with-the-friendly-reminders-trio', '/img/events/roots-rhythm.jpg'],
-];
 
 // Age-based program pathways → dedicated pages (client 2026-06-08).
 const programs: [string, string, string][] = [
@@ -113,7 +102,7 @@ const faqs: [string, string][] = [
     <div class="container-content py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
       <p class="font-display italic text-lg sm:text-xl text-stone/85">A Martial Arts Education in Self-Governance.</p>
       <div class="flex gap-3">
-        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">Schedule an Assessment</a>
+        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">Schedule Your Free Assessment</a>
         <a href={withBase('/admissions#visit')} class="btn-ghost !border-stone/40 !text-stone hover:!bg-stone hover:!text-navy">Observe a Class</a>
       </div>
     </div>
@@ -259,15 +248,6 @@ const faqs: [string, string][] = [
               innerClass="!p-3 !text-[10px]"
             />
           </div>
-          <!-- Video pill: BELOW the cluster, right-aligned, in open navy space (NOT overlapping the photos) -->
-          <div class="flex justify-end mt-7">
-            <button class="group inline-flex items-center gap-3 rounded-full border border-stone/25 bg-navy/40 hover:bg-navy/70 pl-1.5 pr-5 py-1.5 transition-colors" aria-label="Play: A Qi-House Tradition">
-              <span class="w-9 h-9 rounded-full bg-red flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110">
-                <svg width="10" height="12" viewBox="0 0 10 12" class="text-stone ml-0.5" fill="currentColor"><polygon points="0,0 10,6 0,12" /></svg>
-              </span>
-              <span class="font-accent text-sm tracking-wide text-stone">A Qi-House Tradition</span>
-            </button>
-          </div>
         </div>
       </div>
     </div>
@@ -311,14 +291,6 @@ const faqs: [string, string][] = [
             parallax={-100}
             innerClass="!p-3 !text-[10px]"
           />
-        </div>
-        <div class="flex justify-start mt-6">
-          <button class="group inline-flex items-center gap-3 rounded-full border border-stone/25 bg-navy/40 hover:bg-navy/70 pl-1.5 pr-5 py-1.5 transition-colors" aria-label="Play: The Practice in Motion">
-            <span class="w-9 h-9 rounded-full bg-red flex items-center justify-center shrink-0 transition-transform duration-200 group-hover:scale-110">
-              <svg width="10" height="12" viewBox="0 0 10 12" class="text-stone ml-0.5" fill="currentColor"><polygon points="0,0 10,6 0,12" /></svg>
-            </span>
-            <span class="font-accent text-sm tracking-wide text-stone">The Practice in Motion</span>
-          </button>
         </div>
       </div>
 
@@ -406,8 +378,9 @@ const faqs: [string, string][] = [
     </div>
   </section>
 
-  <!-- 12 · Community Impact — upcoming events the academy supports (client 2026-06-08) -->
-  <section class="bg-navy text-stone relative overflow-hidden">
+  <!-- 12 · Community Impact — upcoming events the academy supports. Past events hide themselves; the whole
+       section hides when none are left (data-ends / data-events-wrap, script in Base.astro). -->
+  <section class="bg-navy text-stone relative overflow-hidden" data-events-wrap>
     <TopoTexture id="topo-news" />
     <div class="container-content relative z-10 py-section">
       <div class="flex items-end justify-between mb-8 reveal">
@@ -415,8 +388,8 @@ const faqs: [string, string][] = [
         <GoldArrowLink href="/community/impact" text="More Ways We Serve" class="hidden sm:inline-flex text-stone" />
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 reveal">
-        {events.map(([title, date, url, img]) => (
-          <a href={url} target="_blank" rel="noopener" class="group flex flex-col border border-stone/15 bg-white/[0.04] overflow-hidden hover:border-gold transition-colors">
+        {events.map(({ title, date, ends, url, img }) => (
+          <a href={url} target="_blank" rel="noopener" data-ends={ends} class="group flex flex-col border border-stone/15 bg-white/[0.04] overflow-hidden hover:border-gold transition-colors">
             <div class="relative aspect-[4/3] overflow-hidden bg-navy-700">
               {img
                 ? <img src={withBase(img)} alt={title} loading="lazy" class="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
@@ -435,21 +408,6 @@ const faqs: [string, string][] = [
     </div>
   </section>
 
-  <!-- 13 · 3-up video feature (thumbnail + red play button + title beside) -->
-  <section class="bg-navy">
-    <div class="container-content py-section grid md:grid-cols-3 gap-5">
-      {['Why the Qi-House', 'A Day at the Qi-House', 'Leadership & Stewardship'].map((label) => (
-        <button class="reveal flex items-center gap-4 border border-stone/15 p-3 text-left hover:border-gold transition-colors">
-          <span class="relative w-24 h-16 shrink-0 bg-navy-700 overflow-hidden flex items-center justify-center">
-            <span class="w-9 h-9 rounded-full bg-red flex items-center justify-center">
-              <svg width="11" height="13" viewBox="0 0 11 13" class="text-stone ml-0.5" fill="currentColor"><polygon points="0,0 11,6.5 0,13" /></svg>
-            </span>
-          </span>
-          <span class="font-accent text-sm text-stone/90">{label}</span>
-        </button>
-      ))}
-    </div>
-  </section>
 
   <!-- 13b · Testimonials (client brief 2026-10) — the six reviews shared with the Qi-House site -->
   <section id="reviews" class="bg-navy text-stone relative overflow-hidden">

@@ -2,18 +2,11 @@
 // PART: "Off-Canvas Flyout Tab" (teardown-motion.md §3) — fixed right-edge "News & Events" tab; opens a
 // full-height panel sliding in from the right + dim overlay. Esc / overlay / × closes.
 import { withBase } from '../data/site';
-// Community Impact events surfaced in the flyout (mirrors the homepage section). [date, title, url]
-const events: [string, string, string][] = [
-  ['Thu · Jun 14, 2026', 'Summerfest Fundraiser', 'https://www.schoolofrock.com/locations/highlandsranch/events/school-of-rock-highlands-ranch-broomfield-summerfest-fundraiser-at-bar-404-june-14-2026'],
-  ['Sat · Jun 20, 2026', 'Cerus Knocks Out Addiction', 'https://www.instagram.com/p/DY2n5kxjWGq/'],
-  ['Fri · Jun 25, 2026', 'Red Wine & Brew — First Responders Benefit', 'https://www.koobit.com/red-wine-and-brew-e188225'],
-  ['Jul 22, 2026', 'Roots & Rhythm — Wildlands Restoration Benefit', 'https://www.bathgardencenter.com/event-details/roots-rhythm-with-the-friendly-reminders-trio'],
-  ['Sep 19, 2026 · Denver', 'America’s Cup Open Martial Arts Championship', 'https://denvermartialartsevent.com/'],
-  ['2026', 'Tap Cancer Out — Global Grappling Day', 'https://wecan.tapcancerout.org/campaign/2026-tap-cancer-out-global-grappling-day/c756894'],
-];
+import { events } from '../data/events'; // shared with the homepage; past ones hide themselves
 ---
 <button
   id="newsTab"
+  data-events-wrap="newsPanel"
   class="fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-red text-stone font-accent text-[11px] uppercase tracking-[0.22em] py-5 px-2.5 shadow-lg hover:bg-red/90 transition-colors rounded-r-[10px] [writing-mode:vertical-rl] rotate-180"
   aria-label="Open News & Events"
   aria-expanded="false"
@@ -35,8 +28,8 @@ const events: [string, string, string][] = [
       <button id="newsClose" class="text-navy text-3xl leading-none hover:text-red" aria-label="Close">&times;</button>
     </div>
     <ul class="space-y-6">
-      {events.map(([date, title, url]) => (
-        <li class="border-b border-navy/10 pb-6">
+      {events.map(({ date, ends, title, url }) => (
+        <li class="border-b border-navy/10 pb-6" data-ends={ends}>
           <div class="font-accent uppercase tracking-[0.18em] text-[10px] text-slate-400 mb-1">Community Impact · {date}</div>
           <a href={url} target="_blank" rel="noopener" class="font-display text-lg text-navy hover:text-red transition-colors">{title}</a>
         </li>

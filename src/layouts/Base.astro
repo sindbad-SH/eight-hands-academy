@@ -98,6 +98,22 @@ const schema = {
     <SearchOverlay />
     <AssessmentPopup />
 
+    <!-- Community events hide themselves once their last day (data-ends, YYYY-MM-DD) has passed, so the site never
+         shows stale events between deploys. A [data-events-wrap] hides when none of its events remain: with no
+         value it checks itself, with an id it checks that element (the News & Events tab checks its panel).
+         Inline so it runs during parse, before the sections can paint. -->
+    <script is:inline>
+      (() => {
+        const d = new Date();
+        const today = [d.getFullYear(), String(d.getMonth() + 1).padStart(2, '0'), String(d.getDate()).padStart(2, '0')].join('-');
+        document.querySelectorAll('[data-ends]').forEach((el) => { if (el.dataset.ends < today) el.remove(); });
+        document.querySelectorAll('[data-events-wrap]').forEach((w) => {
+          const scope = w.dataset.eventsWrap ? document.getElementById(w.dataset.eventsWrap) : w;
+          if (!scope || !scope.querySelector('[data-ends]')) w.remove();
+        });
+      })();
+    </script>
+
     <script>
       import { gsap } from 'gsap';
       import { ScrollTrigger } from 'gsap/ScrollTrigger';
