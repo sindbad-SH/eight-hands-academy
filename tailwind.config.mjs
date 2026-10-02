@@ -32,10 +32,15 @@ export default {
       colors: {
         // Qi-House brand constitution — authoritative
         navy: { DEFAULT: '#0B2341', 900: '#081a31', 700: '#13335a' },
-        gold: { DEFAULT: '#C39A3C', 600: '#A8842F' },
+        // `gold` and `gold-600` are the brand golds and stay untouched — both clear WCAG AA
+        // on the navy grounds (6.02:1 and 4.51:1). Neither passes on the light grounds
+        // (2.38:1 / 3.18:1), so `gold-ink` is the gold reserved for text on stone or white
+        // (4.63:1 on stone, 5.09:1 on white). Same hue, darkened only as far as AA requires.
+        gold: { DEFAULT: '#C39A3C', 600: '#A8842F', ink: '#876A29' },
         red: { DEFAULT: '#8C1D18' },
         stone: { DEFAULT: '#F3F4F6', 200: '#E5E7EB' },
-        slate: { DEFAULT: '#4B5563', 400: '#6b7280' },
+        // slate-400 was #6b7280 — 4.39:1 on stone, just under AA. Darkened to clear it.
+        slate: { DEFAULT: '#4B5563', 400: '#5A6270' },
       },
       fontFamily: {
         // Headings: Cormorant Garamond · Body: Inter · Accent/nav/CTA: Montserrat

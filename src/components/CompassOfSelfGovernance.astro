@@ -160,7 +160,7 @@ const ticks = Array.from({ length: 24 }, (_, i) => {
 
   <!-- Click-to-open educational sidebar (dark navy, per the reference image) -->
   <div id="compassOverlay" class="fixed inset-0 z-[90] bg-navy/70 opacity-0 pointer-events-none transition-opacity duration-300"></div>
-  <aside id="compassPanel" data-learning-href={withBase('/learning')} class="fixed top-0 right-0 z-[95] h-full w-full sm:w-[38%] sm:min-w-[360px] max-w-[440px] bg-navy-900 text-stone shadow-2xl border-l-4 border-l-red translate-x-full transition-transform duration-300 ease-out overflow-y-auto" aria-hidden="true" aria-label="Compass detail">
+  <aside id="compassPanel" data-learning-href={withBase('/learning')} class="fixed top-0 right-0 z-[95] h-full w-full sm:w-[38%] sm:min-w-[360px] max-w-[440px] bg-navy-900 text-stone shadow-2xl border-l-4 border-l-red translate-x-full transition-transform duration-300 ease-out overflow-y-auto" aria-hidden="true" inert aria-label="Compass detail">
     <div class="p-8 lg:p-10">
       <button id="compassClose" class="absolute right-5 top-5 text-stone/50 hover:text-stone text-3xl leading-none" aria-label="Close">&times;</button>
       <div id="compassPanelBody"></div>
@@ -188,11 +188,13 @@ const ticks = Array.from({ length: 24 }, (_, i) => {
       panel?.classList.remove('translate-x-full');
       overlay?.classList.remove('opacity-0', 'pointer-events-none');
       panel?.setAttribute('aria-hidden', 'false');
+      panel?.removeAttribute('inert');
     };
     const close = () => {
       panel?.classList.add('translate-x-full');
       overlay?.classList.add('opacity-0', 'pointer-events-none');
       panel?.setAttribute('aria-hidden', 'true');
+      panel?.setAttribute('inert', '');
     };
     document.querySelectorAll<HTMLElement>('.compass-pt').forEach((b) => {
       const go = () => { const i = parseInt(b.dataset.i || '0', 10); if (data[i]) open(data[i]); };

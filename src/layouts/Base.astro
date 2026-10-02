@@ -5,7 +5,7 @@ import HomeHeader from '../components/HomeHeader.astro';
 import Footer from '../components/Footer.astro';
 import SearchOverlay from '../components/SearchOverlay.astro';
 import AssessmentPopup from '../components/AssessmentPopup.astro';
-import { withBase } from '../data/site';
+import { withBase, BRAND, CONTACT, SOCIAL, BOOKING_URL } from '../data/site';
 
 interface Props {
   title?: string;
@@ -17,6 +17,41 @@ const {
   description = 'A Martial Arts Education in Self-Governance.',
   home = false,
 } = Astro.props;
+
+// Canonical + social-preview URLs, resolved against the production origin in astro.config.mjs.
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const socialImage = new URL(withBase('/img/interior-wide.jpg'), Astro.site).href;
+
+// Local-business structured data, emitted on every page so any of them can be the search
+// result that surfaces name, address, phone and the booking action.
+const [streetAddress, addressLocality, regionZip] = CONTACT.address.split(',').map((s) => s.trim());
+const [addressRegion, postalCode] = regionZip.split(/\s+/);
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SportsActivityLocation',
+  name: BRAND.name,
+  alternateName: BRAND.campus,
+  description,
+  url: canonicalUrl,
+  telephone: CONTACT.phone,
+  email: CONTACT.email,
+  image: socialImage,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress,
+    addressLocality,
+    addressRegion,
+    postalCode,
+    addressCountry: 'US',
+  },
+  hasMap: CONTACT.mapUrl,
+  sameAs: [SOCIAL.facebook, SOCIAL.instagram, SOCIAL.tiktok, SOCIAL.yelp],
+  potentialAction: {
+    '@type': 'ReserveAction',
+    name: 'Schedule an Assessment',
+    target: BOOKING_URL,
+  },
+};
 ---
 
 <!doctype html>
@@ -26,6 +61,21 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={BRAND.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
     <link rel="icon" type="image/png" href={withBase('/favicon-512.png')} />
     <link rel="icon" type="image/png" sizes="32x32" href={withBase('/favicon-32.png')} />

@@ -1,0 +1,54 @@
+---
+// Branded 404. GitHub Pages serves /404.html automatically for unmatched paths, so this replaces
+// the generic host error page with the academy's own chrome (header, footer, search, CTAs).
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { withBase, BOOKING_URL } from '../data/site';
+
+const suggestions: [string, string, string][] = [
+  ['Admissions', '/admissions', 'Begin an inquiry or book a visit'],
+  ['Programs', '/programs/youth', 'Early youth, youth and adult training'],
+  ['Learning', '/learning', 'How the education is structured'],
+  ['Daily Life', '/daily-life', 'What training at the Qi-House looks like'],
+  ['Community', '/community', 'Events, alumni and impact'],
+  ['About', '/about', 'The academy, its ethos and leadership'],
+];
+---
+<Base
+  title="Page Not Found — Eight Hands Martial Arts Academy"
+  description="That page could not be found. Find your way back to admissions, programs or the academy."
+>
+  <PageHeader
+    eyebrow="404"
+    title="This page has moved on."
+    subtitle="The page you were looking for isn’t here. Everything else still is."
+  />
+
+  <section class="bg-stone">
+    <div class="container-content py-section">
+      <div class="max-w-3xl mx-auto text-center mb-12 reveal">
+        <p class="text-slate/80 leading-relaxed">
+          If you followed a link from elsewhere it may be out of date. Try the sections below,
+          or <a href={withBase('/admissions')} class="text-red underline decoration-red/40">start with admissions</a>.
+        </p>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
+        {suggestions.map(([label, href, blurb]) => (
+          <a
+            href={withBase(href)}
+            class="reveal group block bg-white border border-navy/10 rounded-[12px] p-6 transition-colors hover:border-gold"
+          >
+            <div class="font-accent uppercase tracking-[0.18em] text-[11px] text-slate mb-2">{label}</div>
+            <p class="text-navy font-display text-lg leading-snug mb-3">{blurb}</p>
+            <span class="font-accent text-xs uppercase tracking-wide text-red">Go there →</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="text-center mt-14 reveal">
+        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">Schedule an Assessment</a>
+      </div>
+    </div>
+  </section>
+</Base>
