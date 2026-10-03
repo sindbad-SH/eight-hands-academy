@@ -1,0 +1,116 @@
+---
+// Weekly Schedule — client-supplied (Jeanette, 2026-10-02). Data in src/data/schedule.ts; all wording on this page
+// is transcribed from her "Weekly schedule.html". Desktop: a time grid (her layout); phones: a day-by-day list.
+// Grid rows are half-hour slots sized `minmax(28px, auto)`, so a short block grows its own row instead of
+// overflowing — her original overlapped text in the 6:00–7:00 PM rows.
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ContactLine from '../components/ContactLine.astro';
+import { BOOKING_URL } from '../data/site';
+import { scheduleDays, scheduleKinds, scheduleBlocks, scheduleGridStart, scheduleGridEnd } from '../data/schedule';
+
+const SLOT = 30;
+const slots = (scheduleGridEnd - scheduleGridStart) / SLOT;
+const rowOf = (min: number) => 2 + (min - scheduleGridStart) / SLOT; // row 1 = day headings
+const hourLabels: { label: string; row: number }[] = [];
+for (let m = scheduleGridStart; m < scheduleGridEnd - 30; m += 60) {
+  const h = Math.floor(m / 60);
+  hourLabels.push({ label: `${((h + 11) % 12) + 1}:00 ${h < 12 ? 'AM' : 'PM'}`, row: rowOf(m) });
+}
+const byDay = scheduleDays.map((_, d) => scheduleBlocks.filter((b) => b.day === d).sort((a, b) => a.start - b.start));
+---
+<Base title="Weekly Schedule — Eight Hands Martial Arts Academy" description="The weekly class schedule at Eight Hands Martial Arts Academy in Longmont, CO: group classes Tuesday–Saturday, with private instruction by appointment.">
+  <PageHeader eyebrow="Programs" title="Weekly Schedule" subtitle="A Martial Arts Education in Self-Governance." />
+
+  <section class="bg-stone">
+    <div class="container-content py-section-sm lg:py-section">
+      <!-- Legend -->
+      <ul class="flex flex-wrap gap-x-6 gap-y-2 mb-8 text-sm text-slate" aria-label="Legend">
+        {scheduleKinds.map(({ kind, label }) => (
+          <li class="inline-flex items-center gap-2"><span class:list={['swatch', `k-${kind}`]} aria-hidden="true"></span>{label}</li>
+        ))}
+      </ul>
+
+      <!-- Desktop / tablet: time grid -->
+      <div class="sched-grid hidden md:grid" style={`grid-template-rows: auto repeat(${slots}, minmax(28px, auto));`}>
+        {scheduleDays.map((day, d) => (
+          <div class="dayhead" style={`grid-column:${d + 2};grid-row:1;`}>{day}</div>
+        ))}
+        {hourLabels.map(({ label, row }) => (
+          <div class="tlabel" style={`grid-row:${row} / span 2;`}>{label}</div>
+        ))}
+        {scheduleBlocks.map((b) => (
+          <div class:list={['block', `k-${b.kind}`]} style={`grid-column:${b.day + 2};grid-row:${rowOf(b.start)} / span ${(b.end - b.start) / SLOT};`}>
+            <span class="btitle">{b.title}</span>
+            {b.time && <span class="bsub">{b.time}</span>}
+            {b.note && <span class="bsub">{b.note}</span>}
+          </div>
+        ))}
+      </div>
+
+      <!-- Phones: day by day -->
+      <div class="md:hidden space-y-6">
+        {byDay.map((blocks, d) => (
+          <div>
+            <h2 class="dayhead !text-left !rounded-[6px] px-4">{scheduleDays[d]}</h2>
+            <ul class="mt-2 space-y-2">
+              {blocks.map((b) => (
+                <li class:list={['block', `k-${b.kind}`]}>
+                  <span class="btitle">{b.title}</span>
+                  {b.time && <span class="bsub">{b.time}</span>}
+                  {b.note && <span class="bsub">{b.note}</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <!-- Notes (her wording) -->
+      <div class="grid md:grid-cols-2 gap-6 mt-12">
+        <div class="note">
+          <h2 class="eyebrow !text-slate mb-3">By appointment</h2>
+          <ul class="list-disc pl-5 space-y-1 text-slate">
+            <li>Private martial arts instruction — kids &amp; adults</li>
+            <li>Business development sessions</li>
+            <li>Guidance sessions</li>
+          </ul>
+          <p class="mt-4 text-slate">Enrolled students: 30-minute sessions.<br />New students: 45–60 minute introductory appointments.</p>
+        </div>
+        <div class="note">
+          <h2 class="eyebrow !text-slate mb-3">Good to know</h2>
+          <p class="text-slate">Teaching days are Tuesday–Saturday.</p>
+          <p class="text-slate">Group classes run as scheduled; everything else is 1:1 by appointment.</p>
+          <p class="text-slate">First visit? Book a free assessment — a conversation about your goals, not a sales pitch.</p>
+        </div>
+      </div>
+      <p class="mt-6 border border-[#cfe0d5] bg-[#eef4f0] rounded-[10px] px-5 py-3 text-slate"><strong class="text-[#2f5a40]">Student portal · on demand:</strong> Botanical Medicine — video library, available anytime to enrolled students.</p>
+
+      <div class="mt-8 pt-5 border-t-2 border-navy flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm">
+        <div class="font-semibold text-navy"><ContactLine linkClass="hover:text-red transition-colors" /></div>
+        <p class="text-slate">Schedule subject to change — confirm your session when booking.</p>
+      </div>
+      <div class="mt-10 text-center">
+        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">Schedule Your Free Assessment</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .sched-grid { grid-template-columns: 72px repeat(5, minmax(0, 1fr)); column-gap: 6px; row-gap: 4px; }
+  .dayhead { background: #0b2341; color: #fff; text-align: center; font-weight: 700; font-size: 0.95rem; padding: 0.4rem 0.5rem; border-radius: 6px 6px 0 0; }
+  .tlabel { grid-column: 1; font-size: 0.72rem; color: #5a6270; text-align: right; padding-right: 0.6rem; }
+  .block { display: flex; flex-direction: column; gap: 0.1rem; border-radius: 6px; padding: 0.45rem 0.65rem; line-height: 1.25; }
+  .btitle { font-weight: 700; font-size: 0.85rem; }
+  .bsub { font-size: 0.74rem; opacity: 0.92; }
+  .k-adult { background: #0b2341; color: #fff; }
+  .k-kids { background: #c9a44c; color: #0b2341; }
+  .k-mastermind { background: #4b5563; color: #fff; }
+  .k-taichi { background: #4f6e5b; color: #fff; }
+  .k-cosmo { background: #4a3b5c; color: #fff; }
+  .k-appt { background: #f1efe9; border: 1.5px dashed #c9c4b8; color: #4b5563; }
+  .k-appt .btitle { font-style: italic; font-weight: 600; }
+  .swatch { width: 14px; height: 14px; border-radius: 3px; display: inline-block; flex: none; }
+  .note { background: #fff; border-left: 4px solid #c39a3c; border-radius: 0 10px 10px 0; padding: 1rem 1.25rem; }
+</style>
