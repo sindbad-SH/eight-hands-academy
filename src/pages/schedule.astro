@@ -6,8 +6,9 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import ContactLine from '../components/ContactLine.astro';
-import { BOOKING_URL } from '../data/site';
+import { BOOKING_URL, BOOKING_LABEL } from '../data/site';
 import { scheduleDays, scheduleKinds, scheduleBlocks, scheduleGridStart, scheduleGridEnd } from '../data/schedule';
+import { programDescriptions } from '../data/programDescriptions';
 
 const SLOT = 30;
 const slots = (scheduleGridEnd - scheduleGridStart) / SLOT;
@@ -79,11 +80,17 @@ const byDay = scheduleDays.map((_, d) => scheduleBlocks.filter((b) => b.day === 
         </div>
         <div class="note">
           <h2 class="eyebrow !text-slate mb-3">Good to know</h2>
-          <p class="text-slate">Teaching days are Tuesday–Saturday.</p>
+          <p class="text-slate">Teaching days are Tuesday–Saturday. Closed Sunday &amp; Monday.</p>
           <p class="text-slate">Group classes run as scheduled; everything else is 1:1 by appointment.</p>
           <p class="text-slate">First visit? Book a free assessment — a conversation about your goals, not a sales pitch.</p>
         </div>
       </div>
+      {programDescriptions.show && <div class="mt-12 space-y-8">
+        {programDescriptions.items.map((d) => <article id={d.id} class="note scroll-mt-28">
+          <h2 class="font-display text-2xl text-navy mb-3">{d.name}</h2>
+          {d.paragraphs.map((t) => <p class="text-slate mb-3">{t}</p>)}
+        </article>)}
+      </div>}
       <p class="mt-6 border border-[#cfe0d5] bg-[#eef4f0] rounded-[10px] px-5 py-3 text-slate"><strong class="text-[#2f5a40]">Student portal · on demand:</strong> Botanical Medicine — video library, available anytime to enrolled students.</p>
 
       <div class="mt-8 pt-5 border-t-2 border-navy flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm">
@@ -91,7 +98,7 @@ const byDay = scheduleDays.map((_, d) => scheduleBlocks.filter((b) => b.day === 
         <p class="text-slate">Schedule subject to change — confirm your session when booking.</p>
       </div>
       <div class="mt-10 text-center">
-        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">Schedule Your Free Assessment</a>
+        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">{BOOKING_LABEL}</a>
       </div>
     </div>
   </section>

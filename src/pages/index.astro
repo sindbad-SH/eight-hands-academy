@@ -1,5 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
+import ProgramPricing from '../components/ProgramPricing.astro';
+import AcademyVideo from '../components/AcademyVideo.astro';
+import { pricing } from '../data/pricing';
 import PeelHero from '../components/home/PeelHero.astro';
 import CompassOfSelfGovernance from '../components/CompassOfSelfGovernance.astro';
 import NewsFlyout from '../components/NewsFlyout.astro';
@@ -10,7 +13,7 @@ import TopoTexture from '../components/TopoTexture.astro';
 import Carousel from '../components/Carousel.astro';
 import ParallaxPhoto from '../components/ParallaxPhoto.astro';
 import ClaimRotator from '../components/ClaimRotator.astro';
-import { BOOKING_URL, PROGRAMS_URL, withBase, CONTACT } from '../data/site';
+import { BOOKING_URL, BOOKING_LABEL, PROGRAMS_URL, withBase, CONTACT } from '../data/site';
 import { events } from '../data/events';
 
 const differentiators = [
@@ -95,18 +98,20 @@ const faqs: [string, string][] = [
 ];
 ---
 
-<Base home description="Eight Hands Martial Arts Academy in Longmont, CO — a martial arts education in self-governance for kids, youth, and adults since 1992. Schedule a free assessment.">
+<Base home title="Martial Arts Longmont CO | Eight Hands Martial Arts Academy" description="Eight Hands Martial Arts Academy in Longmont, CO — a martial arts education in self-governance for kids, youth, and adults since 1992. Schedule a free assessment.">
   <!-- 1 · Peel Hero -->
   <PeelHero />
   <section class="bg-navy text-stone border-t border-stone/10">
     <div class="container-content py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
       <p class="font-display italic text-lg sm:text-xl text-stone/85">A Martial Arts Education in Self-Governance.</p>
       <div class="flex gap-3">
-        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">Schedule Your Free Assessment</a>
+        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">{BOOKING_LABEL}</a>
         <a href={withBase('/admissions#visit')} class="btn-ghost !border-stone/40 !text-stone hover:!bg-stone hover:!text-navy">Observe a Class</a>
       </div>
     </div>
   </section>
+
+  <AcademyVideo />
 
   <!-- 2 · Founding statement (navy text, no photos — matches source section 2) -->
   <section class="bg-navy text-stone relative overflow-hidden">
@@ -187,7 +192,8 @@ const faqs: [string, string][] = [
         ))}
       </div>
       <div class="mt-10 text-center reveal">
-        <p class="text-stone/80 mb-6">Tuition is set at your free assessment, based on the program and schedule you choose.</p>
+        {!pricing.approved && <p class="text-stone/80 mb-6">Tuition is set at your free assessment, based on the program and schedule you choose.</p>}
+        <ProgramPricing />
         <a href={PROGRAMS_URL} target="_blank" rel="noopener" class="group inline-flex items-center gap-3 font-accent text-xs uppercase tracking-[0.18em] font-semibold text-gold hover:text-stone transition-colors">
           See programs and class schedule
           <svg width="22" height="10" viewBox="0 0 22 10" fill="none" stroke="currentColor" stroke-width="1.5" class="transition-transform duration-200 group-hover:translate-x-1"><line x1="0" y1="5" x2="20" y2="5" /><polyline points="15,1 20,5 15,9" /></svg>
@@ -469,7 +475,7 @@ const faqs: [string, string][] = [
       <h2 class="text-3xl lg:text-5xl text-stone mb-6">See where you'd begin.</h2>
       <p class="text-lg text-stone/80 max-w-xl mx-auto mb-10">Your assessment is a conversation about your goals, challenges, and readiness — not a sales presentation. We listen, then recommend the pathway that fits.</p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">Schedule an Assessment</a>
+        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">{BOOKING_LABEL}</a>
         <a href={withBase('/admissions#process')} class="btn-ghost !border-stone/40 !text-stone hover:!bg-stone hover:!text-navy">See the Admissions Process</a>
       </div>
     </div>
