@@ -18,6 +18,8 @@ for (let m = scheduleGridStart; m < scheduleGridEnd - 30; m += 60) {
   const h = Math.floor(m / 60);
   hourLabels.push({ label: `${((h + 11) % 12) + 1}:00 ${h < 12 ? 'AM' : 'PM'}`, row: rowOf(m) });
 }
+// Class names link down to their description when one is published (see data/programDescriptions.ts).
+const descFor = (kind: string) => programDescriptions.show ? programDescriptions.items.find((d) => d.kind === kind) : undefined;
 const byDay = scheduleDays.map((_, d) => scheduleBlocks.filter((b) => b.day === d).sort((a, b) => a.start - b.start));
 ---
 <Base title="Weekly Schedule — Eight Hands Martial Arts Academy" description="The weekly class schedule at Eight Hands Martial Arts Academy in Longmont, CO: group classes Tuesday–Saturday, with private instruction by appointment.">
@@ -42,7 +44,7 @@ const byDay = scheduleDays.map((_, d) => scheduleBlocks.filter((b) => b.day === 
         ))}
         {scheduleBlocks.map((b) => (
           <div class:list={['block', `k-${b.kind}`]} style={`grid-column:${b.day + 2};grid-row:${rowOf(b.start)} / span ${(b.end - b.start) / SLOT};`}>
-            <span class="btitle">{b.title}</span>
+            {descFor(b.kind) ? <a href={`#${descFor(b.kind)!.id}`} class="btitle underline decoration-1 underline-offset-2 hover:opacity-80">{b.title}</a> : <span class="btitle">{b.title}</span>}
             {b.time && <span class="bsub">{b.time}</span>}
             {b.note && <span class="bsub">{b.note}</span>}
           </div>
@@ -57,7 +59,7 @@ const byDay = scheduleDays.map((_, d) => scheduleBlocks.filter((b) => b.day === 
             <ul class="mt-2 space-y-2">
               {blocks.map((b) => (
                 <li class:list={['block', `k-${b.kind}`]}>
-                  <span class="btitle">{b.title}</span>
+                  {descFor(b.kind) ? <a href={`#${descFor(b.kind)!.id}`} class="btitle underline decoration-1 underline-offset-2 hover:opacity-80">{b.title}</a> : <span class="btitle">{b.title}</span>}
                   {b.time && <span class="bsub">{b.time}</span>}
                   {b.note && <span class="bsub">{b.note}</span>}
                 </li>
@@ -67,6 +69,14 @@ const byDay = scheduleDays.map((_, d) => scheduleBlocks.filter((b) => b.day === 
         ))}
       </div>
 
+      <!-- Program descriptions: class names in the grid link here -->
+      {programDescriptions.show && <div class="mt-12 space-y-6">
+        <h2 class="font-display text-3xl text-navy">Programs</h2>
+        {programDescriptions.items.map((d) => <article id={d.id} class="note scroll-mt-32">
+          <h2 class="font-display text-2xl text-navy mb-3">{d.name}</h2>
+          {d.paragraphs.map((t) => <p class="text-slate mb-3">{t}</p>)}
+        </article>)}
+      </div>}
       <!-- Notes (her wording) -->
       <div class="grid md:grid-cols-2 gap-6 mt-12">
         <div class="note">
@@ -85,12 +95,6 @@ const byDay = scheduleDays.map((_, d) => scheduleBlocks.filter((b) => b.day === 
           <p class="text-slate">First visit? Book a free assessment — a conversation about your goals, not a sales pitch.</p>
         </div>
       </div>
-      {programDescriptions.show && <div class="mt-12 space-y-8">
-        {programDescriptions.items.map((d) => <article id={d.id} class="note scroll-mt-28">
-          <h2 class="font-display text-2xl text-navy mb-3">{d.name}</h2>
-          {d.paragraphs.map((t) => <p class="text-slate mb-3">{t}</p>)}
-        </article>)}
-      </div>}
       <p class="mt-6 border border-[#cfe0d5] bg-[#eef4f0] rounded-[10px] px-5 py-3 text-slate"><strong class="text-[#2f5a40]">Student portal · on demand:</strong> Botanical Medicine — video library, available anytime to enrolled students.</p>
 
       <div class="mt-8 pt-5 border-t-2 border-navy flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm">

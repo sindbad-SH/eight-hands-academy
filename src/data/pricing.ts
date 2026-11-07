@@ -1,6 +1,7 @@
 // Display-only tuition. Figures verbatim from Jeanette's 2026-11-03 "TRAINING TERMS" email. No payment fields
-// anywhere (payments go through QuickBooks). HELD pending her answer (not rendered): Group $150/mo (in the
-// 2026-10-09 list, absent from the 2026-11-03 terms) and the cancellation terms (website vs paperwork).
+// anywhere (payments go through QuickBooks). Not shown: Group $150/mo (in the
+// 2026-10-09 list) — confirmed discontinued by her 2026-11-07; cancellation terms stay in the enrollment documents
+// (Standard Student Terms & Conditions, in the member portal), not on this public page.
 export const pricing = {
   approved: true,
   membership: { amount: 199, unit: 'year', note: 'Group classes are free for members.' },
@@ -17,7 +18,4 @@ export const pricing = {
   },
   neurohacking: { amount: 444, unit: 'month', note: 'Martial arts included.' },
   taiChi: { amount: 99, unit: 'four-class block', note: 'Standalone class, open to anyone.' },
-  // Set to true (and fill the text) once she confirms the cancellation terms belong on the site.
-  showCancellation: false,
-  cancellation: '',
 };
