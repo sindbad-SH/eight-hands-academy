@@ -11,16 +11,6 @@ import { withBase } from '../data/site';
 
 const MEMBER_PASSWORD = 'panthersgate';   // ← TEMP shared password — change here, then share with the test group.
 const PORTAL_URL = '';               // ← paste the external portal link here when Sang provides it (empty = "coming soon").
-// Document Access — the enrollment set Jeanette sent 2026-11-07 (blank forms). Files live in public/docs/student/
-// (kept out of search via robots.txt). The password above is NOT real protection: anyone with a link can open them.
-const DOCUMENTS: [string, string][] = [
-  ['PAR-Q+ Health Screening', '/docs/student/par-q-health-screening.pdf'],
-  ['Student Agreement', '/docs/student/student-agreement.pdf'],
-  ['Auto Payment Authorization', '/docs/student/auto-payment-authorization.pdf'],
-  ['Media Release and Affidavit', '/docs/student/media-release-and-affidavit.pdf'],
-  ['Standard Student Terms & Conditions', '/docs/student/standard-student-terms-and-conditions.pdf'],
-  ['Guest Registry & Waiver', '/docs/student/guest-registry-and-waiver.pdf'],
-];
 ---
 <Base title="Member Access — Eight Hands Martial Arts Academy" description="Member access for current students of Eight Hands Martial Arts Academy in Longmont, CO. Enter your member password to reach the student portal.">
   <PageHeader eyebrow="Members" title="Member Access" subtitle="Enter your member password to continue to the student portal." />
@@ -41,16 +31,8 @@ const DOCUMENTS: [string, string][] = [
         <!-- Welcome (revealed on correct password) -->
         <div id="gateWelcome" class="hidden bg-navy text-stone rounded-[12px] shadow-sm p-8 text-center">
           <h2 class="font-display text-2xl text-stone mb-3">Welcome.</h2>
-          <p class="text-stone/80 text-sm mb-6">Your access is confirmed. Your enrollment documents are below.</p>
+          <p class="text-stone/80 text-sm mb-6">The student portal is launching here shortly — your access is confirmed. Check back soon.</p>
           <a id="portalLink" href="#" target="_blank" rel="noopener" class="btn-accent hidden">Enter the Portal →</a>
-          <div class="mt-8 pt-6 border-t border-stone/15 text-left">
-            <h3 class="font-accent text-xs uppercase tracking-[0.16em] text-gold mb-3">Document Access</h3>
-            <ul class="space-y-2">
-              {DOCUMENTS.map(([label, href]) => (
-                <li><a href={withBase(href)} target="_blank" rel="noopener" class="flex items-center justify-between gap-3 border border-stone/20 rounded-[8px] px-4 py-2.5 text-sm text-stone hover:border-gold hover:text-gold transition-colors"><span>{label}</span><span class="text-stone/60 text-xs">PDF</span></a></li>
-              ))}
-            </ul>
-          </div>
         </div>
       </div>
     </div>

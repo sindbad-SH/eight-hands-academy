@@ -7,7 +7,7 @@
 //   • Dots sit in the navy BELOW the photo, centered.
 //   • Motion: 9-ish stacked slides, 5s autoplay, outgoing peels translateX -100% (0.5s ease);
 //     rotating word slides in (x+opacity 0.5s) inside the red box.
-import { BOOKING_URL, BOOKING_LABEL, withBase } from '../../data/site';
+import { BOOKING_URL, withBase } from '../../data/site';
 const SLIDE_COUNT = 5;
 const words = ['Responsibility', 'Participation', 'Discernment', 'Stewardship', 'Awareness', 'Presence', 'Character'];
 const slides = Array.from({ length: SLIDE_COUNT }, (_, i) => i);
@@ -41,7 +41,7 @@ const slideImages = ['mentoring-1', 'service-1', 'guided-instruction-v2', 'group
     </div>
     <!-- Primary CTA above the fold (client brief 2026-10). The overlay ignores the pointer so the photo stays
          clickable-through; the button opts back in. -->
-    <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent self-start mt-6 lg:mt-8 pointer-events-auto shadow-md">{BOOKING_LABEL}</a>
+    <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent self-start mt-6 lg:mt-8 pointer-events-auto shadow-md">Schedule Your Free Assessment</a>
   </div>
 
   <!-- Dots: navy band below the photo, centered -->

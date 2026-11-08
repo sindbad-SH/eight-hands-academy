@@ -21,7 +21,7 @@ import ProcessTabs from '../components/ProcessTabs.astro';
 import PhotoNavCard from '../components/PhotoNavCard.astro';
 import Cta from '../components/Cta.astro';
 import ContactLine from '../components/ContactLine.astro';
-import { BOOKING_URL, BOOKING_LABEL, withBase, CONTACT } from '../data/site';
+import { BOOKING_URL, withBase, CONTACT } from '../data/site';
 
 const subnav: [string, string][] = [
   ['Schedule an Assessment', '/admissions'],
@@ -39,7 +39,7 @@ const steps = [
     subhead: 'Tell Us What You Are Working Toward',
     body:
       'Start by telling us about the student and the outcomes you are after — confidence, discipline, focus, leadership, or a clearer sense of self-governance. Membership establishes your place within the academy, and the educational pathway we recommend determines how you develop within it. Your inquiry simply opens that conversation.',
-    ctaText: BOOKING_LABEL,
+    ctaText: 'Schedule an Assessment',
     ctaHref: BOOKING_URL,
     img: '/img/process/step1.jpg',
   },
@@ -48,7 +48,7 @@ const steps = [
     subhead: 'Reserve a Time That Works for You',
     body:
       'Book your assessment directly. This is a developmental conversation, not a sales presentation — a chance to understand the goals, challenges, and readiness of the student before any pathway is recommended.',
-    ctaText: BOOKING_LABEL,
+    ctaText: 'Schedule an Assessment',
     ctaHref: BOOKING_URL,
     img: '/img/process/step2.jpg',
   },
@@ -123,7 +123,7 @@ const hub: [string, string, string, string][] = [
       </div>
       <img src={withBase('/img/interior-wide.jpg')} alt="The Qi-House training space" loading="lazy" class="aspect-[16/9] mt-12 reveal w-full object-cover" />
       <div class="text-center mt-10 reveal">
-        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">{BOOKING_LABEL}</a>
+        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">Schedule an Assessment</a>
       </div>
     </div>
   </section>
@@ -147,7 +147,7 @@ const hub: [string, string, string, string][] = [
         </p>
         <p class="text-slate/90 leading-relaxed">
           The clearest way to understand whether Eight Hands is right for you is to
-          <a href={BOOKING_URL} target="_blank" rel="noopener" class="text-navy font-medium underline decoration-red/60 underline-offset-2 hover:text-red transition-colors">{BOOKING_LABEL}</a> —
+          <a href={BOOKING_URL} target="_blank" rel="noopener" class="text-navy font-medium underline decoration-red/60 underline-offset-2 hover:text-red transition-colors">schedule an assessment</a> —
           a developmental conversation about goals and readiness, not a sales presentation.
         </p>
       </div>
@@ -247,7 +247,7 @@ const hub: [string, string, string, string][] = [
         <div class="reveal bg-navy p-5 lg:p-6">
           <h3 class="font-accent uppercase tracking-[0.1em] text-stone text-lg lg:text-xl mb-4">See the Space in Person</h3>
           <div class="aspect-video overflow-hidden mb-4"><img src={withBase('/img/environment-2.jpg')} alt="Inside the Qi-House" loading="lazy" class="w-full h-full object-cover" /></div>
-          <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-ghost w-full !border-stone/40 !text-stone hover:!bg-stone hover:!text-navy">{BOOKING_LABEL}</a>
+          <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-ghost w-full !border-stone/40 !text-stone hover:!bg-stone hover:!text-navy">Come Check Out the Space</a>
         </div>
       </div>
     </div>

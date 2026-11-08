@@ -2,7 +2,7 @@
 // Homepage assessment-CTA popup: slides in from the bottom-right after a delay (or once the visitor
 // scrolls past ~50%). Dismissable (×) and remembers dismissal for the session so it never nags.
 // On-brand, low-pressure copy (no hype) — matches the academy's "a conversation, not a sale" voice.
-import { BOOKING_URL, BOOKING_LABEL } from '../data/site';
+import { BOOKING_URL } from '../data/site';
 ---
 <div
   id="assessPopup"
@@ -15,7 +15,7 @@ import { BOOKING_URL, BOOKING_LABEL } from '../data/site';
     <div class="eyebrow !text-gold mb-2">Get Started</div>
     <h3 class="font-display text-2xl text-stone mb-2 leading-snug">Ready to begin?</h3>
     <p class="text-stone/75 text-sm leading-relaxed mb-5">Your assessment is a relaxed conversation about your goals and readiness — not a sales pitch. We'll help you find the right place to start.</p>
-    <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent w-full text-center">{BOOKING_LABEL}</a>
+    <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent w-full text-center">Schedule Your Assessment</a>
     </div>
   </div>
 </div>

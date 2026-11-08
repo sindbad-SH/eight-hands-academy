@@ -3,7 +3,7 @@
 // the generic host error page with the academy's own chrome (header, footer, search, CTAs).
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
-import { withBase, BOOKING_URL, BOOKING_LABEL } from '../data/site';
+import { withBase, BOOKING_URL } from '../data/site';
 
 const suggestions: [string, string, string][] = [
   ['Admissions', '/admissions', 'Begin an inquiry or book a visit'],
@@ -47,7 +47,7 @@ const suggestions: [string, string, string][] = [
       </div>
 
       <div class="text-center mt-14 reveal">
-        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">{BOOKING_LABEL}</a>
+        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">Schedule an Assessment</a>
       </div>
     </div>
   </section>
