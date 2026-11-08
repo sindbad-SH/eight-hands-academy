@@ -17,7 +17,7 @@ trap 'rm -rf "$WORK"' EXIT
 
 say()  { printf '%s\n' "$1" >> "$SUMMARY"; }
 fail() { say "### ❌ $1"; echo "::error::$1"; exit 1; }
-probe() { ffprobe -v error -select_streams v:0 -show_entries "$1" -of default=nw=1:nk=1 "$2" 2>/dev/null | head -1; }
+probe() { ffprobe -v error -select_streams v:0 -show_entries "$1" -of default=nw=1:nk=1 "$2" 2>/dev/null | sed -n 1p; }
 set_data() {  # approved src poster width height
   sed -i -E -e "s|^  approved: .*|  approved: $1,|" -e "s|^  src: .*|  src: '$2',|" \
     -e "s|^  poster: .*|  poster: '$3',|" -e "s|^  width: .*|  width: $4,|" -e "s|^  height: .*|  height: $5,|" "$DATA"
