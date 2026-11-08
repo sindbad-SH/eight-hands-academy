@@ -1,0 +1,39 @@
+---
+// Homepage hero video — the top slot of the homepage (Jeanette, 2026-11-07: "plan the homepage top slot for it").
+// Renders nothing until src/data/video.ts has a file and approved: true. Only the file is required; poster,
+// captions and transcript are used when supplied. Plays only when the visitor presses play (it has voiceover).
+import { academyVideo as video } from '../data/video';
+import { withBase } from '../data/site';
+const ready = video.approved && video.src.trim() !== '';
+if (video.approved && !ready) throw new Error('Approved video requires a source file.');
+const frame = 'w-full aspect-video rounded-[6px] overflow-hidden';
+---
+{ready && <section aria-label={video.title} class="bg-navy text-stone">
+  <div class="container-content pt-6 pb-8 lg:pt-8 lg:pb-10">
+    <video controls playsinline preload={video.poster ? 'none' : 'metadata'} poster={video.poster ? withBase(video.poster) : undefined} aria-label={video.title} class={`${frame} bg-navy-900`}>
+      <source src={withBase(video.src)} />
+      {video.captions && <track kind="captions" src={withBase(video.captions)} srclang="en" label="English" default />}
+      <p><a href={withBase(video.src)}>Download the video</a>.</p>
+    </video>
+    {video.transcript && <a href={withBase(video.transcript)} class="inline-block mt-4 underline text-stone">Read the video transcript</a>}
+  </div>
+</section>}
+
+<!-- Placement preview for review only: hidden unless the page URL has ?video-preview. Same size and position as the
+     real player, so screenshots show exactly where it goes. Never visible on the live site; gone once a video is set. -->
+{!ready && <section id="video-slot-preview" class="bg-navy text-stone hidden" aria-hidden="true">
+  <div class="container-content pt-6 pb-8 lg:pt-8 lg:pb-10">
+    <div class={`${frame} relative bg-navy-900`}>
+      <img src={withBase('/img/mentoring-1.jpg')} alt="" class="absolute inset-0 w-full h-full object-cover opacity-40" />
+      <div class="absolute inset-0 border-2 border-dashed border-gold/70 rounded-[6px]"></div>
+      <div class="absolute inset-0 flex flex-col items-center justify-center gap-4 text-center px-4">
+        <span class="w-16 h-16 rounded-full bg-red flex items-center justify-center">
+          <svg width="20" height="24" viewBox="0 0 10 12" class="text-stone ml-1" fill="currentColor"><polygon points="0,0 10,6 0,12" /></svg>
+        </span>
+        <span class="font-accent uppercase tracking-[0.16em] text-xs sm:text-sm text-gold">Homepage video · 16:9 · placement preview</span>
+      </div>
+    </div>
+  </div>
+</section>}
+{!ready && <script is:inline>if (location.search.includes('video-preview')) { var e = document.getElementById('video-slot-preview'); if (e) e.classList.remove('hidden'); }</script>
+}

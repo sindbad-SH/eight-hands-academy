@@ -7,10 +7,9 @@ export const BRAND = {
   tagline: 'A Martial Arts Education in Self-Governance',
 };
 
-// Client's real Google Calendar appointment-scheduling link (the live "plumbing" at launch — every
-// "Schedule an Assessment" / "Book a Visit" CTA points here per the CPA + ADS docs).
-export const BOOKING_URL =
-  'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1T_Oz4YqGFZD5nJfbWOzgz-G3mZnTYOh97zm_ko_h7e7hclLgzb_I4rmcdLkTwKPzk_hTRHkx9';
+// Assessment destination and label supplied in the October 9 request.
+export const BOOKING_LABEL = 'Book Your Free Assessment';
+export const BOOKING_URL = 'https://qihouse8handsmartialarts.com/intro-class';
 
 // The school's second site (class schedule, pricing, member app) — cross-linked as "Programs & Schedule"
 // in the header and footer so both sites read as one school (client brief 2026-10).
