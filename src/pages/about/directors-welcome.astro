@@ -8,11 +8,20 @@ import { withBase } from '../../data/site';
 ---
 <Base title="Director's Welcome — Eight Hands Martial Arts Academy" description="A welcome from Dr. Reverend Jeannette Kasemir, Kyoshi, founder of Eight Hands Martial Arts Academy in Longmont, CO, teaching self-governance since 1992.">
   <SectionSubnav items={aboutSubnav} active="/about/directors-welcome" label="About section" />
-  <PageHeader eyebrow="About" title="Director's Welcome" />
+  <PageHeader eyebrow="About" title="About the Director" />
   <section class="bg-stone">
     <div class="container-content py-section-sm lg:py-section grid lg:grid-cols-[1fr_1.6fr] gap-12 items-start">
       <img src={withBase('/img/kasemir-portrait.jpg')} alt="Dr. Kasemir, Director" loading="lazy" class="aspect-[3/4] reveal w-full object-cover" />
       <div class="reveal space-y-5 text-lg text-slate/90">
+        <div class="space-y-5 text-lg">
+          <h2 class="eyebrow !text-gold-ink">About the Director</h2>
+          <p><strong class="text-navy">Dr. Reverend Jeannette Kasemir</strong> — known to her students as "Doc" — is the founder and lead instructor of Eight Hands Martial Arts Academy in Longmont, Colorado, where she has taught martial arts as an education in self-governance since 1992.</p>
+          <p>She holds the teaching honor of Kyoshi. Her discipline is TICC-IMA (Trauma-Informed Cognitive Combat Interdisciplinary Martial Arts); her style is Ba Shou Zheng Shu Senshin Kosho Nimpo.</p>
+          <p>Her teaching grew from a simple conviction: the most important lessons a person learns are not what to think or what to do, but how to govern themselves. That conviction became the academy's method — the Compass of Self-Governance and the Twelve Domains, a developmental framework that builds focus, confidence, communication, leadership, and resilience through individualized martial arts instruction.</p>
+        </div>
+        <details class="border-t border-navy/10 pt-6 mt-8">
+          <summary class="cursor-pointer font-accent text-sm text-navy py-3">Read the Director's welcome</summary>
+          <div class="space-y-5 pt-4">
         <p class="font-display text-2xl text-navy italic">Welcome to the Qi-House.</p>
         <p>Eight Hands Martial Arts Academy was founded on a simple belief: the most important lessons a person learns are not merely what to think or what to do, but how to govern themselves. While martial arts provide the vehicle, our purpose is much broader. We help students develop the confidence to act, the discipline to follow through, the focus to remain present, and the awareness to make thoughtful decisions under pressure.</p>
         <p>Every student arrives with a unique background, set of experiences, and personal goals. Some seek self-defense, others leadership, confidence, fitness, or personal growth. Regardless of where they begin, students are encouraged to take an active role in their own development. Through individualized instruction, guided practice, and meaningful challenge, they learn to communicate effectively, take responsibility for their choices, and contribute positively to the people around them.</p>
@@ -24,14 +33,8 @@ import { withBase } from '../../data/site';
           <p class="eyebrow !text-slate-400 mt-1">Director</p>
           <p class="text-sm text-slate-400 mt-0.5">Head Instructor · Eight Hands Martial Arts Academy</p>
         </div>
-        <!-- Director's bio — client-supplied, VERBATIM (Jeanette, "website rebuild prompt.md", 2026-10-02: "use verbatim,
-             do not reword"). Spelling "Jeannette" is hers. -->
-        <div class="border-t border-navy/10 pt-6 space-y-4 text-base">
-          <h2 class="eyebrow !text-gold-ink">About the Director</h2>
-          <p><strong class="text-navy">Dr. Reverend Jeannette Kasemir</strong> — known to her students as "Doc" — is the founder and lead instructor of Eight Hands Martial Arts Academy in Longmont, Colorado, where she has taught martial arts as an education in self-governance since 1992.</p>
-          <p>She holds the teaching honor of Kyoshi. Her discipline is TICC-IMA (Trauma-Informed Cognitive Combat Interdisciplinary Martial Arts); her style is Ba Shou Zheng Shu Senshin Kosho Nimpo.</p>
-          <p>Her teaching grew from a simple conviction: the most important lessons a person learns are not what to think or what to do, but how to govern themselves. That conviction became the academy's method — the Compass of Self-Governance and the Twelve Domains, a developmental framework that builds focus, confidence, communication, leadership, and resilience through individualized martial arts instruction.</p>
-        </div>
+          </div>
+        </details>
       </div>
     </div>
   </section>

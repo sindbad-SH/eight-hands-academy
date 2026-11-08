@@ -1,0 +1,65 @@
+name: Add homepage video
+
+# Puts the homepage video up (or takes it down) from a phone, no computer needed:
+# Actions → "Add homepage video" → Run workflow → paste the video link → Run workflow.
+# It converts the video for the web, saves it to main and publishes the site (about 5 minutes in total).
+on:
+  workflow_dispatch:
+    inputs:
+      video_link:
+        description: 'Link to the video file (Google Drive or Dropbox, shared "Anyone with the link"), or type: remove'
+        required: true
+        type: string
+      cover_time:
+        description: 'Optional: take the cover image from this second of the video, e.g. 12 (blank = automatic)'
+        required: false
+        type: string
+
+permissions:
+  contents: write   # save the video to main
+  actions: write    # start "Deploy to GitHub Pages" afterwards
+
+concurrency:
+  group: homepage-video
+  cancel-in-progress: false
+
+jobs:
+  video:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python (for the Google Drive downloader)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install ffmpeg and gdown
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg > /dev/null
+          pip install --quiet gdown==5.2.0
+
+      - name: Download and convert the video
+        env:
+          LINK: ${{ inputs.video_link }}
+          THUMB: ${{ inputs.cover_time }}
+          VERSION: ${{ github.run_number }}
+        run: bash scripts/homepage-video.sh
+
+      - name: Save to main and publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A public/video src/data/video.ts
+          if git diff --cached --quiet; then echo "Nothing to change."; exit 0; fi
+          git commit -q -m "Homepage video $ACTION (Add homepage video, run $GITHUB_RUN_NUMBER)"
+          git push origin HEAD:main
+          # A push made by a workflow doesn't start other workflows, so start the deploy explicitly.
+          gh workflow run deploy.yml --repo "$GITHUB_REPOSITORY" --ref main

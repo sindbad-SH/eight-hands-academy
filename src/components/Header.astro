@@ -2,7 +2,7 @@
 // Site header — sticky white header on sub-pages; reveal-on-scroll header on the homepage
 // (the navy in-flow home header is HomeHeader.astro). Nav data shared via data/nav.
 import { nav } from '../data/nav';
-import { BOOKING_URL, PROGRAMS_URL, withBase } from '../data/site';
+import { BOOKING_URL, BOOKING_LABEL, PROGRAMS_URL, withBase } from '../data/site';
 
 interface Props {
   reveal?: boolean; // homepage: start hidden, slide/fade in once scrolled past the hero
@@ -45,7 +45,7 @@ const { reveal = false } = Astro.props;
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9-9C1.5 8 4 4 8 5c2 .5 3 2 4 3 1-1 2-2.5 4-3 4-1 6.5 3 5 7-2 4.5-9 9-9 9z" /></svg>
           Support
         </a>
-        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent !py-1.5 !px-4 !text-[11px] uppercase">Schedule Your Free Assessment</a>
+        <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent !py-1.5 !px-4 !text-[11px] uppercase">{BOOKING_LABEL}</a>
         <a href={withBase('/members')} class="border border-navy/25 px-3 py-1.5 rounded-[10px] uppercase text-navy/80 hover:border-gold transition-colors">Members</a>
         <button data-search-open aria-label="Search" class="hover:text-navy transition-colors">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7" /><path d="M21 21l-4-4" /></svg>
@@ -74,11 +74,15 @@ const { reveal = false } = Astro.props;
       </nav>
     </div>
 
-    <button id="mobileToggle" class="nav:hidden text-navy self-center" aria-label="Open menu" aria-expanded="false">
+    <button id="mobileToggle" aria-controls="mobileMenu" class="min-h-[44px] min-w-[44px] inline-flex items-center justify-center nav:hidden text-navy self-center" aria-label="Open menu" aria-expanded="false">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
       </svg>
     </button>
+  </div>
+
+  <div class="container-content nav:hidden pb-3">
+    <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent w-full !px-2 !text-xs min-h-[44px]">{BOOKING_LABEL}</a>
   </div>
 
   <!-- Mobile drawer -->
@@ -97,7 +101,7 @@ const { reveal = false } = Astro.props;
         </details>
       ))}
       <a href={PROGRAMS_URL} target="_blank" rel="noopener" class="font-accent text-sm font-medium text-red py-3 border-b border-navy/10">Programs &amp; Schedule ↗</a>
-      <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent mt-4 w-full">Schedule Your Free Assessment</a>
+      <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent mt-4 w-full">{BOOKING_LABEL}</a>
     </nav>
   </div>
 
@@ -107,7 +111,10 @@ const { reveal = false } = Astro.props;
     toggle?.addEventListener('click', () => {
       const open = menu?.classList.toggle('hidden');
       toggle.setAttribute('aria-expanded', String(open === false));
+      toggle.setAttribute('aria-label', open === false ? 'Close menu' : 'Open menu');
     });
+
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && menu && !menu.classList.contains('hidden')) { menu.classList.add('hidden'); toggle?.setAttribute('aria-expanded', 'false'); toggle?.setAttribute('aria-label', 'Open menu'); toggle?.focus(); } });
 
     // Reveal-on-scroll (homepage): show once scrolled past the hero, hide near the top.
     const header = document.getElementById('siteHeader');
@@ -115,6 +122,7 @@ const { reveal = false } = Astro.props;
       const hiddenCls = ['-translate-y-full', 'opacity-0', 'pointer-events-none'];
       const onScroll = () => {
         const show = window.scrollY > 500;
+        header.inert = !show;
         hiddenCls.forEach((c) => header.classList.toggle(c, !show));
       };
       window.addEventListener('scroll', onScroll, { passive: true });

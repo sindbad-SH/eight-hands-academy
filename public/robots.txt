@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+# Student enrollment documents belong to the member portal, not search results.
+Disallow: /docs/student/
 
 Sitemap: https://8handsmartialarts.com/sitemap-index.xml

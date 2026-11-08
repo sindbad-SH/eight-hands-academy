@@ -1,5 +1,5 @@
 ---
-import { BOOKING_URL } from '../data/site';
+import { BOOKING_URL, BOOKING_LABEL } from '../data/site';
 interface Props {
   title?: string;
   text?: string;
@@ -14,8 +14,7 @@ const {
     <h2 class="text-3xl lg:text-4xl text-stone mb-5">{title}</h2>
     <p class="text-stone/80 max-w-xl mx-auto mb-9">{text}</p>
     <div class="flex flex-wrap justify-center gap-4">
-      <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">Schedule an Assessment</a>
-      <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-ghost !border-stone/40 !text-stone hover:!bg-stone hover:!text-navy">Book a Visit</a>
+      <a href={BOOKING_URL} target="_blank" rel="noopener" class="btn-accent">{BOOKING_LABEL}</a>
     </div>
   </div>
 </section>
