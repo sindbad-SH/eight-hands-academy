@@ -7,10 +7,15 @@ import { withBase } from '../data/site';
 const ready = video.approved && video.src.trim() !== '';
 if (video.approved && !ready) throw new Error('Approved video requires a source file.');
 const frame = 'w-full aspect-video rounded-[6px] overflow-hidden';
+// An upright (phone-shot) or square video gets its own shape, centred and at most 75% of the screen tall, instead of
+// a sliver inside the 16:9 box. width/height come from data/video.ts; 0 = the 16:9 slot as designed.
+const upright = video.height > video.width * 0.9;
+const shape = upright ? 'block mx-auto rounded-[6px] overflow-hidden' : frame;
+const fit = upright ? `aspect-ratio: ${video.width} / ${video.height}; width: min(100%, calc(75vh * ${video.width} / ${video.height}));` : undefined;
 ---
 {ready && <section aria-label={video.title} class="bg-navy text-stone">
   <div class="container-content pt-6 pb-8 lg:pt-8 lg:pb-10">
-    <video controls playsinline preload={video.poster ? 'none' : 'metadata'} poster={video.poster ? withBase(video.poster) : undefined} aria-label={video.title} class={`${frame} bg-navy-900`}>
+    <video controls playsinline preload={video.poster ? 'none' : 'metadata'} poster={video.poster ? withBase(video.poster) : undefined} aria-label={video.title} class={`${shape} bg-navy-900`} style={fit}>
       <source src={withBase(video.src)} />
       {video.captions && <track kind="captions" src={withBase(video.captions)} srclang="en" label="English" default />}
       <p><a href={withBase(video.src)}>Download the video</a>.</p>
